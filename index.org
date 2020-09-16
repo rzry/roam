@@ -1,23 +1,77 @@
-#+TITLE:    学习
+#+TITLE:     学习笔记
 #+AUTHOR:    rzry
 #+EMAIL:     rzry36008@ccie.lol
-#+DATE:      2020-09-15
+#+DATE:      2020-09-16
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:2
-
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-
+#+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
 #+begin_export html
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
 #+end_export
+-----
+-----
+* [[file:日程安排/20200916-月度总结.org][月度总结]]                                                                  :月度总结:
+  :PROPERTIES:
+  :CATEGORY: 月度总结
+  :END:
+ -  *Link* : [[file:日程安排/Gtd.2020.09.org][2020-09]]   
 
+ -  *Link* : [[file:日程安排/Gtd.2020.08.org][2020-08]]  
 
-#+title: 学习笔记
-* [[file:日程安排/20200916-月度总结.org][月度总结]]
-* [[file:emacs/20200916-allemacs.org][emacs]]
-* [[file:golang/20200916-all_golang.org][golang]]
-* [[file:LeetCode/20200916-all_leetcode.org][leetcode]]
-* [[file:linux/20200916-all_linux.org][linux]]
-* [[file:mysql/20200916-all_mysql.org][mysql]]
+-----
+* [[file:golang/20200916-all_golang.org][ golang]]                                                                   :golang:
+  :PROPERTIES:
+  :CATEGORY: golang
+  :END:
+ -  *Link* : [[file:golang/11_Golang笔记.org][golang笔记]]
+
+ -  *Link* : [[file:golang/22_Channel图解.org][go channel]]
+
+ -  *Link* : [[file:golang/21_Go_Test.org][go test]]
+
+ -  *Link* : [[file:golang/15_指针_结构体复习.org][指针,结构体]]
+
+ -----
+* [[file:LeetCode/20200916-all_leetcode.org][leetcode]]                                                                 :leetcode:
+  :PROPERTIES:
+  :CATEGORY: leetcode
+  :END:
+ -  *Link* : [[file:LeetCode/19_删除当前节点_Leetcode.org][leetcode-删除当前节点]]
+
+ -  *Link* : [[file:LeetCode/26_LeetCode1029.org][LeetCode1029-两地调度]]
+
+ -  *Link* : [[file:LeetCode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
+
+ -  *Link* : [[file:LeetCode/24_Leetcode_1013数组三等份.org][LeetCode-1013-将数组分成和相等的三个部分]]
+
+ -  *Link* : [[file:LeetCode/23_LeetCode1018.org][Leetcode-1018-被5整除的二进制前缀]]
+
+ -----
+
+* [[file:emacs/20200916-allemacs.org][emacs]]                                                                                    :emacs:
+  :PROPERTIES:
+  :CATEGORY: emacs
+  :END:
+ -  *Link* : [[file:emacs/18_Emacs介绍.org][emacs test]]
+
+ -  *Link* : [[file:emacs/20200915173026-emacs_roma.org][emacs-roma]]
+
+ -  *Link* : [[file:emacs/08_lisp语法.org][lisp语法]]
+
+ -----
+* [[file:linux/20200916-all_linux.org][linux]]                                                                                  :linux:
+  :PROPERTIES:
+  :CATEGORY: linux
+  :END:
+ -  *Link* : [[file:linux/16_Linux_命令.org][linux 命令]]
+
+ -  *Link* : [[file:linux/07_linux操作.org][linux.setting]]
+
+ -  *Link* : [[file:linux/30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
+
+ -  *Link* : [[file:linux/05_git笔记.org][git的使用笔记]]
+
+ -  *Link* : [[file:linux/33_adb备份软件一键安装.org][安卓一键软件备份_安装]]
+ -----
