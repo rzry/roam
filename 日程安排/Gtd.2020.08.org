@@ -1,0 +1,130 @@
+#+TITLE:     2020-08
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-08-01
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+
+
+* work note   
+  #+title: [1:] [1] 的区别 
+
+  #+BEGIN_SRC go
+
+  func TestAAA(t *testing.T){
+	runtime.GOMAXPROCS(1)
+	a := []int{1}
+	t.Log(len(a))
+        //b := []int{1,2,3}
+	t.Log(a[0:] ,a[1:1])
+	t.Log(a[1:])
+
+   }
+   /* len 为1 的a 直接打印[1] 会panic 
+   但是 如果[1:1] 就会为[] 所以尽管 len为1
+   但是[1:1]=== []  , 而index 1 == panic 
+   */
+
+  #+END_SRC
+  
+
+  #+title: 
+  
+  
+* casbin 
+
+  #+title: casbin insert user   
+  #+BEGIN_SRC 
+  1 . insert user in db  
+  2 . 判断roles 和 application 存在 
+  3 . return id 和 commit
+  #+END_SRC
+  #+title: casbin delete user 
+  #+BEGIN_SRC 
+  1 . update deleted 1--->0 
+  
+  #+END_SRC
+
+  
+* map 
+
+  #+BEGIN_SRC 
+
+  map --- > 底层是 hmap  有着若干个bucket数组 ,
+  ----> 一个bucket保存8组 k-v ,超过8个就会 hash冲突
+  会在extra字段结构体中的 overflow 使用链地址法一直拓展下去
+  
+  如果key超过8个就会映射到相同的桶 hash 冲突 -->开放寻址或者链表法
+ 
+  
+  #+END_SRC
+
+
+  #+caption: hmap
+  | <名称>     | <类型>         | <释义>          |
+  | count      | int            | 数量            |
+  | flags      | uint8          |                 |
+  | B          | uint8          | 包含2^B个bucket |
+  | noverflow  | uint8          | 溢出的bucket    |
+  | hash0      | uint32         | hash 种子       |
+  | buckets    | unsafe.pointer | buckets的指针   |
+  | oldbuckets | unsafe.pointer | 扩容时用的数组  |
+  | nevacuate  | uintptr        | 进度            |
+  | extra      | *mapextra      |                 |
+  |            |                |                 |
+  |------------+----------------+-----------------|
+  
+  #+BEGIN_SRC 
+  B --->  如果H.b 小于 16  -- > noverflow ++ return
+  如果 H.b 大于 16 --->  { uint32(1) >> (b-15) -1} 的值  fastrand() ==0 
+  ----> noverflow ++ 
+  #+END_SRC
+  
+  #+caption: bucket map 
+  | <名称>          | <类型>                    | <释义>                    |
+  | topush          | [bucketCnt]uint8          | 让查找key更快             |
+  |                 |                           | 类似打tag的方式           |
+  | hap并非只有一个 | tophash 是紧跟8组kv的模式 | 使overflow 成为链表结构   |
+  |                 |                           | key0key1key2 val1val2val3 |
+  |-----------------+---------------------------+---------------------------|
+
+** make map 
+*** make(map[string]string, 0/B<8) 
+    
+    #+BEGIN_SRC go
+    
+    func makemap_small() *hmap {
+        h := new(hmap)
+	h.hash0 = fastrand()
+	return h
+    }
+    // hint 如果为0或者小于8 那么调用_small 
+    // 创建一个 hmap的结构体 初始化hash因子 
+    #+END_SRC
+
+*** make(map[string]string,9)
+    :PROPERTIES:
+    :ID:       19471e3b-6d30-416a-8743-a2d75c4999d7
+    :END:
+
+    #+BEGIN_SRC
+    
+    1 . h == nil 初始话 hmap  new(hamp)
+    2 . h.hash0 = fastrand() 初始话hash因子
+    3 . 判断B 的大小 , B++ 会调用 overLoadFactor(hint,0)true .
+    4 . 确定h.B 的个数后 分配内存 makeBucketArray(t,h.B,nil)
+    
+    #+END_SRC
+
+    
+
+
+

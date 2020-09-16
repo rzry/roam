@@ -1,0 +1,18 @@
+#+TITLE:     golang
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ~/WorkBench/org/roam/org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+
+* [[file:11_Golang笔记.org][golang笔记]]
+* [[file:15_指针_结构体复习.org][指针,结构体]]
+* [[file:21_Go_Test.org][go_test]]
+* [[file:22_Channel图解.org][go channel]]
+

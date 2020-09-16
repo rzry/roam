@@ -1,0 +1,72 @@
+#+TITLE:     安卓一键软件备份_安装
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ~/WorkBench/org/roam/org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+* 爬所有的软件包名   
+
+  adb shell pm list package
+
+  adb shell pm list packages >> 1.txt
+
+* 替换一下 
+
+  sed -e 's///g'  1.txt 拿到单独的名字  
+
+  
+  adb shell pm path com.hpbr.bosszhipin >> package  拿到路径
+
+* 把data/app 提出来 
+
+  sed -n '\/data\/app/p' package 
+
+* 可以直接  adb pull  
+  #+BEGIN_SRC 
+  问题   因为  软件 我们 批量导出的时候 
+
+  adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/base.apk ./ 
+  adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/split_config.zh.apk ./ 
+  adb pull /data/app/com.hpbr.bosszhipin-yK6g-htg_HFL4zr4AnDSmQ==/base.apk ./ 
+  adb pull /data/app/com.google.android.googlequicksearchbox-5IemJHVD9vbt2Cb0M0dPJw==/base.apk ./ 
+
+  这会有多个名字一样的软件  这是 7.0 以上的通病 
+  为了避免这种情况 我们给后面直接重命名自增一个
+  
+  #+END_SRC
+* 方法  
+  #+BEGIN_SRC 
+   给末尾添加 一个 sed    sed 's/$/&sed/g' 4.sh >> 8.sh
+
+   然后 以 sed 为关键字 让它自增 
+    awk -v RS="sed" '{n+=1;printf $0n}' 8.sh  > 9.sh
+
+    然后再给末尾加一个  .apk  
+    sed 's/$/&.apk/g' 9.sh >> 10.sh
+  #+END_SRC
+* 设置权限 
+  #+BEGIN_SRC 
+  chmod  777 10.sh ok 完成了
+  #+END_SRC
+
+* 安装 
+  #+BEGIN_SRC 
+  使用 tcp 连接 
+  adb tcpip 5555 
+
+  adb connect 192.168.2.150
+
+  然后  cp -r 10.sh ./11.sh   
+  我们处理 11.sh 
+  awk '{print $NF}' 10.sh >> 11.sh    (拿到11.sh 最后一个值)
+  设置权限  执行   ok   wait  安装完成吧 
+  
+  #+END_SRC
+* 搞了个这个 把我分支感染了  就离谱
+* 我真是服了自己

@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-16 三 11:41 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LeetCode1029-两地调度</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">LeetCode1029-两地调度</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7607997">题目</a></li>
+<li><a href="#orge95a31d">解析   (看大佬和官方的解法  简单的总结一下)</a></li>
+<li><a href="#orgfc1b010">代码</a></li>
+<li><a href="#org754ace1">通用代码</a></li>
+</ul>
+</div>
+</div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+<div id="outline-container-org7607997" class="outline-2">
+<h2 id="org7607997">题目</h2>
+<div class="outline-text-2" id="text-org7607997">
+<pre class="example">
+公司计划面试 2N 人。第 i 人飞往 A 市的费用为 costs[i][0]，飞往 B 市的费用为 costs[i][1]。
+
+返回将每个人都飞到某座城市的最低费用，要求每个城市都有 N 人抵达。
+
+ 
+
+示例：
+
+输入：[[10,20],[30,200],[400,50],[30,20]]
+输出：110
+解释：
+第一个人去 A 市，费用为 10。
+第二个人去 A 市，费用为 30。
+第三个人去 B 市，费用为 50。
+第四个人去 B 市，费用为 20。
+
+最低总费用为 10 + 30 + 50 + 20 = 110，每个城市都有一半的人在面试。
+ 
+
+提示：
+
+1 &lt;= costs.length &lt;= 100
+costs.length 为偶数
+1 &lt;= costs[i][0], costs[i][1] &lt;= 1000
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orge95a31d" class="outline-2">
+<h2 id="orge95a31d">解析   (看大佬和官方的解法  简单的总结一下)</h2>
+<div class="outline-text-2" id="text-orge95a31d">
+<pre class="example">
+假设 有 4 个人  A B C D
+两个地点   西安 +  深圳 各位的花费如下 
+A {10,20}  B {30,40} C{40,60} D{70,60}
+那我们要求最少的花费  
+我们假设 所有的人都去 深圳  那么就是  20+40+60+60 = 180
+然后 我们再 找一下 看 那些人  去两地的价格差是最大的 
+A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D 
+所以 我们 的选择就是 把 C  和 A或者B 改变行程 让他们去 西安 
+所以 最后的 value 就是  150 
+
+代码思路 :
+    每组切片的参数相减 排序 
+    让N/2 前的 去 西安  
+    让N/2 后的 去 深圳 
+</pre>
+</div>
+</div>
+<div id="outline-container-orgfc1b010" class="outline-2">
+<h2 id="orgfc1b010">代码</h2>
+<div class="outline-text-2" id="text-orgfc1b010">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #2d9574;">"fmt"</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(<span style="color: #7590db;">costs</span> [][]<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
+        <span style="color: #7590db;">sum</span>, <span style="color: #7590db;">lenCosts</span> := 0, <span style="color: #4f97d7;">len</span>(costs)    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;</span>
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 0; i &lt; lenCosts-1; i++ { <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207;</span>
+                <span style="color: #7590db;">min</span> := i
+                <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">j</span> := i; j &lt; lenCosts; j++ {
+                        <span style="color: #4f97d7; font-weight: bold;">if</span> costs[j][0]-costs[j][1] &lt; costs[min][0]-costs[min][1] { <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226;&#27599;&#19968;&#20010; &#20256;&#36827;&#26469;&#30340; &#21435;a&#22320; - &#21435;b&#22320; &#30340;&#20540; &#25490;&#24207;</span>
+                                min = j
+                                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"if vlaue "</span>, costs[j][0])
+                        }
+
+                }
+                <span style="color: #7590db;">temp</span> := costs[i]
+                costs[i] = costs[min]
+                costs[min] = temp
+
+        }
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"limt value "</span>, costs)
+        <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207; &#23436;&#20043;&#21518;  costs &#23601;&#26159;&#19968;&#20010;  &#25353;&#29031;  a -b &#30340;&#20540; &#26469;&#25490;&#24207;&#30340;&#19968;&#20010;&#20108;&#32500;&#20999;&#29255;</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#36825;&#20010;  &#27604;&#22914;&#36825;&#27425;&#30340;testing  4&#20010;&#20540; &#25490;&#24207;&#23436;  &#25105;&#20204;&#35753; &#21069;&#20004;&#20010;&#20540; &#30340;[0] &#30456;&#21152;</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">costs [0][0] + costs [1][0]&#30456;&#21152;</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#22823;&#20110;2 &#30340;&#26102;&#20505;  &#23601;&#21040; &#31532;&#19977;&#20010;&#25968;&#20102; &#37027;&#20040;&#23601;&#29992; &#31532;&#20108;&#20010;&#20540;&#26469;&#21152;</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#23601;&#26159;  sum += costs[3][1]+costs[4][1]</span>
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 0; i &lt; lenCosts; i++ {
+                <span style="color: #4f97d7; font-weight: bold;">if</span> i &lt; lenCosts/2 {
+                        sum += costs[i][0]
+                } <span style="color: #4f97d7; font-weight: bold;">else</span> {
+                        sum += costs[i][1]
+                }
+                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"now value "</span>, costs[i])
+        }
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(sum)
+        <span style="color: #4f97d7; font-weight: bold;">return</span> sum
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
+        <span style="color: #7590db;">consts</span> := [][]<span style="color: #ce537a; font-weight: bold;">int</span>{{10, 20}, {30, 40}, {40, 60}, {70, 60}}
+        <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(consts)
+}
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org754ace1" class="outline-2">
+<h2 id="org754ace1">通用代码</h2>
+<div class="outline-text-2" id="text-org754ace1">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(<span style="color: #7590db;">costs</span> [][]<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
+        <span style="color: #7590db;">sum</span>, <span style="color: #7590db;">lenCosts</span> := 0, <span style="color: #4f97d7;">len</span>(costs)    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;</span>
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 0; i &lt; lenCosts-1; i++ { <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207;</span>
+                <span style="color: #7590db;">min</span> := i
+                <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">j</span> := i; j &lt; lenCosts; j++ {
+                        <span style="color: #4f97d7; font-weight: bold;">if</span> costs[j][0]-costs[j][1] &lt; costs[min][0]-costs[min][1] { <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226;&#27599;&#19968;&#20010; &#20256;&#36827;&#26469;&#30340; &#21435;a&#22320; - &#21435;b&#22320; &#30340;&#20540; &#25490;&#24207;</span>
+                                min = j
+                                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"if vlaue "</span>, costs[j][0])
+                        }
+
+                }
+                <span style="color: #7590db;">temp</span> := costs[i]
+                costs[i] = costs[min]
+                costs[min] = temp
+
+        }
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"limt value "</span>, costs)
+}
+</pre>
+</div>
+
+<p>
+对切片 做差排序  
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-09-16</p>
+<p class="author">Author: rzry</p>
+<p class="date">Created: 2020-09-16 三 11:41</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

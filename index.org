@@ -1,0 +1,23 @@
+#+TITLE:    学习
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-15
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+
+
+#+title: 学习笔记
+* [[file:日程安排/20200916-月度总结.org][月度总结]]
+* [[file:emacs/20200916-allemacs.org][emacs]]
+* [[file:golang/20200916-all_golang.org][golang]]
+* [[file:LeetCode/20200916-all_leetcode.org][leetcode]]
+* [[file:linux/20200916-all_linux.org][linux]]
+* [[file:mysql/20200916-all_mysql.org][mysql]]

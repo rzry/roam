@@ -1,0 +1,315 @@
+#+TITLE:     go test 
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ~/WorkBench/org/roam/org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+* 前言概述
+  #+BEGIN_SRC 
+  常接触到的测试主要是单元测试和性能测试,毫无意外 go 的testing 支持这两种测试,
+  单元测试用于模块测试,性能则是基准测试完成 即  benchmark 
+  go 的测试模块 支持编写案例 通过与godoc结合 可以很方便的生成库文档
+  #+END_SRC
+* 日常测试 
+  #+BEGIN_SRC go
+  package main
+
+//假如我写了一个 ADD 的函数 对我开发来说 最容易想到的就是在main 函数中调用 判断结果
+import (
+	"fmt"
+)
+
+func Add(n, y int) (result int){
+	
+	return n+y
+}
+func main() {
+	v := Add(5, 6)
+	if v != 11 {
+		fmt.Println("测试失败")
+		return
+	}
+	fmt.Println("测试成功")
+}
+  #+END_SRC
+
+  #+RESULTS:
+  : 测试成功
+  有点啰嗦了 日常就是 直接 fmt出结果 
+
+* 一个简单的例子 
+  #+BEGIN_SRC go
+package main
+
+func Print1to20() int {
+	res := 0
+	for i := 1; i <= 20; i++ {
+		res += i
+	}
+	return res
+}
+
+  
+  #+END_SRC
+  
+  这个是主main 函数
+  
+  #+BEGIN_SRC go
+package main
+
+import (
+	"fmt"
+	"testing"
+)
+
+func TestPrint(t *testing.T) {
+	res := Print1to20()
+
+	fmt.Println("hey")
+
+	if res != 210 {
+		t.Error("Wrong error ")
+	}
+}
+
+  #+END_SRC
+  
+  #+BEGIN_SRC 
+  写法说明 
+  每一个test 必须  在import 引入一个 testing 
+  test 文件下的 每一个testcase 必须以 Test 开头并且符合TestXxx的形式
+  否则 go test 直接会跳过这个test 不执行 
+  但是可以通过 在大写的 TestPrint里面引入小写的 testPrint 
+  这样也是可以 test 的  testPrint2(t)
+  
+  参数说明  上面的例子 我们传的是 t *testing.T 这是普通的test
+  如果是测试性能的话 那么我们传的就是 b *testing.B 测试性能
+  最后一行 
+  t.Error("这种写法 会将错误打印并且跳出这个testing")
+  t.SkipNow() 跳过当前test ,并且直接按照Pass 来处理下一个test
+      注意事项 : t.SkipNow() 必须写在testcase 的第一行  
+  #+END_SRC
+* test的执行顺序
+  #+BEGIN_SRC go
+  go 的test case 不能保证都是按照顺序执行
+  虽然通常都是 按照顺序执行但是我们心里不能没数
+  所以我们会使用 subtests 来控制顺序 
+  它的写法 是这样的
+
+  package main 
+  import (
+        "testing"
+  )
+  fun TestPrint(t *testing.T){
+      t.Run("a1",func(t *testing.T){fmt.println("这是第一个")})
+      t.Run("a2",func(t *testing.T){fmt.println("这是第二个")})
+      t.Run("a3",func(t *testing.T){fmt.println("这是第三个")})
+  } 
+
+
+  完整的 t.Run 的代码
+
+
+package main
+
+import (
+	"fmt"
+	"testing"
+)
+
+func testPrint(t *testing.T) {
+	res := Print1to20()
+	//	testPrint2(t)
+	fmt.Println("hey")
+
+	if res != 210 {
+		t.Error("Wrong error ")
+	}
+}
+func testPrint2(t *testing.T) {
+	fmt.Println("ok")
+}
+
+func TestAll(t *testing.T) {
+	t.Run("first", testPrint)
+	t.Run("second", testPrint2)
+
+}
+  需要注意的点 我们两个test 都是小写 因为没有 Testmain   
+  如果大写的话 所有的子test 和 testall 都会执行两遍 所以 我们都是小写
+  
+
+  如果在做 testing 的时候我们需要做一些初始话的东西 我们就需要 testmain 了
+  这个 Testmain  作为整个testcase 的入口 我们通常使用 m.Run() 来调用其他的testing 
+  在 m.Run()运行之前 我们所做的应该是初始话的动作  比如数据库连接 
+  如果 没有使用 m.Run 那么  所有的testcase 都不会被执行 
+
+  完整代码 
+  
+
+  package main
+
+import (
+	"fmt"
+	"testing"
+)
+
+func testPrint(t *testing.T) {
+	res := Print1to20()
+	//	testPrint2(t)
+	fmt.Println("hey")
+
+	if res != 210 {
+		t.Error("Wrong error ")
+	}
+}
+func testPrint2(t *testing.T) {
+	fmt.Println("ok")
+}
+
+func TestAll(t *testing.T) {
+	t.Run("first", testPrint)
+	t.Run("second", testPrint2)
+
+}
+
+func Testmain(m *testing.M) {
+	fmt.Println("tests begin...")
+	m.Run()
+}
+
+如果不加 m.Run  只会跑 Testmain  所有的子test 都不会跑 
+加了 结果 只有 子test 的返回  而 不会打印出 tests begin... 
+
+
+  #+END_SRC
+* go 的benchmark 
+  #+BEGIN_SRC go
+  注意事项 :
+  benchmark函数必须以benchmark开头   就是 上面是 Testxxx  现在就是 Benchmark 
+  以前  参数是 t *testing.T 现在就是 b *testing.B
+  Benchmark  每次执行都会跑 b.N次 每次执行都是这样的
+  在执行的过程中 它会自动根据 test case 实际执行时间是否稳定 而不断的增加b.N的次数
+  不断到稳态
+  代码 
+package main
+
+import "testing"
+
+func BenchmarkAll(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Print1to20()
+	}
+}
+
+运行方式 
+go test -bench=.
+
+函数代码 就是上面那个 
+
+注意事项 :
+    benchmark 也是普通的test之一 所以也会受 m.Run 的干扰 如果有 Testmain 那么 一定要有 m.Run
+
+    第三点  b.N 不是稳态  那么 benchmark 永远跑不完 
+    比如 
+
+package main
+
+import "testing"
+
+func aaa(n int) int {
+	for n > 0 {
+		n--
+	}
+	return n
+
+}
+
+func BenchmarkAll(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		aaa(n)
+	}
+}
+
+这样 执行  go test benchmark=. 
+是永远跑不完的 因为 n  不断上升 那么 函数每次执行的操作都会加多 不会到达稳态
+
+  #+END_SRC
+* 一个简单的 go testing 
+  #+BEGIN_SRC go 
+  //单元测试 我们看一个 
+package math
+
+import(
+	"math"
+	"testing"
+)
+
+func TestAbs(t *testing.T){
+	var a , expect float64 = -10 ,10
+	actual := math.Abs(a)
+	if actual != expect{
+		t.Fatalf("a = %f,actual = %f ,expected = %f ", a,actual ,expect)
+	}
+}
+  #+END_SRC
+#+BEGIN_SRC 
+1 . 测试代码文件命名必须是 _test.go 结尾 不然不行 
+2 . 测试盈利函数必须满足匹配TestXXX 比如 TestAbs 
+3 . 函数定义 func TestAbs(*testing.T) 测试函数必须按照这个格式编写 
+     函数中有一个输入参数t 类型是 *testing.T 单元测试通过它反馈测试结果
+#+END_SRC
+* api使用
+  #+BEGIN_SRC 
+  在上面的eg中 我们使用了t.Fatlf 它的作用就是 反馈检测结果 
+  在官方文档中 对于 testing.T支持的可导出方法有很多 
+  我们的 Fatalf 作用是 
+  method (*T) Fatalf(format string, args ...interface{})
+  // 跳出测试，从调用 SkipNow 退出，如果之前有错误依然提示测试报错
+  
+  
+  全部可导出的方法 
+  
+// 获取测试名称
+method (*T) Name() string
+// 打印日志
+method (*T) Log(args ...interface{})
+// 打印日志，支持 Printf 格式化打印
+method (*T) Logf(format string, args ...interface{})
+// 反馈测试失败，但不退出测试，继续执行
+method (*T) Fail()
+// 反馈测试成功，立刻退出测试
+method (*T) FailNow()
+// 反馈测试失败，打印错误
+method (*T) Error(args ...interface{})
+// 反馈测试失败，打印错误，支持 Printf 的格式化规则
+method (*T) Errorf(format string, args ...interface{})
+// 检测是否已经发生过错误
+method (*T) Failed() bool
+// 相当于 Error + FailNow，表示这是非常严重的错误，打印信息结束需立刻退出。
+method (*T) Fatal(args ...interface{})
+// 相当于 Errorf + FailNow，与 Fatal 类似，区别在于支持 Printf 格式化打印信息；
+method (*T) Fatalf(format string, args ...interface{})
+// 跳出测试，从调用 SkipNow 退出，如果之前有错误依然提示测试报错
+method (*T) SkipNow()
+// 相当于 Log 和 SkipNow 的组合
+method (*T) Skip(args ...interface{})
+// 与Skip，相当于 Logf 和 SkipNow 的组合，区别在于支持 Printf 格式化打印
+method (*T) Skipf(format string, args ...interface{})
+// 用于标记调用函数为 helper 函数，打印文件信息或日志，不会追溯该函数。
+method (*T) Helper()
+// 标记测试函数可并行执行，这个并行执行仅仅指的是与其他测试函数并行，相同测试不会并行。
+method (*T) Parallel()
+// 可用于执行子测试
+method (*T) Run(name string, f func(t *T)) bool
+
+
+
+  #+END_SRC
+  

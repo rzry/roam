@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-16 三 09:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>git的使用笔记</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">git的使用笔记</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf77731c">命令笔记</a>
+<ul>
+<li><a href="#org93330b1">初始化</a></li>
+<li><a href="#org763183e">操作</a></li>
+<li><a href="#orga5e2312">撤销操作</a></li>
+<li><a href="#org3667eeb">分支相关</a></li>
+<li><a href="#orgea6af62">冲突处理</a></li>
+<li><a href="#orge214f2a">其他</a></li>
+</ul>
+</li>
+<li><a href="#org14fe993">多人操作</a></li>
+<li><a href="#org19cef5e">实操</a>
+<ul>
+<li><a href="#orgde6f2b8">① 创建版本库</a></li>
+<li><a href="#orgc8be45b">② 添加远程库</a></li>
+<li><a href="#org9072b18">③ 从远程库克隆(我都是用这种)</a></li>
+</ul>
+</li>
+<li><a href="#org296fb5b">场景操作</a>
+<ul>
+<li><a href="#org6817454">时光机穿梭</a></li>
+<li><a href="#orge08c64d">版本回退</a></li>
+<li><a href="#orge2bfa91">撤销修改</a></li>
+<li><a href="#org301d8c4">场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</a></li>
+<li><a href="#org98a6fe2">删除文件</a></li>
+<li><a href="#org77a736d">创建与合并分支</a></li>
+<li><a href="#orgabc37a8">git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</a></li>
+<li><a href="#orgd33ae28">多人协作</a></li>
+</ul>
+</li>
+<li><a href="#org11a24e1">忽略特殊文件</a></li>
+</ul>
+</div>
+</div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+
+<div id="outline-container-orgf77731c" class="outline-2">
+<h2 id="orgf77731c">命令笔记</h2>
+<div class="outline-text-2" id="text-orgf77731c">
+</div>
+<div id="outline-container-org93330b1" class="outline-3">
+<h3 id="org93330b1">初始化</h3>
+<div class="outline-text-3" id="text-org93330b1">
+<p>
+git init //创建
+</p>
+
+<p>
+git clone /path/to/repository //检出
+</p>
+
+<p>
+git config &#x2013;global user.email "you@example.com" //配置email
+</p>
+
+<p>
+git config &#x2013;global user.name "Name" //配置用户名
+</p>
+</div>
+</div>
+
+<div id="outline-container-org763183e" class="outline-3">
+<h3 id="org763183e">操作</h3>
+<div class="outline-text-3" id="text-org763183e">
+<p>
+git add &lt;file&gt; // 文件添加，A → B
+</p>
+
+<p>
+git add . // 所有文件添加，A → B
+</p>
+
+<p>
+git commit -m "代码提交信息" //文件提交，B → C
+</p>
+
+<p>
+git commit &#x2013;amend //与上次commit合并, *B → C
+</p>
+
+<p>
+git push origin master //推送至master分支, C → D
+</p>
+
+<p>
+git pull //更新本地仓库至最新改动， D → A
+</p>
+
+<p>
+git fetch //抓取远程仓库更新， D → C
+</p>
+
+<p>
+git log //查看提交记录
+</p>
+
+<p>
+git status //查看修改状态
+</p>
+
+<p>
+git diff//查看详细修改内容
+</p>
+
+<p>
+git show//显示某次提交的内容
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5e2312" class="outline-3">
+<h3 id="orga5e2312">撤销操作</h3>
+<div class="outline-text-3" id="text-orga5e2312">
+<p>
+git reset &lt;file&gt;//某个文件索引会回滚到最后一次提交， C → B
+</p>
+
+<p>
+git reset//索引会回滚到最后一次提交， C → B
+</p>
+
+<p>
+git reset &#x2013;hard // 索引会回滚到最后一次提交， C → B → A
+</p>
+
+<p>
+git checkout // 从index复制到workspace， B → A
+</p>
+
+<p>
+git checkout &#x2013; files // 文件从index复制到workspace， B → A
+</p>
+
+<p>
+git checkout HEAD &#x2013; files // 文件从local repository复制到workspace， C → A
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3667eeb" class="outline-3">
+<h3 id="org3667eeb">分支相关</h3>
+<div class="outline-text-3" id="text-org3667eeb">
+<p>
+git checkout -b branch<sub>name</sub> //创建名叫“branch<sub>name</sub>”的分支，并切换过去
+</p>
+
+<p>
+git checkout master //切换回主分支
+</p>
+
+<p>
+git branch -d branch<sub>name</sub> // 删除名叫“branch<sub>name</sub>”的分支
+</p>
+
+<p>
+git push origin branch<sub>name</sub> //推送分支到远端仓库
+</p>
+
+<p>
+git merge branch<sub>name</sub> // 合并分支branch<sub>name到当前分支</sub>(如master)
+</p>
+
+<p>
+git rebase //衍合，线性化的自动， D → A
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgea6af62" class="outline-3">
+<h3 id="orgea6af62">冲突处理</h3>
+<div class="outline-text-3" id="text-orgea6af62">
+<p>
+git diff //对比workspace与index
+</p>
+
+<p>
+git diff HEAD //对于workspace与最后一次commit
+</p>
+
+<p>
+git diff &lt;source<sub>branch</sub>&gt; &lt;target<sub>branch</sub>&gt; //对比差异
+</p>
+
+<p>
+git add &lt;filename&gt; //修改完冲突，需要add以标记合并成功
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge214f2a" class="outline-3">
+<h3 id="orge214f2a">其他</h3>
+<div class="outline-text-3" id="text-orge214f2a">
+<p>
+gitk //开灯图形化git
+</p>
+
+<p>
+git config color.ui true //彩色的 git 输出
+</p>
+
+<p>
+git config format.pretty oneline //显示历史记录时，每个提交的信息只显示一行
+</p>
+
+<p>
+git add -i //交互式添加文件到暂存区
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org14fe993" class="outline-2">
+<h2 id="org14fe993">多人操作</h2>
+<div class="outline-text-2" id="text-org14fe993">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">建立分支</td>
+<td class="org-left">git branch &#x2026;</td>
+<td class="org-left">git branch &#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">查看分之</td>
+<td class="org-left">git branch</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">推送到远端</td>
+<td class="org-left">git push origin &#x2026;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">创建远程仓库到本地</td>
+<td class="org-left">git checkout -b &#x2026; origin/&#x2026;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">修改项目</td>
+<td class="org-left">git add Hello.txt</td>
+<td class="org-left">git commit -m"提交Hello.txt"</td>
+</tr>
+
+<tr>
+<td class="org-left">合并到 master</td>
+<td class="org-left">git checkout master</td>
+<td class="org-left">git merge &#x2013;no-ff -m"写合并分支的commit" &#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">推送master到远程仓库</td>
+<td class="org-left">git push origin master</td>
+<td class="org-left">git push origin &#x2026; 当然你可以把自己的分之推到远程</td>
+</tr>
+
+<tr>
+<td class="org-left">冲突下面讲</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org19cef5e" class="outline-2">
+<h2 id="org19cef5e">实操</h2>
+<div class="outline-text-2" id="text-org19cef5e">
+</div>
+<div id="outline-container-orgde6f2b8" class="outline-3">
+<h3 id="orgde6f2b8">① 创建版本库</h3>
+<div class="outline-text-3" id="text-orgde6f2b8">
+<p>
+通过git init命令把这个目录变成Git可以管理的仓库
+</p>
+</div>
+
+<div id="outline-container-orgee8d4d4" class="outline-4">
+<h4 id="orgee8d4d4">第一步，用命令git add告诉Git，把文件添加到仓库：</h4>
+<div class="outline-text-4" id="text-orgee8d4d4">
+<p>
+$ git add readme.txt
+</p>
+
+<p>
+执行上面的命令，没有任何显示，这就对了，
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6274b44" class="outline-4">
+<h4 id="org6274b44">第二步</h4>
+<div class="outline-text-4" id="text-org6274b44">
+<p>
+用命令git commit -m "xxx" 告诉Git，把文件提交到仓库，-m后面输入的是本次提交的说明，能从历史记录里方便地找到改动记录。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc8be45b" class="outline-3">
+<h3 id="orgc8be45b">② 添加远程库</h3>
+<div class="outline-text-3" id="text-orgc8be45b">
+<p>
+git remote add origin git@github.com:tcyfree/test.git(或<a href="https://github.com/tcyfree/test.git%EF%BC%8C%E7%94%A8git@%E6%AF%94https%E5%BF%AB">https://github.com/tcyfree/test.git%EF%BC%8C%E7%94%A8git@%E6%AF%94https%E5%BF%AB</a>) 
+</p>
+
+<p>
+添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+</p>
+</div>
+
+<div id="outline-container-org714b26e" class="outline-4">
+<h4 id="org714b26e">下一步，就可以把本地库的所有内容推送到远程库上：</h4>
+<div class="outline-text-4" id="text-org714b26e">
+<p>
+$ git push -u origin master
+把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支
+还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org683e1f6" class="outline-4">
+<h4 id="org683e1f6">总结：</h4>
+<div class="outline-text-4" id="text-org683e1f6">
+<p>
+从现在起，只要本地作了提交，就可以通过命令：git push origin master
+把本地master分支的最新修改推送至GitHub
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+</p>
+
+<p>
+分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9072b18" class="outline-3">
+<h3 id="org9072b18">③ 从远程库克隆(我都是用这种)</h3>
+<div class="outline-text-3" id="text-org9072b18">
+<p>
+上次我们讲了先有本地库，后有远程库的时候，如何关联远程库。
+现在，假设我们从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。
+要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。
+Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org296fb5b" class="outline-2">
+<h2 id="org296fb5b">场景操作</h2>
+<div class="outline-text-2" id="text-org296fb5b">
+</div>
+<div id="outline-container-org6817454" class="outline-3">
+<h3 id="org6817454">时光机穿梭</h3>
+<div class="outline-text-3" id="text-org6817454">
+<p>
+1.要随时掌握工作区的状态，使用git status命令。
+2.如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+</p>
+</div>
+</div>
+<div id="outline-container-orge08c64d" class="outline-3">
+<h3 id="orge08c64d">版本回退</h3>
+<div class="outline-text-3" id="text-orge08c64d">
+<p>
+1.HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset &#x2013;hard commit<sub>id</sub>。
+2.穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+3.要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+</p>
+
+<p>
+git diff HEAD &#x2013; readme.txt命令可以查看工作区和版本库里面最新版本的区别
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2bfa91" class="outline-3">
+<h3 id="orge2bfa91">撤销修改</h3>
+<div class="outline-text-3" id="text-orge2bfa91">
+<p>
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout &#x2013; file。
+</p>
+
+<p>
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+（git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。）
+</p>
+</div>
+</div>
+
+<div id="outline-container-org301d8c4" class="outline-3">
+<h3 id="org301d8c4">场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</h3>
+</div>
+
+<div id="outline-container-org98a6fe2" class="outline-3">
+<h3 id="org98a6fe2">删除文件</h3>
+<div class="outline-text-3" id="text-org98a6fe2">
+<p>
+1.命令git rm用于删除一个文件。
+2.确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
+</p>
+
+<p>
+$ git rm test.txt
+</p>
+
+<p>
+rm 'test.txt'
+</p>
+
+<p>
+$ git commit -m "remove test.txt"
+</p>
+
+<p>
+[master d17efd8] remove test.txt
+</p>
+
+<p>
+1 file changed, 1 deletion(-)
+</p>
+
+<p>
+delete mode 100644 test.txt
+现在，文件就从版本库中被删除了
+</p>
+
+<p>
+git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+git pull：相当于是从远程获取最新版本并merge到本地
+git pull origin master
+上述命令其实相当于git fetch 和 git merge
+在实际使用中，git fetch更安全一些
+因为在merge前，我们可以查看更新情况，然后再决定是否合并
+</p>
+</div>
+</div>
+
+<div id="outline-container-org77a736d" class="outline-3">
+<h3 id="org77a736d">创建与合并分支</h3>
+<div class="outline-text-3" id="text-org77a736d">
+<p>
+截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交
+而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
+</p>
+<p>
+[<img src="%E5%9C%BA%E6%99%AF%E6%93%8D%E4%BD%9C/2788368620-56d53c3dc9af9_articlex_2019-08-29_10-31-25.png" alt="2788368620-56d53c3dc9af9_articlex_2019-08-29_10-31-25.png" />]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgabc37a8" class="outline-3">
+<h3 id="orgabc37a8">git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</h3>
+<div class="outline-text-3" id="text-orgabc37a8">
+<p>
+$ git branch dev
+</p>
+
+<p>
+$ git checkout dev
+</p>
+
+<p>
+Switched to branch 'dev'
+</p>
+
+<p>
+然后，用git branch命令查看当前分支：
+</p>
+
+<p>
+$ git branch
+</p>
+
+<p>
+*dev
+</p>
+
+<p>
+master
+</p>
+
+<p>
+git branch命令会列出所有分支，当前分支前面会标一个*号。
+假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并：
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd33ae28" class="outline-3">
+<h3 id="orgd33ae28">多人协作</h3>
+<div class="outline-text-3" id="text-orgd33ae28">
+<p>
+当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
+</p>
+
+<p>
+要查看远程库的信息，用git remote或者，用git remote -v显示更详细的信息。
+</p>
+
+<p>
+并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
+</p>
+
+<p>
+master分支是主分支，因此要时刻与远程同步；
+</p>
+
+<p>
+dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+</p>
+
+<p>
+bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+</p>
+
+<p>
+feature分支是否推到远程，取决于你是否需要和其他人一起协作。
+</p>
+
+<p>
+总之，就是在Git中，分支完全可以在本地自己藏着玩，是否推送，视你的心情而定！
+多人协作的工作模式通常是这样：
+</p>
+
+<p>
+首先，可以试图用git push origin branch-name推送自己的修改；
+</p>
+
+<p>
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+</p>
+
+<p>
+如果合并有冲突，则解决冲突，并在本地提交；
+</p>
+
+<p>
+没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+</p>
+
+<p>
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建
+用命令git branch &#x2013;set-upstream branch-name origin/branch-name。
+</p>
+</div>
+<div id="outline-container-orga38b131" class="outline-4">
+<h4 id="orga38b131">小结</h4>
+<div class="outline-text-4" id="text-orga38b131">
+<p>
+查看远程库信息，使用git remote -v；
+</p>
+
+<p>
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+</p>
+
+<p>
+从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+</p>
+
+<p>
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+</p>
+
+<p>
+建立本地分支和远程分支的关联，使用git branch &#x2013;set-upstream branch-name origin/branch-name；
+</p>
+
+<p>
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+</p>
+
+<p>
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org11a24e1" class="outline-2">
+<h2 id="org11a24e1">忽略特殊文件</h2>
+<div class="outline-text-2" id="text-org11a24e1">
+<p>
+有些时候，你必须把某些文件放到Git工作目录中，但又不能提交它们，比如保存了数据库密码的配置文件啦，等等，每次git status都会显示Untracked files &#x2026;，有强迫症的童鞋心里肯定不爽。
+</p>
+
+<p>
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。
+</p>
+
+<p>
+忽略文件的原则是：
+</p>
+
+<p>
+忽略操作系统自动生成的文件，比如缩略图等；
+忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；
+忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-09-16</p>
+<p class="author">Author: rzry</p>
+<p class="date">Created: 2020-09-16 三 09:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

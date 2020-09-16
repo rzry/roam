@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-16 三 09:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>linux 命令</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">linux 命令</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org32c9a5a">基本知识</a></li>
+<li><a href="#org3702398">命令</a>
+<ul>
+<li><a href="#orgb028e59">ls  如果你想查看当前目录有什么东西 , 使用ls 是你最好的选择</a></li>
+<li><a href="#org74f86f5">mkdir 新建文件夹</a></li>
+<li><a href="#org92a5f5e">rm 删除文件</a></li>
+<li><a href="#orgc6a1fba">cp 复制</a></li>
+<li><a href="#org787512f">mv 移动</a></li>
+<li><a href="#org5da0518">touch 新建文件</a></li>
+<li><a href="#orgff55deb">cat 查看</a></li>
+<li><a href="#org80b0a05">less/more  查看</a></li>
+<li><a href="#org0570d91">grep 查找文件内 内容</a></li>
+<li><a href="#org46b678f">find 查找文件</a></li>
+<li><a href="#orgba8ca90">tar 压缩 解压</a></li>
+<li><a href="#orgccae784">unzip</a></li>
+<li><a href="#org39ee06b">top</a></li>
+<li><a href="#org99abf1d">安装 卸载</a></li>
+<li><a href="#orgce89b6c">free 查看内存</a></li>
+<li><a href="#org51f9c78">netstat 查看tcp ip udp 看一下端口开没开</a></li>
+<li><a href="#orgc2108a5">kill 杀了进程</a></li>
+<li><a href="#org34b8db3">chmod  设置权限</a></li>
+<li><a href="#org2a5b575">管道 |</a></li>
+<li><a href="#org973b871">ln  软链接</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+
+
+<div id="outline-container-org5544185" class="outline-4">
+<h4 id="org5544185">充满深情的写下这一篇文章,我会慢慢更新的</h4>
+</div>
+<div id="outline-container-org32c9a5a" class="outline-2">
+<h2 id="org32c9a5a">基本知识</h2>
+<div class="outline-text-2" id="text-org32c9a5a">
+<pre class="example">
+我们把linux 当做一棵树,我们是在树上住的一个猴子.我的比喻真的太恰当了
+当然你不是猴子,但是linux 确实是树 , 所有的文件都是依附与一个 / 而存在的
+这个 / 就是俗称的根目录,都叫根了,它是树吧
+而我们的桌面 就是在  /home/rzry (rzry是我计算机的名字)/桌面 
+</pre>
+<pre class="example">
+为什么要说这些? 我肯定不是无聊,你要操作 /opt /usr 等等 只要是这种目录 
+你就得sudo sudo 就是获取权限. 你可以尝试在你的终端(ctrl+alt+t)输入sudo su
+然后输入你的密码(输入不会显示 你只管输,输入完回车就行了)
+你会发现 本来前面是 @name  它变成了 name# 这就是 把系统权限给了这个终端
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3702398" class="outline-2">
+<h2 id="org3702398">命令</h2>
+<div class="outline-text-2" id="text-org3702398">
+</div>
+<div id="outline-container-orgb028e59" class="outline-3">
+<h3 id="orgb028e59">ls  如果你想查看当前目录有什么东西 , 使用ls 是你最好的选择</h3>
+<div class="outline-text-3" id="text-orgb028e59">
+
+<div class="figure">
+<p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-03-32%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-03-50.png" alt="2019-09-02%252017-03-32%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-03-50.png" />
+</p>
+</div>
+<pre class="example">
+当然他有可以选择的参数 比如 ls -al ls -l  
+参数是什么意思呢? 以 -a 举例来说 如果你的当前目录下有 . 开头的文件的话,那么这个文件就被称作隐藏文件
+我们肯定不希望有悄悄存在不让人看到的文件,那么就使用 ls -al 来查看这些东西 -l 是以较长的格式输出.
+你可以使用 ls --help 来查看每个参数的作用
+</pre>
+</div>
+</div>
+<div id="outline-container-org74f86f5" class="outline-3">
+<h3 id="org74f86f5">mkdir 新建文件夹</h3>
+<div class="outline-text-3" id="text-org74f86f5">
+<pre class="example">
+在将这个之前,我们必须了解目录这个概念,在你执行 *mkdir+新目录名字 的时候.记得是在当前目录新建文件夹
+拿上面的图来说 我的 *@rzry ➜ 桌面 linux 终端前面显示的是*桌面 这就说明我的目录是在桌面
+我们可以使用pwd 来查看当前终端所在的目录
+一个终端默认打开的位置是在 *~ 这个目录是家目录
+下图说明 我新打开了一个终端,它的pwd 显示是/home/rzry 然后我cd 桌面 , 它的目录就到了 /home/rzry/桌面
+</pre>
+
+
+<div class="figure">
+<p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-10-31%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-10-40.png" alt="2019-09-02%252017-10-31%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-10-40.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6240de1" class="outline-4">
+<h4 id="org6240de1">如下图</h4>
+<div class="outline-text-4" id="text-org6240de1">
+
+<div class="figure">
+<p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-14-31%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-14-34.png" alt="2019-09-02%252017-14-31%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-14-34.png" />
+</p>
+</div>
+
+<p>
+我们在test 文件夹里面 新建了两个文件夹 .
+当然你一次想建立多个文件夹,或者建立一个目录树类的文件夹的话,mkdir也有方法,你可以自己去摸索一下所对应的参数
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org92a5f5e" class="outline-3">
+<h3 id="org92a5f5e">rm 删除文件</h3>
+<div class="outline-text-3" id="text-org92a5f5e">
+<pre class="example">
+这个操作是比较危险的,如果你使用rm -rf 来删除一个东西,他是什么都能删除的 
+在你使用 sudo su 获取到超级权限后  rm -rf /  他会把你整个系统删掉....
+别犯傻, 只需要知道他很强大就行了. rm 删除后 回收站是看不到的 我们去示范一下 
+假如我想删除掉刚刚创建的文件夹
+</pre>
+
+<div class="figure">
+<p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-37-54%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-38-06.png" alt="2019-09-02%252017-37-54%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-38-06.png" />
+</p>
+</div>
+
+<p>
+???为什么这个人每次都要 -rf 因为这个人很干脆. 既然决定要抛弃它 那么就不需要提醒. 喵喵喵.
+</p>
+
+<p>
+我们去看一下 -rf 的意思 
+</p>
+
+
+<div class="figure">
+<p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-40-16%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-40-20.png" alt="2019-09-02%252017-40-16%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-40-20.png" />
+</p>
+</div>
+
+<p>
+你的英语好的话就自己看吧. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc6a1fba" class="outline-3">
+<h3 id="orgc6a1fba">cp 复制</h3>
+<div class="outline-text-3" id="text-orgc6a1fba">
+<pre class="example">
+这可不是我们强行凑的单词,人家就是cp,我能有什么办法
+语法在下面图上,我为了变现出我的殷勤,我来写一下
+cp (这里可以加一些你感兴趣的参数) 源文件(源头的文件,你要把什么复制一份就给这里填什么) 目标文件(你想把源文件复制带哪里,这里就填什么)
+cp -r /home/rzry/桌面/VIsion/docker配置 /home/rzry/桌面/pdf  
+这个操作就是 把桌面这个叫  docker配置的文件夹(源文件) 复制到了 pdf(目标文件) 这里 
+更多参数 看框
+</pre>
+
+<pre class="example">
+   用法：cp [选项]... [-T] 源文件 目标文件
+　或：cp [选项]... 源文件... 目录
+　或：cp [选项]... -t 目录 源文件...
+  Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+
+  必选参数对长短选项同时适用。
+  -a, --archive			等于-dR --preserve=all
+      --attributes-only	仅复制属性而不复制数据      --backup[=CONTROL为每个已存在的目标文件创建备份
+  -b				类似--backup 但不接受参数
+      --copy-contents		在递归处理是复制特殊文件内容
+  -d				等于--no-dereference --preserve=links
+  -f, --force                  if an existing destination file cannot be
+                                 opened, remove it and try again (this option
+                                 is ignored when the -n option is also used)
+  -i, --interactive            prompt before overwrite (overrides a previous -n
+                                  option)
+  -H                           follow command-line symbolic links in SOURCE
+  -l, --link                   hard link files instead of copying
+  -L, --dereference            always follow symbolic links in SOURCE
+  -n, --no-clobber		不要覆盖已存在的文件(使前面的 -i 选项失效)
+  -P, --no-dereference		不跟随源文件中的符号链接
+  -p				等于--preserve=模式,所有权,时间戳
+      --preserve[=属性列表	保持指定的属性(默认：模式,所有权,时间戳)，如果
+                                        可能保持附加属性：环境、链接、xattr 等
+      --sno-preserve=属性列表	不保留指定的文件属性
+      --parents			复制前在目标目录创建来源文件路径中的所有目录
+  -R, -r, --recursive		递归复制目录及其子目录内的所有内容
+      --reflink[=WHEN]		控制克隆/CoW 副本。请查看下面的内如。
+      --remove-destination	尝试打开目标文件前先删除已存在的目的地
+                                        文件 (相对于 --force 选项)
+      --sparse=WHEN		控制创建稀疏文件的方式
+      --strip-trailing-slashes	删除参数中所有源文件/目录末端的斜杠
+  -s, --symbolic-link		只创建符号链接而不复制文件
+  -S, --suffix=后缀		自行指定备份文件的后缀
+  -t,  --target-directory=目录	将所有参数指定的源文件/目录
+                                           复制至目标目录
+  -T, --no-target-directory	将目标目录视作普通文件
+  -u, --update			只在源文件比目标文件新，或目标文件
+                                        不存在时才进行复制
+  -v, --verbose		显示详细的进行步骤
+  -x, --one-file-system	不跨越文件系统进行操作
+  -Z                           set SELinux security context of destination
+                                 file to default type
+      --context[=CTX]          like -Z, or if CTX is specified then set the
+                                 SELinux or SMACK security context to CTX
+      --help		显示此帮助信息并退出
+      --version		显示版本信息并退出
+
+  默认情况下，源文件的稀疏性仅仅通过简单的方法判断，对应的目标文件目标文件也 
+  被为稀疏。这是因为默认情况下使用了--sparse=auto 参数。如果明确使用
+  --sparse=always 参数则不论源文件是否包含足够长的0 序列也将目标文件创文
+  建为稀疏件。
+  使用--sparse=never 参数禁止创建稀疏文件。
+
+  当指定了--reflink[=always] 参数时执行轻量化的复制，即只在数据块被修改的 
+  情况下才复制。如果复制失败或者同时指定了--reflink=auto，则返回标准复制模式。
+
+  The backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.
+  The version control method may be selected via the --backup option or through
+  the VERSION_CONTROL environment variable.  Here are the values:
+
+  none, off       不进行备份(即使使用了--backup 选项)
+  numbered, t     备份文件加上数字进行排序
+  existing, nil   若有数字的备份文件已经存在则使用数字，否则使用普通方式备份
+  simple, never   永远使用普通方式备份
+
+  有一个特别情况：如果同时指定--force 和--backup 选项，而源文件和目标文件
+  是同一个已存在的一般文件的话，cp 会将源文件备份。
+
+  GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+  请向&lt;http://translationproject.org/team/zh_CN.html&gt; 报告cp 的翻译错误
+  Full documentation at: &lt;http://www.gnu.org/software/coreutils/cp&gt;
+  or available locally via: info '(coreutils) cp invocation'
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org787512f" class="outline-3">
+<h3 id="org787512f">mv 移动</h3>
+<div class="outline-text-3" id="text-org787512f">
+<pre class="example">
+我们总是不能满足,在有了复制之后 还想更轻松的命令来移动一个东西
+mv 就出来了 它的语法截图如下 和cp 如出一辙,处理没有cp 那么暧昧以外
+</pre>
+
+<pre class="example">
+   用法：mv [选项]... [-T] 源文件 目标文件
+　 或：mv [选项]... 源文件... 目录
+　 或：mv [选项]... -t 目录 源文件...
+   Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.
+
+  必选参数对长短选项同时适用。
+      --backup[=CONTROL]       为每个已存在的目标文件创建备份
+  -b                           类似--backup 但不接受参数
+  -f, --force                  覆盖前不询问
+  -i, --interactive            覆盖前询问
+  -n, --no-clobber             不覆盖已存在文件 
+   如果您指定了-i、-f、-n 中的多个，仅最后一个生效。
+      --strip-trailing-slashes	去掉每个源文件参数尾部的斜线
+    -S, --suffix=SUFFIX		替换常用的备份文件后缀
+    -t, --target-directory=DIRECTORY  move all SOURCE arguments into DIRECTORY
+    -T, --no-target-directory    treat DEST as a normal file
+    -u, --update                 move only when the SOURCE file is newer
+                                 than the destination file or when the
+                                 destination file is missing
+      -v, --verbose                explain what is being done
+      -Z, --context                set SELinux security context of destination
+                                 file to default type
+      --help		显示此帮助信息并退出
+      --version		显示版本信息并退出
+
+    The backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.
+    The version control method may be selected via the --backup option or through
+    the VERSION_CONTROL environment variable.  Here are the values:
+
+    none, off       不进行备份(即使使用了--backup 选项)
+    numbered, t     备份文件加上数字进行排序
+    existing, nil   若有数字的备份文件已经存在则使用数字，否则使用普通方式备份
+    simple, never   永远使用普通方式备份
+
+   GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+   请向&lt;http://translationproject.org/team/zh_CN.html&gt; 报告mv 的翻译错误
+   Full documentation at: &lt;http://www.gnu.org/software/coreutils/mv&gt;
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5da0518" class="outline-3">
+<h3 id="org5da0518">touch 新建文件</h3>
+<div class="outline-text-3" id="text-org5da0518">
+<pre class="example">
+你用过ubuntu 的话 你应该知道 这货没办法新建文件,只能新建文件夹
+这让我一个喜欢写笔记的孩子还怎么随手新建txt文档
+当然大佬不会那么傻,傻得都是不懂得人.
+touch name.txt 这样就会在当前目录新建一个名字叫 name 的txt格式的文件
+当然你可以 touch name ... touch name.org 等等 .c .js .py .go .cpp 都可以新建
+反正都能新建,打不打得开就是你的事
+</pre>
+</div>
+</div>
+<div id="outline-container-orgff55deb" class="outline-3">
+<h3 id="orgff55deb">cat 查看</h3>
+<div class="outline-text-3" id="text-orgff55deb">
+<pre class="example">
+这可不是喵喵喵. 而是查看文件 , 如果你想看一个txt 但是你又不想去双击它 
+那么 cat 是你新的选择   
+情景再现 : 小明写了一个日记 . 我想看一下他到底在日记里写了自己喜欢那个女孩
+我们就可以使用  cat 日记.txt 来在终端打开这个日记 
+当然 你也可以  cat name.cpp  cat name.go cat 你想看的所有你觉得能打开的东西
+有人说那我可以看图片吗?
+图片也能这样打开 只不过你看不看得懂就是二回事了
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org80b0a05" class="outline-3">
+<h3 id="org80b0a05">less/more  查看</h3>
+<div class="outline-text-3" id="text-org80b0a05">
+<pre class="example">
+和cat 差不多  就是查看文件的一个命令 区别就是这两个命令能够一点一点看
+</pre>
+</div>
+</div>
+<div id="outline-container-org0570d91" class="outline-3">
+<h3 id="org0570d91">grep 查找文件内 内容</h3>
+<div class="outline-text-3" id="text-org0570d91">
+<pre class="example">
+这个命令太复杂了
+使用场景 
+比如我这边有一个  .zsh_history 的文件 我想看一下 这个文件里面都有那些 行 都有某个关键字
+比如 关键字 docker   
+我会使用  grep -n docker .zsh_history     这个命令  
+-n   意思是显示 行号  docker 就是关键字  后面+ 你要搜索的目标文件 （可以是一个目录）
+</pre>
+</div>
+</div>
+<div id="outline-container-org46b678f" class="outline-3">
+<h3 id="org46b678f">find 查找文件</h3>
+<div class="outline-text-3" id="text-org46b678f">
+<pre class="example">
+上面那个是查看行 这个是查看文件  
+比如我的家目录下某一个文件夹有一个文件叫 docker.txt  但是我忘记他在那个目录了
+我们就可以使用 find    find /home/rzry -name "docker.txt"  
+find . -name "*.go" 这个的意思就是 
+. 代表当前目录  find + 目录 + 条件 + 关键字 
+在当前目录下查找后缀是 .go 的文件
+</pre>
+</div>
+</div>
+<div id="outline-container-orgba8ca90" class="outline-3">
+<h3 id="orgba8ca90">tar 压缩 解压</h3>
+<div class="outline-text-3" id="text-orgba8ca90">
+<pre class="example">
+压缩
+ tar -czf b.tar.gz *
+
+解压
+ tar zxf b.tar.gz -C ~/桌面
+</pre>
+</div>
+</div>
+<div id="outline-container-orgccae784" class="outline-3">
+<h3 id="orgccae784">unzip</h3>
+<div class="outline-text-3" id="text-orgccae784">
+<pre class="example">
+因为一般都是压缩为 tar.gz  但是我们有时候会需要解压.zip 格式的文件 
+unzip 就是这个  
+unzip -O -t GBK /解压到哪里   -O 是指定字符集 有的会乱码 就制定字符集 也可以 gb2312  utf8 之类
+</pre>
+</div>
+</div>
+<div id="outline-container-org39ee06b" class="outline-3">
+<h3 id="org39ee06b">top</h3>
+<div class="outline-text-3" id="text-org39ee06b">
+<pre class="example">
+监控linux 的一个东西  可以看到你的pid  user 还有 cpu 内存 运行时间 之类的  
+也可以使用 sudo apt-get install htop  安装好看点的top 
+这边就要说一下  安装了  
+</pre>
+</div>
+</div>
+<div id="outline-container-org99abf1d" class="outline-3">
+<h3 id="org99abf1d">安装 卸载</h3>
+<div class="outline-text-3" id="text-org99abf1d">
+<pre class="example">
+一般最常用的安装 就是在 你的源 系统自己找软件帮你安装  
+sudo apt-get update &amp;&amp; sudo apt-get install (安装软件的名字)
+卸载 sudo apt-get remove (卸载软件的名字)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgce89b6c" class="outline-3">
+<h3 id="orgce89b6c">free 查看内存</h3>
+</div>
+<div id="outline-container-org51f9c78" class="outline-3">
+<h3 id="org51f9c78">netstat 查看tcp ip udp 看一下端口开没开</h3>
+<div class="outline-text-3" id="text-org51f9c78">
+<pre class="example">
+一般最常用的是查看端口是否占用  
+sudo netstat -tunlp | grep 80    查看 80端口有没有使用
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc2108a5" class="outline-3">
+<h3 id="orgc2108a5">kill 杀了进程</h3>
+<div class="outline-text-3" id="text-orgc2108a5">
+<pre class="example">
+比如上一步 你的80端口被占了 你就可以使用 kill 来杀了这个进程
+或者你的那个软件卡死了 你就可以使用查看进程的方式获得它的pid 
+然后使用 kill 杀掉这个僵尸进程 
+kill -9 + pid 
+</pre>
+</div>
+</div>
+<div id="outline-container-org34b8db3" class="outline-3">
+<h3 id="org34b8db3">chmod  设置权限</h3>
+<div class="outline-text-3" id="text-org34b8db3">
+<pre class="example">
+再说chmod 之前 我们得先讲一下 关于 linux 用户的分配 .
+linux是一个多用户的操作平台 所以可以通过切换用户来共同操作
+那就避免不了要有权限的设置 
+而 一个文件 是 由 3 种权限和3个人员共同组成的 
+我们只讲最简单的 
+3 个权限就是 可读可写可执行  
+3个人 就是   user group other 
+一个文件的权限 是  下表
+</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">r</td>
+<td class="org-left">w</td>
+<td class="org-left">x</td>
+<td class="org-left">r</td>
+<td class="org-left">w</td>
+<td class="org-left">x</td>
+<td class="org-left">r</td>
+<td class="org-left">w</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-left">自己的读</td>
+<td class="org-left">自己的写</td>
+<td class="org-left">自己的执行</td>
+<td class="org-left">组的读</td>
+<td class="org-left">组的写</td>
+<td class="org-left">组的执行</td>
+<td class="org-left">其他人的读</td>
+<td class="org-left">其他人的写</td>
+<td class="org-left">其他人的执行</td>
+</tr>
+
+<tr>
+<td class="org-left">4</td>
+<td class="org-left">2</td>
+<td class="org-left">1</td>
+<td class="org-left">4</td>
+<td class="org-left">2</td>
+<td class="org-left">1</td>
+<td class="org-left">4</td>
+<td class="org-left">2</td>
+<td class="org-left">1</td>
+</tr>
+</tbody>
+</table>
+
+<pre class="example">
+所以 一个文件 我们常说的 777 就是  4+2+1 4+2+1 4+2+1  三个人 每个人都有可读可写可执行 
+如果你只想你自己可读可写可执行 其他人都只能读 那么就是   7  4   4
+还有单独加权限和减权限   因为这种最好理解 .所以就只说这个 
+</pre>
+</div>
+</div>
+<div id="outline-container-org2a5b575" class="outline-3">
+<h3 id="org2a5b575">管道 |</h3>
+<div class="outline-text-3" id="text-org2a5b575">
+<pre class="example">
+这个命令很奇妙  它的作用是 把左边的输出当做右边的输入 
+所以他有两个命令和一个 | 组成 
+比如   ls | more 
+这样就可以把 ls 输出的所有文件作为一个输入 使用more 来查看 
+它的作用很多  通常是和 grep 搭配 先懂是什么就好了
+</pre>
+</div>
+</div>
+<div id="outline-container-org973b871" class="outline-3">
+<h3 id="org973b871">ln  软链接</h3>
+<div class="outline-text-3" id="text-org973b871">
+<pre class="example">
+  ln -s 2.txt 1_ln.txt 记住 源文件一定要全路径 sudo ln -s /home/rzry/go/src/Video/api设计.txt go 
+硬链接就是 不加 -s 这就跟copy 一样
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-09-16</p>
+<p class="author">Author: rzry</p>
+<p class="date">Created: 2020-09-16 三 09:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

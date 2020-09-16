@@ -1,0 +1,69 @@
+#+TITLE:     LeetCode628-三个数的最大乘积
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ~/WorkBench/org/roam/org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+*  题目 
+ #+BEGIN_SRC 
+ 给定一个整型数组，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
+
+示例 1:
+
+输入: [1,2,3]
+输出: 6
+示例 2:
+
+输入: [1,2,3,4]
+输出: 24
+注意:
+
+给定的整型数组长度范围是[3,104]，数组中所有的元素范围是[-1000, 1000]。
+输入的数组中任意三个数的乘积不会超出32位有符号整数的范围
+
+ #+END_SRC
+* 解答
+  #+BEGIN_SRC go
+  package main 
+
+import(
+	"fmt"
+	"sort"
+)
+
+func maximumProduct(nums []int) int {
+	sort.Ints(nums)
+	//三个数最大 , 排序完了 最大的3个乘
+	// 如果有 负数 还要最大 那就只能有两个负数  两个的话 就是 最靠前的两个负数+最大的正数
+	//还有一种 3个都是负数 那样就只能取 最大的三个负数
+	i := nums[len(nums)-1] * nums[len(nums)-2] * nums[len(nums)-3]
+	
+	j := nums[0]*nums[1]*nums[len(nums)-1]
+	
+	fmt.Println(nums)
+	
+	if i>j {
+		return i
+	}else{
+		return j
+	}
+}
+    
+func main() {
+	
+	arr := []int{-1,-2,-3,-4}
+
+	a := maximumProduct(arr)
+	fmt.Println(a)
+}
+  #+END_SRC
+
+  #+RESULTS:
+  : [-4 -3 -2 -1]
+  : -6

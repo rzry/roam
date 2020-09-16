@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-16 三 10:55 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mysql笔记总结</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">mysql笔记总结</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org72902c1">基础查询</a></li>
+<li><a href="#orgb996973">条件查询 <b>*</b></a></li>
+<li><a href="#org818b84e">排序查询 <b>*</b></a></li>
+<li><a href="#org007ba94">常见函数***</a></li>
+<li><a href="#org5e502b8">数学函数***</a></li>
+<li><a href="#orgb6a6405">日期函数***</a></li>
+<li><a href="#org33a3c93">其他函数***</a></li>
+<li><a href="#org42c73fd">流程控制函数 <b>*</b></a></li>
+<li><a href="#org7041746">插入</a></li>
+<li><a href="#orgd607911">难一点的</a></li>
+<li><a href="#org00157e4">修改</a></li>
+<li><a href="#org2321b83">多表</a></li>
+<li><a href="#orgaa64ab5">删除</a></li>
+<li><a href="#org3d527b5">多表</a></li>
+<li><a href="#orgcb5d62f">删除的下一个方式</a></li>
+<li><a href="#org5d26fd2">库的创建</a></li>
+<li><a href="#org300fb0d">更改字符集</a></li>
+<li><a href="#orgc79ef9b">库的删除</a></li>
+<li><a href="#org12b6e9c">表的管理</a></li>
+<li><a href="#orge6d49f1">表的创建</a></li>
+<li><a href="#org97070c2">表的修改</a></li>
+<li><a href="#orgd72800f">修改类型和约束</a></li>
+<li><a href="#org305be0f">添加新列</a></li>
+<li><a href="#org16736da">删除列</a></li>
+<li><a href="#orgc9fd6da">修改表名</a></li>
+<li><a href="#org3068fc5">表的删除</a></li>
+<li><a href="#orga6aebcf">通常我们创建一个新的表的话  我们会先删除  再 create</a></li>
+<li><a href="#org887141e">表的复制</a>
+<ul>
+<li><a href="#org37ff052">只复制结构 赋值 类型 之类的</a></li>
+<li><a href="#org3f18fbb">赋值表的结构和数据</a></li>
+<li><a href="#orgf5a703c">复制部分数据</a></li>
+<li><a href="#org0643562">不要值 只要字段</a></li>
+</ul>
+</li>
+<li><a href="#org4e23620">数据类型</a>
+<ul>
+<li><a href="#org21eeaae">字符型</a></li>
+<li><a href="#org70c30f8">日期型</a></li>
+</ul>
+</li>
+<li><a href="#orge709880">常见约束</a></li>
+<li><a href="#org34e4d44">标识列  又称为 自增长列</a></li>
+<li><a href="#org0771589">事务  tcl 语言</a></li>
+</ul>
+</div>
+</div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+
+
+<div id="outline-container-org72902c1" class="outline-2">
+<h2 id="org72902c1">基础查询</h2>
+<div class="outline-text-2" id="text-org72902c1">
+<div class="org-src-container">
+<pre class="src src-mysql">
+select 查询列表 from 表名     查询列表可以有多个 就比如 我一次性想查 名字,性别,年龄  都可以使用逗号 隔开 一次性查询 
+查询可以起别名  select  查询列表 as 别名  (查询的就是这样 空格和as 都可以作为别名的关键词)
+查询途中可以去重  distinct 直接加在 select 后面就行了 
+concat 函数  把多个字符串拼接起来   
+ifnull 函数  判断是否为 null 是的话 就给个值 ifnull(`commission_pct`,0)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb996973" class="outline-2">
+<h2 id="orgb996973">条件查询 <b>*</b></h2>
+<div class="outline-text-2" id="text-orgb996973">
+<div class="org-src-container">
+<pre class="src src-mysql">后面加where   	  &amp;&amp; 和and  两个都为真 结果为true 
+|| 和 or  有一个为真 结果为 true 
+! 和 not  本身为真 结果为flase 
+like 模糊查询 类似于汉语中的 这个里面有什么 像什么
+between  and	在什么什么之间 包含领界值
+in 		判断一个字段的值是不是属于in 列表的一项   in 列表的置类型必须一致或者兼容
+is null	 	判断是不是为null 只能判断是不是null  &lt;=&gt; 这个还可以判断普通的数值
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org818b84e" class="outline-2">
+<h2 id="org818b84e">排序查询 <b>*</b></h2>
+<div class="outline-text-2" id="text-org818b84e">
+<p>
+后面加一个 order by 排序列表 ][asc][desc] 它的位置是在where 的后面 如果没有limit字句 它就是最后面的哪一个 ORDER BY salary asc 
+</p>
+</div>
+</div>
+<div id="outline-container-org007ba94" class="outline-2">
+<h2 id="org007ba94">常见函数***</h2>
+<div class="outline-text-2" id="text-org007ba94">
+<pre class="example">
+length 获取参数值的字节个数   
+concat  拼接字符串
+upper,lower 大写变小写,小写变大写
+substr substring 检索并且截取 一个参数 就是到哪里 两个参数就是从哪里到哪里
+SUBSTR('少时诵诗书所所所所', 7) SUBSTR('爱仕达所大所大撒多所多',1,3)
+instr 返回位置 查询的感觉 返回字符串 字符 第一次出现的索引,如果找不到就返回0
+trim 去掉两边的字符 去掉空格没有参数 直接trim 加 字段的值 
+去掉特定字符 使用'特定字符'from '字段的值'
+lpad 使用指定的字符实现左填充指定长度 	LPAD('对对对',10,'*') 
+rpad 右填充  RPAD('大手大',12,'ab')
+replace 替换 repalce('源文件','被替换的文件','想让什么来替换')
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5e502b8" class="outline-2">
+<h2 id="org5e502b8">数学函数***</h2>
+<div class="outline-text-2" id="text-org5e502b8">
+<pre class="example">
+round 四舍五入  可以后加参数确定小数点后保留几位
+ceil 向上取整 返回&gt;= 该参数的最小整数
+floor 向下取整  通ceil
+truncate 截断 后加参数 确定小数点后位数 截断这个小数 TRUNCATE(1.69999,2);
+mod 取余 
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb6a6405" class="outline-2">
+<h2 id="orgb6a6405">日期函数***</h2>
+<div class="outline-text-2" id="text-orgb6a6405">
+<pre class="example">
+select now() 返回当前时间 
+curdate 返回日期 不包含时间
+curtime 返回时间,不包含日期
+str_to_date 字符串格式转换 两个参数 原本的格式,想要的格式 
+date_format 将日期转换为字符 
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org33a3c93" class="outline-2">
+<h2 id="org33a3c93">其他函数***</h2>
+<div class="outline-text-2" id="text-org33a3c93">
+<pre class="example">
+ SELECT VERSION();
+SELECT DATABASE();
+SELECT USER();
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org42c73fd" class="outline-2">
+<h2 id="org42c73fd">流程控制函数 <b>*</b></h2>
+<div class="outline-text-2" id="text-org42c73fd">
+<p>
+SELECT IF(10&lt;5,'大','小');  如果条件是真 选第一个  是假就选最后一个
+</p>
+
+<p>
+<code>============================================================</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7041746" class="outline-2">
+<h2 id="org7041746">插入</h2>
+<div class="outline-text-2" id="text-org7041746">
+<p>
+insert into beauty (id,name) value (1,'邓紫棋')
+</p>
+
+<p>
+insert into beauty values (18,"gem")
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd607911" class="outline-2">
+<h2 id="orgd607911">难一点的</h2>
+<div class="outline-text-2" id="text-orgd607911">
+<p>
+insert into beauty 
+</p>
+
+<p>
+set id = 19,name = "sss"
+</p>
+</div>
+</div>
+<div id="outline-container-org00157e4" class="outline-2">
+<h2 id="org00157e4">修改</h2>
+<div class="outline-text-2" id="text-org00157e4">
+<pre class="example">
+update beauty set id = 55
+where name like '邓%'
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2321b83" class="outline-2">
+<h2 id="org2321b83">多表</h2>
+<div class="outline-text-2" id="text-org2321b83">
+<pre class="example">
+UPDATE boys bo
+RIGHT JOIN beauty b ON bo.`id`=b.`boyfriend_id`
+SET b.`boyfriend_id`=2
+WHERE bo.`id` IS NULL;
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgaa64ab5" class="outline-2">
+<h2 id="orgaa64ab5">删除</h2>
+<div class="outline-text-2" id="text-orgaa64ab5">
+<p>
+delete from 那个表 where 条件
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d527b5" class="outline-2">
+<h2 id="org3d527b5">多表</h2>
+<div class="outline-text-2" id="text-org3d527b5">
+<pre class="example">
+#案例：删除黄晓明的信息 以及 他女朋友的信息
+ DELETE b,bo
+ FROM beauty b
+ INNER JOIN boys bo ON b.`boyfriend_id`=bo.`id`
+ WHERE bo.`boyName`='黄晓明';
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgcb5d62f" class="outline-2">
+<h2 id="orgcb5d62f">删除的下一个方式</h2>
+<div class="outline-text-2" id="text-orgcb5d62f">
+<p>
+truncate  table 表名
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5d26fd2" class="outline-2">
+<h2 id="org5d26fd2">库的创建</h2>
+<div class="outline-text-2" id="text-org5d26fd2">
+<p>
+create database if not exists 库的名字 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org300fb0d" class="outline-2">
+<h2 id="org300fb0d">更改字符集</h2>
+<div class="outline-text-2" id="text-org300fb0d">
+<p>
+alter database 库的名字 character set utf8
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc79ef9b" class="outline-2">
+<h2 id="orgc79ef9b">库的删除</h2>
+<div class="outline-text-2" id="text-orgc79ef9b">
+<p>
+drop database if exists 库的名字 
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org12b6e9c" class="outline-2">
+<h2 id="org12b6e9c">表的管理</h2>
+</div>
+
+<div id="outline-container-orge6d49f1" class="outline-2">
+<h2 id="orge6d49f1">表的创建</h2>
+<div class="outline-text-2" id="text-orge6d49f1">
+<pre class="example">
+
+create table if not exists 表的名字 (
+id int 
+bname varchar(20)
+
+)
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org97070c2" class="outline-2">
+<h2 id="org97070c2">表的修改</h2>
+<div class="outline-text-2" id="text-org97070c2">
+<p>
+alter table 表名 change column 老名字 新名字 类型(varchar(60))
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd72800f" class="outline-2">
+<h2 id="orgd72800f">修改类型和约束</h2>
+<div class="outline-text-2" id="text-orgd72800f">
+<p>
+alter table 表名 modify column 那一列列的名字(name) 新类型 (varchar(60))
+</p>
+</div>
+</div>
+
+<div id="outline-container-org305be0f" class="outline-2">
+<h2 id="org305be0f">添加新列</h2>
+<div class="outline-text-2" id="text-org305be0f">
+<p>
+alter table 表名 drop column 添加的列的名字 添加的列的类型 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org16736da" class="outline-2">
+<h2 id="org16736da">删除列</h2>
+<div class="outline-text-2" id="text-org16736da">
+<p>
+alter table 表名 drop column 删除的那一列的名字 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9fd6da" class="outline-2">
+<h2 id="orgc9fd6da">修改表名</h2>
+<div class="outline-text-2" id="text-orgc9fd6da">
+<p>
+alter table 表名 rename to 新的表名  
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3068fc5" class="outline-2">
+<h2 id="org3068fc5">表的删除</h2>
+<div class="outline-text-2" id="text-org3068fc5">
+<p>
+drop table if exists 删除的表的名字 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga6aebcf" class="outline-2">
+<h2 id="orga6aebcf">通常我们创建一个新的表的话  我们会先删除  再 create</h2>
+<div class="outline-text-2" id="text-orga6aebcf">
+<pre class="example">
+DROP DATABASE IF EXISTS 旧库名;
+CREATE DATABASE 新库名;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org887141e" class="outline-2">
+<h2 id="org887141e">表的复制</h2>
+<div class="outline-text-2" id="text-org887141e">
+</div>
+<div id="outline-container-org37ff052" class="outline-3">
+<h3 id="org37ff052">只复制结构 赋值 类型 之类的</h3>
+<div class="outline-text-3" id="text-org37ff052">
+<p>
+create table 赋值完的表的名字 like 被复制的那个表的名字 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3f18fbb" class="outline-3">
+<h3 id="org3f18fbb">赋值表的结构和数据</h3>
+<div class="outline-text-3" id="text-org3f18fbb">
+<pre class="example">
+create table 复制的新表名字 
+select *from 要被复制的表的名字
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgf5a703c" class="outline-3">
+<h3 id="orgf5a703c">复制部分数据</h3>
+<div class="outline-text-3" id="text-orgf5a703c">
+<pre class="example">
+create table 复制的新表名字
+select 要复制的列 
+from 复制的那个表的名字
+where 加一个筛选 
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org0643562" class="outline-3">
+<h3 id="org0643562">不要值 只要字段</h3>
+<div class="outline-text-3" id="text-org0643562">
+<pre class="example">
+CREATE TABLE copy4 
+SELECT id,au_name
+FROM author
+WHERE 0;
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e23620" class="outline-2">
+<h2 id="org4e23620">数据类型</h2>
+<div class="outline-text-2" id="text-org4e23620">
+<p>
+int 4个字节   默认是有符号的  设置无符号 用 unsigned  zerofill  是用来占位的 左填充 
+</p>
+
+<p>
+小数 float(m,n) double(m,n)   m 代表 整数加小数位数  n代表小数位数
+</p>
+</div>
+
+<div id="outline-container-org21eeaae" class="outline-3">
+<h3 id="org21eeaae">字符型</h3>
+<div class="outline-text-3" id="text-org21eeaae">
+<p>
+char(m) 固定长度字符m代表最大的字符数 可以省略 默认为1 
+</p>
+
+<p>
+varchar	(m) 可变长度的字符 不可省略  
+</p>
+</div>
+</div>
+<div id="outline-container-org70c30f8" class="outline-3">
+<h3 id="org70c30f8">日期型</h3>
+<div class="outline-text-3" id="text-org70c30f8">
+<p>
+date  日期      time   时间      year   年  
+</p>
+
+<p>
+datetime  日期+时间    time+stamp 日期+时间 
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge709880" class="outline-2">
+<h2 id="orge709880">常见约束</h2>
+<div class="outline-text-2" id="text-orge709880">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">not null</td>
+<td class="org-left">非空</td>
+<td class="org-left">name varchar(20) not null</td>
+</tr>
+
+<tr>
+<td class="org-left">default</td>
+<td class="org-left">默认值</td>
+<td class="org-left">age int default 18</td>
+</tr>
+
+<tr>
+<td class="org-left">primary key</td>
+<td class="org-left">主键</td>
+<td class="org-left">id int primary key</td>
+</tr>
+
+<tr>
+<td class="org-left">unique</td>
+<td class="org-left">唯一键</td>
+<td class="org-left">seaet  int  unique</td>
+</tr>
+
+<tr>
+<td class="org-left">check</td>
+<td class="org-left">mysql 不支持</td>
+<td class="org-left">这个是检查</td>
+</tr>
+
+<tr>
+<td class="org-left">foreign key</td>
+<td class="org-left">外键一般写在 表约束</td>
+<td class="org-left">CONSTRAINT fk<sub>stuinfo</sub><sub>major</sub> FOREIGN KEY(majorid) REFERENCES major(id)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org34e4d44" class="outline-2">
+<h2 id="org34e4d44">标识列  又称为 自增长列</h2>
+<div class="outline-text-2" id="text-org34e4d44">
+<pre class="example">
+auto_increment 不用手动的插入值 必须搭配key 来使用 
+id int unique auto_increment 
+可以使用  set auto_increment_increment = **  来修改步长 
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0771589" class="outline-2">
+<h2 id="org0771589">事务  tcl 语言</h2>
+<div class="outline-text-2" id="text-org0771589">
+<p>
+创建 1 开启事务  set autocommit = 0 
+</p>
+
+<p>
+start transaction  
+</p>
+
+<p>
+2   事务语句 
+</p>
+<pre class="example">
+update account set balance = 1000 where username = ...
+update addount set balance = 1000 where username = ///
+3 结束事务  ---  三个选择  commit 提交  rollback   回滚   savepoint   保存节点 
+rollback
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-09-16</p>
+<p class="author">Author: rzry</p>
+<p class="date">Created: 2020-09-16 三 10:55</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
