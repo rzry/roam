@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 09:33 -->
+<!-- 2020-09-21 一 10:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sed多文件搜索替换</title>
@@ -253,18 +253,18 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9dc81ab">Sed 基本使用</a></li>
-<li><a href="#org649f463">关于指定行替换 行寻址 后面用到再补</a></li>
-<li><a href="#org7788e59">批量替换</a></li>
+<li><a href="#org21f8d89">Sed 基本使用</a></li>
+<li><a href="#org43bb247">关于指定行替换 行寻址 后面用到再补</a></li>
+<li><a href="#org3bdf739">批量替换</a></li>
 </ul>
 </div>
 </div>
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-<div id="outline-container-org9dc81ab" class="outline-2">
-<h2 id="org9dc81ab">Sed 基本使用</h2>
-<div class="outline-text-2" id="text-org9dc81ab">
+<div id="outline-container-org21f8d89" class="outline-2">
+<h2 id="org21f8d89">Sed 基本使用</h2>
+<div class="outline-text-2" id="text-org21f8d89">
 <pre class="example">
 来看一个简单的文本替换示例：
 echo "hi,my name is xxx" | sed 's/xxx/kinsomy/'
@@ -279,12 +279,12 @@ sed 's/xxx/kinsomy/; s/***/hhh/' data.txt
 </pre>
 </div>
 </div>
-<div id="outline-container-org649f463" class="outline-2">
-<h2 id="org649f463">关于指定行替换 行寻址 后面用到再补</h2>
+<div id="outline-container-org43bb247" class="outline-2">
+<h2 id="org43bb247">关于指定行替换 行寻址 后面用到再补</h2>
 </div>
-<div id="outline-container-org7788e59" class="outline-2">
-<h2 id="org7788e59">批量替换</h2>
-<div class="outline-text-2" id="text-org7788e59">
+<div id="outline-container-org3bdf739" class="outline-2">
+<h2 id="org3bdf739">批量替换</h2>
+<div class="outline-text-2" id="text-org3bdf739">
 <pre class="example">
 多文件批量替换一个字符串
 sed -r -i "s/github.com\/avenssi/Video/g" ` grep github.com/avenssi -rl ./*`
@@ -296,7 +296,7 @@ sed -r -i "s/github.com\/avenssi/Video/g" ` grep github.com/avenssi -rl ./*`
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 09:33</p>
+<p class="date">Created: 2020-09-21 一 10:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

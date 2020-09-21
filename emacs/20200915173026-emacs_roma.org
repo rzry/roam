@@ -1,11 +1,11 @@
+
 #+TITLE:     emacs-roma
 #+AUTHOR:    rzry
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-15
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:2
-
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
 
 #+begin_export html
 <div class="right">

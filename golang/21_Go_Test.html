@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 11:39 -->
+<!-- 2020-09-21 一 10:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go test</title>
@@ -253,22 +253,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5704dc9">前言概述</a></li>
-<li><a href="#org6b25b72">日常测试</a></li>
-<li><a href="#org7a7cd3e">一个简单的例子</a></li>
-<li><a href="#org8c5f6ca">test的执行顺序</a></li>
-<li><a href="#org4100114">go 的benchmark</a></li>
-<li><a href="#orgb1b266f">一个简单的 go testing</a></li>
-<li><a href="#orgec6381f">api使用</a></li>
+<li><a href="#org8dd2aee">前言概述</a></li>
+<li><a href="#orgcf3fdbb">日常测试</a></li>
+<li><a href="#org56c342e">一个简单的例子</a></li>
+<li><a href="#org7928904">test的执行顺序</a></li>
+<li><a href="#org5a79ffb">go 的benchmark</a></li>
+<li><a href="#orgd2036be">一个简单的 go testing</a></li>
+<li><a href="#orgb9eaa10">api使用</a></li>
 </ul>
 </div>
 </div>
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-<div id="outline-container-org5704dc9" class="outline-2">
-<h2 id="org5704dc9">前言概述</h2>
-<div class="outline-text-2" id="text-org5704dc9">
+<div id="outline-container-org8dd2aee" class="outline-2">
+<h2 id="org8dd2aee">前言概述</h2>
+<div class="outline-text-2" id="text-org8dd2aee">
 <pre class="example">
 常接触到的测试主要是单元测试和性能测试,毫无意外 go 的testing 支持这两种测试,
 单元测试用于模块测试,性能则是基准测试完成 即  benchmark 
@@ -276,9 +276,9 @@ go 的测试模块 支持编写案例 通过与godoc结合 可以很方便的生
 </pre>
 </div>
 </div>
-<div id="outline-container-org6b25b72" class="outline-2">
-<h2 id="org6b25b72">日常测试</h2>
-<div class="outline-text-2" id="text-org6b25b72">
+<div id="outline-container-orgcf3fdbb" class="outline-2">
+<h2 id="orgcf3fdbb">日常测试</h2>
+<div class="outline-text-2" id="text-orgcf3fdbb">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main
 
@@ -307,9 +307,9 @@ go 的测试模块 支持编写案例 通过与godoc结合 可以很方便的生
 </div>
 </div>
 
-<div id="outline-container-org7a7cd3e" class="outline-2">
-<h2 id="org7a7cd3e">一个简单的例子</h2>
-<div class="outline-text-2" id="text-org7a7cd3e">
+<div id="outline-container-org56c342e" class="outline-2">
+<h2 id="org56c342e">一个简单的例子</h2>
+<div class="outline-text-2" id="text-org56c342e">
 <div class="org-src-container">
 <pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">package</span> main
 
@@ -367,9 +367,9 @@ t.SkipNow() 跳过当前test ,并且直接按照Pass 来处理下一个test
 </pre>
 </div>
 </div>
-<div id="outline-container-org8c5f6ca" class="outline-2">
-<h2 id="org8c5f6ca">test的执行顺序</h2>
-<div class="outline-text-2" id="text-org8c5f6ca">
+<div id="outline-container-org7928904" class="outline-2">
+<h2 id="org7928904">test的执行顺序</h2>
+<div class="outline-text-2" id="text-org7928904">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">go</span> &#30340;test <span style="color: #4f97d7; font-weight: bold;">case</span> &#19981;&#33021;&#20445;&#35777;&#37117;&#26159;&#25353;&#29031;&#39034;&#24207;&#25191;&#34892;
   &#34429;&#28982;&#36890;&#24120;&#37117;&#26159; <span style="color: #ce537a; font-weight: bold;">&#25353;&#29031;&#39034;&#24207;&#25191;&#34892;&#20294;&#26159;&#25105;&#20204;&#24515;&#37324;&#19981;&#33021;&#27809;&#25968;</span>
@@ -466,9 +466,9 @@ t.SkipNow() 跳过当前test ,并且直接按照Pass 来处理下一个test
 </div>
 </div>
 </div>
-<div id="outline-container-org4100114" class="outline-2">
-<h2 id="org4100114">go 的benchmark</h2>
-<div class="outline-text-2" id="text-org4100114">
+<div id="outline-container-org5a79ffb" class="outline-2">
+<h2 id="org5a79ffb">go 的benchmark</h2>
+<div class="outline-text-2" id="text-org5a79ffb">
 <div class="org-src-container">
 <pre class="src src-go">  &#27880;&#24847;&#20107;&#39033; :
   benchmark&#20989;&#25968;&#24517;&#39035;&#20197;benchmark&#24320;&#22836;   <span style="color: #ce537a; font-weight: bold;">&#23601;&#26159;</span> &#19978;&#38754;&#26159; <span style="color: #ce537a; font-weight: bold;">Testxxx</span>  &#29616;&#22312;&#23601;&#26159; <span style="color: #ce537a; font-weight: bold;">Benchmark</span> 
@@ -523,9 +523,9 @@ t.SkipNow() 跳过当前test ,并且直接按照Pass 来处理下一个test
 </div>
 </div>
 </div>
-<div id="outline-container-orgb1b266f" class="outline-2">
-<h2 id="orgb1b266f">一个简单的 go testing</h2>
-<div class="outline-text-2" id="text-orgb1b266f">
+<div id="outline-container-orgd2036be" class="outline-2">
+<h2 id="orgd2036be">一个简单的 go testing</h2>
+<div class="outline-text-2" id="text-orgd2036be">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#21333;&#20803;&#27979;&#35797; &#25105;&#20204;&#30475;&#19968;&#20010; </span>
 <span style="color: #4f97d7; font-weight: bold;">package</span> math
@@ -552,9 +552,9 @@ t.SkipNow() 跳过当前test ,并且直接按照Pass 来处理下一个test
 </pre>
 </div>
 </div>
-<div id="outline-container-orgec6381f" class="outline-2">
-<h2 id="orgec6381f">api使用</h2>
-<div class="outline-text-2" id="text-orgec6381f">
+<div id="outline-container-orgb9eaa10" class="outline-2">
+<h2 id="orgb9eaa10">api使用</h2>
+<div class="outline-text-2" id="text-orgb9eaa10">
 <pre class="example">
   在上面的eg中 我们使用了t.Fatlf 它的作用就是 反馈检测结果 
   在官方文档中 对于 testing.T支持的可导出方法有很多 
@@ -607,7 +607,7 @@ method (*T) Run(name string, f func(t *T)) bool
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 11:39</p>
+<p class="date">Created: 2020-09-21 一 10:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

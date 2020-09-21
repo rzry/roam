@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 09:33 -->
+<!-- 2020-09-21 一 10:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux 命令</title>
@@ -253,29 +253,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org32c9a5a">基本知识</a></li>
-<li><a href="#org3702398">命令</a>
+<li><a href="#org86a9162">基本知识</a></li>
+<li><a href="#orgd049fc0">命令</a>
 <ul>
-<li><a href="#orgb028e59">ls  如果你想查看当前目录有什么东西 , 使用ls 是你最好的选择</a></li>
-<li><a href="#org74f86f5">mkdir 新建文件夹</a></li>
-<li><a href="#org92a5f5e">rm 删除文件</a></li>
-<li><a href="#orgc6a1fba">cp 复制</a></li>
-<li><a href="#org787512f">mv 移动</a></li>
-<li><a href="#org5da0518">touch 新建文件</a></li>
-<li><a href="#orgff55deb">cat 查看</a></li>
-<li><a href="#org80b0a05">less/more  查看</a></li>
-<li><a href="#org0570d91">grep 查找文件内 内容</a></li>
-<li><a href="#org46b678f">find 查找文件</a></li>
-<li><a href="#orgba8ca90">tar 压缩 解压</a></li>
-<li><a href="#orgccae784">unzip</a></li>
-<li><a href="#org39ee06b">top</a></li>
-<li><a href="#org99abf1d">安装 卸载</a></li>
-<li><a href="#orgce89b6c">free 查看内存</a></li>
-<li><a href="#org51f9c78">netstat 查看tcp ip udp 看一下端口开没开</a></li>
-<li><a href="#orgc2108a5">kill 杀了进程</a></li>
-<li><a href="#org34b8db3">chmod  设置权限</a></li>
-<li><a href="#org2a5b575">管道 |</a></li>
-<li><a href="#org973b871">ln  软链接</a></li>
+<li><a href="#orga43e338">ls  如果你想查看当前目录有什么东西 , 使用ls 是你最好的选择</a></li>
+<li><a href="#org6b974a4">mkdir 新建文件夹</a></li>
+<li><a href="#org0eb196c">rm 删除文件</a></li>
+<li><a href="#org63d592f">cp 复制</a></li>
+<li><a href="#org5dce30c">mv 移动</a></li>
+<li><a href="#org1dbf369">touch 新建文件</a></li>
+<li><a href="#org3e00177">cat 查看</a></li>
+<li><a href="#orge141dd8">less/more  查看</a></li>
+<li><a href="#org5998e03">grep 查找文件内 内容</a></li>
+<li><a href="#orgff960ab">find 查找文件</a></li>
+<li><a href="#orgaad6a64">tar 压缩 解压</a></li>
+<li><a href="#orgc11a4ba">unzip</a></li>
+<li><a href="#org6bb7e9c">top</a></li>
+<li><a href="#org6c1fec0">安装 卸载</a></li>
+<li><a href="#org452ba7f">free 查看内存</a></li>
+<li><a href="#org5c47179">netstat 查看tcp ip udp 看一下端口开没开</a></li>
+<li><a href="#org1df2029">kill 杀了进程</a></li>
+<li><a href="#org002489b">chmod  设置权限</a></li>
+<li><a href="#org73e3f6c">管道 |</a></li>
+<li><a href="#orga4a7b7a">ln  软链接</a></li>
 </ul>
 </li>
 </ul>
@@ -286,12 +286,12 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org5544185" class="outline-4">
-<h4 id="org5544185">充满深情的写下这一篇文章,我会慢慢更新的</h4>
+<div id="outline-container-orgda83f05" class="outline-4">
+<h4 id="orgda83f05">充满深情的写下这一篇文章,我会慢慢更新的</h4>
 </div>
-<div id="outline-container-org32c9a5a" class="outline-2">
-<h2 id="org32c9a5a">基本知识</h2>
-<div class="outline-text-2" id="text-org32c9a5a">
+<div id="outline-container-org86a9162" class="outline-2">
+<h2 id="org86a9162">基本知识</h2>
+<div class="outline-text-2" id="text-org86a9162">
 <pre class="example">
 我们把linux 当做一棵树,我们是在树上住的一个猴子.我的比喻真的太恰当了
 当然你不是猴子,但是linux 确实是树 , 所有的文件都是依附与一个 / 而存在的
@@ -307,13 +307,13 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3702398" class="outline-2">
-<h2 id="org3702398">命令</h2>
-<div class="outline-text-2" id="text-org3702398">
+<div id="outline-container-orgd049fc0" class="outline-2">
+<h2 id="orgd049fc0">命令</h2>
+<div class="outline-text-2" id="text-orgd049fc0">
 </div>
-<div id="outline-container-orgb028e59" class="outline-3">
-<h3 id="orgb028e59">ls  如果你想查看当前目录有什么东西 , 使用ls 是你最好的选择</h3>
-<div class="outline-text-3" id="text-orgb028e59">
+<div id="outline-container-orga43e338" class="outline-3">
+<h3 id="orga43e338">ls  如果你想查看当前目录有什么东西 , 使用ls 是你最好的选择</h3>
+<div class="outline-text-3" id="text-orga43e338">
 
 <div class="figure">
 <p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-03-32%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-03-50.png" alt="2019-09-02%252017-03-32%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-03-50.png" />
@@ -327,9 +327,9 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org74f86f5" class="outline-3">
-<h3 id="org74f86f5">mkdir 新建文件夹</h3>
-<div class="outline-text-3" id="text-org74f86f5">
+<div id="outline-container-org6b974a4" class="outline-3">
+<h3 id="org6b974a4">mkdir 新建文件夹</h3>
+<div class="outline-text-3" id="text-org6b974a4">
 <pre class="example">
 在将这个之前,我们必须了解目录这个概念,在你执行 *mkdir+新目录名字 的时候.记得是在当前目录新建文件夹
 拿上面的图来说 我的 *@rzry ➜ 桌面 linux 终端前面显示的是*桌面 这就说明我的目录是在桌面
@@ -345,9 +345,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6240de1" class="outline-4">
-<h4 id="org6240de1">如下图</h4>
-<div class="outline-text-4" id="text-org6240de1">
+<div id="outline-container-org42773ef" class="outline-4">
+<h4 id="org42773ef">如下图</h4>
+<div class="outline-text-4" id="text-org42773ef">
 
 <div class="figure">
 <p><img src="%E5%91%BD%E4%BB%A4/2019-09-02%252017-14-31%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-14-34.png" alt="2019-09-02%252017-14-31%2520%25E7%259A%2584%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE_2019-09-02_17-14-34.png" />
@@ -362,9 +362,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org92a5f5e" class="outline-3">
-<h3 id="org92a5f5e">rm 删除文件</h3>
-<div class="outline-text-3" id="text-org92a5f5e">
+<div id="outline-container-org0eb196c" class="outline-3">
+<h3 id="org0eb196c">rm 删除文件</h3>
+<div class="outline-text-3" id="text-org0eb196c">
 <pre class="example">
 这个操作是比较危险的,如果你使用rm -rf 来删除一个东西,他是什么都能删除的 
 在你使用 sudo su 获取到超级权限后  rm -rf /  他会把你整个系统删掉....
@@ -397,9 +397,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc6a1fba" class="outline-3">
-<h3 id="orgc6a1fba">cp 复制</h3>
-<div class="outline-text-3" id="text-orgc6a1fba">
+<div id="outline-container-org63d592f" class="outline-3">
+<h3 id="org63d592f">cp 复制</h3>
+<div class="outline-text-3" id="text-org63d592f">
 <pre class="example">
 这可不是我们强行凑的单词,人家就是cp,我能有什么办法
 语法在下面图上,我为了变现出我的殷勤,我来写一下
@@ -487,9 +487,9 @@ cp -r /home/rzry/桌面/VIsion/docker配置 /home/rzry/桌面/pdf
 </pre>
 </div>
 </div>
-<div id="outline-container-org787512f" class="outline-3">
-<h3 id="org787512f">mv 移动</h3>
-<div class="outline-text-3" id="text-org787512f">
+<div id="outline-container-org5dce30c" class="outline-3">
+<h3 id="org5dce30c">mv 移动</h3>
+<div class="outline-text-3" id="text-org5dce30c">
 <pre class="example">
 我们总是不能满足,在有了复制之后 还想更轻松的命令来移动一个东西
 mv 就出来了 它的语法截图如下 和cp 如出一辙,处理没有cp 那么暧昧以外
@@ -538,9 +538,9 @@ mv 就出来了 它的语法截图如下 和cp 如出一辙,处理没有cp 那�
 </div>
 </div>
 
-<div id="outline-container-org5da0518" class="outline-3">
-<h3 id="org5da0518">touch 新建文件</h3>
-<div class="outline-text-3" id="text-org5da0518">
+<div id="outline-container-org1dbf369" class="outline-3">
+<h3 id="org1dbf369">touch 新建文件</h3>
+<div class="outline-text-3" id="text-org1dbf369">
 <pre class="example">
 你用过ubuntu 的话 你应该知道 这货没办法新建文件,只能新建文件夹
 这让我一个喜欢写笔记的孩子还怎么随手新建txt文档
@@ -551,9 +551,9 @@ touch name.txt 这样就会在当前目录新建一个名字叫 name 的txt格�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgff55deb" class="outline-3">
-<h3 id="orgff55deb">cat 查看</h3>
-<div class="outline-text-3" id="text-orgff55deb">
+<div id="outline-container-org3e00177" class="outline-3">
+<h3 id="org3e00177">cat 查看</h3>
+<div class="outline-text-3" id="text-org3e00177">
 <pre class="example">
 这可不是喵喵喵. 而是查看文件 , 如果你想看一个txt 但是你又不想去双击它 
 那么 cat 是你新的选择   
@@ -566,17 +566,17 @@ touch name.txt 这样就会在当前目录新建一个名字叫 name 的txt格�
 </div>
 </div>
 
-<div id="outline-container-org80b0a05" class="outline-3">
-<h3 id="org80b0a05">less/more  查看</h3>
-<div class="outline-text-3" id="text-org80b0a05">
+<div id="outline-container-orge141dd8" class="outline-3">
+<h3 id="orge141dd8">less/more  查看</h3>
+<div class="outline-text-3" id="text-orge141dd8">
 <pre class="example">
 和cat 差不多  就是查看文件的一个命令 区别就是这两个命令能够一点一点看
 </pre>
 </div>
 </div>
-<div id="outline-container-org0570d91" class="outline-3">
-<h3 id="org0570d91">grep 查找文件内 内容</h3>
-<div class="outline-text-3" id="text-org0570d91">
+<div id="outline-container-org5998e03" class="outline-3">
+<h3 id="org5998e03">grep 查找文件内 内容</h3>
+<div class="outline-text-3" id="text-org5998e03">
 <pre class="example">
 这个命令太复杂了
 使用场景 
@@ -587,9 +587,9 @@ touch name.txt 这样就会在当前目录新建一个名字叫 name 的txt格�
 </pre>
 </div>
 </div>
-<div id="outline-container-org46b678f" class="outline-3">
-<h3 id="org46b678f">find 查找文件</h3>
-<div class="outline-text-3" id="text-org46b678f">
+<div id="outline-container-orgff960ab" class="outline-3">
+<h3 id="orgff960ab">find 查找文件</h3>
+<div class="outline-text-3" id="text-orgff960ab">
 <pre class="example">
 上面那个是查看行 这个是查看文件  
 比如我的家目录下某一个文件夹有一个文件叫 docker.txt  但是我忘记他在那个目录了
@@ -600,9 +600,9 @@ find . -name "*.go" 这个的意思就是
 </pre>
 </div>
 </div>
-<div id="outline-container-orgba8ca90" class="outline-3">
-<h3 id="orgba8ca90">tar 压缩 解压</h3>
-<div class="outline-text-3" id="text-orgba8ca90">
+<div id="outline-container-orgaad6a64" class="outline-3">
+<h3 id="orgaad6a64">tar 压缩 解压</h3>
+<div class="outline-text-3" id="text-orgaad6a64">
 <pre class="example">
 压缩
  tar -czf b.tar.gz *
@@ -612,9 +612,9 @@ find . -name "*.go" 这个的意思就是
 </pre>
 </div>
 </div>
-<div id="outline-container-orgccae784" class="outline-3">
-<h3 id="orgccae784">unzip</h3>
-<div class="outline-text-3" id="text-orgccae784">
+<div id="outline-container-orgc11a4ba" class="outline-3">
+<h3 id="orgc11a4ba">unzip</h3>
+<div class="outline-text-3" id="text-orgc11a4ba">
 <pre class="example">
 因为一般都是压缩为 tar.gz  但是我们有时候会需要解压.zip 格式的文件 
 unzip 就是这个  
@@ -622,9 +622,9 @@ unzip -O -t GBK /解压到哪里   -O 是指定字符集 有的会乱码 就制�
 </pre>
 </div>
 </div>
-<div id="outline-container-org39ee06b" class="outline-3">
-<h3 id="org39ee06b">top</h3>
-<div class="outline-text-3" id="text-org39ee06b">
+<div id="outline-container-org6bb7e9c" class="outline-3">
+<h3 id="org6bb7e9c">top</h3>
+<div class="outline-text-3" id="text-org6bb7e9c">
 <pre class="example">
 监控linux 的一个东西  可以看到你的pid  user 还有 cpu 内存 运行时间 之类的  
 也可以使用 sudo apt-get install htop  安装好看点的top 
@@ -632,9 +632,9 @@ unzip -O -t GBK /解压到哪里   -O 是指定字符集 有的会乱码 就制�
 </pre>
 </div>
 </div>
-<div id="outline-container-org99abf1d" class="outline-3">
-<h3 id="org99abf1d">安装 卸载</h3>
-<div class="outline-text-3" id="text-org99abf1d">
+<div id="outline-container-org6c1fec0" class="outline-3">
+<h3 id="org6c1fec0">安装 卸载</h3>
+<div class="outline-text-3" id="text-org6c1fec0">
 <pre class="example">
 一般最常用的安装 就是在 你的源 系统自己找软件帮你安装  
 sudo apt-get update &amp;&amp; sudo apt-get install (安装软件的名字)
@@ -642,21 +642,21 @@ sudo apt-get update &amp;&amp; sudo apt-get install (安装软件的名字)
 </pre>
 </div>
 </div>
-<div id="outline-container-orgce89b6c" class="outline-3">
-<h3 id="orgce89b6c">free 查看内存</h3>
+<div id="outline-container-org452ba7f" class="outline-3">
+<h3 id="org452ba7f">free 查看内存</h3>
 </div>
-<div id="outline-container-org51f9c78" class="outline-3">
-<h3 id="org51f9c78">netstat 查看tcp ip udp 看一下端口开没开</h3>
-<div class="outline-text-3" id="text-org51f9c78">
+<div id="outline-container-org5c47179" class="outline-3">
+<h3 id="org5c47179">netstat 查看tcp ip udp 看一下端口开没开</h3>
+<div class="outline-text-3" id="text-org5c47179">
 <pre class="example">
 一般最常用的是查看端口是否占用  
 sudo netstat -tunlp | grep 80    查看 80端口有没有使用
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc2108a5" class="outline-3">
-<h3 id="orgc2108a5">kill 杀了进程</h3>
-<div class="outline-text-3" id="text-orgc2108a5">
+<div id="outline-container-org1df2029" class="outline-3">
+<h3 id="org1df2029">kill 杀了进程</h3>
+<div class="outline-text-3" id="text-org1df2029">
 <pre class="example">
 比如上一步 你的80端口被占了 你就可以使用 kill 来杀了这个进程
 或者你的那个软件卡死了 你就可以使用查看进程的方式获得它的pid 
@@ -665,9 +665,9 @@ kill -9 + pid
 </pre>
 </div>
 </div>
-<div id="outline-container-org34b8db3" class="outline-3">
-<h3 id="org34b8db3">chmod  设置权限</h3>
-<div class="outline-text-3" id="text-org34b8db3">
+<div id="outline-container-org002489b" class="outline-3">
+<h3 id="org002489b">chmod  设置权限</h3>
+<div class="outline-text-3" id="text-org002489b">
 <pre class="example">
 再说chmod 之前 我们得先讲一下 关于 linux 用户的分配 .
 linux是一个多用户的操作平台 所以可以通过切换用户来共同操作
@@ -746,9 +746,9 @@ linux是一个多用户的操作平台 所以可以通过切换用户来共同�
 </pre>
 </div>
 </div>
-<div id="outline-container-org2a5b575" class="outline-3">
-<h3 id="org2a5b575">管道 |</h3>
-<div class="outline-text-3" id="text-org2a5b575">
+<div id="outline-container-org73e3f6c" class="outline-3">
+<h3 id="org73e3f6c">管道 |</h3>
+<div class="outline-text-3" id="text-org73e3f6c">
 <pre class="example">
 这个命令很奇妙  它的作用是 把左边的输出当做右边的输入 
 所以他有两个命令和一个 | 组成 
@@ -758,9 +758,9 @@ linux是一个多用户的操作平台 所以可以通过切换用户来共同�
 </pre>
 </div>
 </div>
-<div id="outline-container-org973b871" class="outline-3">
-<h3 id="org973b871">ln  软链接</h3>
-<div class="outline-text-3" id="text-org973b871">
+<div id="outline-container-orga4a7b7a" class="outline-3">
+<h3 id="orga4a7b7a">ln  软链接</h3>
+<div class="outline-text-3" id="text-orga4a7b7a">
 <pre class="example">
   ln -s 2.txt 1_ln.txt 记住 源文件一定要全路径 sudo ln -s /home/rzry/go/src/Video/api设计.txt go 
 硬链接就是 不加 -s 这就跟copy 一样
@@ -772,7 +772,7 @@ linux是一个多用户的操作平台 所以可以通过切换用户来共同�
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 09:33</p>
+<p class="date">Created: 2020-09-21 一 10:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

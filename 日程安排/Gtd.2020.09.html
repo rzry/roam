@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-15 二 17:28 -->
+<!-- 2020-09-21 一 10:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2020-09</title>
@@ -253,20 +253,20 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgda49adc">map</a>
+<li><a href="#org111f130">map</a>
 <ul>
-<li><a href="#org9fe9a3e">make map</a></li>
-<li><a href="#org22dd5e8">delete map</a></li>
+<li><a href="#orgdc9e0cf">make map</a></li>
+<li><a href="#orge8a72e1">delete map</a></li>
 </ul>
 </li>
-<li><a href="#org4abecf2">sync 同步原语</a>
+<li><a href="#org19f1dbd">sync 同步原语</a>
 <ul>
-<li><a href="#orgdb8b659">Mutex</a></li>
-<li><a href="#orga327147">Mutex waitGroup</a></li>
-<li><a href="#org9654840">Mutex</a></li>
+<li><a href="#orgc9e6f38">Mutex</a></li>
+<li><a href="#orgd75f594">Mutex waitGroup</a></li>
+<li><a href="#org17b526c">Mutex</a></li>
 </ul>
 </li>
-<li><a href="#org53fe4cd">sync.map</a></li>
+<li><a href="#org321b7f0">sync.map</a></li>
 </ul>
 </div>
 </div>
@@ -275,9 +275,9 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-orgda49adc" class="outline-2">
-<h2 id="orgda49adc">map</h2>
-<div class="outline-text-2" id="text-orgda49adc">
+<div id="outline-container-org111f130" class="outline-2">
+<h2 id="org111f130">map</h2>
+<div class="outline-text-2" id="text-org111f130">
 <pre class="example">
 
 map --- &gt; 底层是 hmap  有着若干个bucket数组 ,
@@ -413,13 +413,13 @@ B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
 </table>
 </div>
 
-<div id="outline-container-org9fe9a3e" class="outline-3">
-<h3 id="org9fe9a3e">make map</h3>
-<div class="outline-text-3" id="text-org9fe9a3e">
+<div id="outline-container-orgdc9e0cf" class="outline-3">
+<h3 id="orgdc9e0cf">make map</h3>
+<div class="outline-text-3" id="text-orgdc9e0cf">
 </div>
-<div id="outline-container-org3797da2" class="outline-4">
-<h4 id="org3797da2">make(map[string]string, 0/B&lt;8)</h4>
-<div class="outline-text-4" id="text-org3797da2">
+<div id="outline-container-orgebce121" class="outline-4">
+<h4 id="orgebce121">make(map[string]string, 0/B&lt;8)</h4>
+<div class="outline-text-4" id="text-orgebce121">
 <div class="org-src-container">
 <pre class="src src-go">
 <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">makemap_small</span>() *<span style="color: #ce537a; font-weight: bold;">hmap</span> {
@@ -434,9 +434,9 @@ B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
 </div>
 </div>
 
-<div id="outline-container-orgd04704a" class="outline-4">
-<h4 id="orgd04704a">make(map[string]string,9)</h4>
-<div class="outline-text-4" id="text-orgd04704a">
+<div id="outline-container-org43e0d60" class="outline-4">
+<h4 id="org43e0d60">make(map[string]string,9)</h4>
+<div class="outline-text-4" id="text-org43e0d60">
 <pre class="example">
 1 . h == nil 初始话 hmap  new(hamp)
 2 . h.hash0 = fastrand() 初始话hash因子
@@ -446,9 +446,9 @@ B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
 </div>
 </div>
 
-<div id="outline-container-org48880c0" class="outline-4">
-<h4 id="org48880c0">make map 的 ques</h4>
-<div class="outline-text-4" id="text-org48880c0">
+<div id="outline-container-org0068c44" class="outline-4">
+<h4 id="org0068c44">make map 的 ques</h4>
+<div class="outline-text-4" id="text-org0068c44">
 <pre class="example">
 1 . var Mp map[string]int ----&gt; nil map 不可以赋值
 2 . makemap 返回的是一个 *hmap slice 是一个 struct 
@@ -457,9 +457,9 @@ B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
 </div>
 </div>
 
-<div id="outline-container-org22dd5e8" class="outline-3">
-<h3 id="org22dd5e8">delete map</h3>
-<div class="outline-text-3" id="text-org22dd5e8">
+<div id="outline-container-orge8a72e1" class="outline-3">
+<h3 id="orge8a72e1">delete map</h3>
+<div class="outline-text-3" id="text-orge8a72e1">
 <div class="org-src-container">
 <pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">mapdelete</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">maptype</span>, <span style="color: #7590db;">h</span> *<span style="color: #ce537a; font-weight: bold;">hmap</span>, <span style="color: #7590db;">key</span> <span style="color: #ce537a; font-weight: bold;">unsafe.Pointer</span>){}
 
@@ -484,9 +484,9 @@ B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
 </pre>
 </div>
 </div>
-<div id="outline-container-org02d735c" class="outline-4">
-<h4 id="org02d735c">delete map 的 ques</h4>
-<div class="outline-text-4" id="text-org02d735c">
+<div id="outline-container-org7ad9b85" class="outline-4">
+<h4 id="org7ad9b85">delete map 的 ques</h4>
+<div class="outline-text-4" id="text-org7ad9b85">
 <pre class="example">
 1 . 不可以并行读写 , 可以加锁 .
 读之前调用 RLock() 函数，读完之后调用 RUnlock() 函数解锁
@@ -499,13 +499,13 @@ B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
 
 
 
-<div id="outline-container-org4abecf2" class="outline-2">
-<h2 id="org4abecf2">sync 同步原语</h2>
-<div class="outline-text-2" id="text-org4abecf2">
+<div id="outline-container-org19f1dbd" class="outline-2">
+<h2 id="org19f1dbd">sync 同步原语</h2>
+<div class="outline-text-2" id="text-org19f1dbd">
 </div>
-<div id="outline-container-orgdb8b659" class="outline-3">
-<h3 id="orgdb8b659">Mutex</h3>
-<div class="outline-text-3" id="text-orgdb8b659">
+<div id="outline-container-orgc9e6f38" class="outline-3">
+<h3 id="orgc9e6f38">Mutex</h3>
+<div class="outline-text-3" id="text-orgc9e6f38">
 <pre class="example">
 
 1 . 结构
@@ -530,9 +530,9 @@ type Mutex struct{
 </div>
 </div>
 
-<div id="outline-container-orga327147" class="outline-3">
-<h3 id="orga327147">Mutex waitGroup</h3>
-<div class="outline-text-3" id="text-orga327147">
+<div id="outline-container-orgd75f594" class="outline-3">
+<h3 id="orgd75f594">Mutex waitGroup</h3>
+<div class="outline-text-3" id="text-orgd75f594">
 <div class="org-src-container">
 <pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">TestDc</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){
 <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">waitGroup &#19968;&#20010;&#31561;&#24453;&#30340;&#26631;&#24535;&#21543;</span>
@@ -577,14 +577,14 @@ type Mutex struct{
 
 
 
-<div id="outline-container-org9654840" class="outline-3">
-<h3 id="org9654840">Mutex</h3>
+<div id="outline-container-org17b526c" class="outline-3">
+<h3 id="org17b526c">Mutex</h3>
 </div>
 </div>
 
-<div id="outline-container-org53fe4cd" class="outline-2">
-<h2 id="org53fe4cd">sync.map</h2>
-<div class="outline-text-2" id="text-org53fe4cd">
+<div id="outline-container-org321b7f0" class="outline-2">
+<h2 id="org321b7f0">sync.map</h2>
+<div class="outline-text-2" id="text-org321b7f0">
 <div class="org-src-container">
 <pre class="src src-go">
 
@@ -596,7 +596,7 @@ type Mutex struct{
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-15</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-15 二 17:28</p>
+<p class="date">Created: 2020-09-21 一 10:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

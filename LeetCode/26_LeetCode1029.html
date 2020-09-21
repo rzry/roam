@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 11:41 -->
+<!-- 2020-09-21 一 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LeetCode1029-两地调度</title>
@@ -253,19 +253,19 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7607997">题目</a></li>
-<li><a href="#orge95a31d">解析   (看大佬和官方的解法  简单的总结一下)</a></li>
-<li><a href="#orgfc1b010">代码</a></li>
-<li><a href="#org754ace1">通用代码</a></li>
+<li><a href="#org504e4dd">题目</a></li>
+<li><a href="#org6a13158">解析   (看大佬和官方的解法  简单的总结一下)</a></li>
+<li><a href="#org851f00a">代码</a></li>
+<li><a href="#org005a7ec">通用代码</a></li>
 </ul>
 </div>
 </div>
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-<div id="outline-container-org7607997" class="outline-2">
-<h2 id="org7607997">题目</h2>
-<div class="outline-text-2" id="text-org7607997">
+<div id="outline-container-org504e4dd" class="outline-2">
+<h2 id="org504e4dd">题目</h2>
+<div class="outline-text-2" id="text-org504e4dd">
 <pre class="example">
 公司计划面试 2N 人。第 i 人飞往 A 市的费用为 costs[i][0]，飞往 B 市的费用为 costs[i][1]。
 
@@ -295,9 +295,9 @@ costs.length 为偶数
 </pre>
 </div>
 </div>
-<div id="outline-container-orge95a31d" class="outline-2">
-<h2 id="orge95a31d">解析   (看大佬和官方的解法  简单的总结一下)</h2>
-<div class="outline-text-2" id="text-orge95a31d">
+<div id="outline-container-org6a13158" class="outline-2">
+<h2 id="org6a13158">解析   (看大佬和官方的解法  简单的总结一下)</h2>
+<div class="outline-text-2" id="text-org6a13158">
 <pre class="example">
 假设 有 4 个人  A B C D
 两个地点   西安 +  深圳 各位的花费如下 
@@ -316,9 +316,9 @@ A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfc1b010" class="outline-2">
-<h2 id="orgfc1b010">代码</h2>
-<div class="outline-text-2" id="text-orgfc1b010">
+<div id="outline-container-org851f00a" class="outline-2">
+<h2 id="org851f00a">代码</h2>
+<div class="outline-text-2" id="text-org851f00a">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main
 
@@ -367,9 +367,9 @@ A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D
 </div>
 </div>
 </div>
-<div id="outline-container-org754ace1" class="outline-2">
-<h2 id="org754ace1">通用代码</h2>
-<div class="outline-text-2" id="text-org754ace1">
+<div id="outline-container-org005a7ec" class="outline-2">
+<h2 id="org005a7ec">通用代码</h2>
+<div class="outline-text-2" id="text-org005a7ec">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(<span style="color: #7590db;">costs</span> [][]<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
         <span style="color: #7590db;">sum</span>, <span style="color: #7590db;">lenCosts</span> := 0, <span style="color: #4f97d7;">len</span>(costs)    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;</span>
@@ -401,7 +401,7 @@ A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 11:41</p>
+<p class="date">Created: 2020-09-21 一 10:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

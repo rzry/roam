@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 10:55 -->
+<!-- 2020-09-21 一 10:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mysql查询</title>
@@ -253,23 +253,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org509797a">基础查询</a></li>
-<li><a href="#orgef93cc9">条件查询</a></li>
-<li><a href="#org452f339">排序查询</a></li>
-<li><a href="#orge7fc3e4">常见函数</a></li>
-<li><a href="#orgbd3ecb9">分组查询</a></li>
-<li><a href="#orgfa7f8ef">连接查询</a></li>
-<li><a href="#org5f60e66">连接查询99语法</a></li>
-<li><a href="#orgc1a67af">子查询</a></li>
-<li><a href="#org220d9b4">子查询例题</a></li>
-<li><a href="#orgc1d5471">分页查询</a></li>
-<li><a href="#org64c3c96">联合查询</a></li>
-<li><a href="#org5280742">插入修改删除</a></li>
-<li><a href="#orgddc65df">库和表的使用</a></li>
-<li><a href="#org0ae181d">数据类型</a></li>
-<li><a href="#org63fc28a">常见约束</a></li>
-<li><a href="#org34ea69f">标示自增列</a></li>
-<li><a href="#org53f68ee">事物</a></li>
+<li><a href="#orgde637fa">基础查询</a></li>
+<li><a href="#org4791590">条件查询</a></li>
+<li><a href="#org31e2a13">排序查询</a></li>
+<li><a href="#orgd182062">常见函数</a></li>
+<li><a href="#org5745f93">分组查询</a></li>
+<li><a href="#orgd97e096">连接查询</a></li>
+<li><a href="#org46b0d7a">连接查询99语法</a></li>
+<li><a href="#org44a679e">子查询</a></li>
+<li><a href="#orgfdec8b9">子查询例题</a></li>
+<li><a href="#orge157515">分页查询</a></li>
+<li><a href="#orgf809ea3">联合查询</a></li>
+<li><a href="#org294c5dd">插入修改删除</a></li>
+<li><a href="#org7536a00">库和表的使用</a></li>
+<li><a href="#orgba6572f">数据类型</a></li>
+<li><a href="#org02a0ae8">常见约束</a></li>
+<li><a href="#orga8e0ba3">标示自增列</a></li>
+<li><a href="#org570dfa1">事物</a></li>
 </ul>
 </div>
 </div>
@@ -278,9 +278,9 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org509797a" class="outline-2">
-<h2 id="org509797a">基础查询</h2>
-<div class="outline-text-2" id="text-org509797a">
+<div id="outline-container-orgde637fa" class="outline-2">
+<h2 id="orgde637fa">基础查询</h2>
+<div class="outline-text-2" id="text-orgde637fa">
 <pre class="example">
 # 进阶1 : 基础查询 
 /* 
@@ -359,9 +359,9 @@ from employees;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgef93cc9" class="outline-2">
-<h2 id="orgef93cc9">条件查询</h2>
-<div class="outline-text-2" id="text-orgef93cc9">
+<div id="outline-container-org4791590" class="outline-2">
+<h2 id="org4791590">条件查询</h2>
+<div class="outline-text-2" id="text-org4791590">
 <pre class="example">
 # 条件查询 
 /* 
@@ -535,9 +535,9 @@ is null : 仅仅可以判断null值 可读性比较高
 </pre>
 </div>
 </div>
-<div id="outline-container-org452f339" class="outline-2">
-<h2 id="org452f339">排序查询</h2>
-<div class="outline-text-2" id="text-org452f339">
+<div id="outline-container-org31e2a13" class="outline-2">
+<h2 id="org31e2a13">排序查询</h2>
+<div class="outline-text-2" id="text-org31e2a13">
 <pre class="example">
 # 进阶3 排序查询 
 #引入
@@ -635,9 +635,9 @@ from employees
 </pre>
 </div>
 </div>
-<div id="outline-container-orge7fc3e4" class="outline-2">
-<h2 id="orge7fc3e4">常见函数</h2>
-<div class="outline-text-2" id="text-orge7fc3e4">
+<div id="outline-container-orgd182062" class="outline-2">
+<h2 id="orgd182062">常见函数</h2>
+<div class="outline-text-2" id="text-orgd182062">
 <pre class="example">
 /*
 
@@ -1040,9 +1040,9 @@ where department_id = 90
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbd3ecb9" class="outline-2">
-<h2 id="orgbd3ecb9">分组查询</h2>
-<div class="outline-text-2" id="text-orgbd3ecb9">
+<div id="outline-container-org5745f93" class="outline-2">
+<h2 id="org5745f93">分组查询</h2>
+<div class="outline-text-2" id="text-org5745f93">
 <pre class="example">
 #进阶5：分组查询
 
@@ -1228,9 +1228,9 @@ ORDER BY MIN(salary) DESC;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfa7f8ef" class="outline-2">
-<h2 id="orgfa7f8ef">连接查询</h2>
-<div class="outline-text-2" id="text-orgfa7f8ef">
+<div id="outline-container-orgd97e096" class="outline-2">
+<h2 id="orgd97e096">连接查询</h2>
+<div class="outline-text-2" id="text-orgd97e096">
 <pre class="example">
 #进阶6：连接查询
 /*
@@ -1527,9 +1527,9 @@ select l.country_id ,count(*) as 部门个数
 </pre>
 </div>
 </div>
-<div id="outline-container-org5f60e66" class="outline-2">
-<h2 id="org5f60e66">连接查询99语法</h2>
-<div class="outline-text-2" id="text-org5f60e66">
+<div id="outline-container-org46b0d7a" class="outline-2">
+<h2 id="org46b0d7a">连接查询99语法</h2>
+<div class="outline-text-2" id="text-org46b0d7a">
 <pre class="example">
 #二、sql99语法
 /*
@@ -1797,9 +1797,9 @@ use girls
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc1a67af" class="outline-2">
-<h2 id="orgc1a67af">子查询</h2>
-<div class="outline-text-2" id="text-orgc1a67af">
+<div id="outline-container-org44a679e" class="outline-2">
+<h2 id="org44a679e">子查询</h2>
+<div class="outline-text-2" id="text-org44a679e">
 <pre class="example">
 #进阶7：子查询
 /*
@@ -2433,9 +2433,9 @@ WHERE salary=(
 </pre>
 </div>
 </div>
-<div id="outline-container-org220d9b4" class="outline-2">
-<h2 id="org220d9b4">子查询例题</h2>
-<div class="outline-text-2" id="text-org220d9b4">
+<div id="outline-container-orgfdec8b9" class="outline-2">
+<h2 id="orgfdec8b9">子查询例题</h2>
+<div class="outline-text-2" id="text-orgfdec8b9">
 <pre class="example">
 # 1. 查询工资最低的员工信息: last_name, salary
 
@@ -2684,9 +2684,9 @@ WHERE department_id=(
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc1d5471" class="outline-2">
-<h2 id="orgc1d5471">分页查询</h2>
-<div class="outline-text-2" id="text-orgc1d5471">
+<div id="outline-container-orge157515" class="outline-2">
+<h2 id="orge157515">分页查询</h2>
+<div class="outline-text-2" id="text-orge157515">
 <pre class="example">
 #进阶8：分页查询 ★
 /*
@@ -2744,9 +2744,9 @@ WHERE department_id=(
 </pre>
 </div>
 </div>
-<div id="outline-container-org64c3c96" class="outline-2">
-<h2 id="org64c3c96">联合查询</h2>
-<div class="outline-text-2" id="text-org64c3c96">
+<div id="outline-container-orgf809ea3" class="outline-2">
+<h2 id="orgf809ea3">联合查询</h2>
+<div class="outline-text-2" id="text-orgf809ea3">
 <pre class="example">
 #进阶9：联合查询
 /*
@@ -2790,9 +2790,9 @@ SELECT t_id,tname FROM t_ua WHERE tGender='male';
 </pre>
 </div>
 </div>
-<div id="outline-container-org5280742" class="outline-2">
-<h2 id="org5280742">插入修改删除</h2>
-<div class="outline-text-2" id="text-org5280742">
+<div id="outline-container-org294c5dd" class="outline-2">
+<h2 id="org294c5dd">插入修改删除</h2>
+<div class="outline-text-2" id="text-org294c5dd">
 <pre class="example">
 #DML语言
 /*
@@ -3118,9 +3118,9 @@ TRUNCATE TABLE my_employees;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgddc65df" class="outline-2">
-<h2 id="orgddc65df">库和表的使用</h2>
-<div class="outline-text-2" id="text-orgddc65df">
+<div id="outline-container-org7536a00" class="outline-2">
+<h2 id="org7536a00">库和表的使用</h2>
+<div class="outline-text-2" id="text-org7536a00">
 <pre class="example">
 /*
 
@@ -3367,9 +3367,9 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
 </pre>
 </div>
 </div>
-<div id="outline-container-org0ae181d" class="outline-2">
-<h2 id="org0ae181d">数据类型</h2>
-<div class="outline-text-2" id="text-org0ae181d">
+<div id="outline-container-orgba6572f" class="outline-2">
+<h2 id="orgba6572f">数据类型</h2>
+<div class="outline-text-2" id="text-orgba6572f">
 <pre class="example">
 #常见的数据类型
 /*
@@ -3574,9 +3574,9 @@ SET time_zone='+9:00';
 </pre>
 </div>
 </div>
-<div id="outline-container-org63fc28a" class="outline-2">
-<h2 id="org63fc28a">常见约束</h2>
-<div class="outline-text-2" id="text-org63fc28a">
+<div id="outline-container-org02a0ae8" class="outline-2">
+<h2 id="org02a0ae8">常见约束</h2>
+<div class="outline-text-2" id="text-org02a0ae8">
 <pre class="example">
 #常见约束
 
@@ -3809,9 +3809,9 @@ SHOW INDEX FROM stuinfo;
 </pre>
 </div>
 </div>
-<div id="outline-container-org34ea69f" class="outline-2">
-<h2 id="org34ea69f">标示自增列</h2>
-<div class="outline-text-2" id="text-org34ea69f">
+<div id="outline-container-orga8e0ba3" class="outline-2">
+<h2 id="orga8e0ba3">标示自增列</h2>
+<div class="outline-text-2" id="text-orga8e0ba3">
 <pre class="example">
 #标识列
 /*
@@ -3857,9 +3857,9 @@ SET auto_increment_increment=3;
 </pre>
 </div>
 </div>
-<div id="outline-container-org53f68ee" class="outline-2">
-<h2 id="org53f68ee">事物</h2>
-<div class="outline-text-2" id="text-org53f68ee">
+<div id="outline-container-org570dfa1" class="outline-2">
+<h2 id="org570dfa1">事物</h2>
+<div class="outline-text-2" id="text-org570dfa1">
 <pre class="example">
 #TCL
 /*
@@ -3989,7 +3989,7 @@ SELECT * FROM account;
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 10:55</p>
+<p class="date">Created: 2020-09-21 一 10:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

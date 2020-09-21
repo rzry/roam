@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 11:38 -->
+<!-- 2020-09-21 一 10:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go channel</title>
@@ -253,12 +253,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga0e1c87">定义</a></li>
-<li><a href="#orgadfa35f">先从创建开始</a>
+<li><a href="#org1ccf38e">定义</a></li>
+<li><a href="#org590eefe">先从创建开始</a>
 <ul>
-<li><a href="#orgfed25d0">channel 队列</a></li>
-<li><a href="#org24b8f1d">当channel缓存满了怎么办</a></li>
-<li><a href="#org77dc5e1">反向操作</a></li>
+<li><a href="#org1e93d24">channel 队列</a></li>
+<li><a href="#org548a62d">当channel缓存满了怎么办</a></li>
+<li><a href="#org8794ef4">反向操作</a></li>
 </ul>
 </li>
 </ul>
@@ -267,9 +267,9 @@ for the JavaScript code in this tag.
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-<div id="outline-container-orga0e1c87" class="outline-2">
-<h2 id="orga0e1c87">定义</h2>
-<div class="outline-text-2" id="text-orga0e1c87">
+<div id="outline-container-org1ccf38e" class="outline-2">
+<h2 id="org1ccf38e">定义</h2>
+<div class="outline-text-2" id="text-org1ccf38e">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">type</span> <span style="color: #ce537a; font-weight: bold;">hchan</span> <span style="color: #4f97d7; font-weight: bold;">struct</span> {
     qcount   <span style="color: #ce537a; font-weight: bold;">uint</span>           <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">total data in the queue</span>
@@ -296,9 +296,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgadfa35f" class="outline-2">
-<h2 id="orgadfa35f">先从创建开始</h2>
-<div class="outline-text-2" id="text-orgadfa35f">
+<div id="outline-container-org590eefe" class="outline-2">
+<h2 id="org590eefe">先从创建开始</h2>
+<div class="outline-text-2" id="text-org590eefe">
 <div class="org-src-container">
 <pre class="src src-go">
 
@@ -314,9 +314,9 @@ for the JavaScript code in this tag.
 channel 中发送 send (ch &lt;- xxx )和 recv(&lt;- ch)接受 (指向谁就是 谁发送) 
 </pre>
 </div>
-<div id="outline-container-orgfed25d0" class="outline-3">
-<h3 id="orgfed25d0">channel 队列</h3>
-<div class="outline-text-3" id="text-orgfed25d0">
+<div id="outline-container-org1e93d24" class="outline-3">
+<h3 id="org1e93d24">channel 队列</h3>
+<div class="outline-text-3" id="text-org1e93d24">
 <p>
 <b>队列的意思就是先谁后谁</b>
 <b>channel 中有个缓存的buf 是用来缓存数据的</b>
@@ -360,9 +360,9 @@ channel为何会使用 循环链表作为缓存结构,大概是因为 缓存列�
 </div>
 </div>
 
-<div id="outline-container-org24b8f1d" class="outline-3">
-<h3 id="org24b8f1d">当channel缓存满了怎么办</h3>
-<div class="outline-text-3" id="text-org24b8f1d">
+<div id="outline-container-org548a62d" class="outline-3">
+<h3 id="org548a62d">当channel缓存满了怎么办</h3>
+<div class="outline-text-3" id="text-org548a62d">
 <div class="org-src-container">
 <pre class="src src-go">&#22312;&#32531;&#23384;&#28385;&#30340;&#26102;&#20505; <span style="color: #ce537a; font-weight: bold;">&#25110;&#32773;&#27809;&#26377;&#32531;&#23384;&#30340;&#26102;&#20505;</span> <span style="color: #bc6ec5; font-weight: bold;">&#25105;&#20204;send</span> (ch &lt;- xxx) <span style="color: #ce537a; font-weight: bold;">&#25110;&#32773;</span> <span style="color: #ce537a; font-weight: bold;">recv</span> (&lt;- ch) <span style="color: #ce537a; font-weight: bold;">&#20250;&#38459;&#22622;&#24403;&#21069;&#30340;Goroutine</span>
 &#20294;&#26159; <span style="color: #ce537a; font-weight: bold;">&#36825;&#26159;&#24590;&#20040;&#23454;&#29616;&#30340;&#21602;</span>
@@ -385,9 +385,9 @@ G2 <span style="color: #ce537a; font-weight: bold;">&#20174;&#32531;&#23384;&#38
 </div>
 </div>
 </div>
-<div id="outline-container-org77dc5e1" class="outline-3">
-<h3 id="org77dc5e1">反向操作</h3>
-<div class="outline-text-3" id="text-org77dc5e1">
+<div id="outline-container-org8794ef4" class="outline-3">
+<h3 id="org8794ef4">反向操作</h3>
+<div class="outline-text-3" id="text-org8794ef4">
 <pre class="example">
 假如是先进行执行recv操作的G2会怎么样？   
 先取 后 放  G2 先开始 取  没东西就阻塞  G1 再放 
@@ -411,7 +411,7 @@ G1并没有锁住channel，然后将数据放到缓存中，而是直接把数�
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 11:38</p>
+<p class="date">Created: 2020-09-21 一 10:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

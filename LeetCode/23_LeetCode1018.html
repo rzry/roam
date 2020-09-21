@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 09:31 -->
+<!-- 2020-09-21 一 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode-1018-被5整除的二进制前缀</title>
@@ -253,24 +253,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf2b3789">ques</a>
+<li><a href="#orgc3ac3af">ques</a>
 <ul>
-<li><a href="#orgff91fe8">题目解释</a></li>
-<li><a href="#orgaf790de">题目答案</a></li>
-<li><a href="#orgafccafc">代码解析 .</a></li>
+<li><a href="#org40a8df6">题目解释</a></li>
+<li><a href="#orga01fc0e">题目答案</a></li>
+<li><a href="#org2da5318">代码解析 .</a></li>
 </ul>
 </li>
-<li><a href="#org846a72a">第二种方式</a></li>
-<li><a href="#orgf8732b7">解析</a></li>
+<li><a href="#org3604989">第二种方式</a></li>
+<li><a href="#orge9f563c">解析</a></li>
 </ul>
 </div>
 </div>
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-<div id="outline-container-orgf2b3789" class="outline-2">
-<h2 id="orgf2b3789">ques</h2>
-<div class="outline-text-2" id="text-orgf2b3789">
+<div id="outline-container-orgc3ac3af" class="outline-2">
+<h2 id="orgc3ac3af">ques</h2>
+<div class="outline-text-2" id="text-orgc3ac3af">
 <pre class="example">
   给定由若干 0 和 1 组成的数组 A。
 我们定义 N_i：从 A[0] 到 A[i] 的
@@ -285,9 +285,9 @@ for the JavaScript code in this tag.
 
 </pre>
 </div>
-<div id="outline-container-orgff91fe8" class="outline-3">
-<h3 id="orgff91fe8">题目解释</h3>
-<div class="outline-text-3" id="text-orgff91fe8">
+<div id="outline-container-org40a8df6" class="outline-3">
+<h3 id="org40a8df6">题目解释</h3>
+<div class="outline-text-3" id="text-org40a8df6">
 <pre class="example">
  就是给定一个数组 比如 我给你一个 [0,1,0,1] 
 那么 它按照题目格式展开就是  0 , 01,010,0101
@@ -297,9 +297,9 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgaf790de" class="outline-3">
-<h3 id="orgaf790de">题目答案</h3>
-<div class="outline-text-3" id="text-orgaf790de">
+<div id="outline-container-orga01fc0e" class="outline-3">
+<h3 id="orga01fc0e">题目答案</h3>
+<div class="outline-text-3" id="text-orga01fc0e">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">prefixesDivBy5</span>(<span style="color: #7590db;">A</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) []<span style="color: #ce537a; font-weight: bold;">bool</span> {
     <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">temp</span> <span style="color: #ce537a; font-weight: bold;">int</span>
@@ -318,9 +318,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgafccafc" class="outline-3">
-<h3 id="orgafccafc">代码解析 .</h3>
-<div class="outline-text-3" id="text-orgafccafc">
+<div id="outline-container-org2da5318" class="outline-3">
+<h3 id="org2da5318">代码解析 .</h3>
+<div class="outline-text-3" id="text-org2da5318">
 <pre class="example">
 只需关心最后一位. 所以不用转10进制 . 让它往左移位+遍历的value 然后去 %5
 
@@ -328,9 +328,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org846a72a" class="outline-2">
-<h2 id="org846a72a">第二种方式</h2>
-<div class="outline-text-2" id="text-org846a72a">
+<div id="outline-container-org3604989" class="outline-2">
+<h2 id="org3604989">第二种方式</h2>
+<div class="outline-text-2" id="text-org3604989">
 <div class="org-src-container">
 <pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">prefixesDivBy5</span>(<span style="color: #7590db;">A</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) []<span style="color: #ce537a; font-weight: bold;">bool</span> {
     <span style="color: #7590db;">sum</span> := 0
@@ -349,9 +349,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf8732b7" class="outline-2">
-<h2 id="orgf8732b7">解析</h2>
-<div class="outline-text-2" id="text-orgf8732b7">
+<div id="outline-container-orge9f563c" class="outline-2">
+<h2 id="orge9f563c">解析</h2>
+<div class="outline-text-2" id="text-orge9f563c">
 <pre class="example">
 sum = (sum*2 + v) % 5  不是很懂这个  所以  这个题  先背着
 </pre>
@@ -361,7 +361,7 @@ sum = (sum*2 + v) % 5  不是很懂这个  所以  这个题  先背着
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 09:31</p>
+<p class="date">Created: 2020-09-21 一 10:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

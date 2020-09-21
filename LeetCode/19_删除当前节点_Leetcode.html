@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-16 三 11:40 -->
+<!-- 2020-09-21 一 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>leetcode-删除当前节点</title>
@@ -253,10 +253,10 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf654639">思路</a>
+<li><a href="#org803940b">思路</a>
 <ul>
-<li><a href="#org466a3a8">第二次的代码</a></li>
-<li><a href="#org6c6cdfc">第一次的代码</a></li>
+<li><a href="#orgb2f9340">第二次的代码</a></li>
+<li><a href="#org30a002c">第一次的代码</a></li>
 </ul>
 </li>
 </ul>
@@ -285,9 +285,9 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 
-<div id="outline-container-orgf654639" class="outline-2">
-<h2 id="orgf654639">思路</h2>
-<div class="outline-text-2" id="text-orgf654639">
+<div id="outline-container-org803940b" class="outline-2">
+<h2 id="org803940b">思路</h2>
+<div class="outline-text-2" id="text-org803940b">
 <pre class="example">
 一般思路是 : 修改node 之前节点的next 指针 直接让他指向之后的节点
 因为我们现在只知道当权的节点node  所以 我们无法访问node 的前节点.也无法修改node前节点
@@ -296,9 +296,9 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 
-<div id="outline-container-org466a3a8" class="outline-3">
-<h3 id="org466a3a8">第二次的代码</h3>
-<div class="outline-text-3" id="text-org466a3a8">
+<div id="outline-container-orgb2f9340" class="outline-3">
+<h3 id="orgb2f9340">第二次的代码</h3>
+<div class="outline-text-3" id="text-orgb2f9340">
 <div class="org-src-container">
 <pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">deleteNode</span>(<span style="color: #7590db;">node</span> *<span style="color: #ce537a; font-weight: bold;">ListNode</span>) {
 *node = *node.Next
@@ -307,9 +307,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org6c6cdfc" class="outline-3">
-<h3 id="org6c6cdfc">第一次的代码</h3>
-<div class="outline-text-3" id="text-org6c6cdfc">
+<div id="outline-container-org30a002c" class="outline-3">
+<h3 id="org30a002c">第一次的代码</h3>
+<div class="outline-text-3" id="text-org30a002c">
 <div class="org-src-container">
 <pre class="src src-go">   <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">deleteNode</span>(<span style="color: #7590db;">node</span> *<span style="color: #ce537a; font-weight: bold;">ListNode</span>) {
     <span style="color: #4f97d7; font-weight: bold;">if</span> node != <span style="color: #a45bad;">nil</span> {
@@ -332,7 +332,7 @@ for the JavaScript code in this tag.
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-16 三 11:40</p>
+<p class="date">Created: 2020-09-21 一 10:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
