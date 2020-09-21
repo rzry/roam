@@ -1,7 +1,7 @@
-#+TITLE:     学习笔记
+#+TITLE:     简历
 #+AUTHOR:    rzry
 #+EMAIL:     rzry36008@ccie.lol
-#+DATE:      2020-09-16
+#+DATE:      2020-09-21
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:2
 #+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
@@ -11,67 +11,75 @@
 </div>
 #+end_export
 -----
+* 基本信息
+  :PROPERTIES:
+  :CATEGORY: 基本信息
+  :END:
+  | <姓名>   | 刘康言             |
+  | <学历>   | 大专               |
+  | <手机号> | 17609276228        |
+  | <邮箱>   | rzry36008@ccie.lol |
+  | <性别>   | 男                 |
+  | <出生年月> | 1999-09            |
+  | <简历地址> | zxxky.cn           |
+  |----------+--------------------|
 -----
-* [[file:日程安排/20200916-月度总结.org][月度总结]]                                                                  :月度总结:
+** 一言以敝之
+  - *熟悉Golang基本语法*
+  - 擅长RESTful类型api设计，和mvc架构设计
+  - 掌握 *Linux* 基本操作，熟悉 *awk* ， *sed* 等命令与基本正则表达式
+  - 熟悉python语法 , 爬虫与数据处理
+  - 熟悉 *emacs* , 与基本的elisp语法
+  - 面向 google 编程，基于 google 代码风格, 代码洁癖
+  - 工作之余亦喜自学（笔记在外链）
+
+* 技能掌握
   :PROPERTIES:
-  :CATEGORY: 月度总结
+  :CATEGORY: 技能掌握
   :END:
- -  *Link* : [[file:日程安排/Gtd.2020.09.org][2020-09]]   
-
- -  *Link* : [[file:日程安排/Gtd.2020.08.org][2020-08]]  
-
------
-* [[file:golang/20200916-all_golang.org][ golang]]                                                                   :golang:
+** 编程语言
+  - 熟练 Go 
+  - 熟悉 python,shell,Lisp,C
+** 数据库
+  - 熟练 mysql,redis 
+  - 熟悉 mongodb,oracle
+** 框架  
+  - go-micro , gin , beego 
+  - zap , casbin , protobuf
+  - deciaml , swagger 
+** 版本控制
+  - git
+* 项目介绍 
   :PROPERTIES:
-  :CATEGORY: golang
+  :CATEGORY: 项目介绍
   :END:
- -  *Link* : [[file:golang/11_Golang笔记.org][golang笔记]]
-
- -  *Link* : [[file:golang/22_Channel图解.org][go channel]]
-
- -  *Link* : [[file:golang/21_Go_Test.org][go test]]
-
- -  *Link* : [[file:golang/15_指针_结构体复习.org][指针,结构体]]
-
- -----
-* [[file:LeetCode/20200916-all_leetcode.org][leetcode]]                                                                 :leetcode:
+** 中区链创科技有限公司 2019.7 - 2020.06
+*** 新年集卡 
+    - 简述 : 公司新年活动,集卡得usdt
+    - 平台 : linux 
+    - 角色 : 后端开发
+    - 技术 : go-micro编写微服务,微信第三方登录对接公司app用户,和mysql做存储服务
+    - 技术引用 : silenceper/wechat 
+    - 成果 : 从上线到活动结束稳定运行，累计参与人数8万+，抽卡次数200万次，分享链接6万+次
+*** 实盘机器人 
+    - 简述 : -----------------------
+    - 平台 : ---------------------
+    - 角色 : 
+    - 技术 :
+    - 技术引用 :
+    - 成果 : 
+* 教育经历
   :PROPERTIES:
-  :CATEGORY: leetcode
+  :CATEGORY: 教育经历 
   :END:
- -  *Link* : [[file:LeetCode/19_删除当前节点_Leetcode.org][leetcode-删除当前节点]]
-
- -  *Link* : [[file:LeetCode/26_LeetCode1029.org][LeetCode1029-两地调度]]
-
- -  *Link* : [[file:LeetCode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
-
- -  *Link* : [[file:LeetCode/24_Leetcode_1013数组三等份.org][LeetCode-1013-将数组分成和相等的三个部分]]
-
- -  *Link* : [[file:LeetCode/23_LeetCode1018.org][Leetcode-1018-被5整除的二进制前缀]]
-
- -----
-
-* [[file:emacs/20200916-allemacs.org][emacs]]                                                                                    :emacs:
-  :PROPERTIES:
-  :CATEGORY: emacs
-  :END:
- -  *Link* : [[file:emacs/18_Emacs介绍.org][emacs test]]
-
- -  *Link* : [[file:emacs/20200915173026-emacs_roma.org][emacs-roma]]
-
- -  *Link* : [[file:emacs/08_lisp语法.org][lisp语法]]
-
- -----
-* [[file:linux/20200916-all_linux.org][linux]]                                                                                  :linux:
-  :PROPERTIES:
-  :CATEGORY: linux
-  :END:
- -  *Link* : [[file:linux/16_Linux_命令.org][linux 命令]]
-
- -  *Link* : [[file:linux/07_linux操作.org][linux.setting]]
-
- -  *Link* : [[file:linux/30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
-
- -  *Link* : [[file:linux/05_git笔记.org][git的使用笔记]]
-
- -  *Link* : [[file:linux/33_adb备份软件一键安装.org][安卓一键软件备份_安装]]
- -----
+   | 学院名称         |   开始 | 截止 | 专业     | 学历 |   
+   | 陕西职业技术学院 | 2017.9 |2020.07 | 软件技术 | 大专 |   
+   |------------------+--------+------+----------+----|
+** 奖项 
+   - 创新创业学院三等奖(2018-2019)
+   - 校先进个人(2017-2018)
+   - 征文比赛三等奖(2017-2018全国鼎利学院)
+   - 党员
+   
+* 学习笔记
+** Link : [[file:study.org][学习笔记]]
