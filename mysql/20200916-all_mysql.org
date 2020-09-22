@@ -11,5 +11,11 @@
 </div>
 #+end_export
 
-* [[file:32_Mysql查询笔记.org][mysql查询]]
-* [[file:12_Mysql笔记.org][mysql笔记总结]]
+** note
+  -  *Link* : [[file:note/32_Mysql查询笔记.org][mysql查询]]
+
+  -  *Link* : [[file:note/12_Mysql笔记.org][mysql笔记总结]]
+** book
+  -  *Link* : 
+
+  -  *Link* : 

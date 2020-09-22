@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 10:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>lisp语法</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,184 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">lisp语法</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#orgfcef490">01.el ---</a></li>
+<li><a href="#org82460a6">set</a></li>
+<li><a href="#org0a9cb12">setq</a>
+<ul>
+<li><a href="#orgf8b4291">eg</a></li>
+</ul>
+</li>
+<li><a href="#orgb6629ea">buffer-name</a></li>
+<li><a href="#org678e322">buffer大小 字符数</a></li>
+<li><a href="#orgcfea46b">defun</a></li>
+<li><a href="#org2ed76a9">交互函数</a></li>
+<li><a href="#org350c2f7">let 特殊表 (局部变量)</a></li>
 </ul>
 </div>
 </div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+<div id="outline-container-orgfcef490" class="outline-2">
+<h2 id="orgfcef490">01.el ---</h2>
+<div class="outline-text-2" id="text-orgfcef490">
+<pre class="example">
+(message
+     "this message appeats in the echo area!")
 
 
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
+(message "this name of this buffer is : %s"(buffer-name))
 
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
+(message "the value if fill-colum is %d"fill-column)
+
+(message "there are %d %s in the iffice !"(~ fill-column 14)"pink elephants")
+
+
+(message "He saw %d %s"
+         (- fill-column 34)
+         (concat "red"
+                 (substring
+                  "the quick brown foxes jumped ."11 21)
+                 "leaping . "))
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
-
-<li><b>Link</b> :</li>
-</ul>
+<div id="outline-container-org82460a6" class="outline-2">
+<h2 id="org82460a6">set</h2>
+<div class="outline-text-2" id="text-org82460a6">
+<pre class="example">
+(set `flowers2 `(rose violet daisy buttercup))
+flowers2
+set 是设置函数 执行上面的设置 下面就可以调  用单引号引住 
+`flowers2 如果加上单引号 那么就会返回这个值本身 而不是所代表的函数值 
+</pre>
 </div>
 </div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
 
-<li><b>Link</b> :</li>
-</ul>
+<div id="outline-container-org0a9cb12" class="outline-2">
+<h2 id="org0a9cb12">setq</h2>
+<div class="outline-text-2" id="text-org0a9cb12">
+<pre class="example">
+(setq carnivores `(lion tiger leopard))
+carnivores
+
+(setq trees `(pine fir oak maple)
+herbivores `(gazelle antelope zebra)
+)
+trees
+</pre>
+</div>
+
+<div id="outline-container-orgf8b4291" class="outline-3">
+<h3 id="orgf8b4291">eg</h3>
+<div class="outline-text-3" id="text-orgf8b4291">
+<pre class="example">
+   (setq counter 0)
+    (setq counter (+ counter 2))  ;;; 这就相当于递归了... 
+    Counter
+(message "hello")
+(message "s")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb6629ea" class="outline-2">
+<h2 id="orgb6629ea">buffer-name</h2>
+<div class="outline-text-2" id="text-orgb6629ea">
+<pre class="example">
+(message "l want tre buffer name = %s"(buffer-name))
+  (message "l want try buffer file name = %s "(buffer-file-name)) ;;这个会显示pwd
+
+  (buffer-name)
+  (buffer-file-name)
+
+  (other-buffer)
+  哈
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org678e322" class="outline-2">
+<h2 id="org678e322">buffer大小 字符数</h2>
+<div class="outline-text-2" id="text-org678e322">
+<p>
+(buffer-size)
+(point)
+(point)
+(point-min)
+</p>
+</div>
+</div>
+<div id="outline-container-orgcfea46b" class="outline-2">
+<h2 id="orgcfea46b">defun</h2>
+<div class="outline-text-2" id="text-orgcfea46b">
+<pre class="example">
+(defun multiply-by-seven (number)
+"Multiply NUMBER by seven"
+(* 7 number)
+)
+
+(defun myfunc (add)
+;;  "My func is Add"
+(+ 3 add)
+)
+(myfunc 9) 
+
+(multiply-by-seven  3)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2ed76a9" class="outline-2">
+<h2 id="org2ed76a9">交互函数</h2>
+<div class="outline-text-2" id="text-org2ed76a9">
+<pre class="example">
+(defun multiply-by-seven (number)
+"Multip NUmber by sevev"
+(interactive "p") ;; 这个就是 安装的函数 特殊表 interactive 可以成为一个交互函数
+(message "the result is %d" (* 7 multiply-by-seven)
+</pre>
+
+<p>
+其中 p 是告诉emacs 要传一个前缀参量给这个函数 并将它的值用于函数的参量  就比如  func(r int)
+</p>
+
+<p>
+我们要传入一个参数给func  然后 func 带这个参数运行    
+差不多的有  r  使emacs 将位点所在区域的开始值 和结束值 作为函数的两个参量 
+b 告诉 emacs  缓冲区的名字作为函数的参量  在这种情况下 emacs 会在小缓冲区提示用户输入缓冲区名字
+</p>
+</div>
+</div>
+<div id="outline-container-org350c2f7" class="outline-2">
+<h2 id="org350c2f7">let 特殊表 (局部变量)</h2>
+<div class="outline-text-2" id="text-org350c2f7">
+<pre class="example">
+(let ((variable value)
+(variable value)
+...)
+body...)
+let 后面 加两个列表 (变量列表)  然后就是变量主体 
+
+(let (zebra `stripes)
+(tiger `fierce))
+(message "one kind of animal has %s and another is %s"
+zebra tiger))
+</pre>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 10:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

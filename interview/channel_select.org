@@ -1,0 +1,162 @@
+#+TITLE:     channel-select
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-22
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+
+#+end_export
+* 概述
+** 并发模型
+   #+BEGIN_SRC 
+   并行计算: 共享内存 或者 消息通信 
+   
+   目的   : 目的是解决多线程的数据一致性
+   
+   共享内存: 提供互斥锁同步原语
+
+   消息通信: channel 
+
+   对于go : 同事提供了 sync.* 和 atomic.* 的基于共享内存的同步原语 
+
+   #+END_SRC
+** G P M 模型
+   #+BEGIN_SRC 
+   调度的方法 
+   
+   G --- > Goroutine  代码在这里
+
+   m ----> machine    线程 go 运行的时候 会创建很多 m 然后去 调度 G 
+                      调度的前提是 必须持有 P 
+
+   p ----> processor  为了编程的方便 我们不希望所有的M 都去调全局队列的G 
+                      所以创建了p 每次 M 调度 G 的时候 就会拿到一个 P 
+                      得到了全局队列 , 所以 P 更像 存放全局变量的东西 
+   
+   调度eg  : 线程 去 执行  Goroutine  去拿本地队列  如果空了 就去拿其他人的
+            Goroutine  如果某一时刻 两个人都空了  那么就去看全局队列  有的话
+            拿一半 
+
+   #+END_SRC
+
+** channel 的 struct 
+   #+BEGIN_SRC 
+   Channel 的结构 
+   type hchan struct {
+	qcount   uint           // total data in the queue
+	dataqsiz uint           // size of the circular queue
+	buf      unsafe.Pointer // points to an array of dataqsiz elements
+	elemsize uint16
+	closed   uint32
+	elemtype *_type // element type
+	sendx    uint   // send index
+	recvx    uint   // receive index
+	recvq    waitq  // list of recv waiters
+	sendq    waitq  // list of send waiters
+	lock mutex
+   }
+
+   Sudog 的结构 
+   type sudog struct {
+	g *g
+	isSelect bool
+	next     *sudog
+	prev     *sudog
+	elem     unsafe.Pointer // data element (may point to stack)
+	acquiretime int64
+	releasetime int64
+	ticket      uint32
+	parent      *sudog // semaRoot binary tree
+	waitlink    *sudog // g.waiting list or semaRoot
+	waittail    *sudog // semaRoot
+	c           *hchan // channel
+   }
+   #+END_SRC
+
+** channel 4 种 情况 (基于ring buffer 先进先出)
+*** make 
+    #+BEGIN_SRC 
+    ch := make(chan interface{},0) -- > runtime.makechan(interface{},0)
+    #+END_SRC
+
+*** send 
+    #+BEGIN_SRC 
+    
+    ch <- v1       ------>    runtime.chansend1(ch,&v)
+    过程 : lock ---- > 发送数据给buf --- > 解锁 
+    
+    结果 : sendx++ 
+    
+    #+END_SRC
+
+*** recv  
+    #+BEGIN_SRC 
+
+    1 : v1 <- ch     ------>   runtime.chanrecv1(ch,&v)
+    2 : v1,ok <- ch     ------- > ok := runtime.chanrecv2(ch , &v) 
+    
+    过程 :  lock --- > 从buf取出数据 ---- > 解锁
+    结果 :  recvx++ 
+    #+END_SRC
+
+*** close 
+    #+BEGIN_SRC 
+    close(ch)
+    
+    加锁 ----> closed == 1 (标志位) ----> ready 所有的sendq 和 recvq ---> 解锁
+    
+    ready sendq 和 recvq : 
+         1 . 把所有的 阻塞 q 的 Goroutine 放到glist 的一个临时变量
+         想要尽快的解锁 因为可能buf还有数据, recvx 还有别人读数据 
+    #+END_SRC
+*** 基本情况的特殊问题
+    #+BEGIN_SRC 
+    gopark : 
+         1 . + 线程 解除当前的g 
+         2 . + m 重新进入调度队列
+         3 . 此时g 没有进入调度队列 然后就阻塞
+    #+END_SRC
+
+    #+BEGIN_SRC 
+    1 . 发送时 buf 满了 
+    ans : 使用 sudog 的结构 包裹 g 和要发送的数据  ---- > 
+          入队 sendq (正常发送是在sendx) ---- > gopark
+
+    后续 : 来了一个新的接收方把之前满的buf取走了一个
+         过程 : sendq出队 ---> 从buf 拷贝到队头 (因为取走的时候是队头 先进先出)
+               ----> (再次 ringbuffer 消费掉的数据是会自动到队尾) 
+               ----> Goroutine再次被放到队列中 等待调度
+    #+END_SRC
+
+    #+BEGIN_SRC 
+    2  . 如果 recv 的时候 buf 为空
+    ans : 使用sudog 包裹g 和要接受的数据 --- > 
+          入队recvq ---> gopark 
+    后续 : 如果有一个新的 send 发送数据 ---> recvq 出队 ---> 
+          直接将send Goroutine的数据 copy 到 阻塞的 recvq Goroutine
+          (因为recvq 出队 是阻塞状态 不会被竞争  所以这个write操作很安全)
+          整个操作没有buf 参与 与unbuffer 的情况一模一样
+    #+END_SRC
+    #+BEGIN_SRC 
+    3  . 读取一个已经关闭的channel 
+         sendq recvq === nil 
+         buf <> nil/data 
+         if buf== nil{
+            清零reader 的读取位置
+         }else{
+            继续读就行了
+         }
+         
+         等到没有 Goroutine 来使用channel 的时候
+         channel就会释放内存 
+         (假如两个Goroutine 都有操作channel 的指针 ,
+         她们两个Goroutine执行完毕 那么channel就会释放)
+    #+END_SRC
+    
+* select 
+** 介绍 情况
+   #+BEGIN_SRC 
+   
+   #+END_SRC

@@ -1,77 +1,114 @@
 #+TITLE:     学习笔记
-#+AUTHOR:    rzry
+#+AUTHOR:    rzry https://github.com/rzry
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:2
 #+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
 #+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
+
 #+end_export
 -----
------
-* [[file:日程安排/20200916-月度总结.org][月度总结]]
-  :PROPERTIES:
-  :CATEGORY: 月度总结
-  :END:
- -  *Link* : [[file:日程安排/Gtd.2020.09.org][2020-09]]   
-
- -  *Link* : [[file:日程安排/Gtd.2020.08.org][2020-08]]  
-
------
-* [[file:golang/20200916-all_golang.org][ golang]]
+- *一级标题可查看详情*
+* [[file:golang/golang.org][golang]]
   :PROPERTIES:
   :CATEGORY: golang
   :END:
- -  *Link* : [[file:golang/11_Golang笔记.org][golang笔记]]
+*** DONE note
+    CLOSED: [2020-09-22 二 12:01]
+  - *NOTE* : [golang笔记]
 
- -  *Link* : [[file:golang/22_Channel图解.org][go channel]]
+  - *NOTE* : [指针,结构体]
 
- -  *Link* : [[file:golang/21_Go_Test.org][go test]]
+  - *NOTE* : [go test]
 
- -  *Link* : [[file:golang/15_指针_结构体复习.org][指针,结构体]]
+  - *NOTE* : [go channel]
 
- -----
-* [[file:LeetCode/20200916-all_leetcode.org][leetcode]]
-  :PROPERTIES:
-  :CATEGORY: leetcode
-  :END:
- -  *Link* : [[file:LeetCode/19_删除当前节点_Leetcode.org][leetcode-删除当前节点]]
+  - *NOTE* : [channel_select]
 
- -  *Link* : [[file:LeetCode/26_LeetCode1029.org][LeetCode1029-两地调度]]
+*** DONE leetcode
+    CLOSED: [2020-09-22 二 12:02]
+  -  *NOTE* : [LeetCode628-三个数的最大乘积]
 
- -  *Link* : [[file:LeetCode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
+  -  *NOTE* : [LeetCode1029-两地调度]
 
- -  *Link* : [[file:LeetCode/24_Leetcode_1013数组三等份.org][LeetCode-1013-将数组分成和相等的三个部分]]
+  -  *NOTE* : [LeetCode-1013-将数组分成和相等的三个部分]
 
- -  *Link* : [[file:LeetCode/23_LeetCode1018.org][Leetcode-1018-被5整除的二进制前缀]]
+  -  *NOTE* : [Leetcode-1018-被5整除的二进制前缀]
 
- -----
+  -  *NOTE* : [leetcode-删除当前节点]
 
+*** TODO reading
+  -  *NOTE* : 
+
+  -  *NOTE* : 
+*** TODO 摘录
+  -  *NOTE* : 
+
+  -  *NOTE* : 
+*** DONE nothing
+    CLOSED: [2020-09-22 二 12:02]
+  -  *NOTE* : 
+
+  -  *NOTE* : 
+
+----
+-
 * [[file:emacs/20200916-allemacs.org][emacs]]
   :PROPERTIES:
   :CATEGORY: emacs
   :END:
- -  *Link* : [[file:emacs/18_Emacs介绍.org][emacs test]]
-
- -  *Link* : [[file:emacs/20200915173026-emacs_roma.org][emacs-roma]]
-
- -  *Link* : [[file:emacs/08_lisp语法.org][lisp语法]]
+** TODO config
+  -  *NOTE* : [emacs-roma]
+** TODO lisp
+  -  *NOTE* : [lisp语法]
 
  -----
+* [[file:mysql/20200916-all_mysql.org][mysql]]
+  :PROPERTIES:
+  :CATEGORY: mysql
+  :END:
+** DONE note
+   CLOSED: [2020-09-22 二 12:02]
+  -  *NOTE* : [mysql查询]
+
+  -  *NOTE* : [mysql笔记总结]
+ -----
+
 * [[file:linux/20200916-all_linux.org][linux]]
   :PROPERTIES:
   :CATEGORY: linux
   :END:
- -  *Link* : [[file:linux/16_Linux_命令.org][linux 命令]]
+** TODO nothing
+   -  *NOTE* : [Sed多文件搜索替换]
 
- -  *Link* : [[file:linux/07_linux操作.org][linux.setting]]
-
- -  *Link* : [[file:linux/30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
-
- -  *Link* : [[file:linux/05_git笔记.org][git的使用笔记]]
-
- -  *Link* : [[file:linux/33_adb备份软件一键安装.org][安卓一键软件备份_安装]]
+   -  *NOTE* : [安卓一键软件备份_安装]
  -----
+** DONE order
+   CLOSED: [2020-09-22 二 12:02]
+  -  *NOTE* : [git的使用笔记]
+    
+* TODO [[file:interview/interview.org][interview]]
+  -  *NOTE* : [channel-select]
+
+  -  *NOTE* : [简历问题]
+
+  -  *NOTE* : [面试题]
+
+  -  *NOTE* : [面试总结]
+* TODO 日程管理  
+
+** -> [[file:日程安排/2020.org][2020]]
+  -  *NOTE* : [2020.9]
+
+  -  *NOTE* : [2020.8]
+
+* TODO reading
+  :PROPERTIES: 
+  :CATEGORY: reading
+  :END:
+** book link 
+   -  *NOTE* : 
+
+   -  *NOTE* : 
+   -----

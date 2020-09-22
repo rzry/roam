@@ -1,0 +1,118 @@
+#+TITLE:     go channel
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+* 定义
+  #+BEGIN_SRC go
+  type hchan struct {
+    qcount   uint           // total data in the queue
+    dataqsiz uint           // size of the circular queue
+    buf      unsafe.Pointer // points to an array of dataqsiz elements
+    elemsize uint16
+    closed   uint32
+    elemtype *_type // element type
+    sendx    uint   // send index
+    recvx    uint   // receive index
+    recvq    waitq  // list of recv waiters
+    sendq    waitq  // list of send waiters
+
+    // lock protects all fields in hchan, as well as several
+    // fields in sudogs blocked on this channel.
+    //
+    // Do not change another G's status while holding this lock
+    // (in particular, do not ready a G), as this can deadlock
+    // with stack shrinking.
+    lock mutex
+}
+  #+END_SRC
+
+* 先从创建开始
+  #+BEGIN_SRC go
+
+
+    ch := make(chan int,3) 
+    // 创建channel实际上就是在内存中示例化了一个hchan的结构体,并返回一个ch指针
+    // 我们在使用过程中 channel在函数之间的传递都是使用的这个指针,所以这就是为什么函数传递无需使用channel指针
+    // 直接使用channel就行了 因为channel 底层就是一个实例化的hchan指针
+
+  #+END_SRC
+
+  #+BEGIN_SRC 
+  channel 中发送 send (ch <- xxx )和 recv(<- ch)接受 (指向谁就是 谁发送) 
+  #+END_SRC
+** channel 队列 
+   *队列的意思就是先谁后谁*
+   *channel 中有个缓存的buf 是用来缓存数据的*
+   #+BEGIN_SRC go 
+     // 依然是刚刚那个channel 
+     ch := make(chan int ,3)
+     // 当我们要使用这个这个channel 进行 chan <- xxx 发送   或者 <- ch 接受
+     // 的时候 我们就要锁住这个 hchan 结构体 然后再进行数据交互
+     // 加锁 send 和 recv 的时候的过程 
+   #+END_SRC
+   [[./pic/2.gif]]
+   
+   加锁之后 就是 以这种方式传输 
+
+   [[./pic/3.gif]]
+   [[./pic/4.gif]]    
+   #+BEGIN_SRC 
+   注意以上两幅图中buf和recvx以及sendx的变化 ,recvx 和 sendx 是根据循环链表buf 的变动而改变的
+   channel为何会使用 循环链表作为缓存结构,大概是因为 缓存列表在动态的send和recv过程中
+   只需要定位好当前send和recvx 的位置 然后一直顺着链表顺序一直旋转操作就好了
+
+   缓存中 按 链表顺序存放,取数据的时候按链表的顺序读取 符合 FIFO的原则
+   #+END_SRC
+   #+BEGIN_SRC 
+   注意 : 每一步都需要加锁操作
+   每一步的操作都可以细化:
+   1 . 加锁
+   2 . 把数据从Goroutine中send 或者  recv  到别的 Goroutine
+   3 . 释放锁 
+   #+END_SRC
+   
+** 当channel缓存满了怎么办 
+   #+BEGIN_SRC go
+   在缓存满的时候 或者没有缓存的时候 我们send (ch <- xxx) 或者 recv (<- ch) 会阻塞当前的Goroutine
+   但是 这是怎么实现的呢
+   这里会牵扯到 GPM 模型 
+   Goroutine 的阻塞操作  实际上是调用send(ch <- xx) 或者recv(<- ch) 的时候主动触发的
+   //G1 是一个 Goroutine 
+   ch := make(chan int ,3)
+   ch <- 1
+   ch <- 2 
+   ch <- 3 
+   这个时候 G1正在运行.如果再次进行send操作 ch <-1 的时候会调用 Go的调度器.让G1等待 并从让出M
+   让其他的Goroutine去使用
+   同时 G1 会被抽象成含有G1 指针和send 元素的 sudog 结构体 保存到 hchan的sendq 中等待唤醒
+   G1 要被唤醒 就智能等G2 进行recv操作 
+   
+   G2 从缓存队列中去取出数据 channel 会将等待队列中的G1 推出 将 G1 当时send 的数据推到缓存中
+   然后调用Go 的scheduler 唤醒G1 并放到可运行的Goroutine队列中
+   
+   #+END_SRC
+** 反向操作
+   #+BEGIN_SRC 
+   假如是先进行执行recv操作的G2会怎么样？   
+   先取 后 放  G2 先开始 取  没东西就阻塞  G1 再放 
+
+   你可能会顺着以上的思路反推。首先：
+
+   这个时候G2会主动调用Go的调度器,让G2等待，并从让出M，让其他G去使用。 G2还会被抽象成含有G2指针
+   和recv空元素的sudog结构体保存到hchan的recvq中等待被唤醒
+
+   此时恰好有个goroutine G1开始向channel中推送数据 ch <- 1。此时，非常有意思的事情发生了：
+   
+   G1并没有锁住channel，然后将数据放到缓存中，而是直接把数据从G1直接copy到了G2的栈中。这种方式
+   非常的赞！在唤醒过程中，G2无需再获得channel的锁，然后从缓存中取数据。减少了内存的copy，提高
+   了效率。
+
+   #+END_SRC

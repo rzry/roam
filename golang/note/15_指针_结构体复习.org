@@ -1,0 +1,291 @@
+#+TITLE:     指针,结构体
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+
+* 指针
+** 得到一个指针的值
+  1 . 我们可以使用new 为任意类型的值开辟一块内存并将次内存的起始地址作为此值的地址返回
+  假设T 是任意的类型.int float string 等等 则函数调用new(T)返回一个类型为*T 的指针值
+  存储在返回指针值所表示的地址处的值(可以看做是一个匿名变量)为T的零值 
+  2 . 我们可以使用取地址符 & 来获取一个可寻址的值的地址.对于一个类型为T的可寻址的值t 我们可以用
+  &t 来取得它的地址 &t 的类型为 *T 
+*** 拓展
+    目前我们只需知道 所有变量都是可以寻址的,但是所有常亮,函数返回值和强制转换结果都是不可寻址的
+    当一个变量被声明的时候,Go运行时将为此变量开辟一段内存,此内存的起始地址即为变量的地址并且永远不改变
+** 指针解引用
+   我们可以使用前置解引用操作符 * 来访问储存在一个指针所表示的地址处的值 
+   对于基类型为T 的指针类型的一个指针值 p 我们可以用 *p 来表示地址p 处的值 , 此值的类型为T .*p成为指针
+   p 的解引用.解引是取地址的逆过程
+   #+BEGIN_SRC go
+   package main
+
+   import "fmt"
+
+   func main() {
+	p0 := new(int)
+	fmt.Println(p0)  // 打印出地址
+	fmt.Println(*p0) // 打印出0
+	x := *p0         // x是p0所引用的值的一个复制
+	p1, p2 := &x, &x
+	// p1和p2中都存储着x的地址。  x、 *p1和*p2表示着同一个int值。
+	fmt.Println(p1 == p2) // true
+	fmt.Println(p0 == p1) // false
+	p3 := &*p0            // <=> p3 := &(*p0)
+	// <=> p3 := p0
+	// p3和p0中存储的地址是一样的。
+	fmt.Println(p0 == p3) // true
+	*p0, *p1 = 123, 789
+	fmt.Println(*p2, x, *p3) // 789 789 123
+
+	fmt.Printf("%T, %T \n", *p0, x) // int, int
+	fmt.Printf("%T, %T \n", p0, p1) // *int, *int
+}
+   #+END_SRC
+** go返回的局部变量地址绝对安全
+   go 是有垃圾回收的 所以一个函数返回去内部声明的局部变量的地址是绝对安全的 
+   #+BEGIN_SRC go
+   func newInt()*int{
+   a := 3 
+   return &a 
+   }
+   #+END_SRC
+   go 在指针使用上会有会多限制, 所以在学go 的时候我觉得指针并不难,,c 就难多了 
+   
+** go 指针不支持算数运算
+   对于一个指针p 不论是 p++ 还是 p-2 都是非法的 
+   如果一个p 为指向一个数值类型值的指针 , \*p++ 将被编译器认为是合法的并且等价于(\*p)++ 
+   换句话说 取地址符和解引用操作符* 优先级都都高于自增和自减操作 
+   #+BEGIN_SRC go
+   package main
+
+   import "fmt"
+
+   func main() {
+	a := int64(5)
+	p := &a
+	// 下面这两行编译不通过。
+	/* p++
+	   p = (&a) + 8
+	*/
+
+	*p++
+	fmt.Println(*p, a)   // 6 6
+	fmt.Println(p == &a) // true
+
+	*&a++
+	*&*&a++
+	**&p++
+	*&*p++
+	fmt.Println(*p, a) // 10 10
+        }
+   #+END_SRC
+** 一个指针类型的值不能被随意转换为另一个指针类型
+   golang中 只有某个条件被满足的情况下 一个类型为 T1 的指针值才能被显示转换为另一个指针类型T2 
+   满足情况的条件: 
+   1 . 两个指针底层的数据类型必须一致 , 如果类型T1 和T2 只有有一个是 非定义 类型 并且底层类型一致  那么此转换可以是隐式的
+   #+BEGIN_SRC go
+   type Myint int64
+   type Ta    *int64
+   type Tb    *MyInt
+   #+END_SRC
+   
+** 指针值不能和指针类型的值比较
+   go指针值是支持 == != 这样的比较的 但是两个指针只有在下列任一条件被满足的时候才可以比较 
+   1 . 指针类型相同 
+   2 . 其中一个指针可以被隐式转换为另一指针的类型,这两个指针的类型的底层类型必须一致并且其中一个指针类型为非定义
+   3 . 其中一个 并且只有一个指针用类型不确定的nil 标识符表示 
+   #+BEGIN_SRC go
+     package main 
+     func main(){
+     type Myint int64 
+     type Ta    *int64 
+     type Tb    *Myint 
+
+
+     var pa0 Ta 
+     var pa1 *int64
+     var pb0 Tb
+     var pb1 *Myint 
+     }
+
+     pa0 == pa1  			// 两个一种类型 就true 
+     pb0 == pb1 			// 两个一种类型 都是 *Myint 就 true 
+     pa0 == nil			// true 第三条 其中一个类型不确定的nil
+     pa1 == nil
+     pb0 == nil
+     pb1 == nil
+
+     pa0 == pb0  			// 两个类型不一样 一个是 * int64 一个是*Myint flase
+     pa1 == pb1  			// 同理 
+     pa0 == tb(nil)  		// 也不一样 
+   #+END_SRC
+   
+** unsafe 提供了非类型安全指针
+   unsafe.Pointer 机制 可以用打破上述go指针的安全限制 
+   unsafe.Pointer 类型类似与C语言中的 void*
+* 结构体 
+** 基础知识
+   + 1. 每个非定义结构体类型的字面形式均由struct关键字开头,后面跟着用一对大括号{} 其中包裹着的一系列字段(field)声明 
+  一个结构体类型的字段数目可以是0 
+  #+BEGIN_SRC go
+  struct {
+  title string
+  author string
+  pages int
+  }
+  #+END_SRC
+  + 2 . 有时字段也叫作成员变量,相邻的同类型字段可以声明在一起 
+  #+BEGIN_SRC 
+  struct {
+  title , author string
+  pages  int
+  }
+  #+END_SRC
+  + 3 . 一个零字段结构体的尺寸为零 
+  + 4 . 关于 tag 每个结构体在声明的时候可以被指定一个标签 tag .字段标签可以是任意字符串,是可选的 
+  #+BEGIN_SRC go
+  struct {
+      Title string `json:"title"`
+      Author string `json:"author,omitempty"`
+      Pages int `json:"pages,omitempty"`
+  }
+  #+END_SRC
+  tag是会帮助 encoding/json 标准库来将上面这个结构体类型的某个值编码成json 数据或者从一份json 数据解码到这个
+  结构体类型的某个值中 
+  在编码和解码过程中 encoding/json 只考虑导出的结构体字段 
+  + 5 . go 不支持字段联合 union 
+  + 6 . 两个字段声明 只有在她们的名称类型和标签都等同的情况下才相同 . 两个声明在不同代码包中的非导出字段将会总被认为是不同的字段
+  #+BEGIN_SRC go
+  type Book struct {
+ title, author string
+ pages int
+ }
+
+ func main() {
+ book := Book{"在屋顶唱着你的歌", "在屋顶和我爱的人", 256}
+ fmt.Println(book) // {Go语言101 老貘 256}
+
+ // 使用带字段名的组合字面形式来表示结构体值。
+ book = Book{author: "在屋顶唱着你的歌", pages: 256, title: "在屋顶和我爱的人"}
+ // title和author字段的值都为空字符串""， pages字段的值为0。
+ book = Book{}
+ // title字段空字符串""， pages字段为0。
+ book = Book{author: "在屋顶和我爱的人"}
+
+ // 使用选择器来访问和修改字段值。
+ var book2 Book // <=> book2 := Book{}
+ book2.author = "Tapir"
+ book2.pages = 300
+ fmt.Println(book.pages) // 300
+ }
+  #+END_SRC
+  + 7 . 书写技巧 如果 最后一项 和 } 是一行的话 那么  , 可选   book := Book{"在屋顶唱着你的歌", "在屋顶和我爱的人", 256}
+        如果不是在一行   
+        #+BEGIN_SRC go
+       book := Book{
+              "在屋顶唱着你的歌", 
+              "在屋顶和我爱的人",
+                   256,  // 不可省略
+                }
+        #+END_SRC
+
+** 结构体赋值 
+   当一个源结构体 被 赋值 给另一个目标 结构体值时 它的效果和逐个将源结构体值的各个字段赋值给目标结构体值的
+   太绕了 代码演示
+   #+BEGIN_SRC go 
+   func f() {
+      book1 := Book{pages: 300}
+      book2 := Book{"在屋顶唱着你的歌", "在屋顶和我爱的人", 26}
+
+      book2 = book1
+      // 上面这行和下面这三行是等价的。
+      book2.title = book1.title
+      book2.author = book1.author
+      book2.pages = book1.pages
+   }
+   #+END_SRC
+   #+BEGIN_SRC go
+   package main
+   import "fmt"
+
+   type Book struct{
+	title  string
+	author string
+	pages  int
+    }
+
+    func main() {
+	book1 := Book{pages : 300 }
+
+	book2 := Book{
+		"在屋顶",
+		"唱着你的歌",
+		26,
+	}
+	book1 = book2
+	fmt.Println(book1)
+    }
+   #+END_SRC
+** 结构体字段的可寻址性
+   1 . 如果一个结构体值是可寻址的， 则它的字段也是可寻址的； 反之， 一个不可寻址的结构的字段
+   也是不可寻址的。 不可寻址的字段的值是不可更改的。 所有的组合字面值都是不可寻址的。
+   #+BEGIN_SRC go
+   //10.go
+   package main
+
+   import "fmt"
+
+   func main() {
+	type Book struct{
+		pages int
+	}
+
+	book := Book{}
+
+	p := &book.pages
+	fmt.Println(p) //0x5165151
+
+	*p = 561
+	fmt.Println(*p)  // 561
+     }
+
+   #+END_SRC
+   
+** 组合字面值不可寻址但可被取地址
+   一般来说,只有可被寻址的值才能被取地址 但是go中的语法糖很奇妙 虽然所有的组合字面值都是不可寻址的,但是
+   她们都是可以被取地址的
+   #+BEGIN_SRC go 
+   package main 
+   import "fmt"
+   func main() {
+	type Book struct{
+		pages int
+	}
+
+	book := Book{}
+
+	p := &book.pages
+	fmt.Println(p)
+
+	*p = 561
+	fmt.Println(*p)
+
+
+	f := &Book{200}
+	fmt.Println(f)
+	f.pages = 300
+	fmt.Println(f)
+	//&{200}
+	//&{300}
+        }
+   #+END_SRC
+   

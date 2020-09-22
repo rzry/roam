@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 09:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>简历问题</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,211 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">简历问题</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#orgbc2cd19">mysql</a>
+<ul>
+<li><a href="#org7147b54">类型</a></li>
+<li><a href="#org00f73c9">优化</a></li>
+<li><a href="#org5825210">压测</a></li>
+</ul>
+</li>
+<li><a href="#orga59608b">redis</a>
+<ul>
+<li><a href="#orga0e7b04">数据类型</a></li>
+<li><a href="#orgdfec871">事务</a></li>
+</ul>
+</li>
+<li><a href="#org7dce707">golang</a></li>
+<li><a href="#org24f2f4b">nginx</a></li>
+<li><a href="#org5b714a7">docker</a></li>
 </ul>
 </div>
 </div>
 
+<div id="outline-container-orgbc2cd19" class="outline-2">
+<h2 id="orgbc2cd19">mysql</h2>
+<div class="outline-text-2" id="text-orgbc2cd19">
+</div>
+<div id="outline-container-org7147b54" class="outline-3">
+<h3 id="org7147b54">类型</h3>
+<div class="outline-text-3" id="text-org7147b54">
+<p>
+1 . char 是一个 固定长度类型  varchar(50) 是 可变长度类型 50 是存放50个字符  
+    varchar(50) 和 (200) 存放 一个 hello 的话 占得空间是一样的 但是 后者 在排序的时候 会占用更多的内存 
+    因为 order by 是用 fixed<sub>length</sub> 来计算 col 长度的
+2 . int(20) 20 代表的是字符的长度 表示显示宽度是20 但仍占4个字节存储 存储范围不变
+</p>
 
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
+<p>
+3 . 日志 : 错误 .  查询  .  慢查询  . 二进制  .  中继   . 事务  
+</p>
 
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
+<p>
+4 . 事务的隔离级别  : RU (读未提交)  RC(读已提交) RR(重复读)  串行
+</p>
+
+<p>
+5 . 查看sql 执行时间 看 cpu  内存的使用量    profile  set profile =1 ,,show profiles
+</p>
+
+<p>
+6 . 索引 : 对一个 或者多个列 值 进行排序的结构 加快检索表中数据的方法  就行 目录一样
+          加快了 查询速度   group by  order by 的速度 把随机io 变成顺序io
+          唯一索引  可以确保每一行数据的唯一性  
+          主键索引  
+          全文索引 
+          普通索引 
+          mysql  索引使用的是 b+ 树  
+          b- 树  : 矮胖的 二叉搜索树  一个 根 然后左边都是小于的  右边都是大于的
+          b+ 树  : b- 树做了优化 , 不存储数据 只做索引 会减少磁盘的io 中间节点不保存数据 所以每次都会
+                  直接查询叶子节点  叶子节点是同一层 所以查询会更加稳定  所有的节点成了一个链表  
+7 . 事务 : 并发控制的上基本单位 要么执行要么不执行  是一个不可分割的工作单位  TCL
+</p>
+
+<p>
+8 . (1)drop  (2)delete (3)truncate  : 
+    1 . delete truncate 删除表数据 不删除结构  
+    2 . drop &gt; truncate &gt; delete 
+    3 . delete 是 dml (dml 就是增删改查)  所以是在事务提交后才会生效
+    4 . drop 和 truncate 是 DDL 操作立即生效 (create alter drop)
+    5 . 不要一张表 &#x2014;&gt; drop  删除部分行数据 &#x2014;&gt; where + delete  保留结构删除所有数据 truncate 
+</p>
+
+<p>
+9 .  主键 : 对存储对象给予唯一完整标识的数据列或者属性的组合 一个数据列只有一个主键 并且不能为null
+     外键 : 在一个表中存在的另一个表的主键称此表的外键
+10 . 视图 : 虚拟的表,可以增删改查, 不会影响基本表  &#x2014; 对于多表查询获取数据更加方便
+整合不同表中的数据,把多个表的查询结果联合起来
+</p>
+
+<p>
+11 . 三个范式 : 
+    1 . 1NF -&gt;  每一列的数据 都不可以再细分  有基本类型构成
+    2 . 2NF -&gt;  非主属性都依赖于主键 
+    3 . 3NF -&gt;  非主属性都不可以存在依赖
+    我觉得 只是提供一种思路 对于表的不断细分  只是一种设计模式而已
+</p>
+
+<p>
+12 : 乐观 悲观 锁 : 
+    悲观锁 : 悲观的认为会发生并发冲突, 屏蔽一切可能违反数据完整性的操作
+    乐观锁 : 乐观的认为不会发生并发冲突 只在提交的时候检查是否违反数据完整性
+</p>
 </div>
 </div>
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
-
-<li><b>Link</b> :</li>
-</ul>
+<div id="outline-container-org00f73c9" class="outline-3">
+<h3 id="org00f73c9">优化</h3>
+<div class="outline-text-3" id="text-org00f73c9">
+<p>
+1 . 用小的数据类型和指定短的长度 
+2 . 尽可能使用not null 
+3 . 在 where  order by , join 字段建立索引 
+</p>
 </div>
 </div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
+<div id="outline-container-org5825210" class="outline-3">
+<h3 id="org5825210">压测</h3>
+<div class="outline-text-3" id="text-org5825210">
+<p>
+1 . mysqlslap 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga59608b" class="outline-2">
+<h2 id="orga59608b">redis</h2>
+<div class="outline-text-2" id="text-orga59608b">
+</div>
+<div id="outline-container-orga0e7b04" class="outline-3">
+<h3 id="orga0e7b04">数据类型</h3>
+<div class="outline-text-3" id="text-orga0e7b04">
+<p>
+1 . string     k-v 
+2 . hash       filed-value 
+3 . list       列表 双向链表 反向查找 和遍历
+4 . set        和list 差不多 可以排重
+5 . sorted set 增加权重
+</p>
+</div>
+</div>
+<div id="outline-container-orgdfec871" class="outline-3">
+<h3 id="orgdfec871">事务</h3>
+<div class="outline-text-3" id="text-orgdfec871">
+<p>
+开始事务  MULTI -&#x2014;&gt; DISCARD 回滚 -&#x2014;&gt; EXEC 顺序执行 &#x2014;&gt; WATCH key 监视某个key -&#x2014;&gt; UNWATCH 取消监视
+</p>
+</div>
+</div>
+</div>
 
-<li><b>Link</b> :</li>
-</ul>
+<div id="outline-container-org7dce707" class="outline-2">
+<h2 id="org7dce707">golang</h2>
+<div class="outline-text-2" id="text-org7dce707">
+<p>
+1 . 进程 : 有独立功能的程序的数据集合的活动 , 是一个独立单位 , 每个进程都有自己的内存空间 
+    线程 : 是进程的实体 是cpu调度 , 分派的基本单位  通过共享内存 通讯 
+    协程 : 就更加轻量了
+2 . channel 线程安全 : 都是原子性操作 , 是通过 通信来共享内存 , channel 本来就是在多任务间传送数据 当然安全&#x2026;
+</p>
+
+<p>
+3 . GC 
+    STW是Stop The World，指会暂停所有正在执行的用户线程/协程，进行垃圾回收的操作
+    非增量  增量 ( 重复 非增量)
+    非增量 &#x2013; &gt; 在暂停所有正在执行的线程和协程时 对所有垃圾对象进行标记 然后 stw 结束后慢慢清理
+    增量就是  标记 过段时间再标记  直到所有的都标记完    (三色标记 为了让暂停更少)
+    堆上数据在 32K byte 以上时候 会触发gc  
+</p>
+
+<p>
+4 .v 分布式锁 
+    使用etcd 实现 分布式锁  
+    1 . 创建 key  
+    2 . 失败 key 存在 监察 这个 key 直到被删除 
+    3 . 成功就获得锁 
+    和 sync 的锁 差不多  new  lock   unlock 
+5 . 锁 
+    Go中的三种锁包括:互斥锁,读写锁,sync.Map的安全的锁. 
+6 . 限制 Goroutine 数量 
+    sync.WaitGroup + channel  阻塞  每次执行是判断Goroutine数量  给channel 写入值  写不了就阻塞
+</p>
+
+<p>
+7 . GRPC 
+    基于 http2  protobuf  srv 描述出参入参    支持 同步异步&#x2026; 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org24f2f4b" class="outline-2">
+<h2 id="org24f2f4b">nginx</h2>
+<div class="outline-text-2" id="text-org24f2f4b">
+<p>
+解析配置文件&#x2013;&gt; 得到监听的端口 &#x2014; &gt; 然后在nginx的master进程初始化这个socket 再listen监听  客户端和nginx 三次握手 
+建立连接 然后nginx 或者客户端来关闭
+反向代理 : 代理端代理的是服务端 
+正向代理 : 代理端代理的是客户端
+</p>
+</div>
+</div>
+<div id="outline-container-org5b714a7" class="outline-2">
+<h2 id="org5b714a7">docker</h2>
+<div class="outline-text-2" id="text-org5b714a7">
+<p>
+FROM   MAINTAINER   RUN   WORKDIR  ADD 复制配置文件 EXPOSE docker端口转发  
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-16</p>
+<p class="date">Date: 2020-09-22</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 09:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

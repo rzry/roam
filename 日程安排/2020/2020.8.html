@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 11:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>2020.8</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="rzry" />
+<meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -248,65 +248,264 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">2020.8</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#orgbbd37c1">work note</a></li>
+<li><a href="#orgf24ef4c">casbin</a>
+<ul>
+<li><a href="#orgab7cf5d">casbin insert user</a></li>
+<li><a href="#org48ced6b">casbin delete user</a></li>
+</ul>
+</li>
+<li><a href="#orgf47885c">map</a>
+<ul>
+<li><a href="#org0a9000c">make map</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
+<div id="outline-container-orgbbd37c1" class="outline-2">
+<h2 id="orgbbd37c1">work note</h2>
+<div class="outline-text-2" id="text-orgbbd37c1">
+<div class="org-src-container">
+<pre class="src src-go">
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">TestAAA</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){
+      runtime.<span style="color: #bc6ec5; font-weight: bold;">GOMAXPROCS</span>(1)
+      <span style="color: #7590db;">a</span> := []<span style="color: #ce537a; font-weight: bold;">int</span>{1}
+      t.<span style="color: #bc6ec5; font-weight: bold;">Log</span>(<span style="color: #4f97d7;">len</span>(a))
+      <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">b := []int{1,2,3}</span>
+      t.<span style="color: #bc6ec5; font-weight: bold;">Log</span>(a[0:] ,a[1:1])
+      t.<span style="color: #bc6ec5; font-weight: bold;">Log</span>(a[1:])
 
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
+ }
+ <span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">len &#20026;1 &#30340;a &#30452;&#25509;&#25171;&#21360;[1] &#20250;panic </span>
+<span style="color: #2aa1ae; background-color: #292e34;"> &#20294;&#26159; &#22914;&#26524;[1:1] &#23601;&#20250;&#20026;[] &#25152;&#20197;&#23613;&#31649; len&#20026;1</span>
+<span style="color: #2aa1ae; background-color: #292e34;"> &#20294;&#26159;[1:1]=== []  , &#32780;index 1 == panic </span>
+<span style="color: #2aa1ae; background-color: #292e34;"> */</span>
+
+</pre>
 </div>
-</div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
 
-<li><b>Link</b> :</li>
-</ul>
+<div id="outline-container-orgf24ef4c" class="outline-2">
+<h2 id="orgf24ef4c">casbin</h2>
+<div class="outline-text-2" id="text-orgf24ef4c">
+</div>
+<div id="outline-container-orgab7cf5d" class="outline-3">
+<h3 id="orgab7cf5d">casbin insert user</h3>
+<div class="outline-text-3" id="text-orgab7cf5d">
+<pre class="example">
+1 . insert user in db  
+2 . 判断roles 和 application 存在 
+3 . return id 和 commit
+</pre>
 </div>
 </div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
+<div id="outline-container-org48ced6b" class="outline-3">
+<h3 id="org48ced6b">casbin delete user</h3>
+<div class="outline-text-3" id="text-org48ced6b">
+<pre class="example">
+1 . update deleted 1---&gt;0 
 
-<li><b>Link</b> :</li>
-</ul>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf47885c" class="outline-2">
+<h2 id="orgf47885c">map</h2>
+<div class="outline-text-2" id="text-orgf47885c">
+<pre class="example">
+
+map --- &gt; 底层是 hmap  有着若干个bucket数组 ,
+----&gt; 一个bucket保存8组 k-v ,超过8个就会 hash冲突
+会在extra字段结构体中的 overflow 使用链地址法一直拓展下去
+
+如果key超过8个就会映射到相同的桶 hash 冲突 --&gt;开放寻址或者链表法
+
+
+</pre>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> hmap</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&lt;名称&gt;</td>
+<td class="org-left">&lt;类型&gt;</td>
+<td class="org-left">&lt;释义&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">count</td>
+<td class="org-left">int</td>
+<td class="org-left">数量</td>
+</tr>
+
+<tr>
+<td class="org-left">flags</td>
+<td class="org-left">uint8</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-left">uint8</td>
+<td class="org-left">包含2<sup>B个bucket</sup></td>
+</tr>
+
+<tr>
+<td class="org-left">noverflow</td>
+<td class="org-left">uint8</td>
+<td class="org-left">溢出的bucket</td>
+</tr>
+
+<tr>
+<td class="org-left">hash0</td>
+<td class="org-left">uint32</td>
+<td class="org-left">hash 种子</td>
+</tr>
+
+<tr>
+<td class="org-left">buckets</td>
+<td class="org-left">unsafe.pointer</td>
+<td class="org-left">buckets的指针</td>
+</tr>
+
+<tr>
+<td class="org-left">oldbuckets</td>
+<td class="org-left">unsafe.pointer</td>
+<td class="org-left">扩容时用的数组</td>
+</tr>
+
+<tr>
+<td class="org-left">nevacuate</td>
+<td class="org-left">uintptr</td>
+<td class="org-left">进度</td>
+</tr>
+
+<tr>
+<td class="org-left">extra</td>
+<td class="org-left">*mapextra</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<pre class="example">
+B ---&gt;  如果H.b 小于 16  -- &gt; noverflow ++ return
+如果 H.b 大于 16 ---&gt;  { uint32(1) &gt;&gt; (b-15) -1} 的值  fastrand() ==0 
+----&gt; noverflow ++ 
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> bucket map</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&lt;名称&gt;</td>
+<td class="org-left">&lt;类型&gt;</td>
+<td class="org-left">&lt;释义&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">topush</td>
+<td class="org-left">[bucketCnt]uint8</td>
+<td class="org-left">让查找key更快</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">类似打tag的方式</td>
+</tr>
+
+<tr>
+<td class="org-left">hap并非只有一个</td>
+<td class="org-left">tophash 是紧跟8组kv的模式</td>
+<td class="org-left">使overflow 成为链表结构</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">key0key1key2 val1val2val3</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org0a9000c" class="outline-3">
+<h3 id="org0a9000c">make map</h3>
+<div class="outline-text-3" id="text-org0a9000c">
+</div>
+<div id="outline-container-org9dd398f" class="outline-4">
+<h4 id="org9dd398f">make(map[string]string, 0/B&lt;8)</h4>
+<div class="outline-text-4" id="text-org9dd398f">
+<div class="org-src-container">
+<pre class="src src-go">
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">makemap_small</span>() *<span style="color: #ce537a; font-weight: bold;">hmap</span> {
+    <span style="color: #7590db;">h</span> := <span style="color: #4f97d7;">new</span>(<span style="color: #ce537a; font-weight: bold;">hmap</span>)
+    h.hash0 = <span style="color: #bc6ec5; font-weight: bold;">fastrand</span>()
+    <span style="color: #4f97d7; font-weight: bold;">return</span> h
+}
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">hint &#22914;&#26524;&#20026;0&#25110;&#32773;&#23567;&#20110;8 &#37027;&#20040;&#35843;&#29992;_small </span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#19968;&#20010; hmap&#30340;&#32467;&#26500;&#20307; &#21021;&#22987;&#21270;hash&#22240;&#23376; </span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b3885e" class="outline-4">
+<h4 id="org5b3885e">make(map[string]string,9)</h4>
+<div class="outline-text-4" id="text-org5b3885e">
+<pre class="example">
+
+1 . h == nil 初始话 hmap  new(hamp)
+2 . h.hash0 = fastrand() 初始话hash因子
+3 . 判断B 的大小 , B++ 会调用 overLoadFactor(hint,0)true .
+4 . 确定h.B 的个数后 分配内存 makeBucketArray(t,h.B,nil)
+
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-16</p>
-<p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Date: 2020-09-22</p>
+<p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
+<p class="date">Created: 2020-09-22 二 11:46</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -6,13 +6,22 @@
 #+OPTIONS:   H:4 num:nil toc:2
 #+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
 #+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
+
 #+end_export
 
-* [[file:05_git笔记.org][git的使用笔记]]
-* [[file:16_Linux_命令.org][linux 命令]]
-* [[file:07_linux操作.org][linux.setting]]
-* [[file:30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
-* [[file:33_adb备份软件一键安装.org][安卓一键软件备份_安装]]
+** nothing
+   -  *Link* : [[file:nothing/30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
+
+   -  *Link* : [[file:nothing/33_adb备份软件一键安装.org][安卓一键软件备份_安装]]
+ -----
+** order
+  -  *Link* : [[file:order/05_git笔记.org][git的使用笔记]]
+
+** book
+  -  *Link* : 
+
+  -  *Link* : 
+** config
+  -  *Link* : 
+
+  -  *Link* : 

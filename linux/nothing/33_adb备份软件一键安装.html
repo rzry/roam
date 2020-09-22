@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 10:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>安卓一键软件备份<sub>安装</sub></title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,130 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">安卓一键软件备份<sub>安装</sub></h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#orgfbb5d69">爬所有的软件包名</a></li>
+<li><a href="#org02ed801">替换一下</a></li>
+<li><a href="#org2a3c831">把data/app 提出来</a></li>
+<li><a href="#org44f8fc7">可以直接  adb pull</a></li>
+<li><a href="#org8b64c9e">方法</a></li>
+<li><a href="#org37bff92">设置权限</a></li>
+<li><a href="#org17ab1ce">安装</a></li>
+<li><a href="#org2b3528c">搞了个这个 把我分支感染了  就离谱</a></li>
+<li><a href="#org58271d6">我真是服了自己</a></li>
 </ul>
 </div>
 </div>
-
-
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
-
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-</div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
+<div id="outline-container-orgfbb5d69" class="outline-2">
+<h2 id="orgfbb5d69">爬所有的软件包名</h2>
+<div class="outline-text-2" id="text-orgfbb5d69">
+<p>
+adb shell pm list package
+</p>
+
+<p>
+adb shell pm list packages &gt;&gt; 1.txt
+</p>
 </div>
 </div>
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
+<div id="outline-container-org02ed801" class="outline-2">
+<h2 id="org02ed801">替换一下</h2>
+<div class="outline-text-2" id="text-org02ed801">
+<p>
+sed -e 's///g'  1.txt 拿到单独的名字  
+</p>
 
-<li><b>Link</b> :</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
 
-<li><b>Link</b> :</li>
-</ul>
+<p>
+adb shell pm path com.hpbr.bosszhipin &gt;&gt; package  拿到路径
+</p>
 </div>
+</div>
+
+<div id="outline-container-org2a3c831" class="outline-2">
+<h2 id="org2a3c831">把data/app 提出来</h2>
+<div class="outline-text-2" id="text-org2a3c831">
+<p>
+sed -n '\/data\/app/p' package 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org44f8fc7" class="outline-2">
+<h2 id="org44f8fc7">可以直接  adb pull</h2>
+<div class="outline-text-2" id="text-org44f8fc7">
+<pre class="example">
+问题   因为  软件 我们 批量导出的时候 
+
+adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/base.apk ./ 
+adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/split_config.zh.apk ./ 
+adb pull /data/app/com.hpbr.bosszhipin-yK6g-htg_HFL4zr4AnDSmQ==/base.apk ./ 
+adb pull /data/app/com.google.android.googlequicksearchbox-5IemJHVD9vbt2Cb0M0dPJw==/base.apk ./ 
+
+这会有多个名字一样的软件  这是 7.0 以上的通病 
+为了避免这种情况 我们给后面直接重命名自增一个
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org8b64c9e" class="outline-2">
+<h2 id="org8b64c9e">方法</h2>
+<div class="outline-text-2" id="text-org8b64c9e">
+<pre class="example">
+给末尾添加 一个 sed    sed 's/$/&amp;sed/g' 4.sh &gt;&gt; 8.sh
+
+然后 以 sed 为关键字 让它自增 
+ awk -v RS="sed" '{n+=1;printf $0n}' 8.sh  &gt; 9.sh
+
+ 然后再给末尾加一个  .apk  
+ sed 's/$/&amp;.apk/g' 9.sh &gt;&gt; 10.sh
+</pre>
+</div>
+</div>
+<div id="outline-container-org37bff92" class="outline-2">
+<h2 id="org37bff92">设置权限</h2>
+<div class="outline-text-2" id="text-org37bff92">
+<pre class="example">
+chmod  777 10.sh ok 完成了
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org17ab1ce" class="outline-2">
+<h2 id="org17ab1ce">安装</h2>
+<div class="outline-text-2" id="text-org17ab1ce">
+<pre class="example">
+使用 tcp 连接 
+adb tcpip 5555 
+
+adb connect 192.168.2.150
+
+然后  cp -r 10.sh ./11.sh   
+我们处理 11.sh 
+awk '{print $NF}' 10.sh &gt;&gt; 11.sh    (拿到11.sh 最后一个值)
+设置权限  执行   ok   wait  安装完成吧 
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org2b3528c" class="outline-2">
+<h2 id="org2b3528c">搞了个这个 把我分支感染了  就离谱</h2>
+</div>
+<div id="outline-container-org58271d6" class="outline-2">
+<h2 id="org58271d6">我真是服了自己</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 10:18</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

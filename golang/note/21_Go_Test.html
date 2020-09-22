@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-22 二 10:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>go test</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">go test</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd5550f5">前言概述</a></li>
+<li><a href="#orgafb92e1">日常测试</a></li>
+<li><a href="#org18e00fb">一个简单的例子</a></li>
+<li><a href="#org7d9ee4e">test的执行顺序</a></li>
+<li><a href="#org98bccf9">go 的benchmark</a></li>
+<li><a href="#org236ed47">一个简单的 go testing</a></li>
+<li><a href="#orgda13742">api使用</a></li>
+</ul>
+</div>
+</div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+<div id="outline-container-orgd5550f5" class="outline-2">
+<h2 id="orgd5550f5">前言概述</h2>
+<div class="outline-text-2" id="text-orgd5550f5">
+<pre class="example">
+常接触到的测试主要是单元测试和性能测试,毫无意外 go 的testing 支持这两种测试,
+单元测试用于模块测试,性能则是基准测试完成 即  benchmark 
+go 的测试模块 支持编写案例 通过与godoc结合 可以很方便的生成库文档
+</pre>
+</div>
+</div>
+<div id="outline-container-orgafb92e1" class="outline-2">
+<h2 id="orgafb92e1">日常测试</h2>
+<div class="outline-text-2" id="text-orgafb92e1">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#20551;&#22914;&#25105;&#20889;&#20102;&#19968;&#20010; ADD &#30340;&#20989;&#25968; &#23545;&#25105;&#24320;&#21457;&#26469;&#35828; &#26368;&#23481;&#26131;&#24819;&#21040;&#30340;&#23601;&#26159;&#22312;main &#20989;&#25968;&#20013;&#35843;&#29992; &#21028;&#26029;&#32467;&#26524;</span>
+<span style="color: #4f97d7; font-weight: bold;">import</span> (
+        <span style="color: #2d9574;">"fmt"</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">Add</span>(<span style="color: #7590db;">n</span>, <span style="color: #7590db;">y</span> <span style="color: #ce537a; font-weight: bold;">int</span>) (<span style="color: #7590db;">result</span> <span style="color: #ce537a; font-weight: bold;">int</span>){
+
+        <span style="color: #4f97d7; font-weight: bold;">return</span> n+y
+}
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
+        <span style="color: #7590db;">v</span> := <span style="color: #bc6ec5; font-weight: bold;">Add</span>(5, 6)
+        <span style="color: #4f97d7; font-weight: bold;">if</span> v != 11 {
+                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"&#27979;&#35797;&#22833;&#36133;"</span>)
+                <span style="color: #4f97d7; font-weight: bold;">return</span>
+        }
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"&#27979;&#35797;&#25104;&#21151;"</span>)
+}
+</pre>
+</div>
+<p>
+有点啰嗦了 日常就是 直接 fmt出结果 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org18e00fb" class="outline-2">
+<h2 id="org18e00fb">一个简单的例子</h2>
+<div class="outline-text-2" id="text-org18e00fb">
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">Print1to20</span>() <span style="color: #ce537a; font-weight: bold;">int</span> {
+        <span style="color: #7590db;">res</span> := 0
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 1; i &lt;= 20; i++ {
+                res += i
+        }
+        <span style="color: #4f97d7; font-weight: bold;">return</span> res
+}
+
+
+</pre>
+</div>
+
+<p>
+这个是主main 函数
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">import</span> (
+        <span style="color: #2d9574;">"fmt"</span>
+        <span style="color: #2d9574;">"testing"</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">TestPrint</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        <span style="color: #7590db;">res</span> := <span style="color: #bc6ec5; font-weight: bold;">Print1to20</span>()
+
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"hey"</span>)
+
+        <span style="color: #4f97d7; font-weight: bold;">if</span> res != 210 {
+                t.<span style="color: #bc6ec5; font-weight: bold;">Error</span>(<span style="color: #2d9574;">"Wrong error "</span>)
+        }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+写法说明 
+每一个test 必须  在import 引入一个 testing 
+test 文件下的 每一个testcase 必须以 Test 开头并且符合TestXxx的形式
+否则 go test 直接会跳过这个test 不执行 
+但是可以通过 在大写的 TestPrint里面引入小写的 testPrint 
+这样也是可以 test 的  testPrint2(t)
+
+参数说明  上面的例子 我们传的是 t *testing.T 这是普通的test
+如果是测试性能的话 那么我们传的就是 b *testing.B 测试性能
+最后一行 
+t.Error("这种写法 会将错误打印并且跳出这个testing")
+t.SkipNow() 跳过当前test ,并且直接按照Pass 来处理下一个test
+    注意事项 : t.SkipNow() 必须写在testcase 的第一行  
+</pre>
+</div>
+</div>
+<div id="outline-container-org7d9ee4e" class="outline-2">
+<h2 id="org7d9ee4e">test的执行顺序</h2>
+<div class="outline-text-2" id="text-org7d9ee4e">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">go</span> &#30340;test <span style="color: #4f97d7; font-weight: bold;">case</span> &#19981;&#33021;&#20445;&#35777;&#37117;&#26159;&#25353;&#29031;&#39034;&#24207;&#25191;&#34892;
+  &#34429;&#28982;&#36890;&#24120;&#37117;&#26159; <span style="color: #ce537a; font-weight: bold;">&#25353;&#29031;&#39034;&#24207;&#25191;&#34892;&#20294;&#26159;&#25105;&#20204;&#24515;&#37324;&#19981;&#33021;&#27809;&#25968;</span>
+  &#25152;&#20197;&#25105;&#20204;&#20250;&#20351;&#29992; <span style="color: #ce537a; font-weight: bold;">subtests</span> &#26469;&#25511;&#21046;&#39034;&#24207; 
+  &#23427;&#30340;&#20889;&#27861; <span style="color: #ce537a; font-weight: bold;">&#26159;&#36825;&#26679;&#30340;</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">package</span> main 
+  <span style="color: #4f97d7; font-weight: bold;">import</span> (
+        <span style="color: #2d9574;">"testing"</span>
+  )
+  fun <span style="color: #ce537a; font-weight: bold;">TestPrint</span>(t *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){
+      t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"a1"</span>,<span style="color: #4f97d7; font-weight: bold;">func</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){fmt.<span style="color: #4f97d7;">println</span>(<span style="color: #2d9574;">"&#36825;&#26159;&#31532;&#19968;&#20010;"</span>)})
+      t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"a2"</span>,<span style="color: #4f97d7; font-weight: bold;">func</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){fmt.<span style="color: #4f97d7;">println</span>(<span style="color: #2d9574;">"&#36825;&#26159;&#31532;&#20108;&#20010;"</span>)})
+      t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"a3"</span>,<span style="color: #4f97d7; font-weight: bold;">func</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){fmt.<span style="color: #4f97d7;">println</span>(<span style="color: #2d9574;">"&#36825;&#26159;&#31532;&#19977;&#20010;"</span>)})
+  } 
+
+
+  &#23436;&#25972;&#30340; <span style="color: #ce537a; font-weight: bold;">t.Run</span> &#30340;&#20195;&#30721;
+
+
+<span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">import</span> (
+        <span style="color: #2d9574;">"fmt"</span>
+        <span style="color: #2d9574;">"testing"</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">testPrint</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        <span style="color: #7590db;">res</span> := <span style="color: #bc6ec5; font-weight: bold;">Print1to20</span>()
+        <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">testPrint2(t)</span>
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"hey"</span>)
+
+        <span style="color: #4f97d7; font-weight: bold;">if</span> res != 210 {
+                t.<span style="color: #bc6ec5; font-weight: bold;">Error</span>(<span style="color: #2d9574;">"Wrong error "</span>)
+        }
+}
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">testPrint2</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"ok"</span>)
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">TestAll</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"first"</span>, testPrint)
+        t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"second"</span>, testPrint2)
+
+}
+  &#38656;&#35201;&#27880;&#24847;&#30340;&#28857; <span style="color: #ce537a; font-weight: bold;">&#25105;&#20204;&#20004;&#20010;test</span> &#37117;&#26159;&#23567;&#20889; <span style="color: #ce537a; font-weight: bold;">&#22240;&#20026;&#27809;&#26377;</span> Testmain   
+  &#22914;&#26524;&#22823;&#20889;&#30340;&#35805; <span style="color: #ce537a; font-weight: bold;">&#25152;&#26377;&#30340;&#23376;test</span> &#21644; <span style="color: #ce537a; font-weight: bold;">testall</span> &#37117;&#20250;&#25191;&#34892;&#20004;&#36941; <span style="color: #ce537a; font-weight: bold;">&#25152;&#20197;</span> &#25105;&#20204;&#37117;&#26159;&#23567;&#20889;
+
+
+  &#22914;&#26524;&#22312;&#20570; <span style="color: #ce537a; font-weight: bold;">testing</span> &#30340;&#26102;&#20505;&#25105;&#20204;&#38656;&#35201;&#20570;&#19968;&#20123;&#21021;&#22987;&#35805;&#30340;&#19996;&#35199; <span style="color: #ce537a; font-weight: bold;">&#25105;&#20204;&#23601;&#38656;&#35201;</span> testmain <span style="color: #ce537a; font-weight: bold;">&#20102;</span>
+  &#36825;&#20010; <span style="color: #ce537a; font-weight: bold;">Testmain</span>  &#20316;&#20026;&#25972;&#20010;testcase <span style="color: #ce537a; font-weight: bold;">&#30340;&#20837;&#21475;</span> &#25105;&#20204;&#36890;&#24120;&#20351;&#29992; <span style="color: #ce537a; font-weight: bold;">m.Run</span>() <span style="color: #ce537a; font-weight: bold;">&#26469;&#35843;&#29992;&#20854;&#20182;&#30340;testing</span> 
+  &#22312; <span style="color: #ce537a; font-weight: bold;">m.Run</span>()&#36816;&#34892;&#20043;&#21069; <span style="color: #ce537a; font-weight: bold;">&#25105;&#20204;&#25152;&#20570;&#30340;&#24212;&#35813;&#26159;&#21021;&#22987;&#35805;&#30340;&#21160;&#20316;</span>  &#27604;&#22914;&#25968;&#25454;&#24211;&#36830;&#25509; 
+  &#22914;&#26524; <span style="color: #ce537a; font-weight: bold;">&#27809;&#26377;&#20351;&#29992;</span> m.Run <span style="color: #ce537a; font-weight: bold;">&#37027;&#20040;</span>  &#25152;&#26377;&#30340;testcase <span style="color: #ce537a; font-weight: bold;">&#37117;&#19981;&#20250;&#34987;&#25191;&#34892;</span> 
+
+  &#23436;&#25972;&#20195;&#30721; 
+
+
+  <span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">import</span> (
+        <span style="color: #2d9574;">"fmt"</span>
+        <span style="color: #2d9574;">"testing"</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">testPrint</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        <span style="color: #7590db;">res</span> := <span style="color: #bc6ec5; font-weight: bold;">Print1to20</span>()
+        <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">testPrint2(t)</span>
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"hey"</span>)
+
+        <span style="color: #4f97d7; font-weight: bold;">if</span> res != 210 {
+                t.<span style="color: #bc6ec5; font-weight: bold;">Error</span>(<span style="color: #2d9574;">"Wrong error "</span>)
+        }
+}
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">testPrint2</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"ok"</span>)
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">TestAll</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>) {
+        t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"first"</span>, testPrint)
+        t.<span style="color: #bc6ec5; font-weight: bold;">Run</span>(<span style="color: #2d9574;">"second"</span>, testPrint2)
+
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">Testmain</span>(<span style="color: #7590db;">m</span> *<span style="color: #ce537a; font-weight: bold;">testing.M</span>) {
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"tests begin..."</span>)
+        m.<span style="color: #bc6ec5; font-weight: bold;">Run</span>()
+}
+
+&#22914;&#26524;&#19981;&#21152; <span style="color: #ce537a; font-weight: bold;">m.Run</span>  &#21482;&#20250;&#36305; <span style="color: #ce537a; font-weight: bold;">Testmain</span>  &#25152;&#26377;&#30340;&#23376;test <span style="color: #ce537a; font-weight: bold;">&#37117;&#19981;&#20250;&#36305;</span> 
+&#21152;&#20102; <span style="color: #ce537a; font-weight: bold;">&#32467;&#26524;</span> &#21482;&#26377; <span style="color: #ce537a; font-weight: bold;">&#23376;test</span> &#30340;&#36820;&#22238;  <span style="color: #ce537a; font-weight: bold;">&#32780;</span> &#19981;&#20250;&#25171;&#21360;&#20986; <span style="color: #ce537a; font-weight: bold;">tests</span> begin... 
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org98bccf9" class="outline-2">
+<h2 id="org98bccf9">go 的benchmark</h2>
+<div class="outline-text-2" id="text-org98bccf9">
+<div class="org-src-container">
+<pre class="src src-go">  &#27880;&#24847;&#20107;&#39033; :
+  benchmark&#20989;&#25968;&#24517;&#39035;&#20197;benchmark&#24320;&#22836;   <span style="color: #ce537a; font-weight: bold;">&#23601;&#26159;</span> &#19978;&#38754;&#26159; <span style="color: #ce537a; font-weight: bold;">Testxxx</span>  &#29616;&#22312;&#23601;&#26159; <span style="color: #ce537a; font-weight: bold;">Benchmark</span> 
+  &#20197;&#21069;  <span style="color: #ce537a; font-weight: bold;">&#21442;&#25968;&#26159;</span> t *<span style="color: #ce537a; font-weight: bold;">testing.T</span> &#29616;&#22312;&#23601;&#26159; <span style="color: #ce537a; font-weight: bold;">b</span> *testing.B
+  Benchmark  <span style="color: #ce537a; font-weight: bold;">&#27599;&#27425;&#25191;&#34892;&#37117;&#20250;&#36305;</span> b.N&#27425; <span style="color: #ce537a; font-weight: bold;">&#27599;&#27425;&#25191;&#34892;&#37117;&#26159;&#36825;&#26679;&#30340;</span>
+  &#22312;&#25191;&#34892;&#30340;&#36807;&#31243;&#20013; <span style="color: #ce537a; font-weight: bold;">&#23427;&#20250;&#33258;&#21160;&#26681;&#25454;</span> test <span style="color: #4f97d7; font-weight: bold;">case</span> &#23454;&#38469;&#25191;&#34892;&#26102;&#38388;&#26159;&#21542;&#31283;&#23450; <span style="color: #ce537a; font-weight: bold;">&#32780;&#19981;&#26029;&#30340;&#22686;&#21152;b.N&#30340;&#27425;&#25968;</span>
+  &#19981;&#26029;&#21040;&#31283;&#24577;
+  &#20195;&#30721; 
+<span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #2d9574;">"testing"</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">BenchmarkAll</span>(<span style="color: #7590db;">b</span> *<span style="color: #ce537a; font-weight: bold;">testing.B</span>) {
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">n</span> := 0; n &lt; b.N; n++ {
+                <span style="color: #bc6ec5; font-weight: bold;">Print1to20</span>()
+        }
+}
+
+&#36816;&#34892;&#26041;&#24335; 
+<span style="color: #4f97d7; font-weight: bold;">go</span> test -bench=.
+
+&#20989;&#25968;&#20195;&#30721; <span style="color: #ce537a; font-weight: bold;">&#23601;&#26159;&#19978;&#38754;&#37027;&#20010;</span> 
+
+&#27880;&#24847;&#20107;&#39033; :
+    benchmark <span style="color: #ce537a; font-weight: bold;">&#20063;&#26159;&#26222;&#36890;&#30340;test&#20043;&#19968;</span> &#25152;&#20197;&#20063;&#20250;&#21463; <span style="color: #ce537a; font-weight: bold;">m.Run</span> &#30340;&#24178;&#25200; <span style="color: #ce537a; font-weight: bold;">&#22914;&#26524;&#26377;</span> Testmain <span style="color: #ce537a; font-weight: bold;">&#37027;&#20040;</span> &#19968;&#23450;&#35201;&#26377; <span style="color: #ce537a; font-weight: bold;">m.Run</span>
+
+    &#31532;&#19977;&#28857;  <span style="color: #ce537a; font-weight: bold;">b.N</span> &#19981;&#26159;&#31283;&#24577;  <span style="color: #ce537a; font-weight: bold;">&#37027;&#20040;</span> benchmark <span style="color: #ce537a; font-weight: bold;">&#27704;&#36828;&#36305;&#19981;&#23436;</span> 
+    &#27604;&#22914; 
+
+<span style="color: #4f97d7; font-weight: bold;">package</span> main
+
+<span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #2d9574;">"testing"</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">aaa</span>(<span style="color: #7590db;">n</span> <span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
+        <span style="color: #4f97d7; font-weight: bold;">for</span> n &gt; 0 {
+                n--
+        }
+        <span style="color: #4f97d7; font-weight: bold;">return</span> n
+
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">BenchmarkAll</span>(<span style="color: #7590db;">b</span> *<span style="color: #ce537a; font-weight: bold;">testing.B</span>) {
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">n</span> := 0; n &lt; b.N; n++ {
+                <span style="color: #bc6ec5; font-weight: bold;">aaa</span>(n)
+        }
+}
+
+&#36825;&#26679; <span style="color: #ce537a; font-weight: bold;">&#25191;&#34892;</span>  <span style="color: #4f97d7; font-weight: bold;">go</span> test <span style="color: #ce537a; font-weight: bold;">benchmark</span>=. 
+&#26159;&#27704;&#36828;&#36305;&#19981;&#23436;&#30340; <span style="color: #ce537a; font-weight: bold;">&#22240;&#20026;</span> n  <span style="color: #ce537a; font-weight: bold;">&#19981;&#26029;&#19978;&#21319;</span> &#37027;&#20040; <span style="color: #ce537a; font-weight: bold;">&#20989;&#25968;&#27599;&#27425;&#25191;&#34892;&#30340;&#25805;&#20316;&#37117;&#20250;&#21152;&#22810;</span> &#19981;&#20250;&#21040;&#36798;&#31283;&#24577;
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org236ed47" class="outline-2">
+<h2 id="org236ed47">一个简单的 go testing</h2>
+<div class="outline-text-2" id="text-org236ed47">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#21333;&#20803;&#27979;&#35797; &#25105;&#20204;&#30475;&#19968;&#20010; </span>
+<span style="color: #4f97d7; font-weight: bold;">package</span> math
+
+<span style="color: #4f97d7; font-weight: bold;">import</span>(
+        <span style="color: #2d9574;">"math"</span>
+        <span style="color: #2d9574;">"testing"</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">TestAbs</span>(<span style="color: #7590db;">t</span> *<span style="color: #ce537a; font-weight: bold;">testing.T</span>){
+        <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">a</span> , <span style="color: #7590db;">expect</span> <span style="color: #ce537a; font-weight: bold;">float64</span> = -10 ,10
+        <span style="color: #7590db;">actual</span> := math.<span style="color: #bc6ec5; font-weight: bold;">Abs</span>(a)
+        <span style="color: #4f97d7; font-weight: bold;">if</span> actual != <span style="color: #ce537a; font-weight: bold;">expect</span>{
+                t.<span style="color: #bc6ec5; font-weight: bold;">Fatalf</span>(<span style="color: #2d9574;">"a = %f,actual = %f ,expected = %f "</span>, a,actual ,expect)
+        }
+}
+</pre>
+</div>
+<pre class="example">
+1 . 测试代码文件命名必须是 _test.go 结尾 不然不行 
+2 . 测试盈利函数必须满足匹配TestXXX 比如 TestAbs 
+3 . 函数定义 func TestAbs(*testing.T) 测试函数必须按照这个格式编写 
+     函数中有一个输入参数t 类型是 *testing.T 单元测试通过它反馈测试结果
+</pre>
+</div>
+</div>
+<div id="outline-container-orgda13742" class="outline-2">
+<h2 id="orgda13742">api使用</h2>
+<div class="outline-text-2" id="text-orgda13742">
+<pre class="example">
+  在上面的eg中 我们使用了t.Fatlf 它的作用就是 反馈检测结果 
+  在官方文档中 对于 testing.T支持的可导出方法有很多 
+  我们的 Fatalf 作用是 
+  method (*T) Fatalf(format string, args ...interface{})
+  // 跳出测试，从调用 SkipNow 退出，如果之前有错误依然提示测试报错
+
+
+  全部可导出的方法 
+
+// 获取测试名称
+method (*T) Name() string
+// 打印日志
+method (*T) Log(args ...interface{})
+// 打印日志，支持 Printf 格式化打印
+method (*T) Logf(format string, args ...interface{})
+// 反馈测试失败，但不退出测试，继续执行
+method (*T) Fail()
+// 反馈测试成功，立刻退出测试
+method (*T) FailNow()
+// 反馈测试失败，打印错误
+method (*T) Error(args ...interface{})
+// 反馈测试失败，打印错误，支持 Printf 的格式化规则
+method (*T) Errorf(format string, args ...interface{})
+// 检测是否已经发生过错误
+method (*T) Failed() bool
+// 相当于 Error + FailNow，表示这是非常严重的错误，打印信息结束需立刻退出。
+method (*T) Fatal(args ...interface{})
+// 相当于 Errorf + FailNow，与 Fatal 类似，区别在于支持 Printf 格式化打印信息；
+method (*T) Fatalf(format string, args ...interface{})
+// 跳出测试，从调用 SkipNow 退出，如果之前有错误依然提示测试报错
+method (*T) SkipNow()
+// 相当于 Log 和 SkipNow 的组合
+method (*T) Skip(args ...interface{})
+// 与Skip，相当于 Logf 和 SkipNow 的组合，区别在于支持 Printf 格式化打印
+method (*T) Skipf(format string, args ...interface{})
+// 用于标记调用函数为 helper 函数，打印文件信息或日志，不会追溯该函数。
+method (*T) Helper()
+// 标记测试函数可并行执行，这个并行执行仅仅指的是与其他测试函数并行，相同测试不会并行。
+method (*T) Parallel()
+// 可用于执行子测试
+method (*T) Run(name string, f func(t *T)) bool
+
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-09-16</p>
+<p class="author">Author: rzry</p>
+<p class="date">Created: 2020-09-22 二 10:07</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

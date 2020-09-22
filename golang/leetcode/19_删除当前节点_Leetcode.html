@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 10:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>leetcode-删除当前节点</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,91 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">leetcode-删除当前节点</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#orgbbaae6b">思路</a>
+<ul>
+<li><a href="#org82c2e20">第二次的代码</a></li>
+<li><a href="#orgcc5cf98">第一次的代码</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-
-
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
-
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
-</div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
 
-<li><b>Link</b> :</li>
-</ul>
+<p>
+题目地址 <a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/submissions/">https://leetcode-cn.com/problems/delete-node-in-a-linked-list/submissions/</a>
+</p>
+
+<pre class="example">
+输入: head = [4,5,1,9], node = 5
+输出: [4,1,9]
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9 
+</pre>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Definition for singly-linked list.</span>
+ <span style="color: #4f97d7; font-weight: bold;">type</span> <span style="color: #ce537a; font-weight: bold;">ListNode</span> <span style="color: #4f97d7; font-weight: bold;">struct</span> {
+     Val <span style="color: #ce537a; font-weight: bold;">int</span>
+     Next *<span style="color: #ce537a; font-weight: bold;">ListNode</span>
+ }
+</pre>
+</div>
+
+<div id="outline-container-orgbbaae6b" class="outline-2">
+<h2 id="orgbbaae6b">思路</h2>
+<div class="outline-text-2" id="text-orgbbaae6b">
+<pre class="example">
+一般思路是 : 修改node 之前节点的next 指针 直接让他指向之后的节点
+因为我们现在只知道当权的节点node  所以 我们无法访问node 的前节点.也无法修改node前节点
+的next指针 所以我们必要将想删除的节点的值替换为它后面节点中的值 然后删除它的节点 
+
+</pre>
+</div>
+
+<div id="outline-container-org82c2e20" class="outline-3">
+<h3 id="org82c2e20">第二次的代码</h3>
+<div class="outline-text-3" id="text-org82c2e20">
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">deleteNode</span>(<span style="color: #7590db;">node</span> *<span style="color: #ce537a; font-weight: bold;">ListNode</span>) {
+*node = *node.Next
+}
+</pre>
 </div>
 </div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
-
-<li><b>Link</b> :</li>
-</ul>
+</div>
+<div id="outline-container-orgcc5cf98" class="outline-3">
+<h3 id="orgcc5cf98">第一次的代码</h3>
+<div class="outline-text-3" id="text-orgcc5cf98">
+<div class="org-src-container">
+<pre class="src src-go">   <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">deleteNode</span>(<span style="color: #7590db;">node</span> *<span style="color: #ce537a; font-weight: bold;">ListNode</span>) {
+    <span style="color: #4f97d7; font-weight: bold;">if</span> node != <span style="color: #a45bad;">nil</span> {
+        <span style="color: #4f97d7; font-weight: bold;">if</span> node.Next == <span style="color: #a45bad;">nil</span> {
+            node = <span style="color: #a45bad;">nil</span>
+        } <span style="color: #4f97d7; font-weight: bold;">else</span> {
+            node.Val = node.Next.Val
+            node.Next = node.Next.Next
+        }
+    }
+}
+<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#23601;&#26159;  &#19979;&#20010;&#33410;&#28857;&#30340;&#20540; &#32473;  &#24403;&#21069;&#33410;&#28857; </span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226;  &#19979;&#19979;&#20010;&#33410;&#28857; &#32473; &#19979;&#20010;&#33410;&#28857; </span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 10:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

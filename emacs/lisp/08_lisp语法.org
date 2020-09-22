@@ -1,0 +1,121 @@
+#+TITLE:     lisp语法
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-16
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+** 01.el ---
+#+BEGIN_SRC 
+(message
+     "this message appeats in the echo area!")
+
+
+(message "this name of this buffer is : %s"(buffer-name))
+
+(message "the value if fill-colum is %d"fill-column)
+
+(message "there are %d %s in the iffice !"(~ fill-column 14)"pink elephants")
+
+
+(message "He saw %d %s"
+         (- fill-column 34)
+         (concat "red"
+                 (substring
+                  "the quick brown foxes jumped ."11 21)
+                 "leaping . "))
+#+END_SRC
+
+** set 
+#+BEGIN_SRC 
+(set `flowers2 `(rose violet daisy buttercup))
+flowers2
+set 是设置函数 执行上面的设置 下面就可以调  用单引号引住 
+`flowers2 如果加上单引号 那么就会返回这个值本身 而不是所代表的函数值 
+#+END_SRC
+
+** setq 
+#+BEGIN_SRC 
+(setq carnivores `(lion tiger leopard))
+carnivores
+
+(setq trees `(pine fir oak maple)
+herbivores `(gazelle antelope zebra)
+)
+trees
+#+END_SRC
+
+*** eg
+#+BEGIN_SRC 
+   (setq counter 0)
+    (setq counter (+ counter 2))  ;;; 这就相当于递归了... 
+    Counter
+(message "hello")
+(message "s")
+#+END_SRC
+ 
+** buffer-name 
+#+BEGIN_SRC 
+ (message "l want tre buffer name = %s"(buffer-name))
+   (message "l want try buffer file name = %s "(buffer-file-name)) ;;这个会显示pwd
+
+   (buffer-name)
+   (buffer-file-name)
+
+   (other-buffer)
+   哈
+#+END_SRC
+  
+** buffer大小 字符数 
+   (buffer-size)
+   (point)
+   (point)
+   (point-min)
+** defun
+#+BEGIN_SRC 
+   (defun multiply-by-seven (number)
+   "Multiply NUMBER by seven"
+   (* 7 number)
+   )
+
+   (defun myfunc (add)
+   ;;  "My func is Add"
+   (+ 3 add)
+   )
+   (myfunc 9) 
+
+   (multiply-by-seven  3)
+#+END_SRC
+
+** 交互函数 
+#+BEGIN_SRC 
+   (defun multiply-by-seven (number)
+   "Multip NUmber by sevev"
+   (interactive "p") ;; 这个就是 安装的函数 特殊表 interactive 可以成为一个交互函数
+   (message "the result is %d" (* 7 multiply-by-seven)
+#+END_SRC
+
+   其中 p 是告诉emacs 要传一个前缀参量给这个函数 并将它的值用于函数的参量  就比如  func(r int)
+
+   我们要传入一个参数给func  然后 func 带这个参数运行    
+   差不多的有  r  使emacs 将位点所在区域的开始值 和结束值 作为函数的两个参量 
+   b 告诉 emacs  缓冲区的名字作为函数的参量  在这种情况下 emacs 会在小缓冲区提示用户输入缓冲区名字
+** let 特殊表 (局部变量)
+
+#+BEGIN_SRC 
+   (let ((variable value)
+   (variable value)
+   ...)
+   body...)
+   let 后面 加两个列表 (变量列表)  然后就是变量主体 
+
+   (let (zebra `stripes)
+   (tiger `fierce))
+   (message "one kind of animal has %s and another is %s"
+   zebra tiger))
+#+END_SRC

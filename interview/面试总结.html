@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 09:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>面试总结</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,65 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">面试总结</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#orgcd6ba41">go知识</a>
+<ul>
+<li><a href="#org42a84f8">slice</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
+<div id="outline-container-orgcd6ba41" class="outline-2">
+<h2 id="orgcd6ba41">go知识</h2>
+<div class="outline-text-2" id="text-orgcd6ba41">
+</div>
+<div id="outline-container-org42a84f8" class="outline-3">
+<h3 id="org42a84f8">slice</h3>
+<div class="outline-text-3" id="text-org42a84f8">
+<pre class="example">
+slice 和 array . slice和数组类似 可以使用下标访问.如果越界就会产生panic 可以自动扩容
+
+slice 的 源代码
+
+type slice struct{
+   array   unsafe.Pointer  // 指针 /
+   len     int   //长度 
+   cap     int   // 容量
+}
+
+指针指向底层数组 长度标示切片可以用的元素个数,容量是底层数组的元素个数 &gt;= 长度
+
+创建   
+
+1 . var  slice []int  -----&gt; nil slice  cap len 都是 0  和nil 比较为 true
+    (空切片会指向一个特定的地址 和 nil 比较为false  var slice []int{})
+2 . slice  := *new([]int) 
+
+3 . new  字面量  s1 := []int{1,2,3,4,5:100} : 是索引号 没有的 就是0  返回是 1 2 3 4 0 100
+
+4 . make slice := make([]int,5) // 不传容量 默认和长度相等
+
+5 . 截取 
 
 
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
+区别 
+    slice 的底层数据是 数组  slice 是对数组的封装 描述的是一个数组的片段 都可以用下表访问
 
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
+    数组定长的 长度不可变  slice 可以自动扩容
+</pre>
 </div>
-</div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
-
-<li><b>Link</b> :</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
-
-<li><b>Link</b> :</li>
-</ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-16</p>
+<p class="date">Date: 2020-09-22</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 09:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 10:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>LeetCode-1013-将数组分成和相等的三个部分</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,132 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">LeetCode-1013-将数组分成和相等的三个部分</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#org4ee23ee">题目</a></li>
+<li><a href="#org3f46334">思考过程</a>
+<ul>
+<li><a href="#org27e30aa">分析</a></li>
+<li><a href="#org7ce1739">代码</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+<div id="outline-container-org4ee23ee" class="outline-2">
+<h2 id="org4ee23ee">题目</h2>
+<div class="outline-text-2" id="text-org4ee23ee">
+<pre class="example">
+给定一个整数数组A，只有我们可以将其划分为三个和相等的非空部分时才返回true，否则返回 false。
 
+形式上，如果我们可以找出索引i+1 &lt; j且满足
+(A[0] + A[1] + ... + A[i] == A[i+1] + A[i+2] + ... + A[j-1] == A[j] + A[j-1] + ... + A[A.length - 1]) 就可以将数组三等分。
 
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
+</pre>
 
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
+<pre class="example">
+示例 1：
+
+输出：[0,2,1,-6,6,-7,9,1,2,0,1]
+输出：true
+解释：0 + 2 + 1 = -6 + 6 - 7 + 9 + 1 = 2 + 0 + 1
+示例 2：
+
+输入：[0,2,1,-6,6,7,9,-1,2,0,1]
+输出：false
+示例 3：
+
+输入：[3,3,6,5,-2,2,5,1,-9,4]
+输出：true
+解释：3 + 3 = 6 = 5 - 2 + 2 + 5 + 1 - 9 + 4
+</pre>
 </div>
 </div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
-
-<li><b>Link</b> :</li>
-</ul>
+<div id="outline-container-org3f46334" class="outline-2">
+<h2 id="org3f46334">思考过程</h2>
+<div class="outline-text-2" id="text-org3f46334">
+</div>
+<div id="outline-container-org27e30aa" class="outline-3">
+<h3 id="org27e30aa">分析</h3>
+<div class="outline-text-3" id="text-org27e30aa">
+<pre class="example">
+题目说的  数组  必须是要按照顺序 比如示例中 11 个数  只能 前几个 +
+不能 第一个 + 第三个这种加 
+所以 我们 要能整分 3份 所以先判断整体能不能  
+1 .  求和  然后 分三分 能不能整除 
+2 . 我的做法是 看着解析的思路 求前后两头  然后 只要前后都等于  除3 的值 
+    那么肯定就可以整分了  如果不行就肯定是  false 
+</pre>
 </div>
 </div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
+<div id="outline-container-org7ce1739" class="outline-3">
+<h3 id="org7ce1739">代码</h3>
+<div class="outline-text-3" id="text-org7ce1739">
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">package</span> main
 
-<li><b>Link</b> :</li>
-</ul>
+<span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #2d9574;">"fmt"</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">canThreePartsEqualSum</span>(<span style="color: #7590db;">A</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">bool</span> {
+        <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">All</span>, <span style="color: #7590db;">value</span> <span style="color: #ce537a; font-weight: bold;">int</span>
+        <span style="color: #4f97d7; font-weight: bold;">for</span> _, value = <span style="color: #4f97d7; font-weight: bold;">range</span> A {
+                All += value
+
+        }
+        <span style="color: #4f97d7; font-weight: bold;">if</span> All%3 != 0 {
+                <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">false</span>
+                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"&#19981;&#33021;&#22815;&#25972;&#38500;"</span>)
+        }
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"&#33021;&#22815;&#25972;&#38500;"</span>)
+        <span style="color: #7590db;">res</span> := All / 3 <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">res &#23601;&#26159;&#19977;&#31561;&#20221;&#30340;&#20540;</span>
+
+        <span style="color: #7590db;">i</span> := 0
+        <span style="color: #7590db;">j</span> := <span style="color: #4f97d7;">len</span>(A) - 1
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #4f97d7;">len</span>(A))
+        <span style="color: #7590db;">rue</span> := <span style="color: #a45bad;">false</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;&#19968;&#20010;&#36820;&#22238;&#30340;&#20540;</span>
+        <span style="color: #7590db;">lans</span>, <span style="color: #7590db;">rans</span> := 0, 0
+
+        <span style="color: #4f97d7; font-weight: bold;">for</span> i &lt; j {
+                <span style="color: #4f97d7; font-weight: bold;">if</span> lans != res {
+                        lans += A[i]
+                        i += 1
+                }
+                <span style="color: #4f97d7; font-weight: bold;">if</span> rans != res {
+                        rans += A[j]
+                        j -= 1
+                }
+                <span style="color: #4f97d7; font-weight: bold;">if</span> (lans == res) &amp;&amp; (rans == res) {
+                        rue = <span style="color: #a45bad;">true</span>
+                        <span style="color: #4f97d7; font-weight: bold;">break</span>
+                }
+        }
+
+        <span style="color: #4f97d7; font-weight: bold;">return</span> rue
+
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
+        <span style="color: #7590db;">arr</span> := []<span style="color: #ce537a; font-weight: bold;">int</span>{0, 2, 2, -6, 6, -7, 10, 1, 2, 0, 1}
+        <span style="color: #7590db;">res</span> := <span style="color: #bc6ec5; font-weight: bold;">canThreePartsEqualSum</span>(arr)
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(res)
+}
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 10:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

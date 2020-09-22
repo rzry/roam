@@ -1,0 +1,19 @@
+#+TITLE:     interview
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-22
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+** interview
+  -  *Link* : [[file:channel_select.org][channel-select]]
+
+  -  *Link* : [[file:简历问题.org][简历问题]]
+
+  -  *Link* : [[file:面试总结.org][面试总结]]
+
+  -  *Link* : [[file:面试题.org][面试题]]
+

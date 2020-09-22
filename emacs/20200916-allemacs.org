@@ -6,12 +6,10 @@
 #+OPTIONS:   H:4 num:nil toc:2
 #+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
 #+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
 #+end_export
-
-* [[file:20200915173026-emacs_roma.org][emacs-roma]]
-* [[file:08_lisp语法.org][lisp语法]]
-* [[file:18_Emacs介绍.org][emacs test]]
+-----
+** config
+  -  *Link* : [[file:config/20200915173026-emacs_roma.org][emacs-roma]]
+** lisp
+  -  *Link* : [[file:lisp/08_lisp语法.org][lisp语法]]
 

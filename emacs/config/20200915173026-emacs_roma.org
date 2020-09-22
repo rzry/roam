@@ -1,0 +1,48 @@
+
+#+TITLE:     emacs-roma
+#+AUTHOR:    rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-15
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+
+#+begin_export html
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+
+*  org-protocol config
+  #+BEGIN_SRC shell
+
+  # 1 . 创建一个图标
+  cd ~/.local/share/applications/org-protocol.desktop
+  
+  [Desktop Entry]
+  Name=Org-Protocol
+  Exec=emacsclient %u
+  Icon=emacs-icon
+  Type=Application
+  Terminal=false
+  MimeType=x-scheme-handler/org-protocol
+  
+
+  # 2 . org-protocol://links 
+  xdg-mime default org-protocol.desktop x-scheme-handler/org-protocol
+
+  # 3 . 禁用 Chrome 中的“确认”提示
+
+  sudo mkdir -p /etc/opt/chrome/policies/managed/
+  sudo tee /etc/opt/chrome/policies/managed/external_protocol_dialog.json >/dev/null <<'EOF'
+  {
+  "ExternalProtocolDialogShowAlwaysOpenCheckbox": true
+  }
+  EOF
+  sudo chmod 644 /etc/opt/chrome/policies/managed/external_protocol_dialog.json
+
+  # 4 . chrome  Chrome://restart 
+  #+END_SRC
+
+
+* 

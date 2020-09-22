@@ -1,0 +1,14 @@
+#+TITLE:     2020
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-22
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+* 2020
+  -  *Link* : [[file:2020/2020.9][2020-09]]
+
+  -  *Link* : [[file:2020/2020.8.org][2020.8]]

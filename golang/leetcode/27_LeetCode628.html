@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 11:20 -->
+<!-- 2020-09-22 二 10:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>linux</title>
+<title>LeetCode628-三个数的最大乘积</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,65 +248,86 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">linux</h1>
+<h1 class="title">LeetCode628-三个数的最大乘积</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0562f3f">nothing</a></li>
-<li><a href="#org08ed24b">order</a></li>
-<li><a href="#org6e7fad2">book</a></li>
-<li><a href="#org145d26e">config</a></li>
+<li><a href="#org7aace2a">题目</a></li>
+<li><a href="#org7a4d491">解答</a></li>
 </ul>
 </div>
 </div>
+<div class="right">
+<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
+</div>
+<div id="outline-container-org7aace2a" class="outline-2">
+<h2 id="org7aace2a">题目</h2>
+<div class="outline-text-2" id="text-org7aace2a">
+<pre class="example">
+ 给定一个整型数组，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
 
+示例 1:
 
-<div id="outline-container-org0562f3f" class="outline-2">
-<h2 id="org0562f3f">nothing</h2>
-<div class="outline-text-2" id="text-org0562f3f">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=nothing/30_Sed多文件搜索替换.html>Sed多文件搜索替换</a></li>
+输入: [1,2,3]
+输出: 6
+示例 2:
 
-<li><b>Link</b> : <a href=nothing/33_adb备份软件一键安装.html>安卓一键软件备份<sub>安装</sub></a></li>
-</ul>
-<hr />
+输入: [1,2,3,4]
+输出: 24
+注意:
+
+给定的整型数组长度范围是[3,104]，数组中所有的元素范围是[-1000, 1000]。
+输入的数组中任意三个数的乘积不会超出32位有符号整数的范围
+
+</pre>
 </div>
 </div>
-<div id="outline-container-org08ed24b" class="outline-2">
-<h2 id="org08ed24b">order</h2>
-<div class="outline-text-2" id="text-org08ed24b">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=order/05_git笔记.html>git的使用笔记</a></li>
-</ul>
-</div>
-</div>
+<div id="outline-container-org7a4d491" class="outline-2">
+<h2 id="org7a4d491">解答</h2>
+<div class="outline-text-2" id="text-org7a4d491">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main 
 
-<div id="outline-container-org6e7fad2" class="outline-2">
-<h2 id="org6e7fad2">book</h2>
-<div class="outline-text-2" id="text-org6e7fad2">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
+<span style="color: #4f97d7; font-weight: bold;">import</span>(
+        <span style="color: #2d9574;">"fmt"</span>
+        <span style="color: #2d9574;">"sort"</span>
+)
 
-<li><b>Link</b> :</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org145d26e" class="outline-2">
-<h2 id="org145d26e">config</h2>
-<div class="outline-text-2" id="text-org145d26e">
-<ul class="org-ul">
-<li><b>Link</b> :</li>
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">maximumProduct</span>(<span style="color: #7590db;">nums</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
+        sort.<span style="color: #bc6ec5; font-weight: bold;">Ints</span>(nums)
+        <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#19977;&#20010;&#25968;&#26368;&#22823; , &#25490;&#24207;&#23436;&#20102; &#26368;&#22823;&#30340;3&#20010;&#20056;</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#26377; &#36127;&#25968; &#36824;&#35201;&#26368;&#22823; &#37027;&#23601;&#21482;&#33021;&#26377;&#20004;&#20010;&#36127;&#25968;  &#20004;&#20010;&#30340;&#35805; &#23601;&#26159; &#26368;&#38752;&#21069;&#30340;&#20004;&#20010;&#36127;&#25968;+&#26368;&#22823;&#30340;&#27491;&#25968;</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#36824;&#26377;&#19968;&#31181; 3&#20010;&#37117;&#26159;&#36127;&#25968; &#37027;&#26679;&#23601;&#21482;&#33021;&#21462; &#26368;&#22823;&#30340;&#19977;&#20010;&#36127;&#25968;</span>
+        <span style="color: #7590db;">i</span> := nums[<span style="color: #4f97d7;">len</span>(nums)-1] * nums[<span style="color: #4f97d7;">len</span>(nums)-2] * nums[<span style="color: #4f97d7;">len</span>(nums)-3]
 
-<li><b>Link</b> :</li>
-</ul>
+        <span style="color: #7590db;">j</span> := nums[0]*<span style="color: #ce537a; font-weight: bold;">nums</span>[1]*<span style="color: #ce537a; font-weight: bold;">nums</span>[<span style="color: #4f97d7;">len</span>(nums)-1]
+
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(nums)
+
+        <span style="color: #4f97d7; font-weight: bold;">if</span> i&gt;j {
+                <span style="color: #4f97d7; font-weight: bold;">return</span> i
+        }<span style="color: #4f97d7; font-weight: bold;">else</span>{
+                <span style="color: #4f97d7; font-weight: bold;">return</span> j
+        }
+}
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
+
+        <span style="color: #7590db;">arr</span> := []<span style="color: #ce537a; font-weight: bold;">int</span>{-1,-2,-3,-4}
+
+        <span style="color: #7590db;">a</span> := <span style="color: #bc6ec5; font-weight: bold;">maximumProduct</span>(arr)
+        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(a)
+}
+</pre>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 11:20</p>
+<p class="date">Created: 2020-09-22 二 10:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
