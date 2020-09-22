@@ -10,6 +10,7 @@
 #+end_export
 -----
 - *一级标题可查看详情*
+-----
 * [[file:golang/golang.org][golang]]
   :PROPERTIES:
   :CATEGORY: golang
@@ -52,8 +53,7 @@
 
   -  *NOTE* : 
 
-----
--
+ -----
 * [[file:emacs/20200916-allemacs.org][emacs]]
   :PROPERTIES:
   :CATEGORY: emacs
@@ -83,11 +83,10 @@
    -  *NOTE* : [Sed多文件搜索替换]
 
    -  *NOTE* : [安卓一键软件备份_安装]
- -----
 ** DONE order
    CLOSED: [2020-09-22 二 12:02]
   -  *NOTE* : [git的使用笔记]
-    
+-----
 * TODO [[file:interview/interview.org][interview]]
   -  *NOTE* : [channel-select]
 
@@ -96,13 +95,14 @@
   -  *NOTE* : [面试题]
 
   -  *NOTE* : [面试总结]
+-----
 * TODO 日程管理  
 
 ** -> [[file:日程安排/2020.org][2020]]
   -  *NOTE* : [2020.9]
 
   -  *NOTE* : [2020.8]
-
+-----
 * TODO reading
   :PROPERTIES: 
   :CATEGORY: reading
@@ -112,3 +112,4 @@
 
    -  *NOTE* : 
    -----
+-----

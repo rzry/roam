@@ -1,4 +1,4 @@
-#+TITLE:     安卓一键软件备份_安装
+#+TITLE:     安卓一键软件备份-安装
 #+AUTHOR:    rzry
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16

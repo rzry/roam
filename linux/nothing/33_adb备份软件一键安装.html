@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:18 -->
+<!-- 2020-09-22 二 13:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>安卓一键软件备份<sub>安装</sub></title>
+<title>安卓一键软件备份-安装</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry" />
 <style type="text/css">
@@ -248,29 +248,29 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">安卓一键软件备份<sub>安装</sub></h1>
+<h1 class="title">安卓一键软件备份-安装</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfbb5d69">爬所有的软件包名</a></li>
-<li><a href="#org02ed801">替换一下</a></li>
-<li><a href="#org2a3c831">把data/app 提出来</a></li>
-<li><a href="#org44f8fc7">可以直接  adb pull</a></li>
-<li><a href="#org8b64c9e">方法</a></li>
-<li><a href="#org37bff92">设置权限</a></li>
-<li><a href="#org17ab1ce">安装</a></li>
-<li><a href="#org2b3528c">搞了个这个 把我分支感染了  就离谱</a></li>
-<li><a href="#org58271d6">我真是服了自己</a></li>
+<li><a href="#org062de5b">爬所有的软件包名</a></li>
+<li><a href="#orgad77ab0">替换一下</a></li>
+<li><a href="#org31b831b">把data/app 提出来</a></li>
+<li><a href="#org435d792">可以直接  adb pull</a></li>
+<li><a href="#orga13cb93">方法</a></li>
+<li><a href="#orgc5bd5ff">设置权限</a></li>
+<li><a href="#orgde64d1d">安装</a></li>
+<li><a href="#orgbcbf204">搞了个这个 把我分支感染了  就离谱</a></li>
+<li><a href="#org7eac438">我真是服了自己</a></li>
 </ul>
 </div>
 </div>
 <div class="right">
 <a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
-<div id="outline-container-orgfbb5d69" class="outline-2">
-<h2 id="orgfbb5d69">爬所有的软件包名</h2>
-<div class="outline-text-2" id="text-orgfbb5d69">
+<div id="outline-container-org062de5b" class="outline-2">
+<h2 id="org062de5b">爬所有的软件包名</h2>
+<div class="outline-text-2" id="text-org062de5b">
 <p>
 adb shell pm list package
 </p>
@@ -281,9 +281,9 @@ adb shell pm list packages &gt;&gt; 1.txt
 </div>
 </div>
 
-<div id="outline-container-org02ed801" class="outline-2">
-<h2 id="org02ed801">替换一下</h2>
-<div class="outline-text-2" id="text-org02ed801">
+<div id="outline-container-orgad77ab0" class="outline-2">
+<h2 id="orgad77ab0">替换一下</h2>
+<div class="outline-text-2" id="text-orgad77ab0">
 <p>
 sed -e 's///g'  1.txt 拿到单独的名字  
 </p>
@@ -295,18 +295,18 @@ adb shell pm path com.hpbr.bosszhipin &gt;&gt; package  拿到路径
 </div>
 </div>
 
-<div id="outline-container-org2a3c831" class="outline-2">
-<h2 id="org2a3c831">把data/app 提出来</h2>
-<div class="outline-text-2" id="text-org2a3c831">
+<div id="outline-container-org31b831b" class="outline-2">
+<h2 id="org31b831b">把data/app 提出来</h2>
+<div class="outline-text-2" id="text-org31b831b">
 <p>
 sed -n '\/data\/app/p' package 
 </p>
 </div>
 </div>
 
-<div id="outline-container-org44f8fc7" class="outline-2">
-<h2 id="org44f8fc7">可以直接  adb pull</h2>
-<div class="outline-text-2" id="text-org44f8fc7">
+<div id="outline-container-org435d792" class="outline-2">
+<h2 id="org435d792">可以直接  adb pull</h2>
+<div class="outline-text-2" id="text-org435d792">
 <pre class="example">
 问题   因为  软件 我们 批量导出的时候 
 
@@ -321,9 +321,9 @@ adb pull /data/app/com.google.android.googlequicksearchbox-5IemJHVD9vbt2Cb0M0dPJ
 </pre>
 </div>
 </div>
-<div id="outline-container-org8b64c9e" class="outline-2">
-<h2 id="org8b64c9e">方法</h2>
-<div class="outline-text-2" id="text-org8b64c9e">
+<div id="outline-container-orga13cb93" class="outline-2">
+<h2 id="orga13cb93">方法</h2>
+<div class="outline-text-2" id="text-orga13cb93">
 <pre class="example">
 给末尾添加 一个 sed    sed 's/$/&amp;sed/g' 4.sh &gt;&gt; 8.sh
 
@@ -335,18 +335,18 @@ adb pull /data/app/com.google.android.googlequicksearchbox-5IemJHVD9vbt2Cb0M0dPJ
 </pre>
 </div>
 </div>
-<div id="outline-container-org37bff92" class="outline-2">
-<h2 id="org37bff92">设置权限</h2>
-<div class="outline-text-2" id="text-org37bff92">
+<div id="outline-container-orgc5bd5ff" class="outline-2">
+<h2 id="orgc5bd5ff">设置权限</h2>
+<div class="outline-text-2" id="text-orgc5bd5ff">
 <pre class="example">
 chmod  777 10.sh ok 完成了
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org17ab1ce" class="outline-2">
-<h2 id="org17ab1ce">安装</h2>
-<div class="outline-text-2" id="text-org17ab1ce">
+<div id="outline-container-orgde64d1d" class="outline-2">
+<h2 id="orgde64d1d">安装</h2>
+<div class="outline-text-2" id="text-orgde64d1d">
 <pre class="example">
 使用 tcp 连接 
 adb tcpip 5555 
@@ -361,17 +361,17 @@ awk '{print $NF}' 10.sh &gt;&gt; 11.sh    (拿到11.sh 最后一个值)
 </pre>
 </div>
 </div>
-<div id="outline-container-org2b3528c" class="outline-2">
-<h2 id="org2b3528c">搞了个这个 把我分支感染了  就离谱</h2>
+<div id="outline-container-orgbcbf204" class="outline-2">
+<h2 id="orgbcbf204">搞了个这个 把我分支感染了  就离谱</h2>
 </div>
-<div id="outline-container-org58271d6" class="outline-2">
-<h2 id="org58271d6">我真是服了自己</h2>
+<div id="outline-container-org7eac438" class="outline-2">
+<h2 id="org7eac438">我真是服了自己</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:18</p>
+<p class="date">Created: 2020-09-22 二 13:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

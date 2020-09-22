@@ -12,7 +12,7 @@
 ** nothing
    -  *Link* : [[file:nothing/30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
 
-   -  *Link* : [[file:nothing/33_adb备份软件一键安装.org][安卓一键软件备份_安装]]
+   -  *Link* : [[file:nothing/33_adb备份软件一键安装.org][安卓一键软件备份-安装]]
  -----
 ** order
   -  *Link* : [[file:order/05_git笔记.org][git的使用笔记]]
