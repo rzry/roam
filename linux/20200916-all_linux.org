@@ -18,7 +18,6 @@
   -  *Link* : [[file:order/05_git笔记.org][git的使用笔记]]
 
 ** book
-
   -  *Link* : [[file:book/linux_shell.org][linux就该这么学]]
 
   -  *Link* : 

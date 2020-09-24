@@ -4,7 +4,7 @@
 #+DATE:      2020-09-24
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
 #+begin_export html
 #+end_export
 
