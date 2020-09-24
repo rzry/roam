@@ -86,6 +86,8 @@
 ** DONE order
    CLOSED: [2020-09-22 二 12:02]
   -  *NOTE* : [git的使用笔记]
+** TODO book
+  -  *NOTE* : [linux 就该这么学]
 -----
 * TODO [[file:interview/interview.org][interview]]
   -  *NOTE* : [channel-select]
