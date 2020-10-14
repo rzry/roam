@@ -30,6 +30,8 @@
 
   -  *Link* : [[file:../interview/channel_select.org][channel-select]]
 
-
 ** 摘录
   - *Link* : [[file:摘录/go_open_hub.org][go-open-hub]]
+
+** Reading 
+  - *Link* : [[file:reading/go-standard-learn.org][standard-learn]]

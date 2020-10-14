@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-12 一 10:17 -->
+<!-- 2020-10-14 三 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>golang</title>
+<title>2020.10</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -248,75 +248,194 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">golang</h1>
+<h1 class="title">2020.10</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgac55839">leetcode</a></li>
-<li><a href="#org4a4c4c3">note</a></li>
-<li><a href="#org8f7d68e">摘录</a></li>
-<li><a href="#orgc06d3d7">Reading</a></li>
+<li><a href="#orge832410">独白</a></li>
+<li><a href="#org6151858">分享</a>
+<ul>
+<li><a href="#orgb6667f1">快速配置</a></li>
+<li><a href="#org4784ade">ide / emacs 介绍</a></li>
+<li><a href="#orgac7db91">快速使用</a></li>
+<li><a href="#orgc61b54c">linux 使用技巧</a></li>
+<li><a href="#org7eeb72f">ubuntu app  (带过)</a></li>
+<li><a href="#org1ea13f6">go配置的介绍 , 自定义的路径</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
+<hr />
+<div id="outline-container-orge832410" class="outline-2">
+<h2 id="orge832410">独白</h2>
+<div class="outline-text-2" id="text-orge832410">
+<pre class="example">
+使用的是 ubuntu , 然后因为换工作的原因 
+所以在上家离职的时候 做了一些简单的配置
+下面来介绍一下 . 
+基本上就是下面的这些分类  
+开了键盘记录 下面就可以看到我的键盘敲击 
+先从 dotfile 一步一步来说吧  
+我的仓库的 readme 里面有基本的使用方法
 
-<div id="outline-container-orgac55839" class="outline-2">
-<h2 id="orgac55839">leetcode</h2>
-<div class="outline-text-2" id="text-orgac55839">
+
+一般 一个新的电脑 如果是工作的话 ubuntu 安装的流程就是 
+先把ssr装了... 然后 代理去下dotfile .
+然后去设置 zsh 等等 . (建议设置dns 然后github走socket5 , 方法就百度吧)
+看一下速度.
+
+theme 我都是不设置的 家里的设置了. 公司 一般我都是全屏工作区的方式
+
+如果我知道我这个工作能干2个月, 我就去装arch 了.  起码 也会把这个主题改改...
+
+哈哈哈哈的打错了 下次见 导出为 html 
+</pre>
+<hr />
+</div>
+</div>
+<div id="outline-container-org6151858" class="outline-2">
+<h2 id="org6151858">分享</h2>
+<div class="outline-text-2" id="text-org6151858">
+</div>
+<div id="outline-container-orgb6667f1" class="outline-3">
+<h3 id="orgb6667f1">快速配置</h3>
+<div class="outline-text-3" id="text-orgb6667f1">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=leetcode/27_LeetCode628.html>LeetCode628-三个数的最大乘积</a></li>
-
-<li><b>Link</b> : <a href=leetcode/26_LeetCode1029.html>LeetCode1029-两地调度</a></li>
-
-<li><b>Link</b> : <a href=leetcode/24_Leetcode_1013数组三等份.html>LeetCode-1013-将数组分成和相等的三个部分</a></li>
-
-<li><b>Link</b> : <a href=leetcode/23_LeetCode1018.html>Leetcode-1018-被5整除的二进制前缀</a></li>
-
-<li><b>Link</b> : <a href=leetcode/19_删除当前节点_Leetcode.html>leetcode-删除当前节点</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org4a4c4c3" class="outline-2">
-<h2 id="org4a4c4c3">note</h2>
-<div class="outline-text-2" id="text-org4a4c4c3">
+<li>dotfile 介绍 . dotfile . 
+配置了我的linux 的一些基本配置 包括下面这些分类
 <ul class="org-ul">
-<li><b>Link</b> : <a href=note/11_Golang笔记.html>golang笔记</a></li>
-
-<li><b>Link</b> : <a href=note/15_指针_结构体复习.html>指针,结构体</a></li>
-
-<li><b>Link</b> : <a href=note/21_Go_Test.html>go test</a></li>
-
-<li><b>Link</b> : <a href=note/22_Channel图解.html>go channel</a></li>
-
-<li><b>Link</b> : <a href=../interview/channel_select.html>channel-select</a></li>
+<li>配置说明</li>
+<li>cargo 
+cargo 里面包括了 rust 的 .cargo  我们使用的方式是用stow 本质就是 ln引入链接</li>
+<li>go
+go 的配置是 go env 里面设置的很少 因为基本上都需要 export 去设置一些单独项</li>
+<li>emacs 
+这个是一个编辑器 待会再讲</li>
+<li>git
+设置了 .gitconfig 基本上也是基础的  这个不能看 里面有密码&#x2026;</li>
+<li>tmux 
+tmux 就是我的终端 就是这个  他可以复用 然后可以开多窗口 看一下配置
+基本上只是设置了 快捷键, 然后做了一些简单的美化 设置了powerline(底部栏)</li>
+<li>zsh
+介绍就是如此,ubuntu 的shell默认是 bash , 然后基本我都会换成zsh 
+zsh 的配置在~/.zshenv  在里面设置了我的 go cargo node zsh  
+相同与 .bashrc</li>
+<li>init / install
+这是两个脚本.
+init.sh &#x2014; 初始化  换源  然后去除每次都要输 密码  install 了一些基本项 
+install.sh &#x2014; 安装软件为主 每次安装 就只需要输入 
+比如   安装 docker   ./install.sh docker 
+里面 我写了我常用的 必装的所有软件  docker docker-compose node golang 
+fd fzf rg  ssr emacs 等&#x2026;.</li>
+</ul></li>
 </ul>
+<hr />
 </div>
 </div>
-
-<div id="outline-container-org8f7d68e" class="outline-2">
-<h2 id="org8f7d68e">摘录</h2>
-<div class="outline-text-2" id="text-org8f7d68e">
+<div id="outline-container-org4784ade" class="outline-3">
+<h3 id="org4784ade">ide / emacs 介绍</h3>
+<div class="outline-text-3" id="text-org4784ade">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=摘录/go_open_hub.html>go-open-hub</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgc06d3d7" class="outline-2">
-<h2 id="orgc06d3d7">Reading</h2>
-<div class="outline-text-2" id="text-orgc06d3d7">
+<li>快捷键 
+emacs 的介绍. 你们需要多注意我的键盘敲击的按键了  比如切换窗口 Ctrl + x  o</li>
+<li>配置 
 <ul class="org-ul">
-<li><b>Link</b> : <a href=reading/go-standard-learn.html>standard-learn</a></li>
+<li>普通配置 略过&#x2026;
+看一眼 我的注释写的很清除</li>
+<li>编程配置 总结为主
+因为现在主要是go 所以 我的使用的是 nox + lsp-mode gopls</li>
+</ul></li>
+<li>插件</li>
+<li>org
+<ul class="org-ul">
+<li>roam 
+记笔记的 . 当然它的主要用途是说 双向链接, 但是我暂时没有需求
+我把这个关掉 然后重开 介绍emacs吧
+roam 是 记笔记的 左边是我的 所有来公司的笔记 当然是之前记得. 都只是分类了
+每次启动emacs 都会开一个 server 
+我们直接去访问  在浏览器 和 emacs 有交互 使用的是 org-protocol
+会把我的笔记都显示出来.
+我可以直接点击 使用emacs 打开 
+标记
+我看到一个不错的文章  他就会自动保存下来</li>
+<li>eaf 也可以讲讲 .但是配置比较麻烦. 比如我想听歌了 
+我们可以使用 eaf open brow 打开一个 
+还有视屏的打开 eaf 的官方库
+<a href="https://github.com/manateelazycat/emacs-application-framework">https://github.com/manateelazycat/emacs-application-framework</a> 
+这个作者是我很&#x2026;他的文章很多我都看了</li>
+<li><p>
+export 
+基础的emacs 介绍. 我算了吧 &#x2026; 因为比较复杂 我也不知道从何讲起
+</p>
+
+<p>
+我的emacs 配置 了 基本上,我需要的 我都配置了
+但是都是自己写的, 所以没有用到什么懒加载之类的技术, 我都不会关emacs 
+可能几个礼拜才关一次  几百个buffer 很正常.
+没办法展示 nox + gopls 但是这个 都是正常配置  都是公司代码. 
+还可以吧.电脑配置不是很低的话
+</p></li>
+</ul></li>
 </ul>
+<hr />
+</div>
+</div>
+<div id="outline-container-orgac7db91" class="outline-3">
+<h3 id="orgac7db91">快速使用</h3>
+<div class="outline-text-3" id="text-orgac7db91">
+<ul class="org-ul">
+<li>github.com/rzry/.dotfiles</li>
+<li>docker mysql redis &#x2026;</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="outline-container-orgc61b54c" class="outline-3">
+<h3 id="orgc61b54c">linux 使用技巧</h3>
+<div class="outline-text-3" id="text-orgc61b54c">
+<ul class="org-ul">
+<li>autossh 可以去百度一下 用来做端口映射 来连接家里电脑的 家里没开&#x2026;</li>
+<li>rg/ag . 做搜索的 比如说 把这个关了</li>
+<li>fd  .搜文件  find</li>
+<li>fzf &#x2026;  就是这样  模糊匹配</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="outline-container-org7eeb72f" class="outline-3">
+<h3 id="org7eeb72f">ubuntu app  (带过)</h3>
+<div class="outline-text-3" id="text-org7eeb72f">
+<ul class="org-ul">
+<li>ss&#x2026; github 找 fork</li>
+<li>远程  我向日葵 一般一直开着  怕用到 其实根本没用到过</li>
+<li>qq   wine qq</li>
+<li>微信  网页版 .. wine 糟糕</li>
+<li>goland  最新版.</li>
+<li>&#x2026;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1ea13f6" class="outline-3">
+<h3 id="org1ea13f6">go配置的介绍 , 自定义的路径</h3>
+<div class="outline-text-3" id="text-org1ea13f6">
+<ul class="org-ul">
+<li>go env things</li>
+<li>一般go 的 env . 有时候 tidy 的问题</li>
+<li>设置  proxy  一般 tidy 有问题 这三个都可以解决</li>
+<li>没有代理就 <a href="https://goproxy.cn">https://goproxy.cn</a></li>
+<li>地址404 的话 就 direct 把代理关掉 或者添加private 
+export GOPROXY="direct"</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-22</p>
+<p class="date">Date: 2020-10-13</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-12 一 10:17</p>
+<p class="date">Created: 2020-10-14 三 10:45</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,121 @@
+#+TITLE:     2020.10
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-10-13
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+------
+* 独白
+#+BEGIN_SRC 
+使用的是 ubuntu , 然后因为换工作的原因 
+所以在上家离职的时候 做了一些简单的配置
+下面来介绍一下 . 
+基本上就是下面的这些分类  
+开了键盘记录 下面就可以看到我的键盘敲击 
+先从 dotfile 一步一步来说吧  
+我的仓库的 readme 里面有基本的使用方法
+
+
+一般 一个新的电脑 如果是工作的话 ubuntu 安装的流程就是 
+先把ssr装了... 然后 代理去下dotfile .
+然后去设置 zsh 等等 . (建议设置dns 然后github走socket5 , 方法就百度吧)
+看一下速度.
+
+theme 我都是不设置的 家里的设置了. 公司 一般我都是全屏工作区的方式
+
+如果我知道我这个工作能干2个月, 我就去装arch 了.  起码 也会把这个主题改改...
+
+哈哈哈哈的打错了 下次见 导出为 html 
+#+END_SRC
+-----
+* 分享
+** 快速配置
+   - dotfile 介绍 . dotfile . 
+     配置了我的linux 的一些基本配置 包括下面这些分类
+     - 配置说明 
+     - cargo 
+       cargo 里面包括了 rust 的 .cargo  我们使用的方式是用stow 本质就是 ln引入链接
+     - go
+       go 的配置是 go env 里面设置的很少 因为基本上都需要 export 去设置一些单独项 
+     - emacs 
+       这个是一个编辑器 待会再讲 
+     - git
+       设置了 .gitconfig 基本上也是基础的  这个不能看 里面有密码... 
+     - tmux 
+       tmux 就是我的终端 就是这个  他可以复用 然后可以开多窗口 看一下配置
+       基本上只是设置了 快捷键, 然后做了一些简单的美化 设置了powerline(底部栏)
+     - zsh
+       介绍就是如此,ubuntu 的shell默认是 bash , 然后基本我都会换成zsh 
+       zsh 的配置在~/.zshenv  在里面设置了我的 go cargo node zsh  
+       相同与 .bashrc 
+     - init / install
+       这是两个脚本.
+       init.sh --- 初始化  换源  然后去除每次都要输 密码  install 了一些基本项 
+       install.sh --- 安装软件为主 每次安装 就只需要输入 
+       比如   安装 docker   ./install.sh docker 
+       里面 我写了我常用的 必装的所有软件  docker docker-compose node golang 
+       fd fzf rg  ssr emacs 等....
+-----
+** ide / emacs 介绍
+   - 快捷键 
+     emacs 的介绍. 你们需要多注意我的键盘敲击的按键了  比如切换窗口 Ctrl + x  o
+   - 配置 
+     - 普通配置 略过...
+       看一眼 我的注释写的很清除 
+     - 编程配置 总结为主
+       因为现在主要是go 所以 我的使用的是 nox + lsp-mode gopls
+   - 插件
+   - org
+     - roam 
+       记笔记的 . 当然它的主要用途是说 双向链接, 但是我暂时没有需求
+       我把这个关掉 然后重开 介绍emacs吧
+       roam 是 记笔记的 左边是我的 所有来公司的笔记 当然是之前记得. 都只是分类了
+       每次启动emacs 都会开一个 server 
+       我们直接去访问  在浏览器 和 emacs 有交互 使用的是 org-protocol
+       会把我的笔记都显示出来.
+       我可以直接点击 使用emacs 打开 
+       标记
+       我看到一个不错的文章  他就会自动保存下来
+     - eaf 也可以讲讲 .但是配置比较麻烦. 比如我想听歌了 
+       我们可以使用 eaf open brow 打开一个 
+       还有视屏的打开 eaf 的官方库
+       https://github.com/manateelazycat/emacs-application-framework 
+       这个作者是我很...他的文章很多我都看了
+     - export 
+       基础的emacs 介绍. 我算了吧 ... 因为比较复杂 我也不知道从何讲起
+       
+       我的emacs 配置 了 基本上,我需要的 我都配置了
+       但是都是自己写的, 所以没有用到什么懒加载之类的技术, 我都不会关emacs 
+       可能几个礼拜才关一次  几百个buffer 很正常.
+       没办法展示 nox + gopls 但是这个 都是正常配置  都是公司代码. 
+       还可以吧.电脑配置不是很低的话
+-----
+** 快速使用 
+   - github.com/rzry/.dotfiles
+   - docker mysql redis ... 
+-----
+** linux 使用技巧 
+   DEADLINE: <2020-10-14 三>
+   - autossh 可以去百度一下 用来做端口映射 来连接家里电脑的 家里没开... 
+   - rg/ag . 做搜索的 比如说 把这个关了
+   - fd  .搜文件  find 
+   - fzf ...  就是这样  模糊匹配 
+-----
+** ubuntu app  (带过)
+   - ss... github 找 fork 
+   - 远程  我向日葵 一般一直开着  怕用到 其实根本没用到过
+   - qq   wine qq 
+   - 微信  网页版 .. wine 糟糕 
+   - goland  最新版. 
+   - ...
+** go配置的介绍 , 自定义的路径
+   - go env things 
+   - 一般go 的 env . 有时候 tidy 的问题
+   - 设置  proxy  一般 tidy 有问题 这三个都可以解决 
+   - 没有代理就 https://goproxy.cn 
+   - 地址404 的话 就 direct 把代理关掉 或者添加private 
+     export GOPROXY="direct"
+

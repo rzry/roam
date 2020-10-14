@@ -1,0 +1,23 @@
+#+TITLE:     emacs Key 
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-28
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+* dired
+  :PROPERTIES: emacs ket
+  :ID:       8c08fac3-955c-4218-b8c2-5b81123ee638
+  :END:
+  - 删除当前window C x e 
+  - 
+* 多选
+  - 选中匹配上 M u 
+  - 选中匹配下 M d 
+  - 全选  C x h
+* 跳转
+  - gotoline C c C e
+  - 

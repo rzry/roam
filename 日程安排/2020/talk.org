@@ -1,0 +1,13 @@
+#+TITLE:     talk
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-09-30
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+在干吗啊 你看把孩子...  哈哈哈 
+还是昨天的侄女吗?
+恩恩  我电脑屏幕太大了...

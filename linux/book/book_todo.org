@@ -1,0 +1,9 @@
+#+title: book_TODO
+#+roam_key: https://www.zhihu.com/question/29380313
+#+roam_alias:
+[2020-09-25 五 15:34] 1.先看 图解tcp/ip 抓重点 。理解面向连接，无连接，tcp粘包，udp有界等
+[2020-09-25 五 15:34] .然后看 linux/unix系统编程手册 socket几章，号称超越apue的好书。
+                       这几章将socket,select,poll,epoll讲的很到位。理解select，poll的原理
+                       大并发为啥epoll有优势，epoll的水平触发和边缘触发
+[2020-09-25 五 15:34] 阅读 effective tcp/ip .
+[2020-09-25 五 15:34] 慢慢读 tcp/ip详解卷一和unix网络编程

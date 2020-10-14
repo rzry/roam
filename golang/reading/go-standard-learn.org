@@ -1,0 +1,28 @@
+#+TITLE:     standard-learn 
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-10-12
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+* 库介绍 
+  - archive/tar 和 /zip-compress：压缩 (解压缩) 文件功能。
+-----
+  - fmt - io - bufio - path/filepath - flag:
+    - fmt: 提供了格式化输入输出功能。 *Link* : [[file:note-standard/fmt/fmt.org][fmt]]
+    - io: 提供了基本输入输出功能，大多数是围绕系统功能的封装。 *Link* : ----
+    - bufio: 缓冲输入输出功能的封装。 *Link* : ----
+    - path/filepath: 用来操作在当前系统中的目标文件名路径。 *Link* : -----
+    - flag: 对命令行参数的操作。 *Link* : ----
+-----
+  - strings - strconv - unicode - regexp - bytes:
+    - strings: 提供对字符串的操作。
+    - strconv: 提供将字符串转换为基础类型的功能。
+    - unicode: 为 unicode 型的字符串提供特殊的功能。
+    - regexp: 正则表达式功能。
+    - bytes: 提供对字符型分片的操作。
+    - index/suffixarray: 子字符串快速查询。
+
