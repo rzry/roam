@@ -3,10 +3,8 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-21
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
+#+OPTIONS:   H:4 num:nil toc:4
 #+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 -----
 * 基本信息
   :PROPERTIES:
@@ -80,3 +78,9 @@
    
 * 学习笔记
 ** Link : [[file:study.org][学习笔记]]
+
+-
+-------
+#+begin_center
+[[https://beian.miit.gov.cn][陕ICP备20008276号-1]]
+#+end_center
