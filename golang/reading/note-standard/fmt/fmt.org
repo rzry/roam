@@ -7,4 +7,48 @@
 #+SETUPFILE: ../../../../org-html-themes/setup/theme-readtheorg.setup
 #+begin_export html
 #+end_export
+-----
 * fmt
+  - 类似%+v，但输出结构体时会添加字段名
+    #+BEGIN_SRC go
+    type Helo struct{
+	A string `json:"a"`
+	B string `json:"b"`
+    }
+     // Args ...
+     func main(){
+     helo := new(Helo)
+     helo.A = "hello"
+     helo.B = "world"
+     fmt.Printf("%+v \n",*helo)
+     fmt.Println(*helo)
+     }
+    #+END_SRC
+  - fscan 从标准输入读 空格为分隔符 赋值给后面
+    #+BEGIN_SRC go
+    // helo.A .B --> string
+    fmt.Fscan(os.Stdin,&helo.A,&helo.B)
+    fmt.Println(helo.A,helo.B)
+    #+END_SRC
+  - sscan 从字符串读 空格为分割 . 赋值给后面
+    #+BEGIN_SRC go
+    fmt.Sscan("输入 nishuo",&helo.A,&helo.B)
+    fmt.Println(helo.A)
+    fmt.Println(helo.B)
+    #+END_SRC
+  - sscanln  换行符为分割 . fscanln 换行符为分割
+  - sscanf 提取指定格式字符 .赋值给后面
+    #+BEGIN_SRC go
+  str := "wether:tomoer,wether:dat"
+  fmt.Sscanf(str,"wether:%6s,wether:%s",&helo.A,&helo.B)
+  fmt.Println(helo.A)
+  fmt.Println(helo.B)
+  #+END_SRC
+  - fscanf 标准输入读 指定格式 赋值给后面
+  - sprintf 格式化输出string
+    #+BEGIN_SRC go
+    str := "wether:tomoer,wether:%s"
+    fmt.Println(fmt.Sprintf(str,"tomorow"))
+    #+END_SRC
+
+

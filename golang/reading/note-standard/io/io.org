@@ -1,0 +1,47 @@
+#+TITLE:     io
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-10-20
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+-----
+* io
+ - reader  读取len(p)长度 写入 p
+   #+BEGIN_SRC go
+   a := "hello world"
+   r := strings.NewReader(a)
+   bs := make([]byte,20)
+   r.Read(bs)
+   fmt.Println(string(bs))
+   // result:hello world
+   #+END_SRC 
+ - ReadAtLeast 读取指定大小
+   #+BEGIN_SRC go
+   a := "hello world"
+   r := strings.NewReader(a)
+   bs := make([]byte,20)
+   n,err := io.ReadAtLeast(r, bs, 20)
+   if err == io.ErrUnexpectedEOF{
+   fmt.Printf("read %d ",n)
+       bs = bs[:n]
+   }
+   fmt.Println(string(bs))
+   #+END_SRC
+
+ - writer 写入p 
+   #+BEGIN_SRC go
+   var b bytes.Buffer
+   b.Write([]byte("hell0"))
+   b.WriteTo(os.Stdout)
+   #+END_SRC
+ - Copyn Copy 把数据拷贝到dst 
+   #+BEGIN_SRC go
+   io.Copy(os.Stdout, r)
+   fmt.Println()
+   r.Reset("mingtian")
+   io.CopyN(os.Stdout, r, 123)
+   #+END_SRC
+

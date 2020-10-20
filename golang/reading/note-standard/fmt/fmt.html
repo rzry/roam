@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-12 一 10:19 -->
+<!-- 2020-10-20 二 14:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>fmt</title>
@@ -253,18 +253,79 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org57d14e1">fmt</a></li>
+<li><a href="#org749a7c2">fmt</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org57d14e1" class="outline-2">
-<h2 id="org57d14e1">fmt</h2>
+<hr />
+<div id="outline-container-org749a7c2" class="outline-2">
+<h2 id="org749a7c2">fmt</h2>
+<div class="outline-text-2" id="text-org749a7c2">
+<ul class="org-ul">
+<li><p>
+类似%+v，但输出结构体时会添加字段名
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">type</span> <span style="color: #8FBCBB;">Helo</span> <span style="color: #81A1C1;">struct</span>{
+    A <span style="color: #8FBCBB;">string</span> <span style="color: #A3BE8C;">`json:"a"`</span>
+    B <span style="color: #8FBCBB;">string</span> <span style="color: #A3BE8C;">`json:"b"`</span>
+}
+ <span style="color: #6f7787;">// </span><span style="color: #6f7787;">Args ...</span>
+ <span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">main</span>(){
+ <span style="color: #D8DEE9;">helo</span> := <span style="color: #81A1C1;">new</span>(<span style="color: #8FBCBB;">Helo</span>)
+ helo.A = <span style="color: #A3BE8C;">"hello"</span>
+ helo.B = <span style="color: #A3BE8C;">"world"</span>
+ fmt.<span style="color: #8FBCBB;">Printf</span>(<span style="color: #A3BE8C;">"%+v \n"</span>,*helo)
+ fmt.<span style="color: #8FBCBB;">Println</span>(*helo)
+ }
+</pre>
+</div></li>
+<li><p>
+fscan 从标准输入读 空格为分隔符 赋值给后面
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">helo.A .B --&gt; string</span>
+fmt.<span style="color: #8FBCBB;">Fscan</span>(os.Stdin,&amp;helo.A,&amp;helo.B)
+fmt.<span style="color: #8FBCBB;">Println</span>(helo.A,helo.B)
+</pre>
+</div></li>
+<li><p>
+sscan 从字符串读 空格为分割 . 赋值给后面
+</p>
+<div class="org-src-container">
+<pre class="src src-go">fmt.<span style="color: #8FBCBB;">Sscan</span>(<span style="color: #A3BE8C;">"&#36755;&#20837; nishuo"</span>,&amp;helo.A,&amp;helo.B)
+fmt.<span style="color: #8FBCBB;">Println</span>(helo.A)
+fmt.<span style="color: #8FBCBB;">Println</span>(helo.B)
+</pre>
+</div></li>
+<li>sscanln  换行符为分割 . fscanln 换行符为分割</li>
+<li><p>
+sscanf 提取指定格式字符 .赋值给后面
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"wether:tomoer,wether:dat"</span>
+fmt.<span style="color: #8FBCBB;">Sscanf</span>(str,<span style="color: #A3BE8C;">"wether:%6s,wether:%s"</span>,&amp;helo.A,&amp;helo.B)
+fmt.<span style="color: #8FBCBB;">Println</span>(helo.A)
+fmt.<span style="color: #8FBCBB;">Println</span>(helo.B)
+</pre>
+</div></li>
+<li>fscanf 标准输入读 指定格式 赋值给后面</li>
+<li><p>
+sprintf 格式化输出string
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"wether:tomoer,wether:%s"</span>
+fmt.<span style="color: #8FBCBB;">Println</span>(fmt.<span style="color: #8FBCBB;">Sprintf</span>(str,<span style="color: #A3BE8C;">"tomorow"</span>))
+</pre>
+</div></li>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-10-12</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-12 一 10:19</p>
+<p class="date">Created: 2020-10-20 二 14:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

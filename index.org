@@ -25,25 +25,28 @@
   - 掌握 *Linux* 基本操作，熟悉 *awk* ， *sed* 等命令与基本正则表达式
   - 熟悉python语法 , 爬虫与数据处理
   - 熟悉 *emacs* , 与基本的elisp语法
-  - 面向 google 编程，基于 google 代码风格, 代码洁癖
+  - 面向 google 编程，基于 google 代码风格
   - 工作之余亦喜自学（笔记在外链）
-    
+-----
 * 技能掌握
   :PROPERTIES:
   :CATEGORY: 技能掌握
   :END:
 ** 编程语言
   - 熟练 Go 
-  - 熟悉 python,shell,Lisp,C
+  - 熟悉 python,shell,Lisp,C 
 ** 数据库
-  - 熟练 mysql,redis 
-  - 熟悉 mongodb,oracle
+  - 熟悉 mysql,redis 
 ** 框架  
   - go-micro , gin , beego 
   - zap , casbin , protobuf
   - deciaml , swagger 
 ** 版本控制
   - git
+** 发布 
+  - 熟悉 docker , docker-compose
+  - 熟悉 makefile 基本语法
+-----
 * 项目介绍 
   :PROPERTIES:
   :CATEGORY: 项目介绍
@@ -57,12 +60,27 @@
     - 技术引用 : silenceper/wechat 
     - 成果 : 从上线到活动结束稳定运行，累计参与人数8万+，抽卡次数200万次，分享链接6万+次
 *** 实盘机器人 
-    - 简述 : -----------------------
-    - 平台 : ---------------------
-    - 角色 : 
-    - 技术 :
-    - 技术引用 :
-    - 成果 : 
+    - 简述 : 做假单,伪造交易所数据,模拟类似火币交易所交易数据,提供期货,挂单、结算、爆仓、收益率等功能
+    - 平台 : linux 
+    - 角色 : 后端开发
+    - 技术 : go-micro微服务,拉取期货ticker模拟数据,伪造数据对接公司实盘项目,Mysql,Redis做存储服务
+    - 技术引用 : 
+    - 成果 : 排行榜的收益率稳步增加,起到宣传拉新的作用.
+
+** 科极星球科技有限公司 2020.8 - 至今
+*** filecoin lotus 数据整理
+    - 简述 : 矿机数据api调取,数据整理,为后台管理提供接口
+    - 平台 : linux 
+    - 角色 : 后端开发
+    - 技术 : Go,gin
+    - 技术引用 : filecoin-project/lotus
+*** 秘钥管理(部分) 
+    - 简述 : 权限管理部分,多层角色的权限管理
+    - 平台 : linux 
+    - 角色 : 后端开发
+    - 技术 : 区分用户,定义策略,分配权限
+    - 技术引用 : casbin
+-----
 * 教育经历
   :PROPERTIES:
   :CATEGORY: 教育经历 
@@ -75,12 +93,15 @@
    - 校先进个人(2017-2018)
    - 征文比赛三等奖(2017-2018全国鼎利学院)
    - 党员
-   
+  
+-----
 * 学习笔记
 ** Link : [[file:study.org][学习笔记]]
 
 -
 -------
 #+begin_center
+use emacs to write 
 [[https://beian.miit.gov.cn][陕ICP备20008276号-1]]
+
 #+end_center
