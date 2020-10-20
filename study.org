@@ -89,15 +89,6 @@
 ** TODO book
   -  *NOTE* : [linux 就该这么学]
 -----
-* TODO [[file:interview/interview.org][interview]]
-  -  *NOTE* : [channel-select]
-
-  -  *NOTE* : [简历问题]
-
-  -  *NOTE* : [面试题]
-
-  -  *NOTE* : [面试总结]
------
 * TODO 日程管理  
 
 ** -> [[file:日程安排/2020.org][2020]]
