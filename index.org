@@ -7,6 +7,7 @@
 #+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
 -----
 - 若渲染失败,请打开代理访问
+-----
 * 基本信息
   :PROPERTIES:
   :CATEGORY: 基本信息
@@ -46,7 +47,7 @@
   - git
 ** 发布 
   - 熟悉 docker , docker-compose
-  - 熟悉 makefile 基本语法
+  - 熟悉 makefile , nginx 基本语法
 -----
 * 项目介绍 
   :PROPERTIES:
