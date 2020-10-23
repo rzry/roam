@@ -8,7 +8,10 @@
 #+begin_export html
 #+end_export
 -----
-* io
+* io 
+** 概述 
+   - reader write 只要实现这两个接口就可以用io
+** 方法
  - reader  读取len(p)长度 写入 p
    #+BEGIN_SRC go
    a := "hello world"
@@ -44,4 +47,96 @@
    r.Reset("mingtian")
    io.CopyN(os.Stdout, r, 123)
    #+END_SRC
+** 使用
+ - reader 使用 
+   #+BEGIN_SRC go
+   	qs := strings.NewReader("hello,world,tomorrow")
 
+	for  {
+		buff := make([]byte,4)
+		// 读取4byte 大小
+		n , err := qs.Read(buff)
+		if err != nil{
+			if err == io.EOF{
+				fmt.Println("读取结束","err =",err)
+				break
+			}
+                        os.Exit(1)
+		}
+		fmt.Println("读取大小,",n,"err =",err,"value ===>",string(buff))
+	}
+   #+END_SRC
+
+ - write使用 
+   #+BEGIN_SRC go
+   	qs := []string{"hello","world","tomorrow"}
+	var qr bytes.Buffer
+
+	for _,v := range qs {
+		_,err := qr.Write([]byte(v))
+		if err != nil{
+			fmt.Println("err ==> ",err)
+			os.Exit(1)
+		}
+		fmt.Println(string(v))
+	}
+	os.Exit(0)
+   #+END_SRC
+
+-----
+ - 实现 reader 和 write 的接口
+   - os.file 
+     #+BEGIN_SRC go 
+     	qs := []string{"hello ","world ","tomorrow "}
+	qr ,err := os.Create("./hello_test.txt")
+	if err != nil{
+		os.Exit(1)
+	}
+	defer qr.Close()
+	for _,v := range qs {
+		qr.Write([]byte(v))
+	}
+	os.Exit(2)
+     #+END_SRC
+   - os.stdout --> 标准输入 os.stdin --> 标准输出 os.stderr --> 错误
+     #+BEGIN_SRC go
+     	qs := []string{"hello ","world ","tomorrow "}
+	for _,v := range qs {
+		os.Stdin.Write([]byte(v))
+	}
+	os.Exit(0)
+     #+END_SRC
+
+ - io.copy 复制读写 
+     #+BEGIN_SRC go
+     	qs := []string{"hello ","world ","tomorrow ","io.copy"}
+
+	read := new(bytes.Buffer)
+	for _,v := range qs{
+		read.WriteString(v)
+	}
+
+	write , err := os.Create("./hello.txt")
+	if err != nil{
+		os.Exit(2)
+	}
+	defer write.Close()
+	
+	io.Copy(write, read)
+     #+END_SRC
+ - io.writestring 写入字符
+   #+BEGIN_SRC go
+   	write , err := os.OpenFile("./hello.txt",os.O_RDWR,0777)
+	if err != nil{
+		os.Exit(1)
+	}
+	buf := make([]byte,200)
+	
+	write.Read(buf)
+
+	fmt.Println(string(buf))
+	
+	io.WriteString(write, " io.writestring")
+   #+END_SRC
+
+ - io.pip

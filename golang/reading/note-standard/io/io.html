@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-23 五 15:50 -->
+<!-- 2020-10-23 五 15:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>学习笔记</title>
+<title>io</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -248,232 +248,213 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">学习笔记</h1>
+<h1 class="title">io</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org84da88e">golang</a></li>
-<li><a href="#orga67cacf">emacs</a>
+<li><a href="#orgfcaecc3">io</a>
 <ul>
-<li><a href="#orgd11bf90"><span class="todo TODO">TODO</span> config</a></li>
-<li><a href="#org5822e91"><span class="todo TODO">TODO</span> lisp</a></li>
-</ul>
-</li>
-<li><a href="#orgc2af0bf">mysql</a>
-<ul>
-<li><a href="#orgc1e09b5"><span class="done DONE">DONE</span> note</a></li>
-</ul>
-</li>
-<li><a href="#org6fd9e7a">linux</a>
-<ul>
-<li><a href="#org9f63f88"><span class="todo TODO">TODO</span> nothing</a></li>
-<li><a href="#org2edc3bb"><span class="done DONE">DONE</span> order</a></li>
-<li><a href="#org6358e0b"><span class="todo TODO">TODO</span> book</a></li>
-</ul>
-</li>
-<li><a href="#org1829ce4"><span class="todo TODO">TODO</span> 日程管理</a>
-<ul>
-<li><a href="#org79b8638">-&gt; 2020</a></li>
-</ul>
-</li>
-<li><a href="#org9cbec67"><span class="todo TODO">TODO</span> reading</a>
-<ul>
-<li><a href="#orge16c62a">book link</a></li>
+<li><a href="#org53193fa">概述</a></li>
+<li><a href="#org0a2e1db">方法</a></li>
+<li><a href="#orgc76b1f0">使用</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
+<hr />
+<div id="outline-container-orgfcaecc3" class="outline-2">
+<h2 id="orgfcaecc3">io</h2>
+<div class="outline-text-2" id="text-orgfcaecc3">
+</div>
+<div id="outline-container-org53193fa" class="outline-3">
+<h3 id="org53193fa">概述</h3>
+<div class="outline-text-3" id="text-org53193fa">
+<ul class="org-ul">
+<li>reader write 只要实现这两个接口就可以用io</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0a2e1db" class="outline-3">
+<h3 id="org0a2e1db">方法</h3>
+<div class="outline-text-3" id="text-org0a2e1db">
+<ul class="org-ul">
+<li><p>
+reader  读取len(p)长度 写入 p
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">a</span> := <span style="color: #A3BE8C;">"hello world"</span>
+<span style="color: #D8DEE9;">r</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(a)
+<span style="color: #D8DEE9;">bs</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>,20)
+r.<span style="color: #8FBCBB;">Read</span>(bs)
+fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #8FBCBB;">string</span>(bs))
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">result:hello world</span>
+</pre>
+</div></li>
+<li><p>
+ReadAtLeast 读取指定大小
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">a</span> := <span style="color: #A3BE8C;">"hello world"</span>
+<span style="color: #D8DEE9;">r</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(a)
+<span style="color: #D8DEE9;">bs</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>,20)
+<span style="color: #D8DEE9;">n</span>,err := io.<span style="color: #8FBCBB;">ReadAtLeast</span>(r, bs, 20)
+<span style="color: #81A1C1;">if</span> err == <span style="color: #8FBCBB;">io.ErrUnexpectedEOF</span>{
+fmt.<span style="color: #8FBCBB;">Printf</span>(<span style="color: #A3BE8C;">"read %d "</span>,n)
+    bs = bs[:n]
+}
+fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #8FBCBB;">string</span>(bs))
+</pre>
+</div></li>
+
+<li><p>
+writer 写入p 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">b</span> <span style="color: #8FBCBB;">bytes.Buffer</span>
+b.<span style="color: #8FBCBB;">Write</span>([]<span style="color: #8FBCBB;">byte</span>(<span style="color: #A3BE8C;">"hell0"</span>))
+b.<span style="color: #8FBCBB;">WriteTo</span>(os.Stdout)
+</pre>
+</div></li>
+<li><p>
+Copyn Copy 把数据拷贝到dst 
+</p>
+<div class="org-src-container">
+<pre class="src src-go">io.<span style="color: #8FBCBB;">Copy</span>(os.Stdout, r)
+fmt.<span style="color: #8FBCBB;">Println</span>()
+r.<span style="color: #8FBCBB;">Reset</span>(<span style="color: #A3BE8C;">"mingtian"</span>)
+io.<span style="color: #8FBCBB;">CopyN</span>(os.Stdout, r, 123)
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc76b1f0" class="outline-3">
+<h3 id="orgc76b1f0">使用</h3>
+<div class="outline-text-3" id="text-orgc76b1f0">
+<ul class="org-ul">
+<li><p>
+reader 使用 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">qs</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">"hello,world,tomorrow"</span>)
+
+<span style="color: #81A1C1;">for</span>  {
+        <span style="color: #D8DEE9;">buff</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>,4)
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#35835;&#21462;4byte &#22823;&#23567;</span>
+        <span style="color: #D8DEE9;">n</span> , <span style="color: #D8DEE9;">err</span> := qs.<span style="color: #8FBCBB;">Read</span>(buff)
+        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+                <span style="color: #81A1C1;">if</span> err == <span style="color: #8FBCBB;">io.EOF</span>{
+                        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"&#35835;&#21462;&#32467;&#26463;"</span>,<span style="color: #A3BE8C;">"err ="</span>,err)
+                        <span style="color: #81A1C1;">break</span>
+                }
+                os.<span style="color: #8FBCBB;">Exit</span>(1)
+        }
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"&#35835;&#21462;&#22823;&#23567;,"</span>,n,<span style="color: #A3BE8C;">"err ="</span>,err,<span style="color: #A3BE8C;">"value ===&gt;"</span>,<span style="color: #8FBCBB;">string</span>(buff))
+}
+</pre>
+</div></li>
+
+<li><p>
+write使用 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">qs</span> := []<span style="color: #8FBCBB;">string</span>{<span style="color: #A3BE8C;">"hello"</span>,<span style="color: #A3BE8C;">"world"</span>,<span style="color: #A3BE8C;">"tomorrow"</span>}
+<span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">qr</span> <span style="color: #8FBCBB;">bytes.Buffer</span>
+
+<span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>,v := <span style="color: #81A1C1;">range</span> qs {
+        <span style="color: #D8DEE9;">_</span>,err := qr.<span style="color: #8FBCBB;">Write</span>([]<span style="color: #8FBCBB;">byte</span>(v))
+        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+                fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"err ==&gt; "</span>,err)
+                os.<span style="color: #8FBCBB;">Exit</span>(1)
+        }
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #8FBCBB;">string</span>(v))
+}
+os.<span style="color: #8FBCBB;">Exit</span>(0)
+</pre>
+</div></li>
+</ul>
 
 <hr />
 <ul class="org-ul">
-<li><b>一级标题可查看详情</b></li>
-</ul>
-<hr />
-<div id="outline-container-org84da88e" class="outline-2">
-<h2 id="org84da88e"><a href=golang/golang.html>golang</a></h2>
-<div class="outline-text-2" id="text-org84da88e">
-</div>
-<div id="outline-container-org6b5b390" class="outline-4">
-<h4 id="org6b5b390"><span class="done DONE">DONE</span> note</h4>
-<div class="outline-text-4" id="text-org6b5b390">
+<li>实现 reader 和 write 的接口
 <ul class="org-ul">
-<li><b>NOTE</b> : [golang笔记]</li>
+<li><p>
+os.file 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">qs</span> := []<span style="color: #8FBCBB;">string</span>{<span style="color: #A3BE8C;">"hello "</span>,<span style="color: #A3BE8C;">"world "</span>,<span style="color: #A3BE8C;">"tomorrow "</span>}
+<span style="color: #D8DEE9;">qr</span> ,err := os.<span style="color: #8FBCBB;">Create</span>(<span style="color: #A3BE8C;">"./hello_test.txt"</span>)
+<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+        os.<span style="color: #8FBCBB;">Exit</span>(1)
+}
+<span style="color: #81A1C1;">defer</span> qr.<span style="color: #8FBCBB;">Close</span>()
+<span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>,v := <span style="color: #81A1C1;">range</span> qs {
+        qr.<span style="color: #8FBCBB;">Write</span>([]<span style="color: #8FBCBB;">byte</span>(v))
+}
+os.<span style="color: #8FBCBB;">Exit</span>(2)
+</pre>
+</div></li>
+<li><p>
+os.stdout &#x2013;&gt; 标准输入 os.stdin &#x2013;&gt; 标准输出 os.stderr &#x2013;&gt; 错误
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">qs</span> := []<span style="color: #8FBCBB;">string</span>{<span style="color: #A3BE8C;">"hello "</span>,<span style="color: #A3BE8C;">"world "</span>,<span style="color: #A3BE8C;">"tomorrow "</span>}
+<span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>,v := <span style="color: #81A1C1;">range</span> qs {
+        os.Stdin.<span style="color: #8FBCBB;">Write</span>([]<span style="color: #8FBCBB;">byte</span>(v))
+}
+os.<span style="color: #8FBCBB;">Exit</span>(0)
+</pre>
+</div></li>
+</ul></li>
 
-<li><b>NOTE</b> : [指针,结构体]</li>
+<li><p>
+io.copy 复制读写 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">qs</span> := []<span style="color: #8FBCBB;">string</span>{<span style="color: #A3BE8C;">"hello "</span>,<span style="color: #A3BE8C;">"world "</span>,<span style="color: #A3BE8C;">"tomorrow "</span>,<span style="color: #A3BE8C;">"io.copy"</span>}
 
-<li><b>NOTE</b> : [go test]</li>
+<span style="color: #D8DEE9;">read</span> := <span style="color: #81A1C1;">new</span>(<span style="color: #8FBCBB;">bytes.Buffer</span>)
+<span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>,v := <span style="color: #81A1C1;">range</span> <span style="color: #8FBCBB;">qs</span>{
+        read.<span style="color: #8FBCBB;">WriteString</span>(v)
+}
 
-<li><b>NOTE</b> : [go channel]</li>
+<span style="color: #D8DEE9;">write</span> , <span style="color: #D8DEE9;">err</span> := os.<span style="color: #8FBCBB;">Create</span>(<span style="color: #A3BE8C;">"./hello.txt"</span>)
+<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+        os.<span style="color: #8FBCBB;">Exit</span>(2)
+}
+<span style="color: #81A1C1;">defer</span> write.<span style="color: #8FBCBB;">Close</span>()
 
-<li><b>NOTE</b> : [channel<sub>select</sub>]</li>
+io.<span style="color: #8FBCBB;">Copy</span>(write, read)
+</pre>
+</div></li>
+<li><p>
+io.writestring 写入字符
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">write</span> , <span style="color: #D8DEE9;">err</span> := os.<span style="color: #8FBCBB;">OpenFile</span>(<span style="color: #A3BE8C;">"./hello.txt"</span>,os.O_RDWR,0777)
+<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+        os.<span style="color: #8FBCBB;">Exit</span>(1)
+}
+<span style="color: #D8DEE9;">buf</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>,200)
+
+write.<span style="color: #8FBCBB;">Read</span>(buf)
+
+fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #8FBCBB;">string</span>(buf))
+
+io.<span style="color: #8FBCBB;">WriteString</span>(write, <span style="color: #A3BE8C;">" io.writestring"</span>)
+</pre>
+</div></li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-org054c6ac" class="outline-4">
-<h4 id="org054c6ac"><span class="done DONE">DONE</span> leetcode</h4>
-<div class="outline-text-4" id="text-org054c6ac">
-<ul class="org-ul">
-<li><b>NOTE</b> : [LeetCode628-三个数的最大乘积]</li>
-
-<li><b>NOTE</b> : [LeetCode1029-两地调度]</li>
-
-<li><b>NOTE</b> : [LeetCode-1013-将数组分成和相等的三个部分]</li>
-
-<li><b>NOTE</b> : [Leetcode-1018-被5整除的二进制前缀]</li>
-
-<li><b>NOTE</b> : [leetcode-删除当前节点]</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orge5ed4aa" class="outline-4">
-<h4 id="orge5ed4aa"><span class="todo TODO">TODO</span> reading</h4>
-<div class="outline-text-4" id="text-orge5ed4aa">
-<ul class="org-ul">
-<li><b>NOTE</b> : [go标准库学习]</li>
-
-<li><b>NOTE</b> :</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orge04aac1" class="outline-4">
-<h4 id="orge04aac1"><span class="todo TODO">TODO</span> 摘录</h4>
-<div class="outline-text-4" id="text-orge04aac1">
-<ul class="org-ul">
-<li><b>NOTE</b> : [go-open-hub]</li>
-
-<li><b>NOTE</b> :</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org89cbf5c" class="outline-4">
-<h4 id="org89cbf5c"><span class="done DONE">DONE</span> nothing</h4>
-<div class="outline-text-4" id="text-org89cbf5c">
-<ul class="org-ul">
-<li><b>NOTE</b> :</li>
-
-<li><b>NOTE</b> :</li>
-</ul>
-
-<hr />
-</div>
-</div>
-</div>
-<div id="outline-container-orga67cacf" class="outline-2">
-<h2 id="orga67cacf"><a href=emacs/20200916-allemacs.html>emacs</a></h2>
-<div class="outline-text-2" id="text-orga67cacf">
-</div>
-<div id="outline-container-orgd11bf90" class="outline-3">
-<h3 id="orgd11bf90"><span class="todo TODO">TODO</span> config</h3>
-<div class="outline-text-3" id="text-orgd11bf90">
-<ul class="org-ul">
-<li><b>NOTE</b> : [emacs-roma]</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org5822e91" class="outline-3">
-<h3 id="org5822e91"><span class="todo TODO">TODO</span> lisp</h3>
-<div class="outline-text-3" id="text-org5822e91">
-<ul class="org-ul">
-<li><b>NOTE</b> : [lisp语法]</li>
-</ul>
-
-<hr />
-</div>
-</div>
-</div>
-<div id="outline-container-orgc2af0bf" class="outline-2">
-<h2 id="orgc2af0bf"><a href=mysql/20200916-all_mysql.html>mysql</a></h2>
-<div class="outline-text-2" id="text-orgc2af0bf">
-</div>
-<div id="outline-container-orgc1e09b5" class="outline-3">
-<h3 id="orgc1e09b5"><span class="done DONE">DONE</span> note</h3>
-<div class="outline-text-3" id="text-orgc1e09b5">
-<ul class="org-ul">
-<li><b>NOTE</b> : [mysql查询]</li>
-
-<li><b>NOTE</b> : [mysql笔记总结]</li>
-</ul>
-<hr />
-</div>
-</div>
-</div>
-
-<div id="outline-container-org6fd9e7a" class="outline-2">
-<h2 id="org6fd9e7a"><a href=linux/20200916-all_linux.html>linux</a></h2>
-<div class="outline-text-2" id="text-org6fd9e7a">
-</div>
-<div id="outline-container-org9f63f88" class="outline-3">
-<h3 id="org9f63f88"><span class="todo TODO">TODO</span> nothing</h3>
-<div class="outline-text-3" id="text-org9f63f88">
-<ul class="org-ul">
-<li><b>NOTE</b> : [Sed多文件搜索替换]</li>
-
-<li><b>NOTE</b> : [安卓一键软件备份<sub>安装</sub>]</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org2edc3bb" class="outline-3">
-<h3 id="org2edc3bb"><span class="done DONE">DONE</span> order</h3>
-<div class="outline-text-3" id="text-org2edc3bb">
-<ul class="org-ul">
-<li><b>NOTE</b> : [git的使用笔记]</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org6358e0b" class="outline-3">
-<h3 id="org6358e0b"><span class="todo TODO">TODO</span> book</h3>
-<div class="outline-text-3" id="text-org6358e0b">
-<ul class="org-ul">
-<li><b>NOTE</b> : [linux 就该这么学]</li>
-</ul>
-<hr />
-</div>
-</div>
-</div>
-<div id="outline-container-org1829ce4" class="outline-2">
-<h2 id="org1829ce4"><span class="todo TODO">TODO</span> 日程管理</h2>
-<div class="outline-text-2" id="text-org1829ce4">
-</div>
-<div id="outline-container-org79b8638" class="outline-3">
-<h3 id="org79b8638">-&gt; <a href=日程安排/2020.html>2020</a></h3>
-<div class="outline-text-3" id="text-org79b8638">
-<ul class="org-ul">
-<li><b>NOTE</b> : [2020.9]</li>
-
-<li><b>NOTE</b> : [2020.8]</li>
-
-<li><b>NOTE</b> : [2020.10]</li>
-</ul>
-<hr />
-</div>
-</div>
-</div>
-<div id="outline-container-org9cbec67" class="outline-2">
-<h2 id="org9cbec67"><span class="todo TODO">TODO</span> reading</h2>
-<div class="outline-text-2" id="text-org9cbec67">
-</div>
-<div id="outline-container-orge16c62a" class="outline-3">
-<h3 id="orge16c62a">book link</h3>
-<div class="outline-text-3" id="text-orge16c62a">
-<ul class="org-ul">
-<li><b>NOTE</b> :</li>
-
-<li><b>NOTE</b> :</li>
-</ul>
-<hr />
-<hr />
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-16</p>
+<p class="date">Date: 2020-10-20</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-23 五 15:50</p>
+<p class="date">Created: 2020-10-23 五 15:21</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

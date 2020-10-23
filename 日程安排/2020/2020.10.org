@@ -119,3 +119,11 @@ theme 我都是不设置的 家里的设置了. 公司 一般我都是全屏工�
    - 地址404 的话 就 direct 把代理关掉 或者添加private 
      export GOPROXY="direct"
 
+
+
+* TODO list 
+** DONE pk -- > timesteamp 
+   CLOSED: [2020-10-22 四 14:30]
+** DONE get --- > 当日数据(若new数据为空) 查询old 数据
+   CLOSED: [2020-10-22 四 14:30]
+** TODO add --- > 给当日数据增加new 数据
