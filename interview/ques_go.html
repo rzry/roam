@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-26 一 13:59 -->
+<!-- 2020-10-26 一 18:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>interview</title>
+<title>ques-go</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -248,40 +248,131 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">interview</h1>
+<h1 class="title">ques-go</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7638669">interview</a></li>
+<li><a href="#org466edde">ques</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7638669" class="outline-2">
-<h2 id="org7638669">interview</h2>
-<div class="outline-text-2" id="text-org7638669">
+
+<div id="outline-container-org466edde" class="outline-2">
+<h2 id="org466edde">ques</h2>
+<div class="outline-text-2" id="text-org466edde">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=channel_select.html>channel-select</a></li>
-
-<li><b>Link</b> : <a href=简历问题.html>简历问题</a></li>
-
-<li><b>Link</b> : <a href=面试总结.html>面试总结</a></li>
-
-<li><b>Link</b> : <a href=面试题.html>面试题</a></li>
+<li><p>
+rune类型
+</p>
+<ul class="org-ul">
+<li>int64 - 64/8 =8</li>
+<li>float64 - 64/8 = 8</li>
+<li>float32 - 32/8 = 4</li>
+<li>rune 就是 int32类型  = 4 byte</li>
 </ul>
-
-
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test3</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+   <span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"&#22825;&#38738;&#33394;&#31561;&#28895;&#38632;"</span>
+   <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#19968;&#20010;&#20013;&#25991; 3 byte</span>
+   t.<span style="color: #8FBCBB;">Log</span>(str[3:])
+   <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#21487;&#20197;&#20351;&#29992;[]rune(str)</span>
+   <span style="color: #D8DEE9;">qs</span> := []<span style="color: #8FBCBB;">rune</span>(str)
+   t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #8FBCBB;">string</span>(qs[3:]))
+   <span style="color: #6f7787;">//</span><span style="color: #6f7787;">Test3: fmt_test.go:34: &#38738;&#33394;&#31561;&#28895;&#38632;</span>
+   <span style="color: #6f7787;">//</span><span style="color: #6f7787;">Test3: fmt_test.go:37: &#31561;&#28895;&#38632;</span>
+}
+</pre>
+</div>
 <ul class="org-ul">
-<li><b>Link</b> : <a href=ques_go.html>ques-go</a></li>
+<li>slice = 3*8 = 24</li>
+<li>complex64 = 8</li>
+<li>uintptr = 32/64 &#x2013; uint32 uint64</li>
+<li>bool = 1</li>
+<li>byte = 1</li>
+</ul></li>
+
+<li>拼接字符串</li>
+
+<li>默认/可选参数(看一下options)</li>
+
+<li>struct tag</li>
+
+<li>值传递,参数传递</li>
+
+<li>枚举</li>
+
+<li>空struct{}</li>
+
+<li>init() 执行</li>
+
+<li>interface != interface ??</li>
+
+<li>go 的Gc</li>
+
+<li>非接口的任意类型T 能够调用*T 的方法? 反过来</li>
+
+<li>变量与常量</li>
+
+<li>作用域</li>
+
+<li>defer 延迟调用</li>
+
+<li>协程泄露</li>
+
+<li><p>
+for range 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test2</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>) {
+    <span style="color: #D8DEE9;">slice</span> := []<span style="color: #8FBCBB;">int</span>{0, 1, 2, 3}
+
+    <span style="color: #D8DEE9;">m</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">map</span>[<span style="color: #8FBCBB;">int</span>]*<span style="color: #8FBCBB;">int</span>)
+
+    <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">key</span>, <span style="color: #D8DEE9;">val</span> := <span style="color: #81A1C1;">range</span> slice {
+        m[key] = &amp;val
+    }
+        <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">k</span>, <span style="color: #D8DEE9;">v</span> := <span style="color: #81A1C1;">range</span> m {
+                t.<span style="color: #8FBCBB;">Logf</span>(<span style="color: #A3BE8C;">"key: %d, value: %d \n"</span>, k, *v)
+    }
+}
+</pre>
+</div>
+<ul class="org-ul">
+<li>for range 在循环的时候 会创建每个元素的副本,而不是元素的引用. 所以在取地址的时候
+所有的map的元素值都是变量val 的地址.因为最后val被赋值为3 所以所有输出都为3</li>
+</ul></li>
+
+<li><p>
+make 和 new 区别 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test1</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>)  {
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">make-&#21021;&#22987;&#21270; &#24320;&#36767;&#31354;&#38388; &#23545;&#23383;&#27573;&#21021;&#22987;&#21270; &#35774;&#32622;&#38271;&#24230;.&#23481;&#37327;&#31561;&#31561;</span>
+    <span style="color: #D8DEE9;">i</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">int</span>,2)
+    i = <span style="color: #81A1C1;">append</span>(i,1,2,3)
+    t.<span style="color: #8FBCBB;">Log</span>(i)
+
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">new &#24320;&#36767;&#31354;&#38388;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">new &#30456;&#24403;&#20110; var n int return &amp;int</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#36820;&#22238;&#30340;&#26159;&#38646;&#20540;&#25351;&#38024;.</span>
+    <span style="color: #D8DEE9;">s</span> := *<span style="color: #81A1C1;">new</span>([]<span style="color: #8FBCBB;">int</span>)
+    s = <span style="color: #81A1C1;">append</span>(s,2,3,4)
+    t.<span style="color: #8FBCBB;">Log</span>(s)
+}
+
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">make channel map slice &#20294;&#26159;&#19981;&#33021;make int string  </span>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-22</p>
+<p class="date">Date: 2020-10-26</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-26 一 13:59</p>
+<p class="date">Created: 2020-10-26 一 18:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
