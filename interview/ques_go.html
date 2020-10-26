@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-26 一 18:07 -->
+<!-- 2020-10-26 一 19:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ques-go</title>
@@ -253,15 +253,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org466edde">ques</a></li>
+<li><a href="#org4a4d4c8">ques</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org466edde" class="outline-2">
-<h2 id="org466edde">ques</h2>
-<div class="outline-text-2" id="text-org466edde">
+<div id="outline-container-org4a4d4c8" class="outline-2">
+<h2 id="org4a4d4c8">ques</h2>
+<div class="outline-text-2" id="text-org4a4d4c8">
 <ul class="org-ul">
 <li><p>
 rune类型
@@ -293,7 +293,67 @@ rune类型
 <li>byte = 1</li>
 </ul></li>
 
-<li>拼接字符串</li>
+<li><p>
+拼接字符串 
+</p>
+<ul class="org-ul">
+<li><p>
+strings.builder
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test4</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+ <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">qs</span> <span style="color: #8FBCBB;">strings.Builder</span>
+ <span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"rzry"</span>
+ qs.<span style="color: #8FBCBB;">WriteString</span>(<span style="color: #A3BE8C;">"hello,world"</span>)
+ qs.<span style="color: #8FBCBB;">WriteString</span>(str)
+ t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #81A1C1;">len</span>(qs.<span style="color: #8FBCBB;">String</span>()))
+ t.<span style="color: #8FBCBB;">Log</span>(qs.<span style="color: #8FBCBB;">String</span>())
+
+}
+</pre>
+</div></li>
+<li>fmt.Sprintln</li>
+<li><p>
+bytes.buffer (io.write)
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test4</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+ <span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"rzry"</span>
+ <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">b</span> <span style="color: #8FBCBB;">bytes.Buffer</span>
+ b.<span style="color: #8FBCBB;">WriteString</span>(<span style="color: #A3BE8C;">"hello"</span>)
+ b.<span style="color: #8FBCBB;">WriteString</span>(str)
+ t.<span style="color: #8FBCBB;">Log</span>(b.<span style="color: #8FBCBB;">String</span>())
+}
+
+</pre>
+</div></li>
+<li>str + str</li>
+<li><p>
+strings.join
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test4</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+ <span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"rzry"</span>
+ <span style="color: #D8DEE9;">test</span> := []<span style="color: #8FBCBB;">string</span>{<span style="color: #A3BE8C;">"hello"</span>,str}
+ <span style="color: #D8DEE9;">qs</span> := strings.<span style="color: #8FBCBB;">Join</span>(test,<span style="color: #A3BE8C;">" "</span>)
+ t.<span style="color: #8FBCBB;">Log</span>(qs)
+}
+
+</pre>
+</div></li>
+<li>append</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Test4</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+   <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">qe</span> []<span style="color: #8FBCBB;">byte</span>
+   <span style="color: #D8DEE9;">str</span> := <span style="color: #A3BE8C;">"rzry"</span>
+   <span style="color: #D8DEE9;">hello</span> := <span style="color: #A3BE8C;">"world"</span>
+   <span style="color: #D8DEE9;">qs</span> := <span style="color: #81A1C1;">append</span>(qe, str...)
+   qs = <span style="color: #81A1C1;">append</span>(qs,hello...)
+   t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #8FBCBB;">string</span>(qs))
+}
+</pre>
+</div></li>
 
 <li>默认/可选参数(看一下options)</li>
 
@@ -372,7 +432,7 @@ make 和 new 区别
 <div id="postamble" class="status">
 <p class="date">Date: 2020-10-26</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-26 一 18:07</p>
+<p class="date">Created: 2020-10-26 一 19:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

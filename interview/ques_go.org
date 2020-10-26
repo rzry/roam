@@ -34,9 +34,55 @@
      - byte = 1 
      
    - 拼接字符串 
+     - strings.builder
+       #+BEGIN_SRC go
+       func Test4(t *testing.T){
+	var qs strings.Builder
+	str := "rzry"
+	qs.WriteString("hello,world")
+	qs.WriteString(str)
+	t.Log(len(qs.String()))
+	t.Log(qs.String())
+	
+       }
+       #+END_SRC
+     - fmt.Sprintln 
+     - bytes.buffer (io.write)
+       #+BEGIN_SRC go
+       func Test4(t *testing.T){
+	str := "rzry"
+	var b bytes.Buffer
+	b.WriteString("hello")
+	b.WriteString(str)
+	t.Log(b.String())
+       }
+
+       #+END_SRC
+     - str + str
+     - strings.join
+       #+BEGIN_SRC go
+       func Test4(t *testing.T){
+	str := "rzry"
+	test := []string{"hello",str}
+	qs := strings.Join(test," ")
+	t.Log(qs)
+       }
+
+       #+END_SRC
+     - append
+     #+BEGIN_SRC go
+     func Test4(t *testing.T){
+	var qe []byte
+	str := "rzry"
+	hello := "world"
+	qs := append(qe, str...)
+	qs = append(qs,hello...)
+	t.Log(string(qs))
+     }
+     #+END_SRC
 
    - 默认/可选参数(看一下options)
-
+     
    - struct tag 
 
    - 值传递,参数传递
