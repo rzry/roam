@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-23 五 15:21 -->
+<!-- 2020-10-29 四 10:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>io</title>
@@ -253,32 +253,33 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfcaecc3">io</a>
+<li><a href="#org863b997">io</a>
 <ul>
-<li><a href="#org53193fa">概述</a></li>
-<li><a href="#org0a2e1db">方法</a></li>
-<li><a href="#orgc76b1f0">使用</a></li>
+<li><a href="#org58f21bd">概述</a></li>
+<li><a href="#org054cddf">方法</a></li>
+<li><a href="#orga84fb83">使用</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <hr />
-<div id="outline-container-orgfcaecc3" class="outline-2">
-<h2 id="orgfcaecc3">io</h2>
-<div class="outline-text-2" id="text-orgfcaecc3">
+<div id="outline-container-org863b997" class="outline-2">
+<h2 id="org863b997">io</h2>
+<div class="outline-text-2" id="text-org863b997">
 </div>
-<div id="outline-container-org53193fa" class="outline-3">
-<h3 id="org53193fa">概述</h3>
-<div class="outline-text-3" id="text-org53193fa">
+<div id="outline-container-org58f21bd" class="outline-3">
+<h3 id="org58f21bd">概述</h3>
+<div class="outline-text-3" id="text-org58f21bd">
 <ul class="org-ul">
 <li>reader write 只要实现这两个接口就可以用io</li>
 </ul>
+<hr />
 </div>
 </div>
-<div id="outline-container-org0a2e1db" class="outline-3">
-<h3 id="org0a2e1db">方法</h3>
-<div class="outline-text-3" id="text-org0a2e1db">
+<div id="outline-container-org054cddf" class="outline-3">
+<h3 id="org054cddf">方法</h3>
+<div class="outline-text-3" id="text-org054cddf">
 <ul class="org-ul">
 <li><p>
 reader  读取len(p)长度 写入 p
@@ -307,7 +308,6 @@ fmt.<span style="color: #8FBCBB;">Printf</span>(<span style="color: #A3BE8C;">"r
 fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #8FBCBB;">string</span>(bs))
 </pre>
 </div></li>
-
 <li><p>
 writer 写入p 
 </p>
@@ -328,11 +328,12 @@ io.<span style="color: #8FBCBB;">CopyN</span>(os.Stdout, r, 123)
 </pre>
 </div></li>
 </ul>
+<hr />
 </div>
 </div>
-<div id="outline-container-orgc76b1f0" class="outline-3">
-<h3 id="orgc76b1f0">使用</h3>
-<div class="outline-text-3" id="text-orgc76b1f0">
+<div id="outline-container-orga84fb83" class="outline-3">
+<h3 id="orga84fb83">使用</h3>
+<div class="outline-text-3" id="text-orga84fb83">
 <ul class="org-ul">
 <li><p>
 reader 使用 
@@ -355,7 +356,9 @@ reader 使用
 }
 </pre>
 </div></li>
-
+</ul>
+<hr />
+<ul class="org-ul">
 <li><p>
 write使用 
 </p>
@@ -375,7 +378,6 @@ os.<span style="color: #8FBCBB;">Exit</span>(0)
 </pre>
 </div></li>
 </ul>
-
 <hr />
 <ul class="org-ul">
 <li>实现 reader 和 write 的接口
@@ -408,7 +410,9 @@ os.<span style="color: #8FBCBB;">Exit</span>(0)
 </pre>
 </div></li>
 </ul></li>
-
+</ul>
+<hr />
+<ul class="org-ul">
 <li><p>
 io.copy 复制读写 
 </p>
@@ -429,6 +433,9 @@ io.copy 复制读写
 io.<span style="color: #8FBCBB;">Copy</span>(write, read)
 </pre>
 </div></li>
+</ul>
+<hr />
+<ul class="org-ul">
 <li><p>
 io.writestring 写入字符
 </p>
@@ -447,6 +454,101 @@ io.<span style="color: #8FBCBB;">WriteString</span>(write, <span style="color: #
 </pre>
 </div></li>
 </ul>
+<hr />
+<ul class="org-ul">
+<li><p>
+io.pipe 管道 写完了再读
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">r</span>,w := io.<span style="color: #8FBCBB;">Pipe</span>()
+
+<span style="color: #81A1C1;">go</span> <span style="color: #81A1C1;">func</span>(){
+        fmt.<span style="color: #8FBCBB;">Fprint</span>(w, <span style="color: #A3BE8C;">"---hello world"</span>)
+        w.<span style="color: #8FBCBB;">Close</span>()
+}()
+
+<span style="color: #D8DEE9;">bs</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>,20)
+r.<span style="color: #8FBCBB;">Read</span>(bs)
+t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"bs==="</span>,<span style="color: #8FBCBB;">string</span>(bs))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">r</span>, <span style="color: #D8DEE9;">w</span> := io.<span style="color: #8FBCBB;">Pipe</span>() 
+<span style="color: #81A1C1;">go</span> <span style="color: #81A1C1;">func</span>() { 
+        fmt.<span style="color: #8FBCBB;">Fprint</span>(w, <span style="color: #A3BE8C;">"Geeks\nfor\nGeeks\nis\na\nCS-Portal.\n"</span>) 
+        w.<span style="color: #8FBCBB;">Close</span>() 
+}() 
+<span style="color: #D8DEE9;">buffer</span> := <span style="color: #81A1C1;">new</span>(<span style="color: #8FBCBB;">bytes.Buffer</span>) 
+buffer.<span style="color: #8FBCBB;">ReadFrom</span>(r)
+fmt.<span style="color: #8FBCBB;">Print</span>(buffer.<span style="color: #8FBCBB;">String</span>()) 
+</pre>
+</div></li>
+</ul>
+<hr />
+<ul class="org-ul">
+<li><p>
+io.Teepipe
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">f</span> , <span style="color: #D8DEE9;">err</span> := os.<span style="color: #8FBCBB;">Open</span>(<span style="color: #A3BE8C;">"./hello.txt"</span>)
+<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+        log.<span style="color: #8FBCBB;">Fatal</span>(<span style="color: #A3BE8C;">"err"</span>)
+        os.<span style="color: #8FBCBB;">Exit</span>(1)
+}
+
+<span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">qw</span> <span style="color: #8FBCBB;">bytes.Buffer</span>
+<span style="color: #D8DEE9;">r</span> := io.<span style="color: #8FBCBB;">TeeReader</span>(f,&amp;qw)
+
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36820;&#22238;&#19968;&#20010;reader &#28982;&#21518; io.copy</span>
+<span style="color: #D8DEE9;">wr</span> , <span style="color: #D8DEE9;">err</span> := os.<span style="color: #8FBCBB;">Create</span>(<span style="color: #A3BE8C;">"./tee2.txt"</span>)
+<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
+        log.<span style="color: #8FBCBB;">Fatal</span>(<span style="color: #A3BE8C;">"err"</span>)
+        os.<span style="color: #8FBCBB;">Exit</span>(2)
+}
+io.<span style="color: #8FBCBB;">Copy</span>(wr, r)
+os.<span style="color: #8FBCBB;">Exit</span>(0)
+</pre>
+</div></li>
+</ul>
+<hr />
+<ul class="org-ul">
+<li><p>
+io.MultiReader 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">f</span>,_ := os.<span style="color: #8FBCBB;">Open</span>(<span style="color: #A3BE8C;">"./hello.txt"</span>)
+
+<span style="color: #D8DEE9;">r</span> := io.<span style="color: #8FBCBB;">MultiReader</span>(f)
+
+<span style="color: #D8DEE9;">f2</span>,_ := os.<span style="color: #8FBCBB;">Create</span>(<span style="color: #A3BE8C;">"./tee1.txt"</span>)
+
+<span style="color: #D8DEE9;">w</span> := io.<span style="color: #8FBCBB;">MultiWriter</span>(f2)
+
+io.<span style="color: #8FBCBB;">Copy</span>(w, r)
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28304;&#30721; --- 1.14.3</span>
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">MultiReader</span>(<span style="color: #D8DEE9;">readers</span> ...<span style="color: #8FBCBB;">Reader</span>) <span style="color: #8FBCBB;">Reader</span> {
+     <span style="color: #D8DEE9;">r</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">Reader</span>, <span style="color: #81A1C1;">len</span>(readers))
+     <span style="color: #81A1C1;">copy</span>(r, readers)
+     <span style="color: #81A1C1;">return</span> &amp;<span style="color: #8FBCBB;">multiReader</span>{r}
+}
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">MultiWriter</span>(<span style="color: #D8DEE9;">writers</span> ...<span style="color: #8FBCBB;">Writer</span>) <span style="color: #8FBCBB;">Writer</span> {
+     <span style="color: #D8DEE9;">allWriters</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">Writer</span>, 0, <span style="color: #81A1C1;">len</span>(writers))
+     <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>, <span style="color: #D8DEE9;">w</span> := <span style="color: #81A1C1;">range</span> writers {
+             <span style="color: #81A1C1;">if</span> <span style="color: #D8DEE9;">mw</span>, <span style="color: #D8DEE9;">ok</span> := w.(*<span style="color: #8FBCBB;">multiWriter</span>); ok {
+                     allWriters = <span style="color: #81A1C1;">append</span>(allWriters, mw.writers...)
+             } <span style="color: #81A1C1;">else</span> {
+                     allWriters = <span style="color: #81A1C1;">append</span>(allWriters, w)
+             }
+     }
+     <span style="color: #81A1C1;">return</span> &amp;<span style="color: #8FBCBB;">multiWriter</span>{allWriters}
+ }  
+</pre>
+</div></li>
+</ul>
 </div>
 </div>
 </div>
@@ -454,7 +556,7 @@ io.<span style="color: #8FBCBB;">WriteString</span>(write, <span style="color: #
 <div id="postamble" class="status">
 <p class="date">Date: 2020-10-20</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-23 五 15:21</p>
+<p class="date">Created: 2020-10-29 四 10:22</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

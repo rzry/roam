@@ -11,6 +11,7 @@
 * io 
 ** 概述 
    - reader write 只要实现这两个接口就可以用io
+-----
 ** 方法
  - reader  读取len(p)长度 写入 p
    #+BEGIN_SRC go
@@ -33,7 +34,6 @@
    }
    fmt.Println(string(bs))
    #+END_SRC
-
  - writer 写入p 
    #+BEGIN_SRC go
    var b bytes.Buffer
@@ -47,6 +47,7 @@
    r.Reset("mingtian")
    io.CopyN(os.Stdout, r, 123)
    #+END_SRC
+-----
 ** 使用
  - reader 使用 
    #+BEGIN_SRC go
@@ -66,7 +67,7 @@
 		fmt.Println("读取大小,",n,"err =",err,"value ===>",string(buff))
 	}
    #+END_SRC
-
+-----
  - write使用 
    #+BEGIN_SRC go
    	qs := []string{"hello","world","tomorrow"}
@@ -82,7 +83,6 @@
 	}
 	os.Exit(0)
    #+END_SRC
-
 -----
  - 实现 reader 和 write 的接口
    - os.file 
@@ -106,7 +106,7 @@
 	}
 	os.Exit(0)
      #+END_SRC
-
+-----
  - io.copy 复制读写 
      #+BEGIN_SRC go
      	qs := []string{"hello ","world ","tomorrow ","io.copy"}
@@ -124,6 +124,7 @@
 	
 	io.Copy(write, read)
      #+END_SRC
+-----
  - io.writestring 写入字符
    #+BEGIN_SRC go
    	write , err := os.OpenFile("./hello.txt",os.O_RDWR,0777)
@@ -138,5 +139,82 @@
 	
 	io.WriteString(write, " io.writestring")
    #+END_SRC
+-----
+ - io.pipe 管道 写完了再读
+   #+BEGIN_SRC go
+   	r,w := io.Pipe()
 
- - io.pip
+	go func(){
+		fmt.Fprint(w, "---hello world")
+		w.Close()
+	}()
+
+	bs := make([]byte,20)
+	r.Read(bs)
+	t.Log("bs===",string(bs))
+   #+END_SRC
+
+   #+BEGIN_SRC go
+       r, w := io.Pipe() 
+       go func() { 
+               fmt.Fprint(w, "Geeks\nfor\nGeeks\nis\na\nCS-Portal.\n") 
+               w.Close() 
+       }() 
+       buffer := new(bytes.Buffer) 
+       buffer.ReadFrom(r)
+       fmt.Print(buffer.String()) 
+   #+END_SRC
+-----
+ - io.Teepipe
+   #+BEGIN_SRC go
+   	f , err := os.Open("./hello.txt")
+	if err != nil{
+		log.Fatal("err")
+		os.Exit(1)
+	}
+	
+	var qw bytes.Buffer
+	r := io.TeeReader(f,&qw)
+
+	//返回一个reader 然后 io.copy
+	wr , err := os.Create("./tee2.txt")
+	if err != nil{
+		log.Fatal("err")
+		os.Exit(2)
+	}
+	io.Copy(wr, r)
+	os.Exit(0)
+   #+END_SRC
+-----
+ - io.MultiReader 
+   #+begin_src go
+   	f,_ := os.Open("./hello.txt")
+	
+	r := io.MultiReader(f)
+
+	f2,_ := os.Create("./tee1.txt")
+
+	w := io.MultiWriter(f2)
+	
+	io.Copy(w, r)
+   #+end_src
+   #+begin_src go 
+   //源码 --- 1.14.3
+   func MultiReader(readers ...Reader) Reader {
+	r := make([]Reader, len(readers))
+	copy(r, readers)
+	return &multiReader{r}
+   }
+   func MultiWriter(writers ...Writer) Writer {
+	allWriters := make([]Writer, 0, len(writers))
+	for _, w := range writers {
+		if mw, ok := w.(*multiWriter); ok {
+			allWriters = append(allWriters, mw.writers...)
+		} else {
+			allWriters = append(allWriters, w)
+		}
+	}
+	return &multiWriter{allWriters}
+    }  
+   #+end_src
+   
