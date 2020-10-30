@@ -1,0 +1,31 @@
+#+TITLE:     rust_note
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-10-30
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+* TODO 2020.10.30
+ - 2.0 
+  #+begin_src rust
+    println!("Hello, world!");
+    //let == var
+    //mut 让变量可变
+    let mut guess = String::new();
+    
+    io::stdin().read_line(&mut guess)
+        .expect("读取一行");
+    // read_line 返回一个 result -> res,err
+    // expect 接收返回
+    let rzry = "rzry";
+    // 相当于 fmt {} 接受参数
+
+    println!("hello : {} {}",guess,rzry)
+  #+end_src
+  #+begin_src rust 
+  
+  #+end_src
+

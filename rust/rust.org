@@ -1,0 +1,13 @@
+#+TITLE:     rust
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-10-30
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+
+* note
+  - *Link* : [[file:note/rust_note.org][rust_note]]
