@@ -8,12 +8,12 @@
 #+begin_export html
 #+end_export
 
-* 库介绍 
+* TODO 库介绍 
   - archive/tar 和 /zip-compress：压缩 (解压缩) 文件功能。
 -----
   - fmt - io - bufio - path/filepath - flag:
-    - fmt: 提供了格式化输入输出功能。 *Link* : [[file:note-standard/fmt/fmt.org][fmt]]
-    - io: 提供了基本输入输出功能，大多数是围绕系统功能的封装。 *Link* : [[file:note-standard/io/io.org][io]]
+    - [[file:note-standard/fmt/fmt.org][fmt: 提供了格式化输入输出功能]]
+    - [[file:note-standard/io/io.org][io: 提供了基本输入输出功能，大多数是围绕系统功能的封装]]
     - bufio: 缓冲输入输出功能的封装。 *Link* : ----
     - path/filepath: 用来操作在当前系统中的目标文件名路径。 *Link* : -----
     - flag: 对命令行参数的操作。 *Link* : ----
