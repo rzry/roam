@@ -24,9 +24,11 @@
 ** 一言以敝之
   - *熟悉Golang基本语法*
   - 擅长RESTful类型api设计，和mvc架构设计
-  - 掌握 *Linux* 基本操作，熟悉 *awk* ， *sed* 等命令与基本正则表达式 [[https://github.com/rzry/.dotfiles][.dotfiles]]
+  - 掌握 *Linux* 基本操作，熟悉 *awk* ， *sed* 等命令与基本正则表达式
+    - 配置 : [[https://github.com/rzry/.dotfiles][.dotfiles]]
   - 熟悉python语法 , 爬虫与数据处理
-  - 熟悉 *emacs* , 与基本的elisp语法 [[https://github.com/rzry/emacs-custom][emacs-config]]
+  - 熟悉 *emacs* , 与基本的elisp语法
+    - 配置 : [[https://github.com/rzry/emacs-custom][emacs-config]]
   - 面向 google 编程，基于 google 代码风格
   - 工作之余亦喜自学（笔记在外链）
 -----
