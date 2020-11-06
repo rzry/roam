@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-11-05 四 10:04 -->
+<!-- 2020-11-06 五 21:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>rust<sub>note</sub></title>
@@ -253,17 +253,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7f689fb"><span class="todo TODO">TODO</span> 2020.10.30</a></li>
+<li><a href="#org015c98f"><span class="todo TODO">TODO</span> 2020.10.30</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7f689fb" class="outline-2">
-<h2 id="org7f689fb"><span class="todo TODO">TODO</span> 2020.10.30</h2>
-<div class="outline-text-2" id="text-org7f689fb">
+<div id="outline-container-org015c98f" class="outline-2">
+<h2 id="org015c98f"><span class="todo TODO">TODO</span> 2020.10.30</h2>
+<div class="outline-text-2" id="text-org015c98f">
 <ul class="org-ul">
 <li><p>
-2.0 
+2.0
 </p>
 <div class="org-src-container">
 <pre class="src src-rust"><span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"Hello, world!"</span>);
@@ -291,13 +291,13 @@ for the JavaScript code in this tag.
 <span style="color: #81A1C1;">use</span> <span style="color: #81A1C1;">rand</span>::<span style="color: #8FBCBB;">Rng</span>;
 <span style="color: #81A1C1;">fn</span> <span style="color: #8FBCBB;">main</span>() {
     <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"&#33719;&#21462;&#19968;&#20010;&#25968;"</span>);
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#38543;&#26426;&#25968; &#36171;&#20540;&#32473;number </span>
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#38543;&#26426;&#25968; &#36171;&#20540;&#32473;number</span>
     <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">number</span> = <span style="color: #81A1C1;">rand</span>::thread_rng().gen_range(1, 100);
 
 
     <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#36755;&#20837;&#19968;&#20010;&#25968;</span>
    <span style="color: #81A1C1;">loop</span> {
-       <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#21021;&#22987;&#21270;&#19968;&#20010; scan </span>
+       <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#21021;&#22987;&#21270;&#19968;&#20010; scan</span>
     <span style="color: #81A1C1;">let</span> <span style="color: #81A1C1;">mut</span> <span style="color: #D8DEE9;">scan</span> = <span style="color: #8FBCBB;">String</span>::new();
        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#33719;&#21462;&#38190;&#30424;&#36755;&#20837; &#28982;&#21518;&#36171;&#20540;&#32473; scan</span>
     <span style="color: #81A1C1;">io</span>::stdin().read_line(&amp;<span style="color: #81A1C1;">mut</span> scan)
@@ -306,7 +306,7 @@ for the JavaScript code in this tag.
        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#26684;&#24335;&#36716;&#25442;&#20026;u32</span>
        <span style="color: #6f7787;">//    </span><span style="color: #6f7787;">let scan:u32 = scan.trim().parse()</span>
        <span style="color: #6f7787;">//      </span><span style="color: #6f7787;">.expect("&#36755;&#20837;&#19968;&#20010;num");</span>
-       <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#22788;&#29702;&#36755;&#20837;&#38750;u32 </span>
+       <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#22788;&#29702;&#36755;&#20837;&#38750;u32</span>
        <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">scan</span>:<span style="color: #8FBCBB;">u32</span> = <span style="color: #81A1C1;">match</span> scan.trim().parse() {
            <span style="color: #8FBCBB;">Ok</span>(num)=&gt;num,
            <span style="color: #8FBCBB;">Err</span>(_)=&gt; {
@@ -352,7 +352,7 @@ for the JavaScript code in this tag.
     <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">speace</span> = speace.len();
         <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">" ... </span><span style="color: #A3BE8C; font-style: italic;">{}</span><span style="color: #A3BE8C;">"</span>,speace);
 
-}   
+}
 </pre>
 </div></li>
 
@@ -418,6 +418,69 @@ for the JavaScript code in this tag.
 
 </pre>
 </div></li>
+
+<li><p>
+3.5 控制流
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">
+<span style="color: #81A1C1;">fn</span> <span style="color: #8FBCBB;">main</span>() {
+
+    <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">x</span> = <span style="color: #81A1C1;">true</span>;
+
+    <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">b</span> = <span style="color: #81A1C1;">if</span> x{
+        4
+    }<span style="color: #81A1C1;">else</span>{
+        3
+    };
+    <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"b --&gt; </span><span style="color: #A3BE8C; font-style: italic;">{}</span><span style="color: #A3BE8C;">"</span>, b);
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-rust">
+<span style="color: #81A1C1;">fn</span> <span style="color: #8FBCBB;">main</span>() {
+
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">rev&#26159;&#21453;&#36716;</span>
+    <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">num</span> <span style="color: #81A1C1;">in</span> (1..4).rev() {
+        <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"num -&gt;  </span><span style="color: #A3BE8C; font-style: italic;">{}</span><span style="color: #A3BE8C;">!"</span>,num);
+    }
+    <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"OVER"</span>);
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">num -&gt;  3!</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">num -&gt;  2!</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">num -&gt;  1!</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">OVER</span>
+}
+</pre>
+</div></li>
+
+<li><p>
+作用域
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #81A1C1;">fn</span> <span style="color: #8FBCBB;">main</span>() {
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">rust &#20316;&#29992;&#22495;</span>
+    <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">s</span> = <span style="color: #A3BE8C;">"hello"</span>;
+    <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"</span><span style="color: #A3BE8C; font-style: italic;">{}</span><span style="color: #A3BE8C;">"</span>,s);
+}
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22312;&#19968;&#20010;&#20989;&#25968;&#32467;&#23614; s &#30340;&#20316;&#29992;&#22495;&#24050;&#32463;&#32467;&#26463;</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">s&#24050;&#32463;&#26080;&#25928;&#20102;</span>
+<span style="color: #81A1C1;">fn</span> <span style="color: #8FBCBB;">main</span>() {
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">rust &#20316;&#29992;&#22495;</span>
+    <span style="color: #81A1C1;">let</span> <span style="color: #81A1C1;">mut</span> <span style="color: #D8DEE9;">s</span> = <span style="color: #8FBCBB;">String</span>::from(<span style="color: #A3BE8C;">"test"</span>);
+    s.push_str(<span style="color: #A3BE8C;">"string"</span>);
+    <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"s -&gt; </span><span style="color: #A3BE8C; font-style: italic;">{}</span><span style="color: #A3BE8C;">"</span>,s);
+    <span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">s2</span> = s;
+    <span style="color: #81A1C1;">println!</span>(<span style="color: #A3BE8C;">"s2 -&gt; </span><span style="color: #A3BE8C; font-style: italic;">{}</span><span style="color: #A3BE8C;">"</span>,s2);
+}
+
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#31532;&#19968;&#20010; , &#25226;5&#32465;&#23450;&#21040;x &#25509;&#30528;&#20540;&#25335;&#36125; &#32465;&#23450;&#21040; y</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#31532;&#20108;&#20010; string &#24213;&#23618;&#26159; data cap len  data &#26159;&#19968;&#20010;&#25351;&#38024;,</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#25152;&#20197;&#31532;&#20108;&#20010; s2 &#21644; s1 &#25351;&#21521;&#21516;&#19968;&#20010;&#22320;&#22336;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#24403;&#28982;&#21487;&#20197;&#21482;&#29992;  s1.clone() &#36827;&#34892;&#22534;&#25335;&#36125;</span>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
@@ -425,7 +488,7 @@ for the JavaScript code in this tag.
 <div id="postamble" class="status">
 <p class="date">Date: 2020-10-30</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-11-05 四 10:04</p>
+<p class="date">Created: 2020-11-06 五 21:49</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

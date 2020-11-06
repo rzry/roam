@@ -182,3 +182,26 @@ fn main() {
 }
    #+end_src
 
+ - 作用域
+   #+begin_src rust
+fn main() {
+    //rust 作用域
+    let s = "hello";
+    println!("{}",s);
+}
+// 在一个函数结尾 s 的作用域已经结束
+//s已经无效了
+fn main() {
+    //rust 作用域
+    let mut s = String::from("test");
+    s.push_str("string");
+    println!("s -> {}",s);
+    let s2 = s;
+    println!("s2 -> {}",s2);
+}
+
+//第一个 , 把5绑定到x 接着值拷贝 绑定到 y
+//第二个 string 底层是 data cap len  data 是一个指针,
+// 所以第二个 s2 和 s1 指向同一个地址
+// 当然可以只用  s1.clone() 进行堆拷贝
+   #+end_src
