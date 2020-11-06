@@ -9,13 +9,13 @@
 #+end_export
 
 * TODO 2020.10.30
- - 2.0 
+ - 2.0
   #+begin_src rust
     println!("Hello, world!");
     //let == var
     //mut 让变量可变
     let mut guess = String::new();
-    
+
     io::stdin().read_line(&mut guess)
         .expect("读取一行");
     // read_line 返回一个 result -> res,err
@@ -25,7 +25,160 @@
 
     println!("hello : {} {}",guess,rzry)
   #+end_src
-  #+begin_src rust 
-  
-  #+end_src
+
+ - 猜游戏
+   #+begin_src rust
+use std::io;
+use std::cmp::Ordering;
+use rand::Rng;
+fn main() {
+    println!("获取一个数");
+    //随机数 赋值给number
+    let number = rand::thread_rng().gen_range(1, 100);
+
+
+    // 输入一个数
+   loop {
+       //初始化一个 scan
+    let mut scan = String::new();
+       //获取键盘输入 然后赋值给 scan
+    io::stdin().read_line(&mut scan)
+        .expect("get num : ");
+       //初始化为String::new()
+       //格式转换为u32
+       //    let scan:u32 = scan.trim().parse()
+       //      .expect("输入一个num");
+       //处理输入非u32
+       let scan:u32 = match scan.trim().parse() {
+           Ok(num)=>num,
+           Err(_)=> {
+               println!("enter num");
+               continue;
+           },
+       };
+       // 两个数比较
+    match scan.cmp(&number) {
+        Ordering::Less => println!("小"),
+        Ordering::Greater => println!("大"),
+        Ordering::Equal =>{
+            println!("ok");
+            break;
+        },
+    }
+   }
+
+}
+
+   #+end_src
+
+ - 3.1 变量可变
+   #+begin_src rust
+const MUM:u32 = 100;
+fn main() {
+
+    let mut x = 5;
+    println!("this value = > {}",x);
+    x = 6;
+    println!("this value now = > {} {}",x ,MUM); // 6.100
+    //shadowing
+    let y = 2;
+    let y = y+1;
+    let y = y*2;
+
+    println!("y => {}", y); // y==6
+    // let 已经相当于重新定义了
+    let speace = "    ";
+    let speace = speace.len();
+        println!(" ... {}",speace);
+
+}
+   #+end_src
+
+ - 3.2 数据类型
+   #+begin_src rust
+   fn main() {
+    //元组
+    let xs:(i32,f64,u8)=(100,5.3,1);
+
+    let(x,y,z)=xs;
+    println!("x == {},y == {},z == {}",x,y,z );
+    println!("x == {},y == {},z == {}",xs.0,xs.1,xs.2);
+
+
+    //数组
+    let a:[i32;3]=[1,2,3];
+    for i in 0..3 {
+        println!("a == > {}",a[i] );
+    }
+ }
+   #+end_src
+
+ - 3.3 函数工作
+   #+begin_src rust
+fn main() {
+    anot(1,3);
+    println!("returnx - >{} ",anots(1,2));
+}
+
+fn anot(x:i32,y:i32){
+    println!("x value ==> {} \ny value ==> {}", x,y);
+}
+fn anots(x:i32,y:i32)->i32{
+    return x+y;
+}
+
+   #+end_src
+   #+begin_src rust
+   fn main() {
+    let x=5;
+    let y ={
+        let x =3;
+        x+1 // 表达式结尾没有分号,加分号就是语句,语句没有返回值
+    };
+
+    println!("x===> {},y===>{}",x,y ); //5 , 4
+
+    //语句没有返回值, 表达式有 比如:
+    let d = hello(2);
+    println!("d == > {}",d );
+
+}
+
+fn hello(x:i32)->i32{
+    x*x
+}
+
+   #+end_src
+
+ - 3.5 控制流
+   #+begin_src rust
+
+fn main() {
+
+    let x = true;
+
+    let b = if x{
+        4
+    }else{
+        3
+    };
+    println!("b --> {}", b);
+}
+   #+end_src
+
+   #+begin_src rust
+
+fn main() {
+
+    //rev是反转
+    for num in (1..4).rev() {
+        println!("num ->  {}!",num);
+    }
+    println!("OVER");
+//num ->  3!
+//num ->  2!
+//num ->  1!
+//OVER
+}
+   #+end_src
 
