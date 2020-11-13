@@ -1,0 +1,69 @@
+#+TITLE:     bufio
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-11-09
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:2
+#+SETUPFILE: ../../../../org-html-themes/setup/theme-readtheorg.setup
+#+begin_export html
+#+end_export
+
+
+* bufio
+  - 包装了io 实现了带缓冲的I/O
+
+  - bufio - NewReader
+    #+begin_src go
+    func main() {
+	str := strings.NewReader("rzry")
+
+	qs := bufio.NewReader(str)
+
+	bs := make([]byte, 123)
+	qs.Read(bs)
+	fmt.Println(string(bs))
+
+   }
+    #+end_src
+
+  - bufio reset
+    #+begin_src go
+    func main() {
+	str1 := strings.NewReader("rzry 1")
+	str2 := strings.NewReader("rzry 2")
+	buf1 := bufio.NewReader(str1)
+	buf2 := bufio.NewReader(str2)
+	//上面的操作已经吧 str 的数据都读入(缓存到)buf中了
+	byte1 := make([]byte, 24)
+	buf1.Read(byte1)
+	fmt.Println("buf1 ==>", string(byte1))
+	//然后我们使用一下reset 让缓存失效 .
+	str3 := strings.NewReader("rzry 3 ")
+	buf2.Reset(str3)
+	res, _ := buf2.ReadString('\n')
+	fmt.Println("buf2 reset == >", res)
+    }
+    #+end_src
+  - bufio readbyte
+    #+begin_src go
+	str1 := strings.NewReader("rzry")
+	qs := bufio.NewReader(str1)
+	for {
+		bytes, err := qs.ReadByte()
+		fmt.Println("bytes == >", string(bytes))
+		if err != nil {
+			break
+		}
+	}
+    #+end_src
+
+  - bufio buffered
+    #+begin_src go
+    	str1 := strings.NewReader(" safasf")
+	qd := bufio.NewReader(str1)
+	//	fmt.Println(qd.Buffered())
+	qd.Peek(1)
+	fmt.Println(qd.Buffered())
+        //peek 后 buffered 可获得str1 len
+        //当然可以 str1.Len()
+    #+end_src

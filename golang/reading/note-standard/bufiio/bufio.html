@@ -6,7 +6,7 @@
 <!-- 2020-11-13 五 14:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>rust</title>
+<title>bufio</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -248,28 +248,96 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">rust</h1>
+<h1 class="title">bufio</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfcc52e5">note</a></li>
+<li><a href="#org9e9c432">bufio</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-orgfcc52e5" class="outline-2">
-<h2 id="orgfcc52e5">note</h2>
-<div class="outline-text-2" id="text-orgfcc52e5">
+<div id="outline-container-org9e9c432" class="outline-2">
+<h2 id="org9e9c432">bufio</h2>
+<div class="outline-text-2" id="text-org9e9c432">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=note/rust_note.html>rust<sub>note</sub></a></li>
+<li>包装了io 实现了带缓冲的I/O</li>
+
+<li><p>
+bufio - NewReader
+</p>
+<div class="org-src-container">
+<pre class="src src-go"> <span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">main</span>() {
+     <span style="color: #D8DEE9;">str</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">"rzry"</span>)
+
+     <span style="color: #D8DEE9;">qs</span> := bufio.<span style="color: #8FBCBB;">NewReader</span>(str)
+
+     <span style="color: #D8DEE9;">bs</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>, 123)
+     qs.<span style="color: #8FBCBB;">Read</span>(bs)
+     fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #8FBCBB;">string</span>(bs))
+
+}
+</pre>
+</div></li>
+
+<li><p>
+bufio reset
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">main</span>() {
+    <span style="color: #D8DEE9;">str1</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">"rzry 1"</span>)
+    <span style="color: #D8DEE9;">str2</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">"rzry 2"</span>)
+    <span style="color: #D8DEE9;">buf1</span> := bufio.<span style="color: #8FBCBB;">NewReader</span>(str1)
+    <span style="color: #D8DEE9;">buf2</span> := bufio.<span style="color: #8FBCBB;">NewReader</span>(str2)
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#19978;&#38754;&#30340;&#25805;&#20316;&#24050;&#32463;&#21543; str &#30340;&#25968;&#25454;&#37117;&#35835;&#20837;(&#32531;&#23384;&#21040;)buf&#20013;&#20102;</span>
+    <span style="color: #D8DEE9;">byte1</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>, 24)
+    buf1.<span style="color: #8FBCBB;">Read</span>(byte1)
+    fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"buf1 ==&gt;"</span>, <span style="color: #8FBCBB;">string</span>(byte1))
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28982;&#21518;&#25105;&#20204;&#20351;&#29992;&#19968;&#19979;reset &#35753;&#32531;&#23384;&#22833;&#25928; .</span>
+    <span style="color: #D8DEE9;">str3</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">"rzry 3 "</span>)
+    buf2.<span style="color: #8FBCBB;">Reset</span>(str3)
+    <span style="color: #D8DEE9;">res</span>, <span style="color: #D8DEE9;">_</span> := buf2.<span style="color: #8FBCBB;">ReadString</span>(<span style="color: #A3BE8C;">'\n'</span>)
+    fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"buf2 reset == &gt;"</span>, res)
+}
+</pre>
+</div></li>
+<li><p>
+bufio readbyte
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">str1</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">"rzry"</span>)
+<span style="color: #D8DEE9;">qs</span> := bufio.<span style="color: #8FBCBB;">NewReader</span>(str1)
+<span style="color: #81A1C1;">for</span> {
+        <span style="color: #D8DEE9;">bytes</span>, <span style="color: #D8DEE9;">err</span> := qs.<span style="color: #8FBCBB;">ReadByte</span>()
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"bytes == &gt;"</span>, <span style="color: #8FBCBB;">string</span>(bytes))
+        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
+                <span style="color: #81A1C1;">break</span>
+        }
+}
+</pre>
+</div></li>
+
+<li><p>
+bufio buffered
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #D8DEE9;">str1</span> := strings.<span style="color: #8FBCBB;">NewReader</span>(<span style="color: #A3BE8C;">" safasf"</span>)
+<span style="color: #D8DEE9;">qd</span> := bufio.<span style="color: #8FBCBB;">NewReader</span>(str1)
+<span style="color: #6f7787;">//  </span><span style="color: #6f7787;">fmt.Println(qd.Buffered())</span>
+qd.<span style="color: #8FBCBB;">Peek</span>(1)
+fmt.<span style="color: #8FBCBB;">Println</span>(qd.<span style="color: #8FBCBB;">Buffered</span>())
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">peek &#21518; buffered &#21487;&#33719;&#24471;str1 len</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#24403;&#28982;&#21487;&#20197; str1.Len()</span>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-10-30</p>
+<p class="date">Date: 2020-11-09</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
 <p class="date">Created: 2020-11-13 五 14:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>

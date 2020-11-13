@@ -1,4 +1,4 @@
-#+TITLE:     standard-learn 
+#+TITLE:     standard-learn
 #+AUTHOR:    rzry https://github.com/rzry
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-10-12
@@ -8,7 +8,7 @@
 #+begin_export html
 #+end_export
 
-* TODO 库介绍 
+* TODO 库介绍
   - archive/tar 和 /zip-compress：压缩 (解压缩) 文件功能。
 -----
   - fmt - io - bufio - path/filepath - flag:
@@ -22,7 +22,7 @@
     - strings: 提供对字符串的操作。
     - strconv: 提供将字符串转换为基础类型的功能。
     - unicode: 为 unicode 型的字符串提供特殊的功能。
-    - regexp: 正则表达式功能。
+    - regexp: 正则表达式功能。buf
     - bytes: 提供对字符型分片的操作。
     - index/suffixarray: 子字符串快速查询。
 
@@ -63,4 +63,3 @@
           隐藏了不同操作系统间差异，让不同的文件系统和操作系统对象表现一致。
     - os/exec: 提供我们运行外部操作系统命令和程序的方式。
     - syscall: 底层的外部包，提供了操作系统底层调用的基本接口
-
