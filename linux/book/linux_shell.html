@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-24 四 20:17 -->
+<!-- 2020-12-03 四 15:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux就该这么学</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,27 +248,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org67f9c8e"><span class="done DONE">DONE</span> 第三章</a>
+<li><a href="#orgeaa7bf2">1. <span class="done DONE">DONE</span> 第三章</a>
 <ul>
-<li><a href="#orgac0ab98">shell</a></li>
+<li><a href="#orgde13aaf">1.1. shell</a></li>
 </ul>
 </li>
-<li><a href="#org483a223"><span class="done DONE">DONE</span> 第四章</a>
+<li><a href="#org68699db">2. <span class="done DONE">DONE</span> 第四章</a>
 <ul>
-<li><a href="#orge7903f3">监测</a></li>
+<li><a href="#orgbad2918">2.1. 监测</a>
+<ul>
+<li><a href="#org30b2aa9">2.1.1. top 的输出</a></li>
+<li><a href="#org813c98f">2.1.2. 磁盘空间</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org45944cf">3. <span class="done DONE">DONE</span> 第五章</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org85320b7">3.0.1. shell</a></li>
+<li><a href="#org7f88edb">3.0.2. 命令别名　alias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgfe307d3">4. <span class="todo TODO">TODO</span> 变量</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgf0d1627">4.0.1. 查看变量</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org67f9c8e" class="outline-2">
-<h2 id="org67f9c8e"><span class="done DONE">DONE</span> 第三章</h2>
-<div class="outline-text-2" id="text-org67f9c8e">
+<div id="outline-container-orgeaa7bf2" class="outline-2">
+<h2 id="orgeaa7bf2"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> 第三章</h2>
+<div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgac0ab98" class="outline-3">
-<h3 id="orgac0ab98">shell</h3>
-<div class="outline-text-3" id="text-orgac0ab98">
+<div id="outline-container-orgde13aaf" class="outline-3">
+<h3 id="orgde13aaf"><span class="section-number-3">1.1</span> shell</h3>
+<div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>/etc/passwd文件包含了所有系统用户账户列表以及每个用户的基本配置信息</li>
 <li>rzry:x:1000:1000:rzry,,,:/home/rzry:/bin/zsh</li>
@@ -283,46 +302,46 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org483a223" class="outline-2">
-<h2 id="org483a223"><span class="done DONE">DONE</span> 第四章</h2>
-<div class="outline-text-2" id="text-org483a223">
+<div id="outline-container-org68699db" class="outline-2">
+<h2 id="org68699db"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> 第四章</h2>
+<div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge7903f3" class="outline-3">
-<h3 id="orge7903f3">监测</h3>
-<div class="outline-text-3" id="text-orge7903f3">
+<div id="outline-container-orgbad2918" class="outline-3">
+<h3 id="orgbad2918"><span class="section-number-3">2.1</span> 监测</h3>
+<div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orga6d05a3" class="outline-4">
-<h4 id="orga6d05a3">top 的输出</h4>
-<div class="outline-text-4" id="text-orga6d05a3">
+<div id="outline-container-org30b2aa9" class="outline-4">
+<h4 id="org30b2aa9"><span class="section-number-4">2.1.1</span> top 的输出</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <pre class="example">
- pid    USER   PR    NI    VIRT     RES     SHR       S     %CPU             %MEM     TIME+ COMMAND                                                                                                                                                                                    
- 2712   root   20    0    715060   271296  133612     R      6.6              0.8     51:59.30 Xorg   
+ pid    USER   PR    NI    VIRT     RES     SHR       S     %CPU             %MEM     TIME+ COMMAND
+ 2712   root   20    0    715060   271296  133612     R      6.6              0.8     51:59.30 Xorg
  进程id 用户名 优先级  谦让度 虚拟内存  物理内存 共享内存总量 状态  cpu使用的时间比例  内存占用比例  时间   程序名
 
-D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵化   
+D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵化
 
 </pre>
 <hr />
 <hr />
 </div>
 </div>
-<div id="outline-container-orgff7d566" class="outline-4">
-<h4 id="orgff7d566">磁盘空间</h4>
-<div class="outline-text-4" id="text-orgff7d566">
+<div id="outline-container-org813c98f" class="outline-4">
+<h4 id="org813c98f"><span class="section-number-4">2.1.2</span> 磁盘空间</h4>
+<div class="outline-text-4" id="text-2-1-2">
 <pre class="example">
 默认情况下， mount命令会输出当前系统上挂载的设备列表
 nsfs on /run/snapd/ns/gnome-calculator.mnt type nsfs (rw)
 媒体的设备文件名  nsfs
 媒体挂载到虚拟目录的挂载点 /run/....
 文件系统类型   type
-访问状态 rw 
+访问状态 rw
 </pre>
 <hr />
 <hr />
 </div>
-<ul class="org-ul">
-<li><a id="org8ccff55"></a>挂载<br />
-<div class="outline-text-6" id="text-org8ccff55">
+<ol class="org-ol">
+<li><a id="orgc9380ec"></a>挂载<br />
+<div class="outline-text-6" id="text-2-1-2-0-1">
 <ul class="org-ul">
 <li>mount -t vfat /dev/sdb1 /media/rzry</li>
 <li>把一个vfat的类型的文件从/dev/sdb1 挂载到/media/rzry</li>
@@ -330,11 +349,11 @@ nsfs on /run/snapd/ns/gnome-calculator.mnt type nsfs (rw)
 </ul>
 </div>
 </li>
-<li><a id="org1a24a59"></a>卸载<br />
-<div class="outline-text-6" id="text-org1a24a59">
+<li><a id="orgbf33fb3"></a>卸载<br />
+<div class="outline-text-6" id="text-2-1-2-0-2">
 <ul class="org-ul">
 <li><p>
-umount 卸载 没有n 
+umount 卸载 没有n
 </p>
 <pre class="example">
 用法：
@@ -347,17 +366,17 @@ umount [选项] &lt;源&gt; | &lt;目录&gt;
 <hr />
 </div>
 </li>
-<li><a id="orgdc3b072"></a>du命令 查看大文件并处理数据<br />
-<div class="outline-text-6" id="text-orgdc3b072">
+<li><a id="orgc7d6b37"></a>du命令 查看大文件并处理数据<br />
+<div class="outline-text-6" id="text-2-1-2-0-3">
 <pre class="example">
-du 会输出类似tree 输出 
-du -sh * | sort -nr 
--nr r 会让文件按降序输出 
+du 会输出类似tree 输出
+du -sh * | sort -nr
+-nr r 会让文件按降序输出
 </pre>
 </div>
 </li>
-<li><a id="org53b35de"></a>grep 搜索<br />
-<div class="outline-text-6" id="text-org53b35de">
+<li><a id="org2c381df"></a>grep 搜索<br />
+<div class="outline-text-6" id="text-2-1-2-0-4">
 <pre class="example">
 -v 反向
 -n 行号
@@ -365,6 +384,43 @@ du -sh * | sort -nr
 </pre>
 </div>
 </li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org45944cf" class="outline-2">
+<h2 id="org45944cf"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> 第五章</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org85320b7" class="outline-4">
+<h4 id="org85320b7"><span class="section-number-4">3.0.1</span> shell</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<ul class="org-ul">
+<li>cat /etc/passwd 查看user shell</li>
+<li>查看默认shell为什么 也可以使用 /bin/bash *.sh</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7f88edb" class="outline-4">
+<h4 id="org7f88edb"><span class="section-number-4">3.0.2</span> 命令别名　alias</h4>
+<div class="outline-text-4" id="text-3-0-2">
+<ul class="org-ul">
+<li>alias -&gt; l='ls -lah'</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe307d3" class="outline-2">
+<h2 id="orgfe307d3"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> 变量</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgf0d1627" class="outline-4">
+<h4 id="orgf0d1627"><span class="section-number-4">4.0.1</span> 查看变量</h4>
+<div class="outline-text-4" id="text-4-0-1">
+<ul class="org-ul">
+<li>env printenv set</li>
+<li>set 会显示全局变量, 局部变量 用户定义变量</li>
 </ul>
 </div>
 </div>
@@ -373,7 +429,7 @@ du -sh * | sort -nr
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-24</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-09-24 四 20:17</p>
+<p class="date">Created: 2020-12-03 四 15:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

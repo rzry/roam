@@ -1,0 +1,58 @@
+#+TITLE:     ecc.ecdh
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-12-02
+#+LANGUAGE:  en
+
+* 介绍
+
+  - 秘钥生成
+    #+begin_src go
+    // GenerateKey generates a public and private key pair.
+func GenerateKey(c elliptic.Curve, rand io.Reader) (*PrivateKey, error) {
+	k, err := randFieldElement(c, rand)
+	if err != nil {
+		return nil, err
+	}
+
+	priv := new(PrivateKey)
+	priv.PublicKey.Curve = c
+	priv.D = k
+	priv.PublicKey.X, priv.PublicKey.Y = c.ScalarBaseMult(k.Bytes())
+	return priv, nil
+}
+    #+end_src
+    传入一个 椭圆曲线 和一个 io.reader 会得到一个 private
+    #+begin_src go
+    type PrivateKey struct {
+	PublicKey
+	D *big.Int
+   }
+    #+end_src
+
+    生成公钥 私钥
+    #+begin_src go
+    private, err := ecdsa.GenerateKey(elliptic.P256(),rand.Reader)
+
+    if err != nil{
+    //todo
+    }
+    public := private.PublicKey
+    #+end_src
+
+  - 针对eth的椭圆曲线
+    图像为 : y2 = x3 +ax + b
+    上文使用的是p256 而 相同的还有p521 p384 ...
+    差别 : 是素数的不同(越大椭圆就会越大).
+          在代码里面 initP256 会定义 对于每个椭圆点的最大值
+    所以在得到一个椭圆曲线以后,会确定a 和 b 的值,像spec265k1 a=0 b=7,
+    在生成私钥时 会使用rand.Reader 生成随机数  做为公钥
+    在eth 中 G 值 是确定的 所以公钥的生成 是 使用G值的去乘以 我们锁定私钥的x,y
+    假定 我们的私钥是 P(x,y) 使用的曲线是 spec256k1 G是一个固定值
+
+  - 加密
+
+
+  - 签名
+
+  - 验证

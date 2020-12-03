@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-23 五 15:50 -->
+<!-- 2020-12-03 四 15:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2020.10</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,42 +248,42 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org30527a9">独白</a></li>
-<li><a href="#org385fc55">分享</a>
+<li><a href="#org9ed6d41">1. 独白</a></li>
+<li><a href="#org0a17be7">2. 分享</a>
 <ul>
-<li><a href="#org89118e0">快速配置</a></li>
-<li><a href="#org4653361">ide / emacs 介绍</a></li>
-<li><a href="#org6fed8f2">快速使用</a></li>
-<li><a href="#org76f3c24">linux 使用技巧</a></li>
-<li><a href="#orgb9f1030">ubuntu app  (带过)</a></li>
-<li><a href="#orge7eca46">go配置的介绍 , 自定义的路径</a></li>
+<li><a href="#org3387b04">2.1. 快速配置</a></li>
+<li><a href="#org4598789">2.2. ide / emacs 介绍</a></li>
+<li><a href="#orgb8faa3b">2.3. 快速使用</a></li>
+<li><a href="#orgfc073e7">2.4. linux 使用技巧</a></li>
+<li><a href="#orgd9d931c">2.5. ubuntu app  (带过)</a></li>
+<li><a href="#org4280ed9">2.6. go配置的介绍 , 自定义的路径</a></li>
 </ul>
 </li>
-<li><a href="#orga3d9ea9"><span class="todo TODO">TODO</span> list</a>
+<li><a href="#orgd9f44a5">3. <span class="todo TODO">TODO</span> list</a>
 <ul>
-<li><a href="#org8ef4352"><span class="done DONE">DONE</span> pk &#x2013; &gt; timesteamp</a></li>
-<li><a href="#orgf3433e1"><span class="done DONE">DONE</span> get &#x2014; &gt; 当日数据(若new数据为空) 查询old 数据</a></li>
-<li><a href="#org454c6a5"><span class="todo TODO">TODO</span> add &#x2014; &gt; 给当日数据增加new 数据</a></li>
+<li><a href="#org584bfda">3.1. <span class="done DONE">DONE</span> pk &#x2013; &gt; timesteamp</a></li>
+<li><a href="#org9db7bce">3.2. <span class="done DONE">DONE</span> get &#x2014; &gt; 当日数据(若new数据为空) 查询old 数据</a></li>
+<li><a href="#org496f854">3.3. <span class="todo TODO">TODO</span> add &#x2014; &gt; 给当日数据增加new 数据</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <hr />
-<div id="outline-container-org30527a9" class="outline-2">
-<h2 id="org30527a9">独白</h2>
-<div class="outline-text-2" id="text-org30527a9">
+<div id="outline-container-org9ed6d41" class="outline-2">
+<h2 id="org9ed6d41"><span class="section-number-2">1</span> 独白</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
-使用的是 ubuntu , 然后因为换工作的原因 
+使用的是 ubuntu , 然后因为换工作的原因
 所以在上家离职的时候 做了一些简单的配置
-下面来介绍一下 . 
-基本上就是下面的这些分类  
-开了键盘记录 下面就可以看到我的键盘敲击 
-先从 dotfile 一步一步来说吧  
+下面来介绍一下 .
+基本上就是下面的这些分类
+开了键盘记录 下面就可以看到我的键盘敲击
+先从 dotfile 一步一步来说吧
 我的仓库的 readme 里面有基本的使用方法
 
 
-一般 一个新的电脑 如果是工作的话 ubuntu 安装的流程就是 
+一般 一个新的电脑 如果是工作的话 ubuntu 安装的流程就是
 先把ssr装了... 然后 代理去下dotfile .
 然后去设置 zsh 等等 . (建议设置dns 然后github走socket5 , 方法就百度吧)
 看一下速度.
@@ -297,57 +292,57 @@ theme 我都是不设置的 家里的设置了. 公司 一般我都是全屏工�
 
 如果我知道我这个工作能干2个月, 我就去装arch 了.  起码 也会把这个主题改改...
 
-哈哈哈哈的打错了 下次见 导出为 html 
+哈哈哈哈的打错了 下次见 导出为 html
 </pre>
 <hr />
 </div>
 </div>
-<div id="outline-container-org385fc55" class="outline-2">
-<h2 id="org385fc55">分享</h2>
-<div class="outline-text-2" id="text-org385fc55">
+<div id="outline-container-org0a17be7" class="outline-2">
+<h2 id="org0a17be7"><span class="section-number-2">2</span> 分享</h2>
+<div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org89118e0" class="outline-3">
-<h3 id="org89118e0">快速配置</h3>
-<div class="outline-text-3" id="text-org89118e0">
+<div id="outline-container-org3387b04" class="outline-3">
+<h3 id="org3387b04"><span class="section-number-3">2.1</span> 快速配置</h3>
+<div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
-<li>dotfile 介绍 . dotfile . 
+<li>dotfile 介绍 . dotfile .
 配置了我的linux 的一些基本配置 包括下面这些分类
 <ul class="org-ul">
 <li>配置说明</li>
-<li>cargo 
+<li>cargo
 cargo 里面包括了 rust 的 .cargo  我们使用的方式是用stow 本质就是 ln引入链接</li>
 <li>go
 go 的配置是 go env 里面设置的很少 因为基本上都需要 export 去设置一些单独项</li>
-<li>emacs 
+<li>emacs
 这个是一个编辑器 待会再讲</li>
 <li>git
 设置了 .gitconfig 基本上也是基础的  这个不能看 里面有密码&#x2026;</li>
-<li>tmux 
+<li>tmux
 tmux 就是我的终端 就是这个  他可以复用 然后可以开多窗口 看一下配置
 基本上只是设置了 快捷键, 然后做了一些简单的美化 设置了powerline(底部栏)</li>
 <li>zsh
-介绍就是如此,ubuntu 的shell默认是 bash , 然后基本我都会换成zsh 
-zsh 的配置在~/.zshenv  在里面设置了我的 go cargo node zsh  
+介绍就是如此,ubuntu 的shell默认是 bash , 然后基本我都会换成zsh
+zsh 的配置在~/.zshenv  在里面设置了我的 go cargo node zsh
 相同与 .bashrc</li>
 <li>init / install
 这是两个脚本.
-init.sh &#x2014; 初始化  换源  然后去除每次都要输 密码  install 了一些基本项 
-install.sh &#x2014; 安装软件为主 每次安装 就只需要输入 
-比如   安装 docker   ./install.sh docker 
-里面 我写了我常用的 必装的所有软件  docker docker-compose node golang 
+init.sh &#x2014; 初始化  换源  然后去除每次都要输 密码  install 了一些基本项
+install.sh &#x2014; 安装软件为主 每次安装 就只需要输入
+比如   安装 docker   ./install.sh docker
+里面 我写了我常用的 必装的所有软件  docker docker-compose node golang
 fd fzf rg  ssr emacs 等&#x2026;.</li>
 </ul></li>
 </ul>
 <hr />
 </div>
 </div>
-<div id="outline-container-org4653361" class="outline-3">
-<h3 id="org4653361">ide / emacs 介绍</h3>
-<div class="outline-text-3" id="text-org4653361">
+<div id="outline-container-org4598789" class="outline-3">
+<h3 id="org4598789"><span class="section-number-3">2.2</span> ide / emacs 介绍</h3>
+<div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
-<li>快捷键 
+<li>快捷键
 emacs 的介绍. 你们需要多注意我的键盘敲击的按键了  比如切换窗口 Ctrl + x  o</li>
-<li>配置 
+<li>配置
 <ul class="org-ul">
 <li>普通配置 略过&#x2026;
 看一眼 我的注释写的很清除</li>
@@ -357,31 +352,31 @@ emacs 的介绍. 你们需要多注意我的键盘敲击的按键了  比如切�
 <li>插件</li>
 <li>org
 <ul class="org-ul">
-<li>roam 
+<li>roam
 记笔记的 . 当然它的主要用途是说 双向链接, 但是我暂时没有需求
 我把这个关掉 然后重开 介绍emacs吧
 roam 是 记笔记的 左边是我的 所有来公司的笔记 当然是之前记得. 都只是分类了
-每次启动emacs 都会开一个 server 
+每次启动emacs 都会开一个 server
 我们直接去访问  在浏览器 和 emacs 有交互 使用的是 org-protocol
 会把我的笔记都显示出来.
-我可以直接点击 使用emacs 打开 
+我可以直接点击 使用emacs 打开
 标记
 我看到一个不错的文章  他就会自动保存下来</li>
-<li>eaf 也可以讲讲 .但是配置比较麻烦. 比如我想听歌了 
-我们可以使用 eaf open brow 打开一个 
+<li>eaf 也可以讲讲 .但是配置比较麻烦. 比如我想听歌了
+我们可以使用 eaf open brow 打开一个
 还有视屏的打开 eaf 的官方库
-<a href="https://github.com/manateelazycat/emacs-application-framework">https://github.com/manateelazycat/emacs-application-framework</a> 
+<a href="https://github.com/manateelazycat/emacs-application-framework">https://github.com/manateelazycat/emacs-application-framework</a>
 这个作者是我很&#x2026;他的文章很多我都看了</li>
 <li><p>
-export 
+export
 基础的emacs 介绍. 我算了吧 &#x2026; 因为比较复杂 我也不知道从何讲起
 </p>
 
 <p>
 我的emacs 配置 了 基本上,我需要的 我都配置了
-但是都是自己写的, 所以没有用到什么懒加载之类的技术, 我都不会关emacs 
+但是都是自己写的, 所以没有用到什么懒加载之类的技术, 我都不会关emacs
 可能几个礼拜才关一次  几百个buffer 很正常.
-没办法展示 nox + gopls 但是这个 都是正常配置  都是公司代码. 
+没办法展示 nox + gopls 但是这个 都是正常配置  都是公司代码.
 还可以吧.电脑配置不是很低的话
 </p></li>
 </ul></li>
@@ -389,9 +384,9 @@ export
 <hr />
 </div>
 </div>
-<div id="outline-container-org6fed8f2" class="outline-3">
-<h3 id="org6fed8f2">快速使用</h3>
-<div class="outline-text-3" id="text-org6fed8f2">
+<div id="outline-container-orgb8faa3b" class="outline-3">
+<h3 id="orgb8faa3b"><span class="section-number-3">2.3</span> 快速使用</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>github.com/rzry/.dotfiles</li>
 <li>docker mysql redis &#x2026;</li>
@@ -399,9 +394,9 @@ export
 <hr />
 </div>
 </div>
-<div id="outline-container-org76f3c24" class="outline-3">
-<h3 id="org76f3c24">linux 使用技巧</h3>
-<div class="outline-text-3" id="text-org76f3c24">
+<div id="outline-container-orgfc073e7" class="outline-3">
+<h3 id="orgfc073e7"><span class="section-number-3">2.4</span> linux 使用技巧</h3>
+<div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>autossh 可以去百度一下 用来做端口映射 来连接家里电脑的 家里没开&#x2026;</li>
 <li>rg/ag . 做搜索的 比如说 把这个关了</li>
@@ -411,9 +406,9 @@ export
 <hr />
 </div>
 </div>
-<div id="outline-container-orgb9f1030" class="outline-3">
-<h3 id="orgb9f1030">ubuntu app  (带过)</h3>
-<div class="outline-text-3" id="text-orgb9f1030">
+<div id="outline-container-orgd9d931c" class="outline-3">
+<h3 id="orgd9d931c"><span class="section-number-3">2.5</span> ubuntu app  (带过)</h3>
+<div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>ss&#x2026; github 找 fork</li>
 <li>远程  我向日葵 一般一直开着  怕用到 其实根本没用到过</li>
@@ -424,15 +419,15 @@ export
 </ul>
 </div>
 </div>
-<div id="outline-container-orge7eca46" class="outline-3">
-<h3 id="orge7eca46">go配置的介绍 , 自定义的路径</h3>
-<div class="outline-text-3" id="text-orge7eca46">
+<div id="outline-container-org4280ed9" class="outline-3">
+<h3 id="org4280ed9"><span class="section-number-3">2.6</span> go配置的介绍 , 自定义的路径</h3>
+<div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>go env things</li>
 <li>一般go 的 env . 有时候 tidy 的问题</li>
 <li>设置  proxy  一般 tidy 有问题 这三个都可以解决</li>
 <li>没有代理就 <a href="https://goproxy.cn">https://goproxy.cn</a></li>
-<li>地址404 的话 就 direct 把代理关掉 或者添加private 
+<li>地址404 的话 就 direct 把代理关掉 或者添加private
 export GOPROXY="direct"</li>
 </ul>
 </div>
@@ -441,29 +436,29 @@ export GOPROXY="direct"</li>
 
 
 
-<div id="outline-container-orga3d9ea9" class="outline-2">
-<h2 id="orga3d9ea9"><span class="todo TODO">TODO</span> list</h2>
-<div class="outline-text-2" id="text-orga3d9ea9">
+<div id="outline-container-orgd9f44a5" class="outline-2">
+<h2 id="orgd9f44a5"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> list</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org8ef4352" class="outline-3">
-<h3 id="org8ef4352"><span class="done DONE">DONE</span> pk &#x2013; &gt; timesteamp</h3>
-<div class="outline-text-3" id="text-org8ef4352">
-</div>
-</div>
-<div id="outline-container-orgf3433e1" class="outline-3">
-<h3 id="orgf3433e1"><span class="done DONE">DONE</span> get &#x2014; &gt; 当日数据(若new数据为空) 查询old 数据</h3>
-<div class="outline-text-3" id="text-orgf3433e1">
+<div id="outline-container-org584bfda" class="outline-3">
+<h3 id="org584bfda"><span class="section-number-3">3.1</span> <span class="done DONE">DONE</span> pk &#x2013; &gt; timesteamp</h3>
+<div class="outline-text-3" id="text-3-1">
 </div>
 </div>
-<div id="outline-container-org454c6a5" class="outline-3">
-<h3 id="org454c6a5"><span class="todo TODO">TODO</span> add &#x2014; &gt; 给当日数据增加new 数据</h3>
+<div id="outline-container-org9db7bce" class="outline-3">
+<h3 id="org9db7bce"><span class="section-number-3">3.2</span> <span class="done DONE">DONE</span> get &#x2014; &gt; 当日数据(若new数据为空) 查询old 数据</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+</div>
+<div id="outline-container-org496f854" class="outline-3">
+<h3 id="org496f854"><span class="section-number-3">3.3</span> <span class="todo TODO">TODO</span> add &#x2014; &gt; 给当日数据增加new 数据</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-10-13</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-10-23 五 15:50</p>
+<p class="date">Created: 2020-12-03 四 15:12</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

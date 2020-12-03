@@ -3,13 +3,9 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-10-20
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 -----
-* io 
-** 概述 
+* io
+** 概述
    - reader write 只要实现这两个接口就可以用io
 -----
 ** 方法
@@ -21,7 +17,7 @@
    r.Read(bs)
    fmt.Println(string(bs))
    // result:hello world
-   #+END_SRC 
+   #+END_SRC
  - ReadAtLeast 读取指定大小
    #+BEGIN_SRC go
    a := "hello world"
@@ -34,13 +30,13 @@
    }
    fmt.Println(string(bs))
    #+END_SRC
- - writer 写入p 
+ - writer 写入p
    #+BEGIN_SRC go
    var b bytes.Buffer
    b.Write([]byte("hell0"))
    b.WriteTo(os.Stdout)
    #+END_SRC
- - Copyn Copy 把数据拷贝到dst 
+ - Copyn Copy 把数据拷贝到dst
    #+BEGIN_SRC go
    io.Copy(os.Stdout, r)
    fmt.Println()
@@ -49,7 +45,7 @@
    #+END_SRC
 -----
 ** 使用
- - reader 使用 
+ - reader 使用
    #+BEGIN_SRC go
    	qs := strings.NewReader("hello,world,tomorrow")
 
@@ -68,7 +64,7 @@
 	}
    #+END_SRC
 -----
- - write使用 
+ - write使用
    #+BEGIN_SRC go
    	qs := []string{"hello","world","tomorrow"}
 	var qr bytes.Buffer
@@ -85,8 +81,8 @@
    #+END_SRC
 -----
  - 实现 reader 和 write 的接口
-   - os.file 
-     #+BEGIN_SRC go 
+   - os.file
+     #+BEGIN_SRC go
      	qs := []string{"hello ","world ","tomorrow "}
 	qr ,err := os.Create("./hello_test.txt")
 	if err != nil{
@@ -107,7 +103,7 @@
 	os.Exit(0)
      #+END_SRC
 -----
- - io.copy 复制读写 
+ - io.copy 复制读写
      #+BEGIN_SRC go
      	qs := []string{"hello ","world ","tomorrow ","io.copy"}
 
@@ -121,7 +117,7 @@
 		os.Exit(2)
 	}
 	defer write.Close()
-	
+
 	io.Copy(write, read)
      #+END_SRC
 -----
@@ -132,11 +128,11 @@
 		os.Exit(1)
 	}
 	buf := make([]byte,200)
-	
+
 	write.Read(buf)
 
 	fmt.Println(string(buf))
-	
+
 	io.WriteString(write, " io.writestring")
    #+END_SRC
 -----
@@ -155,14 +151,14 @@
    #+END_SRC
 
    #+BEGIN_SRC go
-       r, w := io.Pipe() 
-       go func() { 
-               fmt.Fprint(w, "Geeks\nfor\nGeeks\nis\na\nCS-Portal.\n") 
-               w.Close() 
-       }() 
-       buffer := new(bytes.Buffer) 
+       r, w := io.Pipe()
+       go func() {
+               fmt.Fprint(w, "Geeks\nfor\nGeeks\nis\na\nCS-Portal.\n")
+               w.Close()
+       }()
+       buffer := new(bytes.Buffer)
        buffer.ReadFrom(r)
-       fmt.Print(buffer.String()) 
+       fmt.Print(buffer.String())
    #+END_SRC
 -----
  - io.Teepipe
@@ -172,7 +168,7 @@
 		log.Fatal("err")
 		os.Exit(1)
 	}
-	
+
 	var qw bytes.Buffer
 	r := io.TeeReader(f,&qw)
 
@@ -186,19 +182,19 @@
 	os.Exit(0)
    #+END_SRC
 -----
- - io.MultiReader 
+ - io.MultiReader
    #+begin_src go
    	f,_ := os.Open("./hello.txt")
-	
+
 	r := io.MultiReader(f)
 
 	f2,_ := os.Create("./tee1.txt")
 
 	w := io.MultiWriter(f2)
-	
+
 	io.Copy(w, r)
    #+end_src
-   #+begin_src go 
+   #+begin_src go
    //源码 --- 1.14.3
    func MultiReader(readers ...Reader) Reader {
 	r := make([]Reader, len(readers))
@@ -215,6 +211,5 @@
 		}
 	}
 	return &multiWriter{allWriters}
-    }  
+    }
    #+end_src
-   

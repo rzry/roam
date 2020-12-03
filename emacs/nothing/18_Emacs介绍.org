@@ -3,16 +3,9 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
-* 前文 
+* 前文
 
-*可能你习惯了vscode 习惯了sublime 习惯了VIm* 
+*可能你习惯了vscode 习惯了sublime 习惯了VIm*
 
 *请你相信,当初我也是一个sublime的忠实粉丝*
 
@@ -24,23 +17,23 @@
 
 *从那时起我已经爱上它ta了*
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 一般我不会把emacs推荐给朋友,因为并不是所有人都像我这么爱折腾
-而且目前sublime vscode的发展真的很棒了 
+而且目前sublime vscode的发展真的很棒了
 没有必要为了一个写代码的东西浪费那么多时间
 当然,我并不会那样想,因为我的标题是 emacs系统
 #+END_SRC
 * 首先看一下工作环境吧
   [[./首先看一下工作环境吧/1.png]]
 #+BEGIN_SRC
-我就是这样写博客的  写完博客 只需要输入org-publish-project 
+我就是这样写博客的  写完博客 只需要输入org-publish-project
 它就会自动帮我把org格式转换为html 当然 也可以转为pdf 等等
 然后我只需要上传到git 你们就可以看到这篇文章了 ,是不是很方便
 这就是org-mode 的优点,它的优点太多了
 写博客,Gtd时间规划,记笔记,做思路整理,太多了
-而每一个都是值得你去学习的东西 
+而每一个都是值得你去学习的东西
 #+END_SRC
-* 贴一些我的配置 
+* 贴一些我的配置
 #+begin_src emacs-lisp :tangle yes
 
   ;;
@@ -171,7 +164,7 @@
     (define-auto-insert "\\.ts$" ["default-ts.ts" my/autoinsert-yas-expand])
     (define-auto-insert "\\.html?$" ["default-html.html" my/autoinsert-yas-expand])
     )
-  ;; These are the main configurations 
+  ;; These are the main configurations
 #+end_src
 * 单独配置 比如 golang
 
@@ -223,19 +216,19 @@
 ;;; go.el ends here
 
 #+end_src
-#+BEGIN_SRC 
+#+BEGIN_SRC
 这就是所有的golang 的配置 里面包括了 自动补全 函数跳转 错误检查 自动填充import
-等等 你能找到别的编辑器有的 我们都有 它们没有的 我们也有 
+等等 你能找到别的编辑器有的 我们都有 它们没有的 我们也有
 #+END_SRC
-* 用emacs 看 pdf 
+* 用emacs 看 pdf
   [[./首先看一下工作环境吧/2.png]]
-  
+
 * 看网页
   [[./首先看一下工作环境吧/3.png]]
-#+BEGIN_SRC 
+#+BEGIN_SRC
 我们常常会在chrome 查看文档,然后crud一些代码.这是我很乐意做的事情
 但是每次切换窗口让我并不能很优雅的干这件事
-所以我喜欢开第二个窗口,然后crud 
+所以我喜欢开第二个窗口,然后crud
 就像上图那样
 操作也很简单 安装代码
 #+END_SRC
@@ -256,9 +249,9 @@
 (setq w3m-default-toggle-inline-images t)
 
 #+end_src
-#+BEGIN_SRC 
+#+BEGIN_SRC
 可以再现看youtube 但是没有flash 所以我用这种方式来在黑框里看视频
-emacs这样设置 
+emacs这样设置
 #+END_SRC
 #+begin_src emacs-lisp :tangle yes
 
@@ -273,13 +266,13 @@ emacs这样设置
         (player play-this-video-player))
     (shell-command (format "you-get %s -p '%s' &" url player))))
 #+end_src
-* 写博客 
-  #+BEGIN_SRC 
-  本片博客就是通过这个来写的, 写成org模式 转换为html 
-  然后我会把他上传到git 那么你们就可以看到了 
+* 写博客
+  #+BEGIN_SRC
+  本片博客就是通过这个来写的, 写成org模式 转换为html
+  然后我会把他上传到git 那么你们就可以看到了
   #+END_SRC
   #+begin_src emacs-lisp :tangle yes
-  
+
  (require 'ox-publish)
   (setq org-publish-project-alist
         '(
@@ -302,11 +295,11 @@ emacs这样设置
    :sitemap-file-entry-format "%d %t"
 
 
-    
-	:html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"/>"
-	
 
-	
+	:html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"/>"
+
+
+
    )
 
 
@@ -322,7 +315,7 @@ emacs这样设置
 
 
  ("blog" :components ("blog-notes" "blog-static"))
-           
+
           ))
 (setq org-src-fontify-natively t)
 

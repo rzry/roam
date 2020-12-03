@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:07 -->
+<!-- 2020-12-03 四 15:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>golang笔记</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,17 +248,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org78cc425">方法</a></li>
-<li><a href="#org1e35d56">GO 语言实战 笔记</a></li>
+<li><a href="#org54c3135">1. 方法</a></li>
+<li><a href="#org4e93828">2. GO 语言实战 笔记</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-org78cc425" class="outline-2">
-<h2 id="org78cc425">方法</h2>
-<div class="outline-text-2" id="text-org78cc425">
+
+<div id="outline-container-org54c3135" class="outline-2">
+<h2 id="org54c3135"><span class="section-number-2">1</span> 方法</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
 type Reader interface {
      Read(p []byte) (n int, err error)
@@ -272,29 +265,29 @@ type Reader interface {
 </pre>
 
 <p>
-这是  io.Reader 的定义方法   为了实现这个 io.Reader 这个接口,我们只需要实现Read方法 
+这是  io.Reader 的定义方法   为了实现这个 io.Reader 这个接口,我们只需要实现Read方法
 </p>
 
 <p>
-关于 interface 它是一种类型 使用type关键字 interface 是具有一组方法的类型  这个方法定义了interface的行为 
+关于 interface 它是一种类型 使用type关键字 interface 是具有一组方法的类型  这个方法定义了interface的行为
 </p>
 
 <p>
-interface  变量 存储的是 实现者的值  
+interface  变量 存储的是 实现者的值
 </p>
 
 <p>
-interface  泛型编程  
+interface  泛型编程
 </p>
 <pre class="example">
    type Interface interface { // 我们把 interface 就当做类型 他是许多类型的集合
-     Len()          int     
+     Len()          int
      Less(i, j int) bool
      Swap(i, j int)
    }
 
 func Sort(data Interface) {
-       n := data.Len()	   // 不管我们这边是 实现了那种方法 
+       n := data.Len()	   // 不管我们这边是 实现了那种方法
        maxDepth := 0
        for i := n; i &gt; 0; i &gt;&gt;= 1 {
            maxDepth++
@@ -305,13 +298,13 @@ func Sort(data Interface) {
 </pre>
 
 <p>
-一个接口  可以被认为是一个 元祖  ( 类型  +  值 )   type 是接口的基础具体类型  value 是具体类型的值 
+一个接口  可以被认为是一个 元祖  ( 类型  +  值 )   type 是接口的基础具体类型  value 是具体类型的值
 </p>
 </div>
 </div>
-<div id="outline-container-org1e35d56" class="outline-2">
-<h2 id="org1e35d56">GO 语言实战 笔记</h2>
-<div class="outline-text-2" id="text-org1e35d56">
+<div id="outline-container-org4e93828" class="outline-2">
+<h2 id="org4e93828"><span class="section-number-2">2</span> GO 语言实战 笔记</h2>
+<div class="outline-text-2" id="text-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -434,7 +427,7 @@ func Sort(data Interface) {
   // 这个键存在吗？
   if value != "" {
   fmt.Println(value)
-  }	
+  }
 </pre>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -463,7 +456,7 @@ func Sort(data Interface) {
 <pre class="example">
  01 // user 在程序里定义一个用户类型
  02 type user struct { // type 关键字 新类型的名字 关键字struct
- 03 name string      
+ 03 name string
  04 email string
  05 ext int
  06 privileged bool
@@ -552,7 +545,7 @@ func Sort(data Interface) {
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:07</p>
+<p class="date">Created: 2020-12-03 四 15:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

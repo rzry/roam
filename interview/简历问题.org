@@ -3,19 +3,15 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-22
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
 * mysql
 ** 类型
-  1 . char 是一个 固定长度类型  varchar(50) 是 可变长度类型 50 是存放50个字符  
-      varchar(50) 和 (200) 存放 一个 hello 的话 占得空间是一样的 但是 后者 在排序的时候 会占用更多的内存 
+  1 . char 是一个 固定长度类型  varchar(50) 是 可变长度类型 50 是存放50个字符
+      varchar(50) 和 (200) 存放 一个 hello 的话 占得空间是一样的 但是 后者 在排序的时候 会占用更多的内存
       因为 order by 是用 fixed_length 来计算 col 长度的
   2 . int(20) 20 代表的是字符的长度 表示显示宽度是20 但仍占4个字节存储 存储范围不变
 
-  3 . 日志 : 错误 .  查询  .  慢查询  . 二进制  .  中继   . 事务  
+  3 . 日志 : 错误 .  查询  .  慢查询  . 二进制  .  中继   . 事务
 
   4 . 事务的隔离级别  : RU (读未提交)  RC(读已提交) RR(重复读)  串行
 
@@ -23,86 +19,85 @@
 
   6 . 索引 : 对一个 或者多个列 值 进行排序的结构 加快检索表中数据的方法  就行 目录一样
             加快了 查询速度   group by  order by 的速度 把随机io 变成顺序io
-            唯一索引  可以确保每一行数据的唯一性  
-            主键索引  
-            全文索引 
-            普通索引 
-            mysql  索引使用的是 b+ 树  
+            唯一索引  可以确保每一行数据的唯一性
+            主键索引
+            全文索引
+            普通索引
+            mysql  索引使用的是 b+ 树
             b- 树  : 矮胖的 二叉搜索树  一个 根 然后左边都是小于的  右边都是大于的
             b+ 树  : b- 树做了优化 , 不存储数据 只做索引 会减少磁盘的io 中间节点不保存数据 所以每次都会
-                    直接查询叶子节点  叶子节点是同一层 所以查询会更加稳定  所有的节点成了一个链表  
+                    直接查询叶子节点  叶子节点是同一层 所以查询会更加稳定  所有的节点成了一个链表
   7 . 事务 : 并发控制的上基本单位 要么执行要么不执行  是一个不可分割的工作单位  TCL
 
-  8 . (1)drop  (2)delete (3)truncate  : 
-      1 . delete truncate 删除表数据 不删除结构  
-      2 . drop > truncate > delete 
+  8 . (1)drop  (2)delete (3)truncate  :
+      1 . delete truncate 删除表数据 不删除结构
+      2 . drop > truncate > delete
       3 . delete 是 dml (dml 就是增删改查)  所以是在事务提交后才会生效
       4 . drop 和 truncate 是 DDL 操作立即生效 (create alter drop)
-      5 . 不要一张表 ---> drop  删除部分行数据 ---> where + delete  保留结构删除所有数据 truncate 
-      
+      5 . 不要一张表 ---> drop  删除部分行数据 ---> where + delete  保留结构删除所有数据 truncate
+
   9 .  主键 : 对存储对象给予唯一完整标识的数据列或者属性的组合 一个数据列只有一个主键 并且不能为null
        外键 : 在一个表中存在的另一个表的主键称此表的外键
   10 . 视图 : 虚拟的表,可以增删改查, 不会影响基本表  --- 对于多表查询获取数据更加方便
   整合不同表中的数据,把多个表的查询结果联合起来
 
-  11 . 三个范式 : 
+  11 . 三个范式 :
       1 . 1NF ->  每一列的数据 都不可以再细分  有基本类型构成
-      2 . 2NF ->  非主属性都依赖于主键 
+      2 . 2NF ->  非主属性都依赖于主键
       3 . 3NF ->  非主属性都不可以存在依赖
       我觉得 只是提供一种思路 对于表的不断细分  只是一种设计模式而已
-      
-  12 : 乐观 悲观 锁 : 
+
+  12 : 乐观 悲观 锁 :
       悲观锁 : 悲观的认为会发生并发冲突, 屏蔽一切可能违反数据完整性的操作
       乐观锁 : 乐观的认为不会发生并发冲突 只在提交的时候检查是否违反数据完整性
-      
+
 ** 优化
-   1 . 用小的数据类型和指定短的长度 
-   2 . 尽可能使用not null 
-   3 . 在 where  order by , join 字段建立索引 
-** 压测 
-   1 . mysqlslap 
-* redis 
+   1 . 用小的数据类型和指定短的长度
+   2 . 尽可能使用not null
+   3 . 在 where  order by , join 字段建立索引
+** 压测
+   1 . mysqlslap
+* redis
 ** 数据类型
-   1 . string     k-v 
-   2 . hash       filed-value 
+   1 . string     k-v
+   2 . hash       filed-value
    3 . list       列表 双向链表 反向查找 和遍历
    4 . set        和list 差不多 可以排重
    5 . sorted set 增加权重
-** 事务 
+** 事务
    开始事务  MULTI ----> DISCARD 回滚 ----> EXEC 顺序执行 ---> WATCH key 监视某个key ----> UNWATCH 取消监视
-      
-* golang 
-  1 . 进程 : 有独立功能的程序的数据集合的活动 , 是一个独立单位 , 每个进程都有自己的内存空间 
-      线程 : 是进程的实体 是cpu调度 , 分派的基本单位  通过共享内存 通讯 
+
+* golang
+  1 . 进程 : 有独立功能的程序的数据集合的活动 , 是一个独立单位 , 每个进程都有自己的内存空间
+      线程 : 是进程的实体 是cpu调度 , 分派的基本单位  通过共享内存 通讯
       协程 : 就更加轻量了
   2 . channel 线程安全 : 都是原子性操作 , 是通过 通信来共享内存 , channel 本来就是在多任务间传送数据 当然安全...
 
-  3 . GC 
+  3 . GC
       STW是Stop The World，指会暂停所有正在执行的用户线程/协程，进行垃圾回收的操作
       非增量  增量 ( 重复 非增量)
       非增量 -- > 在暂停所有正在执行的线程和协程时 对所有垃圾对象进行标记 然后 stw 结束后慢慢清理
       增量就是  标记 过段时间再标记  直到所有的都标记完    (三色标记 为了让暂停更少)
-      堆上数据在 32K byte 以上时候 会触发gc  
+      堆上数据在 32K byte 以上时候 会触发gc
 
-  4 .v 分布式锁 
-      使用etcd 实现 分布式锁  
-      1 . 创建 key  
-      2 . 失败 key 存在 监察 这个 key 直到被删除 
-      3 . 成功就获得锁 
-      和 sync 的锁 差不多  new  lock   unlock 
-  5 . 锁 
-      Go中的三种锁包括:互斥锁,读写锁,sync.Map的安全的锁. 
-  6 . 限制 Goroutine 数量 
+  4 .v 分布式锁
+      使用etcd 实现 分布式锁
+      1 . 创建 key
+      2 . 失败 key 存在 监察 这个 key 直到被删除
+      3 . 成功就获得锁
+      和 sync 的锁 差不多  new  lock   unlock
+  5 . 锁
+      Go中的三种锁包括:互斥锁,读写锁,sync.Map的安全的锁.
+  6 . 限制 Goroutine 数量
       sync.WaitGroup + channel  阻塞  每次执行是判断Goroutine数量  给channel 写入值  写不了就阻塞
-      
-  7 . GRPC 
-      基于 http2  protobuf  srv 描述出参入参    支持 同步异步... 
-      
-* nginx
-  解析配置文件--> 得到监听的端口 --- > 然后在nginx的master进程初始化这个socket 再listen监听  客户端和nginx 三次握手 
-  建立连接 然后nginx 或者客户端来关闭
-  反向代理 : 代理端代理的是服务端 
-  正向代理 : 代理端代理的是客户端
-* docker 
-  FROM   MAINTAINER   RUN   WORKDIR  ADD 复制配置文件 EXPOSE docker端口转发  
 
+  7 . GRPC
+      基于 http2  protobuf  srv 描述出参入参    支持 同步异步...
+
+* nginx
+  解析配置文件--> 得到监听的端口 --- > 然后在nginx的master进程初始化这个socket 再listen监听  客户端和nginx 三次握手
+  建立连接 然后nginx 或者客户端来关闭
+  反向代理 : 代理端代理的是服务端
+  正向代理 : 代理端代理的是客户端
+* docker
+  FROM   MAINTAINER   RUN   WORKDIR  ADD 复制配置文件 EXPOSE docker端口转发

@@ -3,13 +3,9 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-22
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
 ** leetcode
-  -  *Link* : [[file:leetcode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]] 
+  -  *Link* : [[file:leetcode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
 
   -  *Link* : [[file:leetcode/26_LeetCode1029.org][LeetCode1029-两地调度]]
 
@@ -33,5 +29,5 @@
 ** 摘录
   - *Link* : [[file:摘录/go_open_hub.org][go-open-hub]]
 
-** Reading 
+** Reading
   - *Link* : [[file:reading/go-standard-learn.org][standard-learn]]

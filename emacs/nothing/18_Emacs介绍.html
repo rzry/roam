@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:10 -->
+<!-- 2020-12-03 四 15:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs test</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,25 +248,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge61115d">前文</a></li>
-<li><a href="#org1b9e4b9">首先看一下工作环境吧</a></li>
-<li><a href="#org404f9cd">贴一些我的配置</a></li>
-<li><a href="#orga539680">单独配置 比如 golang</a></li>
-<li><a href="#orgd6ad690">用emacs 看 pdf</a></li>
-<li><a href="#orgde5cbc5">看网页</a></li>
-<li><a href="#org0e49ce5">写博客</a></li>
-<li><a href="#org8d9890e">eshell , git , 等等</a></li>
+<li><a href="#orgf004591">1. 前文</a></li>
+<li><a href="#org2e01286">2. 首先看一下工作环境吧</a></li>
+<li><a href="#orgb47a92d">3. 贴一些我的配置</a></li>
+<li><a href="#org1612d7b">4. 单独配置 比如 golang</a></li>
+<li><a href="#org4aadb7c">5. 用emacs 看 pdf</a></li>
+<li><a href="#org7b72da4">6. 看网页</a></li>
+<li><a href="#org1cb5771">7. 写博客</a></li>
+<li><a href="#org268f458">8. eshell , git , 等等</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-orge61115d" class="outline-2">
-<h2 id="orge61115d">前文</h2>
-<div class="outline-text-2" id="text-orge61115d">
+<div id="outline-container-orgf004591" class="outline-2">
+<h2 id="orgf004591"><span class="section-number-2">1</span> 前文</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b>可能你习惯了vscode 习惯了sublime 习惯了VIm</b> 
+<b>可能你习惯了vscode 习惯了sublime 习惯了VIm</b>
 </p>
 
 <p>
@@ -296,93 +288,93 @@ for the JavaScript code in this tag.
 
 <pre class="example">
 一般我不会把emacs推荐给朋友,因为并不是所有人都像我这么爱折腾
-而且目前sublime vscode的发展真的很棒了 
+而且目前sublime vscode的发展真的很棒了
 没有必要为了一个写代码的东西浪费那么多时间
 当然,我并不会那样想,因为我的标题是 emacs系统
 </pre>
 </div>
 </div>
-<div id="outline-container-org1b9e4b9" class="outline-2">
-<h2 id="org1b9e4b9">首先看一下工作环境吧</h2>
-<div class="outline-text-2" id="text-org1b9e4b9">
+<div id="outline-container-org2e01286" class="outline-2">
+<h2 id="org2e01286"><span class="section-number-2">2</span> 首先看一下工作环境吧</h2>
+<div class="outline-text-2" id="text-2">
 
 <div class="figure">
 <p><img src="./首先看一下工作环境吧/1.png" alt="1.png" />
 </p>
 </div>
 <pre class="example">
-我就是这样写博客的  写完博客 只需要输入org-publish-project 
+我就是这样写博客的  写完博客 只需要输入org-publish-project
 它就会自动帮我把org格式转换为html 当然 也可以转为pdf 等等
 然后我只需要上传到git 你们就可以看到这篇文章了 ,是不是很方便
 这就是org-mode 的优点,它的优点太多了
 写博客,Gtd时间规划,记笔记,做思路整理,太多了
-而每一个都是值得你去学习的东西 
+而每一个都是值得你去学习的东西
 </pre>
 </div>
 </div>
-<div id="outline-container-org404f9cd" class="outline-2">
-<h2 id="org404f9cd">贴一些我的配置</h2>
-<div class="outline-text-2" id="text-org404f9cd">
+<div id="outline-container-orgb47a92d" class="outline-2">
+<h2 id="orgb47a92d"><span class="section-number-2">3</span> 贴一些我的配置</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">ivy mode</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">ivy</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:diminish</span> (ivy-mode . <span style="color: #2d9574;">""</span>)
-  <span style="color: #4f97d7;">:config</span>
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">ivy mode</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">ivy</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:diminish</span> (ivy-mode . <span style="color: #A3BE8C;">""</span>)
+  <span style="color: #81A1C1;">:config</span>
   (ivy-mode 1)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> ivy-use-virutal-buffers t)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> enable-recursive-minibuffers t)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> ivy-height 10)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> ivy-initial-inputs-alist nil)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> ivy-count-format <span style="color: #2d9574;">"%d/%d"</span>)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> ivy-re-builders-alist
+  (<span style="color: #81A1C1;">setq</span> ivy-use-virutal-buffers t)
+  (<span style="color: #81A1C1;">setq</span> enable-recursive-minibuffers t)
+  (<span style="color: #81A1C1;">setq</span> ivy-height 10)
+  (<span style="color: #81A1C1;">setq</span> ivy-initial-inputs-alist nil)
+  (<span style="color: #81A1C1;">setq</span> ivy-count-format <span style="color: #A3BE8C;">"%d/%d"</span>)
+  (<span style="color: #81A1C1;">setq</span> ivy-re-builders-alist
         `((t . ivy--regex-ignore-order)))
   )
 
 
 
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">counsel</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">counsel</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:bind</span> ((<span style="color: #2d9574;">"M-x"</span> . counsel-M-x)
-         (<span style="color: #2d9574;">"\C-x \C-f"</span> . counsel-find-file)))
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">counsel</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">counsel</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:bind</span> ((<span style="color: #A3BE8C;">"M-x"</span> . counsel-M-x)
+         (<span style="color: #A3BE8C;">"\C-x \C-f"</span> . counsel-find-file)))
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">swiper</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">swiper</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:bind</span> ((<span style="color: #2d9574;">"\C-s"</span> . swiper))
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">swiper</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">swiper</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:bind</span> ((<span style="color: #A3BE8C;">"\C-s"</span> . swiper))
   )
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">yasnippet</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">yasnippet</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:config</span>
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">yasnippet</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">yasnippet</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:config</span>
   (yas-global-mode)
-  (<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">yasnippet-snippets</span> <span style="color: #4f97d7;">:ensure</span> t)
+  (<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">yasnippet-snippets</span> <span style="color: #81A1C1;">:ensure</span> t)
   )
 
 
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">company</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">company</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:config</span>
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">company</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">company</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:config</span>
   (global-company-mode t)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> company-idle-delay 0)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> company-minimum-prefix-length 3)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> company-backends
+  (<span style="color: #81A1C1;">setq</span> company-idle-delay 0)
+  (<span style="color: #81A1C1;">setq</span> company-minimum-prefix-length 3)
+  (<span style="color: #81A1C1;">setq</span> company-backends
         '((company-files
            company-yasnippet
            company-keywords
@@ -390,134 +382,134 @@ for the JavaScript code in this tag.
            )
           (company-abbrev company-dabbrev))))
 
-(add-hook 'emacs-lisp-mode-hook (<span style="color: #4f97d7; font-weight: bold;">lambda</span> ()
+(add-hook 'emacs-lisp-mode-hook (<span style="color: #81A1C1;">lambda</span> ()
                                   (add-to-list  (make-local-variable 'company-backends)
                                                 '(company-elisp))))
 
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">flycheck</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">flycheck</span>
+<span style="color: #6f7787;">;;</span>
 
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">flycheck</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:config</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">flycheck</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:config</span>
   (global-flycheck-mode t)
   )
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">magit</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">magit</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:bind</span> ((<span style="color: #2d9574;">"\C-x g"</span> . magit-status))
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">magit</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">magit</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:bind</span> ((<span style="color: #A3BE8C;">"\C-x g"</span> . magit-status))
   )
 
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">projectile</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">projectile</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:bind-keymap</span>
-  (<span style="color: #2d9574;">"\C-c p"</span> . projectile-command-map)
-  <span style="color: #4f97d7;">:config</span>
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">projectile</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">projectile</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:bind-keymap</span>
+  (<span style="color: #A3BE8C;">"\C-c p"</span> . projectile-command-map)
+  <span style="color: #81A1C1;">:config</span>
   (projectile-mode t)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> projectile-completion-system 'ivy)
-  (<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">counsel-projectile</span>
-    <span style="color: #4f97d7;">:ensure</span> t)
+  (<span style="color: #81A1C1;">setq</span> projectile-completion-system 'ivy)
+  (<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">counsel-projectile</span>
+    <span style="color: #81A1C1;">:ensure</span> t)
   )
 
 
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">ag</span>
-  <span style="color: #4f97d7;">:ensure</span> t)
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">ag</span>
+  <span style="color: #81A1C1;">:ensure</span> t)
 
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">auto insert</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">defun</span> <span style="color: #bc6ec5; font-weight: bold;">my/autoinsert-yas-expand</span>()
-  <span style="color: #9f8766;">"replace text in yasnippet template"</span>
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">auto insert</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">defun</span> <span style="color: #8FBCBB;">my/autoinsert-yas-expand</span>()
+  <span style="color: #78808f;">"replace text in yasnippet template"</span>
   (yas-expand-snippet (buffer-string) (point-min) (point-max)))
 
 
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">autoinsert</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:config</span>
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> auto-insert-query nil)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> auto-insert-directory (locate-user-emacs-file <span style="color: #2d9574;">"templates"</span>))
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">autoinsert</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:config</span>
+  (<span style="color: #81A1C1;">setq</span> auto-insert-query nil)
+  (<span style="color: #81A1C1;">setq</span> auto-insert-directory (locate-user-emacs-file <span style="color: #A3BE8C;">"templates"</span>))
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode t)
-  (define-auto-insert <span style="color: #2d9574;">"\\.org$"</span> [<span style="color: #2d9574;">"default-org.org"</span> my/autoinsert-yas-expand])
-  (define-auto-insert <span style="color: #2d9574;">"\\.js$"</span> [<span style="color: #2d9574;">"default-js.js"</span> my/autoinsert-yas-expand])
-  (define-auto-insert <span style="color: #2d9574;">"\\.ts$"</span> [<span style="color: #2d9574;">"default-ts.ts"</span> my/autoinsert-yas-expand])
-  (define-auto-insert <span style="color: #2d9574;">"\\.html?$"</span> [<span style="color: #2d9574;">"default-html.html"</span> my/autoinsert-yas-expand])
+  (define-auto-insert <span style="color: #A3BE8C;">"\\.org$"</span> [<span style="color: #A3BE8C;">"default-org.org"</span> my/autoinsert-yas-expand])
+  (define-auto-insert <span style="color: #A3BE8C;">"\\.js$"</span> [<span style="color: #A3BE8C;">"default-js.js"</span> my/autoinsert-yas-expand])
+  (define-auto-insert <span style="color: #A3BE8C;">"\\.ts$"</span> [<span style="color: #A3BE8C;">"default-ts.ts"</span> my/autoinsert-yas-expand])
+  (define-auto-insert <span style="color: #A3BE8C;">"\\.html?$"</span> [<span style="color: #A3BE8C;">"default-html.html"</span> my/autoinsert-yas-expand])
   )
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">These are the main configurations </span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">These are the main configurations</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga539680" class="outline-2">
-<h2 id="orga539680">单独配置 比如 golang</h2>
-<div class="outline-text-2" id="text-orga539680">
+<div id="outline-container-org1612d7b" class="outline-2">
+<h2 id="org1612d7b"><span class="section-number-2">4</span> 单独配置 比如 golang</h2>
+<div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">go-mode</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:mode</span> ((<span style="color: #2d9574;">"\\.go\\'"</span> . go-mode))
-  <span style="color: #4f97d7;">:hook</span> ((before-save . gofmt-before-save))
-  <span style="color: #4f97d7;">:config</span>
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> gofmt-command <span style="color: #2d9574;">"goimports"</span>)
-  (<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">company-go</span>
-    <span style="color: #4f97d7;">:ensure</span> t
-    <span style="color: #4f97d7;">:config</span>
-    (add-hook 'go-mode-hook (<span style="color: #4f97d7; font-weight: bold;">lambda</span>()
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">go-mode</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:mode</span> ((<span style="color: #A3BE8C;">"\\.go\\'"</span> . go-mode))
+  <span style="color: #81A1C1;">:hook</span> ((before-save . gofmt-before-save))
+  <span style="color: #81A1C1;">:config</span>
+  (<span style="color: #81A1C1;">setq</span> gofmt-command <span style="color: #A3BE8C;">"goimports"</span>)
+  (<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">company-go</span>
+    <span style="color: #81A1C1;">:ensure</span> t
+    <span style="color: #81A1C1;">:config</span>
+    (add-hook 'go-mode-hook (<span style="color: #81A1C1;">lambda</span>()
                               (add-to-list (make-local-variable 'company-backends)
                                            '(company-go company-files company-yasnippet company-capf))))
     )
-  (<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">go-eldoc</span>
-    <span style="color: #4f97d7;">:ensure</span> t
-    <span style="color: #4f97d7;">:hook</span> (go-mode . go-eldoc-setup)
+  (<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">go-eldoc</span>
+    <span style="color: #81A1C1;">:ensure</span> t
+    <span style="color: #81A1C1;">:hook</span> (go-mode . go-eldoc-setup)
     )
-  (<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">go-guru</span>
-    <span style="color: #4f97d7;">:ensure</span> t
-    <span style="color: #4f97d7;">:hook</span> (go-mode . go-guru-hl-identifier-mode)
+  (<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">go-guru</span>
+    <span style="color: #81A1C1;">:ensure</span> t
+    <span style="color: #81A1C1;">:hook</span> (go-mode . go-guru-hl-identifier-mode)
     )
-  (<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">go-rename</span>
-    <span style="color: #4f97d7;">:ensure</span> t)
+  (<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">go-rename</span>
+    <span style="color: #81A1C1;">:ensure</span> t)
   )
 
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">for guru setup scope</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">defun</span> <span style="color: #bc6ec5; font-weight: bold;">my/go-guru-set-current-package-as-main</span> ()
-    <span style="color: #9f8766;">"GoGuru requires the scope to be set to a go package which</span>
-<span style="color: #9f8766;">     contains a main, this function will make the current package the</span>
-<span style="color: #9f8766;">     active go guru scope, assuming it contains a main"</span>
-    (<span style="color: #4f97d7; font-weight: bold;">interactive</span>)
-    (<span style="color: #4f97d7; font-weight: bold;">let*</span> ((filename (buffer-file-name))
-           (gopath-src-path (concat (file-name-as-directory (go-guess-gopath)) <span style="color: #2d9574;">"src"</span>))
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">for guru setup scope</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">defun</span> <span style="color: #8FBCBB;">my/go-guru-set-current-package-as-main</span> ()
+    <span style="color: #78808f;">"GoGuru requires the scope to be set to a go package which</span>
+<span style="color: #78808f;">     contains a main, this function will make the current package the</span>
+<span style="color: #78808f;">     active go guru scope, assuming it contains a main"</span>
+    (<span style="color: #81A1C1;">interactive</span>)
+    (<span style="color: #81A1C1;">let*</span> ((filename (buffer-file-name))
+           (gopath-src-path (concat (file-name-as-directory (go-guess-gopath)) <span style="color: #A3BE8C;">"src"</span>))
            (relative-package-path (directory-file-name (file-name-directory (file-relative-name filename gopath-src-path)))))
-      (<span style="color: #4f97d7; font-weight: bold;">setq</span> go-guru-scope relative-package-path)))
+      (<span style="color: #81A1C1;">setq</span> go-guru-scope relative-package-path)))
 
 
 
 
-(<span style="color: #4f97d7; font-weight: bold;">provide</span> '<span style="color: #a45bad;">go</span>)
-<span style="color: #2aa1ae; background-color: #292e34;">;;; </span><span style="color: #2aa1ae; background-color: #292e34;">go.el ends here</span>
+(<span style="color: #81A1C1;">provide</span> '<span style="color: #81A1C1;">go</span>)
+<span style="color: #6f7787;">;;; </span><span style="color: #6f7787;">go.el ends here</span>
 
 </pre>
 </div>
 <pre class="example">
 这就是所有的golang 的配置 里面包括了 自动补全 函数跳转 错误检查 自动填充import
-等等 你能找到别的编辑器有的 我们都有 它们没有的 我们也有 
+等等 你能找到别的编辑器有的 我们都有 它们没有的 我们也有
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd6ad690" class="outline-2">
-<h2 id="orgd6ad690">用emacs 看 pdf</h2>
-<div class="outline-text-2" id="text-orgd6ad690">
+<div id="outline-container-org4aadb7c" class="outline-2">
+<h2 id="org4aadb7c"><span class="section-number-2">5</span> 用emacs 看 pdf</h2>
+<div class="outline-text-2" id="text-5">
 
 <div class="figure">
 <p><img src="./首先看一下工作环境吧/2.png" alt="2.png" />
@@ -526,9 +518,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgde5cbc5" class="outline-2">
-<h2 id="orgde5cbc5">看网页</h2>
-<div class="outline-text-2" id="text-orgde5cbc5">
+<div id="outline-container-org7b72da4" class="outline-2">
+<h2 id="org7b72da4"><span class="section-number-2">6</span> 看网页</h2>
+<div class="outline-text-2" id="text-6">
 
 <div class="figure">
 <p><img src="./首先看一下工作环境吧/3.png" alt="3.png" />
@@ -537,81 +529,81 @@ for the JavaScript code in this tag.
 <pre class="example">
 我们常常会在chrome 查看文档,然后crud一些代码.这是我很乐意做的事情
 但是每次切换窗口让我并不能很优雅的干这件事
-所以我喜欢开第二个窗口,然后crud 
+所以我喜欢开第二个窗口,然后crud
 就像上图那样
 操作也很简单 安装代码
 </pre>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">w3m</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span><span style="color: #2aa1ae; background-color: #292e34;">(setq browse-url-browser-function 'w3m-browse-url)</span>
-(<span style="color: #4f97d7; font-weight: bold;">setq</span> w3m-default-display-inline-images t)
-(<span style="color: #4f97d7; font-weight: bold;">setq</span> browse-url-browser-function 'w3m-browse-url
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">w3m</span>
+<span style="color: #6f7787;">;;</span><span style="color: #6f7787;">(setq browse-url-browser-function 'w3m-browse-url)</span>
+(<span style="color: #81A1C1;">setq</span> w3m-default-display-inline-images t)
+(<span style="color: #81A1C1;">setq</span> browse-url-browser-function 'w3m-browse-url
           browse-url-new-window-flag t)
-(autoload 'w3m-browse-url <span style="color: #2d9574;">"w3m"</span> <span style="color: #9f8766;">"Ask a WWW browser to show a URL."</span> t)
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">optional keyboard short-cut</span>
-(global-set-key <span style="color: #2d9574;">"\C-xm"</span> 'browse-url-at-point)
-(global-set-key <span style="color: #2d9574;">"\C-xe"</span> 'browse-url)
-(<span style="color: #4f97d7; font-weight: bold;">setq</span> w3m-use-cookies t)
+(autoload 'w3m-browse-url <span style="color: #A3BE8C;">"w3m"</span> <span style="color: #78808f;">"Ask a WWW browser to show a URL."</span> t)
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">optional keyboard short-cut</span>
+(global-set-key <span style="color: #A3BE8C;">"\C-xm"</span> 'browse-url-at-point)
+(global-set-key <span style="color: #A3BE8C;">"\C-xe"</span> 'browse-url)
+(<span style="color: #81A1C1;">setq</span> w3m-use-cookies t)
 
-(<span style="color: #4f97d7; font-weight: bold;">setq</span> w3m-default-display-inline-images t)
-(<span style="color: #4f97d7; font-weight: bold;">setq</span> w3m-default-toggle-inline-images t)
+(<span style="color: #81A1C1;">setq</span> w3m-default-display-inline-images t)
+(<span style="color: #81A1C1;">setq</span> w3m-default-toggle-inline-images t)
 
 </pre>
 </div>
 <pre class="example">
 可以再现看youtube 但是没有flash 所以我用这种方式来在黑框里看视频
-emacs这样设置 
+emacs这样设置
 </pre>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #4f97d7; font-weight: bold;">defvar</span> <span style="color: #7590db;">play-this-video-player</span> <span style="color: #2d9574;">"mpv --autofit=100%"</span>
-  <span style="color: #9f8766;">"mplayer used to play the video"</span>)
+(<span style="color: #81A1C1;">defvar</span> <span style="color: #D8DEE9;">play-this-video-player</span> <span style="color: #A3BE8C;">"mpv --autofit=100%"</span>
+  <span style="color: #78808f;">"mplayer used to play the video"</span>)
 
-(<span style="color: #4f97d7; font-weight: bold;">defun</span> <span style="color: #bc6ec5; font-weight: bold;">play-this-video</span> ()
-  (<span style="color: #4f97d7; font-weight: bold;">interactive</span>)
-  (<span style="color: #4f97d7; font-weight: bold;">let</span> ((url (<span style="color: #4f97d7; font-weight: bold;">or</span> w3m-current-url
+(<span style="color: #81A1C1;">defun</span> <span style="color: #8FBCBB;">play-this-video</span> ()
+  (<span style="color: #81A1C1;">interactive</span>)
+  (<span style="color: #81A1C1;">let</span> ((url (<span style="color: #81A1C1;">or</span> w3m-current-url
                  (eww-current-url)
-                 (<span style="color: #dc752f; background-color: #292b2e;">error</span> <span style="color: #2d9574;">"only w3m and eww supported"</span>)))
+                 (<span style="color: #EBCB8B;">error</span> <span style="color: #A3BE8C;">"only w3m and eww supported"</span>)))
         (player play-this-video-player))
-    (shell-command (format <span style="color: #2d9574;">"you-get %s -p '%s' &amp;"</span> url player))))
+    (shell-command (format <span style="color: #A3BE8C;">"you-get %s -p '%s' &amp;"</span> url player))))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0e49ce5" class="outline-2">
-<h2 id="org0e49ce5">写博客</h2>
-<div class="outline-text-2" id="text-org0e49ce5">
+<div id="outline-container-org1cb5771" class="outline-2">
+<h2 id="org1cb5771"><span class="section-number-2">7</span> 写博客</h2>
+<div class="outline-text-2" id="text-7">
 <pre class="example">
-本片博客就是通过这个来写的, 写成org模式 转换为html 
-然后我会把他上传到git 那么你们就可以看到了 
+本片博客就是通过这个来写的, 写成org模式 转换为html
+然后我会把他上传到git 那么你们就可以看到了
 </pre>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
- (<span style="color: #4f97d7; font-weight: bold;">require</span> '<span style="color: #a45bad;">ox-publish</span>)
-  (<span style="color: #4f97d7; font-weight: bold;">setq</span> org-publish-project-alist
+ (<span style="color: #81A1C1;">require</span> '<span style="color: #81A1C1;">ox-publish</span>)
+  (<span style="color: #81A1C1;">setq</span> org-publish-project-alist
         '(
 
-         (<span style="color: #2d9574;">"blog-notes"</span>
-   <span style="color: #4f97d7;">:base-directory</span> <span style="color: #2d9574;">"/home/rzry/rzry.github.io/blog/notes/"</span>
-   <span style="color: #4f97d7;">:base-extension</span> <span style="color: #2d9574;">"org"</span>
-   <span style="color: #4f97d7;">:publishing-directory</span> <span style="color: #2d9574;">"/home/rzry/rzry.github.io/blog/"</span>
-   <span style="color: #4f97d7;">:recursive</span> t
-   <span style="color: #4f97d7;">:publishing-function</span> org-html-publish-to-html
-   <span style="color: #4f97d7;">:headline-levels</span> 4             <span style="color: #2aa1ae; background-color: #292e34;">; </span><span style="color: #2aa1ae; background-color: #292e34;">Just the default for this project.</span>
-   <span style="color: #4f97d7;">:auto-preamble</span> t
-   <span style="color: #4f97d7;">:section-numbers</span> nil
-   <span style="color: #4f97d7;">:author</span> <span style="color: #2d9574;">"Rzry"</span>
-   <span style="color: #4f97d7;">:email</span> <span style="color: #2d9574;">"rzry36008@ccie.lol"</span>
-   <span style="color: #4f97d7;">:auto-sitemap</span> t                <span style="color: #2aa1ae; background-color: #292e34;">; </span><span style="color: #2aa1ae; background-color: #292e34;">Generate sitemap.org automagically...</span>
-   <span style="color: #4f97d7;">:sitemap-filename</span> <span style="color: #2d9574;">"index.org"</span>  <span style="color: #2aa1ae; background-color: #292e34;">; </span><span style="color: #2aa1ae; background-color: #292e34;">... call it sitemap.org (it's the default)...</span>
-   <span style="color: #4f97d7;">:sitemap-title</span> <span style="color: #2d9574;">"Rzry's Blog"</span>         <span style="color: #2aa1ae; background-color: #292e34;">; </span><span style="color: #2aa1ae; background-color: #292e34;">... with title 'Sitemap'.</span>
-   <span style="color: #4f97d7;">:sitemap-sort-files</span> anti-chronologically
-   <span style="color: #4f97d7;">:sitemap-file-entry-format</span> <span style="color: #2d9574;">"%d %t"</span>
+         (<span style="color: #A3BE8C;">"blog-notes"</span>
+   <span style="color: #81A1C1;">:base-directory</span> <span style="color: #A3BE8C;">"/home/rzry/rzry.github.io/blog/notes/"</span>
+   <span style="color: #81A1C1;">:base-extension</span> <span style="color: #A3BE8C;">"org"</span>
+   <span style="color: #81A1C1;">:publishing-directory</span> <span style="color: #A3BE8C;">"/home/rzry/rzry.github.io/blog/"</span>
+   <span style="color: #81A1C1;">:recursive</span> t
+   <span style="color: #81A1C1;">:publishing-function</span> org-html-publish-to-html
+   <span style="color: #81A1C1;">:headline-levels</span> 4             <span style="color: #6f7787;">; </span><span style="color: #6f7787;">Just the default for this project.</span>
+   <span style="color: #81A1C1;">:auto-preamble</span> t
+   <span style="color: #81A1C1;">:section-numbers</span> nil
+   <span style="color: #81A1C1;">:author</span> <span style="color: #A3BE8C;">"Rzry"</span>
+   <span style="color: #81A1C1;">:email</span> <span style="color: #A3BE8C;">"rzry36008@ccie.lol"</span>
+   <span style="color: #81A1C1;">:auto-sitemap</span> t                <span style="color: #6f7787;">; </span><span style="color: #6f7787;">Generate sitemap.org automagically...</span>
+   <span style="color: #81A1C1;">:sitemap-filename</span> <span style="color: #A3BE8C;">"index.org"</span>  <span style="color: #6f7787;">; </span><span style="color: #6f7787;">... call it sitemap.org (it's the default)...</span>
+   <span style="color: #81A1C1;">:sitemap-title</span> <span style="color: #A3BE8C;">"Rzry's Blog"</span>         <span style="color: #6f7787;">; </span><span style="color: #6f7787;">... with title 'Sitemap'.</span>
+   <span style="color: #81A1C1;">:sitemap-sort-files</span> anti-chronologically
+   <span style="color: #81A1C1;">:sitemap-file-entry-format</span> <span style="color: #A3BE8C;">"%d %t"</span>
 
 
 
-        <span style="color: #4f97d7;">:html-head</span> <span style="color: #2d9574;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"/&gt;"</span>
+        <span style="color: #81A1C1;">:html-head</span> <span style="color: #A3BE8C;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"/&gt;"</span>
 
 
 
@@ -620,35 +612,35 @@ emacs这样设置
 
 
 
-           (<span style="color: #2d9574;">"blog-static"</span>
-   <span style="color: #4f97d7;">:base-directory</span> <span style="color: #2d9574;">"/home/rzry/rzry.github.io/blog/notes/"</span>
-   <span style="color: #4f97d7;">:base-extension</span> <span style="color: #2d9574;">"css</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">js</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">png</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">jpg</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">gif</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">pdf</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">mp3</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">ogg</span><span style="color: #2d9574; font-weight: bold;">\\</span><span style="color: #2d9574; font-weight: bold;">|</span><span style="color: #2d9574;">swf"</span>
-   <span style="color: #4f97d7;">:publishing-directory</span> <span style="color: #2d9574;">"/home/rzry/rzry.github.io/blog/"</span>
-   <span style="color: #4f97d7;">:recursive</span> t
-   <span style="color: #4f97d7;">:publishing-function</span> org-publish-attachment
+           (<span style="color: #A3BE8C;">"blog-static"</span>
+   <span style="color: #81A1C1;">:base-directory</span> <span style="color: #A3BE8C;">"/home/rzry/rzry.github.io/blog/notes/"</span>
+   <span style="color: #81A1C1;">:base-extension</span> <span style="color: #A3BE8C;">"css</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">js</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">png</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">jpg</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">gif</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">pdf</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">mp3</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">ogg</span><span style="color: #81A1C1; font-weight: bold;">\\</span><span style="color: #81A1C1; font-weight: bold;">|</span><span style="color: #A3BE8C;">swf"</span>
+   <span style="color: #81A1C1;">:publishing-directory</span> <span style="color: #A3BE8C;">"/home/rzry/rzry.github.io/blog/"</span>
+   <span style="color: #81A1C1;">:recursive</span> t
+   <span style="color: #81A1C1;">:publishing-function</span> org-publish-attachment
    )
 
 
- (<span style="color: #2d9574;">"blog"</span> <span style="color: #4f97d7;">:components</span> (<span style="color: #2d9574;">"blog-notes"</span> <span style="color: #2d9574;">"blog-static"</span>))
+ (<span style="color: #A3BE8C;">"blog"</span> <span style="color: #81A1C1;">:components</span> (<span style="color: #A3BE8C;">"blog-notes"</span> <span style="color: #A3BE8C;">"blog-static"</span>))
 
           ))
-(<span style="color: #4f97d7; font-weight: bold;">setq</span> org-src-fontify-natively t)
+(<span style="color: #81A1C1;">setq</span> org-src-fontify-natively t)
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org8d9890e" class="outline-2">
-<h2 id="org8d9890e">eshell , git , 等等</h2>
-<div class="outline-text-2" id="text-org8d9890e">
+<div id="outline-container-org268f458" class="outline-2">
+<h2 id="org268f458"><span class="section-number-2">8</span> eshell , git , 等等</h2>
+<div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">magit</span>
-<span style="color: #2aa1ae; background-color: #292e34;">;;</span>
-(<span style="color: #4f97d7; font-weight: bold;">use-package</span> <span style="color: #a45bad;">magit</span>
-  <span style="color: #4f97d7;">:ensure</span> t
-  <span style="color: #4f97d7;">:bind</span> ((<span style="color: #2d9574;">"\C-x g"</span> . magit-status))
+<span style="color: #6f7787;">;;</span>
+<span style="color: #6f7787;">;; </span><span style="color: #6f7787;">magit</span>
+<span style="color: #6f7787;">;;</span>
+(<span style="color: #81A1C1;">use-package</span> <span style="color: #81A1C1;">magit</span>
+  <span style="color: #81A1C1;">:ensure</span> t
+  <span style="color: #81A1C1;">:bind</span> ((<span style="color: #A3BE8C;">"\C-x g"</span> . magit-status))
   )
 </pre>
 </div>
@@ -658,7 +650,7 @@ emacs这样设置
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:10</p>
+<p class="date">Created: 2020-12-03 四 15:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

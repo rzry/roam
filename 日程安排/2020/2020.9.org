@@ -3,26 +3,19 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-15
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
 
 
-* map 
+* map
 
-  #+BEGIN_SRC  
+  #+BEGIN_SRC
 
   map --- > 底层是 hmap  有着若干个bucket数组 ,
   ----> 一个bucket保存8组 k-v ,超过8个就会 hash冲突
   会在extra字段结构体中的 overflow 使用链地址法一直拓展下去
-  
+
   如果key超过8个就会映射到相同的桶 hash 冲突 -->开放寻址或者链表法
- 
-  
+
+
   #+END_SRC
 
 
@@ -38,14 +31,14 @@
   | nevacuate  | uintptr        | 进度            |
   | extra      | *mapextra      |                 |
   |------------+----------------+-----------------|
-  
-  #+BEGIN_SRC 
+
+  #+BEGIN_SRC
   B --->  如果H.b 小于 16  -- > noverflow ++ return
-  如果 H.b 大于 16 --->  { uint32(1) >> (b-15) -1} 的值  fastrand() ==0 
-  ----> noverflow ++ 
+  如果 H.b 大于 16 --->  { uint32(1) >> (b-15) -1} 的值  fastrand() ==0
+  ----> noverflow ++
   #+END_SRC
-  
-  #+caption: bucket map 
+
+  #+caption: bucket map
   | <名称>          | <类型>                    | <释义>                    |
   | topush          | [bucketCnt]uint8          | 让查找key更快             |
   |                 |                           | 类似打tag的方式           |
@@ -53,18 +46,18 @@
   |                 |                           | key0key1key2 val1val2val3 |
   |-----------------+---------------------------+---------------------------|
 
-** make map 
-*** make(map[string]string, 0/B<8) 
-    
+** make map
+*** make(map[string]string, 0/B<8)
+
     #+BEGIN_SRC go
-    
+
     func makemap_small() *hmap {
         h := new(hmap)
 	h.hash0 = fastrand()
 	return h
     }
-    // hint 如果为0或者小于8 那么调用_small 
-    // 创建一个 hmap的结构体 初始化hash因子 
+    // hint 如果为0或者小于8 那么调用_small
+    // 创建一个 hmap的结构体 初始化hash因子
     #+END_SRC
 
 *** make(map[string]string,9)
@@ -77,24 +70,24 @@
     #+END_SRC
 
 *** make map 的 ques
-    #+BEGIN_SRC 
+    #+BEGIN_SRC
     1 . var Mp map[string]int ----> nil map 不可以赋值
-    2 . makemap 返回的是一个 *hmap slice 是一个 struct 
+    2 . makemap 返回的是一个 *hmap slice 是一个 struct
     #+END_SRC
 
-** delete map 
+** delete map
    #+BEGIN_SRC go
    func mapdelete(t *maptype, h *hmap, key unsafe.Pointer){}
-   
-   //1 . 检查标志位  h.flag 是否并发写入 
-   // 清除key 
+
+   //1 . 检查标志位  h.flag 是否并发写入
+   // 清除key
    if t.indirectkey() {
 	*(*unsafe.Pointer)(k) = nil
    } else if t.key.ptrdata != 0 {
         memclrHasPointers(k, t.key.size)
    }
    e := add(unsafe.Pointer(b), dataOffset+bucketCnt*uintptr(t.keysize)+i*uintptr(t.elemsize))
-   //清除value 
+   //清除value
    if t.indirectelem() {
         *(*unsafe.Pointer)(e) = nil
    } else if t.elem.ptrdata != 0 {
@@ -103,10 +96,10 @@
         memclrNoHeapPointers(e, t.elem.size)
    }
         b.tophash[i] = emptyOne
-   
+
    #+END_SRC
-*** delete map 的 ques 
-   #+BEGIN_SRC 
+*** delete map 的 ques
+   #+BEGIN_SRC
    1 . 不可以并行读写 , 可以加锁 .
    读之前调用 RLock() 函数，读完之后调用 RUnlock() 函数解锁
    写之前调用 Lock() 函数，写完之后，调用 Unlock() 解锁。
@@ -114,16 +107,16 @@
 
 
 
-* sync 同步原语 
-** Mutex 
-   #+BEGIN_SRC 
-   
+* sync 同步原语
+** Mutex
+   #+BEGIN_SRC
+
    1 . 结构
    type Mutex struct{
-      state int32 
+      state int32
       sema  uint32
    }
-   
+
    2 . 状态
    {
      1 . MutexLocked ---> 表示锁定
@@ -132,14 +125,14 @@
      4 . waitersCount  ----> 在互斥锁等的G的个数
    }
 
-   3 . 因为刚被唤起的Goroutine 与 新的 Goroutine 
+   3 . 因为刚被唤起的Goroutine 与 新的 Goroutine
        竞争时很容易得不到锁,所以把一个goroutine超过1ms
        没有获取到锁,它就会将当前互斥锁切换饥饿模式,防止
        部分goroutine被饿死
    #+END_SRC
 
-** Mutex waitGroup 
-   
+** Mutex waitGroup
+
    #+BEGIN_SRC go :imports '("testing" "sync") :main='"no" :package mutex
    func TestDc(t *testing.T){
    //waitGroup 一个等待的标志吧
@@ -160,11 +153,11 @@
 		go func() {
 			t.Log("3")
 		}()
-		wg.Done() // done 就是 -1 , 100-1 
+		wg.Done() // done 就是 -1 , 100-1
 		time.Sleep(1*time.Second)
 	}
 
-	wg.Wait() // wait 就结束 
+	wg.Wait() // wait 就结束
    }
    func main(){
        TestDc()
@@ -183,11 +176,10 @@
 
 
 
-** Mutex 
+** Mutex
 
-* sync.map 
+* sync.map
   #+BEGIN_SRC go
-  
-  
-  #+END_SRC
 
+
+  #+END_SRC

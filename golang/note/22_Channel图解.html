@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:07 -->
+<!-- 2020-12-03 四 15:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go channel</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,80 +248,78 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc756a9c">定义</a></li>
-<li><a href="#org0539f31">先从创建开始</a>
+<li><a href="#orgdc08ee4">1. 定义</a></li>
+<li><a href="#orgae2ce83">2. 先从创建开始</a>
 <ul>
-<li><a href="#org6153cae">channel 队列</a></li>
-<li><a href="#org6777944">当channel缓存满了怎么办</a></li>
-<li><a href="#org288572e">反向操作</a></li>
+<li><a href="#orge16a98a">2.1. channel 队列</a></li>
+<li><a href="#org2d8324a">2.2. 当channel缓存满了怎么办</a></li>
+<li><a href="#orgef14331">2.3. 反向操作</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-orgc756a9c" class="outline-2">
-<h2 id="orgc756a9c">定义</h2>
-<div class="outline-text-2" id="text-orgc756a9c">
-<div class="org-src-container">
-<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">type</span> <span style="color: #ce537a; font-weight: bold;">hchan</span> <span style="color: #4f97d7; font-weight: bold;">struct</span> {
-    qcount   <span style="color: #ce537a; font-weight: bold;">uint</span>           <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">total data in the queue</span>
-    dataqsiz <span style="color: #ce537a; font-weight: bold;">uint</span>           <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">size of the circular queue</span>
-    buf      <span style="color: #ce537a; font-weight: bold;">unsafe.Pointer</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">points to an array of dataqsiz elements</span>
-    elemsize <span style="color: #ce537a; font-weight: bold;">uint16</span>
-    closed   <span style="color: #ce537a; font-weight: bold;">uint32</span>
-    elemtype *<span style="color: #ce537a; font-weight: bold;">_type</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">element type</span>
-    sendx    <span style="color: #ce537a; font-weight: bold;">uint</span>   <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">send index</span>
-    recvx    <span style="color: #ce537a; font-weight: bold;">uint</span>   <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">receive index</span>
-    recvq    <span style="color: #ce537a; font-weight: bold;">waitq</span>  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">list of recv waiters</span>
-    sendq    <span style="color: #ce537a; font-weight: bold;">waitq</span>  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">list of send waiters</span>
 
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">lock protects all fields in hchan, as well as several</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">fields in sudogs blocked on this channel.</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">//</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Do not change another G's status while holding this lock</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">(in particular, do not ready a G), as this can deadlock</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">with stack shrinking.</span>
-    lock <span style="color: #ce537a; font-weight: bold;">mutex</span>
+<div id="outline-container-orgdc08ee4" class="outline-2">
+<h2 id="orgdc08ee4"><span class="section-number-2">1</span> 定义</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #81A1C1;">type</span> <span style="color: #8FBCBB;">hchan</span> <span style="color: #81A1C1;">struct</span> {
+    qcount   <span style="color: #8FBCBB;">uint</span>           <span style="color: #6f7787;">// </span><span style="color: #6f7787;">total data in the queue</span>
+    dataqsiz <span style="color: #8FBCBB;">uint</span>           <span style="color: #6f7787;">// </span><span style="color: #6f7787;">size of the circular queue</span>
+    buf      <span style="color: #8FBCBB;">unsafe.Pointer</span> <span style="color: #6f7787;">// </span><span style="color: #6f7787;">points to an array of dataqsiz elements</span>
+    elemsize <span style="color: #8FBCBB;">uint16</span>
+    closed   <span style="color: #8FBCBB;">uint32</span>
+    elemtype *<span style="color: #8FBCBB;">_type</span> <span style="color: #6f7787;">// </span><span style="color: #6f7787;">element type</span>
+    sendx    <span style="color: #8FBCBB;">uint</span>   <span style="color: #6f7787;">// </span><span style="color: #6f7787;">send index</span>
+    recvx    <span style="color: #8FBCBB;">uint</span>   <span style="color: #6f7787;">// </span><span style="color: #6f7787;">receive index</span>
+    recvq    <span style="color: #8FBCBB;">waitq</span>  <span style="color: #6f7787;">// </span><span style="color: #6f7787;">list of recv waiters</span>
+    sendq    <span style="color: #8FBCBB;">waitq</span>  <span style="color: #6f7787;">// </span><span style="color: #6f7787;">list of send waiters</span>
+
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">lock protects all fields in hchan, as well as several</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">fields in sudogs blocked on this channel.</span>
+    <span style="color: #6f7787;">//</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">Do not change another G's status while holding this lock</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">(in particular, do not ready a G), as this can deadlock</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">with stack shrinking.</span>
+    lock <span style="color: #8FBCBB;">mutex</span>
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0539f31" class="outline-2">
-<h2 id="org0539f31">先从创建开始</h2>
-<div class="outline-text-2" id="text-org0539f31">
+<div id="outline-container-orgae2ce83" class="outline-2">
+<h2 id="orgae2ce83"><span class="section-number-2">2</span> 先从创建开始</h2>
+<div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-go">
 
-<span style="color: #7590db;">ch</span> := <span style="color: #4f97d7;">make</span>(<span style="color: #4f97d7; font-weight: bold;">chan</span> <span style="color: #ce537a; font-weight: bold;">int</span>,3) 
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;channel&#23454;&#38469;&#19978;&#23601;&#26159;&#22312;&#20869;&#23384;&#20013;&#31034;&#20363;&#21270;&#20102;&#19968;&#20010;hchan&#30340;&#32467;&#26500;&#20307;,&#24182;&#36820;&#22238;&#19968;&#20010;ch&#25351;&#38024;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#22312;&#20351;&#29992;&#36807;&#31243;&#20013; channel&#22312;&#20989;&#25968;&#20043;&#38388;&#30340;&#20256;&#36882;&#37117;&#26159;&#20351;&#29992;&#30340;&#36825;&#20010;&#25351;&#38024;,&#25152;&#20197;&#36825;&#23601;&#26159;&#20026;&#20160;&#20040;&#20989;&#25968;&#20256;&#36882;&#26080;&#38656;&#20351;&#29992;channel&#25351;&#38024;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#30452;&#25509;&#20351;&#29992;channel&#23601;&#34892;&#20102; &#22240;&#20026;channel &#24213;&#23618;&#23601;&#26159;&#19968;&#20010;&#23454;&#20363;&#21270;&#30340;hchan&#25351;&#38024;</span>
+<span style="color: #D8DEE9;">ch</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>,3)
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#21019;&#24314;channel&#23454;&#38469;&#19978;&#23601;&#26159;&#22312;&#20869;&#23384;&#20013;&#31034;&#20363;&#21270;&#20102;&#19968;&#20010;hchan&#30340;&#32467;&#26500;&#20307;,&#24182;&#36820;&#22238;&#19968;&#20010;ch&#25351;&#38024;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#25105;&#20204;&#22312;&#20351;&#29992;&#36807;&#31243;&#20013; channel&#22312;&#20989;&#25968;&#20043;&#38388;&#30340;&#20256;&#36882;&#37117;&#26159;&#20351;&#29992;&#30340;&#36825;&#20010;&#25351;&#38024;,&#25152;&#20197;&#36825;&#23601;&#26159;&#20026;&#20160;&#20040;&#20989;&#25968;&#20256;&#36882;&#26080;&#38656;&#20351;&#29992;channel&#25351;&#38024;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#30452;&#25509;&#20351;&#29992;channel&#23601;&#34892;&#20102; &#22240;&#20026;channel &#24213;&#23618;&#23601;&#26159;&#19968;&#20010;&#23454;&#20363;&#21270;&#30340;hchan&#25351;&#38024;</span>
 
 </pre>
 </div>
 
 <pre class="example">
-channel 中发送 send (ch &lt;- xxx )和 recv(&lt;- ch)接受 (指向谁就是 谁发送) 
+channel 中发送 send (ch &lt;- xxx )和 recv(&lt;- ch)接受 (指向谁就是 谁发送)
 </pre>
 </div>
-<div id="outline-container-org6153cae" class="outline-3">
-<h3 id="org6153cae">channel 队列</h3>
-<div class="outline-text-3" id="text-org6153cae">
+<div id="outline-container-orge16a98a" class="outline-3">
+<h3 id="orge16a98a"><span class="section-number-3">2.1</span> channel 队列</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 <b>队列的意思就是先谁后谁</b>
 <b>channel 中有个缓存的buf 是用来缓存数据的</b>
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20381;&#28982;&#26159;&#21018;&#21018;&#37027;&#20010;channel </span>
-<span style="color: #7590db;">ch</span> := <span style="color: #4f97d7;">make</span>(<span style="color: #4f97d7; font-weight: bold;">chan</span> <span style="color: #ce537a; font-weight: bold;">int</span> ,3)
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#24403;&#25105;&#20204;&#35201;&#20351;&#29992;&#36825;&#20010;&#36825;&#20010;channel &#36827;&#34892; chan &lt;- xxx &#21457;&#36865;   &#25110;&#32773; &lt;- ch &#25509;&#21463;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#30340;&#26102;&#20505; &#25105;&#20204;&#23601;&#35201;&#38145;&#20303;&#36825;&#20010; hchan &#32467;&#26500;&#20307; &#28982;&#21518;&#20877;&#36827;&#34892;&#25968;&#25454;&#20132;&#20114;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21152;&#38145; send &#21644; recv &#30340;&#26102;&#20505;&#30340;&#36807;&#31243; </span>
+<pre class="src src-go"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#20381;&#28982;&#26159;&#21018;&#21018;&#37027;&#20010;channel</span>
+<span style="color: #D8DEE9;">ch</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span> ,3)
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#24403;&#25105;&#20204;&#35201;&#20351;&#29992;&#36825;&#20010;&#36825;&#20010;channel &#36827;&#34892; chan &lt;- xxx &#21457;&#36865;   &#25110;&#32773; &lt;- ch &#25509;&#21463;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#30340;&#26102;&#20505; &#25105;&#20204;&#23601;&#35201;&#38145;&#20303;&#36825;&#20010; hchan &#32467;&#26500;&#20307; &#28982;&#21518;&#20877;&#36827;&#34892;&#25968;&#25454;&#20132;&#20114;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#21152;&#38145; send &#21644; recv &#30340;&#26102;&#20505;&#30340;&#36807;&#31243;</span>
 </pre>
 </div>
 
@@ -336,12 +329,12 @@ channel 中发送 send (ch &lt;- xxx )和 recv(&lt;- ch)接受 (指向谁就是 
 </div>
 
 <p>
-加锁之后 就是 以这种方式传输 
+加锁之后 就是 以这种方式传输
 </p>
 
 <p>
 <img src="./pic/3.gif" alt="3.gif" />
-<img src="./pic/4.gif" alt="4.gif" />    
+<img src="./pic/4.gif" alt="4.gif" />
 </p>
 <pre class="example">
 注意以上两幅图中buf和recvx以及sendx的变化 ,recvx 和 sendx 是根据循环链表buf 的变动而改变的
@@ -355,42 +348,42 @@ channel为何会使用 循环链表作为缓存结构,大概是因为 缓存列�
 每一步的操作都可以细化:
 1 . 加锁
 2 . 把数据从Goroutine中send 或者  recv  到别的 Goroutine
-3 . 释放锁 
+3 . 释放锁
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6777944" class="outline-3">
-<h3 id="org6777944">当channel缓存满了怎么办</h3>
-<div class="outline-text-3" id="text-org6777944">
+<div id="outline-container-org2d8324a" class="outline-3">
+<h3 id="org2d8324a"><span class="section-number-3">2.2</span> 当channel缓存满了怎么办</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-go">&#22312;&#32531;&#23384;&#28385;&#30340;&#26102;&#20505; <span style="color: #ce537a; font-weight: bold;">&#25110;&#32773;&#27809;&#26377;&#32531;&#23384;&#30340;&#26102;&#20505;</span> <span style="color: #bc6ec5; font-weight: bold;">&#25105;&#20204;send</span> (ch &lt;- xxx) <span style="color: #ce537a; font-weight: bold;">&#25110;&#32773;</span> <span style="color: #ce537a; font-weight: bold;">recv</span> (&lt;- ch) <span style="color: #ce537a; font-weight: bold;">&#20250;&#38459;&#22622;&#24403;&#21069;&#30340;Goroutine</span>
-&#20294;&#26159; <span style="color: #ce537a; font-weight: bold;">&#36825;&#26159;&#24590;&#20040;&#23454;&#29616;&#30340;&#21602;</span>
-&#36825;&#37324;&#20250;&#29301;&#25199;&#21040; <span style="color: #ce537a; font-weight: bold;">GPM</span> &#27169;&#22411; 
-Goroutine <span style="color: #ce537a; font-weight: bold;">&#30340;&#38459;&#22622;&#25805;&#20316;</span>  <span style="color: #bc6ec5; font-weight: bold;">&#23454;&#38469;&#19978;&#26159;&#35843;&#29992;send</span>(ch &lt;- xx) <span style="color: #bc6ec5; font-weight: bold;">&#25110;&#32773;recv</span>(&lt;- ch) <span style="color: #ce537a; font-weight: bold;">&#30340;&#26102;&#20505;&#20027;&#21160;&#35302;&#21457;&#30340;</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">G1 &#26159;&#19968;&#20010; Goroutine </span>
-<span style="color: #7590db;">ch</span> := <span style="color: #4f97d7;">make</span>(<span style="color: #4f97d7; font-weight: bold;">chan</span> <span style="color: #ce537a; font-weight: bold;">int</span> ,3)
+<pre class="src src-go">&#22312;&#32531;&#23384;&#28385;&#30340;&#26102;&#20505; <span style="color: #8FBCBB;">&#25110;&#32773;&#27809;&#26377;&#32531;&#23384;&#30340;&#26102;&#20505;</span> <span style="color: #8FBCBB;">&#25105;&#20204;send</span> (ch &lt;- xxx) <span style="color: #8FBCBB;">&#25110;&#32773;</span> <span style="color: #8FBCBB;">recv</span> (&lt;- ch) <span style="color: #8FBCBB;">&#20250;&#38459;&#22622;&#24403;&#21069;&#30340;Goroutine</span>
+&#20294;&#26159; <span style="color: #8FBCBB;">&#36825;&#26159;&#24590;&#20040;&#23454;&#29616;&#30340;&#21602;</span>
+&#36825;&#37324;&#20250;&#29301;&#25199;&#21040; <span style="color: #8FBCBB;">GPM</span> &#27169;&#22411;
+Goroutine <span style="color: #8FBCBB;">&#30340;&#38459;&#22622;&#25805;&#20316;</span>  <span style="color: #8FBCBB;">&#23454;&#38469;&#19978;&#26159;&#35843;&#29992;send</span>(ch &lt;- xx) <span style="color: #8FBCBB;">&#25110;&#32773;recv</span>(&lt;- ch) <span style="color: #8FBCBB;">&#30340;&#26102;&#20505;&#20027;&#21160;&#35302;&#21457;&#30340;</span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">G1 &#26159;&#19968;&#20010; Goroutine</span>
+<span style="color: #D8DEE9;">ch</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span> ,3)
 ch &lt;- 1
-ch &lt;- 2 
-ch &lt;- 3 
-&#36825;&#20010;&#26102;&#20505; <span style="color: #ce537a; font-weight: bold;">G1&#27491;&#22312;&#36816;&#34892;.&#22914;&#26524;&#20877;&#27425;&#36827;&#34892;send&#25805;&#20316;</span> ch &lt;-1 <span style="color: #ce537a; font-weight: bold;">&#30340;&#26102;&#20505;&#20250;&#35843;&#29992;</span> Go&#30340;&#35843;&#24230;&#22120;.&#35753;G1&#31561;&#24453; <span style="color: #ce537a; font-weight: bold;">&#24182;&#20174;&#35753;&#20986;M</span>
+ch &lt;- 2
+ch &lt;- 3
+&#36825;&#20010;&#26102;&#20505; <span style="color: #8FBCBB;">G1&#27491;&#22312;&#36816;&#34892;.&#22914;&#26524;&#20877;&#27425;&#36827;&#34892;send&#25805;&#20316;</span> ch &lt;-1 <span style="color: #8FBCBB;">&#30340;&#26102;&#20505;&#20250;&#35843;&#29992;</span> Go&#30340;&#35843;&#24230;&#22120;.&#35753;G1&#31561;&#24453; <span style="color: #8FBCBB;">&#24182;&#20174;&#35753;&#20986;M</span>
 &#35753;&#20854;&#20182;&#30340;Goroutine&#21435;&#20351;&#29992;
-&#21516;&#26102; <span style="color: #ce537a; font-weight: bold;">G1</span> &#20250;&#34987;&#25277;&#35937;&#25104;&#21547;&#26377;G1 <span style="color: #ce537a; font-weight: bold;">&#25351;&#38024;&#21644;send</span> &#20803;&#32032;&#30340; <span style="color: #ce537a; font-weight: bold;">sudog</span> &#32467;&#26500;&#20307; <span style="color: #ce537a; font-weight: bold;">&#20445;&#23384;&#21040;</span> hchan&#30340;sendq <span style="color: #ce537a; font-weight: bold;">&#20013;&#31561;&#24453;&#21796;&#37266;</span>
-G1 <span style="color: #ce537a; font-weight: bold;">&#35201;&#34987;&#21796;&#37266;</span> &#23601;&#26234;&#33021;&#31561;G2 <span style="color: #ce537a; font-weight: bold;">&#36827;&#34892;recv&#25805;&#20316;</span> 
+&#21516;&#26102; <span style="color: #8FBCBB;">G1</span> &#20250;&#34987;&#25277;&#35937;&#25104;&#21547;&#26377;G1 <span style="color: #8FBCBB;">&#25351;&#38024;&#21644;send</span> &#20803;&#32032;&#30340; <span style="color: #8FBCBB;">sudog</span> &#32467;&#26500;&#20307; <span style="color: #8FBCBB;">&#20445;&#23384;&#21040;</span> hchan&#30340;sendq <span style="color: #8FBCBB;">&#20013;&#31561;&#24453;&#21796;&#37266;</span>
+G1 <span style="color: #8FBCBB;">&#35201;&#34987;&#21796;&#37266;</span> &#23601;&#26234;&#33021;&#31561;G2 <span style="color: #8FBCBB;">&#36827;&#34892;recv&#25805;&#20316;</span>
 
-G2 <span style="color: #ce537a; font-weight: bold;">&#20174;&#32531;&#23384;&#38431;&#21015;&#20013;&#21435;&#21462;&#20986;&#25968;&#25454;</span> channel <span style="color: #ce537a; font-weight: bold;">&#20250;&#23558;&#31561;&#24453;&#38431;&#21015;&#20013;&#30340;G1</span> &#25512;&#20986; <span style="color: #ce537a; font-weight: bold;">&#23558;</span> G1 <span style="color: #ce537a; font-weight: bold;">&#24403;&#26102;send</span> &#30340;&#25968;&#25454;&#25512;&#21040;&#32531;&#23384;&#20013;
-&#28982;&#21518;&#35843;&#29992;Go <span style="color: #ce537a; font-weight: bold;">&#30340;scheduler</span> &#21796;&#37266;G1 <span style="color: #ce537a; font-weight: bold;">&#24182;&#25918;&#21040;&#21487;&#36816;&#34892;&#30340;Goroutine&#38431;&#21015;&#20013;</span>
+G2 <span style="color: #8FBCBB;">&#20174;&#32531;&#23384;&#38431;&#21015;&#20013;&#21435;&#21462;&#20986;&#25968;&#25454;</span> channel <span style="color: #8FBCBB;">&#20250;&#23558;&#31561;&#24453;&#38431;&#21015;&#20013;&#30340;G1</span> &#25512;&#20986; <span style="color: #8FBCBB;">&#23558;</span> G1 <span style="color: #8FBCBB;">&#24403;&#26102;send</span> &#30340;&#25968;&#25454;&#25512;&#21040;&#32531;&#23384;&#20013;
+&#28982;&#21518;&#35843;&#29992;Go <span style="color: #8FBCBB;">&#30340;scheduler</span> &#21796;&#37266;G1 <span style="color: #8FBCBB;">&#24182;&#25918;&#21040;&#21487;&#36816;&#34892;&#30340;Goroutine&#38431;&#21015;&#20013;</span>
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org288572e" class="outline-3">
-<h3 id="org288572e">反向操作</h3>
-<div class="outline-text-3" id="text-org288572e">
+<div id="outline-container-orgef14331" class="outline-3">
+<h3 id="orgef14331"><span class="section-number-3">2.3</span> 反向操作</h3>
+<div class="outline-text-3" id="text-2-3">
 <pre class="example">
-假如是先进行执行recv操作的G2会怎么样？   
-先取 后 放  G2 先开始 取  没东西就阻塞  G1 再放 
+假如是先进行执行recv操作的G2会怎么样？
+先取 后 放  G2 先开始 取  没东西就阻塞  G1 再放
 
 你可能会顺着以上的思路反推。首先：
 
@@ -411,7 +404,7 @@ G1并没有锁住channel，然后将数据放到缓存中，而是直接把数�
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:07</p>
+<p class="date">Created: 2020-12-03 四 15:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

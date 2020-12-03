@@ -3,41 +3,36 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-22
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 * go知识 
-** slice 
-   #+BEGIN_SRC 
+** slice
+   #+BEGIN_SRC
    slice 和 array . slice和数组类似 可以使用下标访问.如果越界就会产生panic 可以自动扩容
-   
+
    slice 的 源代码
 
    type slice struct{
       array   unsafe.Pointer  // 指针 /
-      len     int   //长度 
+      len     int   //长度
       cap     int   // 容量
    }
 
    指针指向底层数组 长度标示切片可以用的元素个数,容量是底层数组的元素个数 >= 长度
 
-   创建   
+   创建
 
    1 . var  slice []int  -----> nil slice  cap len 都是 0  和nil 比较为 true
        (空切片会指向一个特定的地址 和 nil 比较为false  var slice []int{})
-   2 . slice  := *new([]int) 
-   
+   2 . slice  := *new([]int)
+
    3 . new  字面量  s1 := []int{1,2,3,4,5:100} : 是索引号 没有的 就是0  返回是 1 2 3 4 0 100
 
    4 . make slice := make([]int,5) // 不传容量 默认和长度相等
-   
-   5 . 截取 
-   
 
-   区别 
+   5 . 截取
+
+
+   区别
        slice 的底层数据是 数组  slice 是对数组的封装 描述的是一个数组的片段 都可以用下表访问
 
        数组定长的 长度不可变  slice 可以自动扩容
    #+END_SRC
-   

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 09:32 -->
+<!-- 2020-12-03 四 15:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>channel-select</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,72 +248,79 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5ff0894">概述</a>
+<li><a href="#org8a564d2">1. 概述</a>
 <ul>
-<li><a href="#orga50b248">并发模型</a></li>
-<li><a href="#org68cc157">G P M 模型</a></li>
-<li><a href="#orgd2ce35f">channel 的 struct</a></li>
-<li><a href="#orgc8ca2d6">channel 4 种 情况 (基于ring buffer 先进先出)</a></li>
+<li><a href="#orgff0879b">1.1. 并发模型</a></li>
+<li><a href="#orgeb91c5e">1.2. G P M 模型</a></li>
+<li><a href="#org76c1139">1.3. channel 的 struct</a></li>
+<li><a href="#orgb22e946">1.4. channel 4 种 情况 (基于ring buffer 先进先出)</a>
+<ul>
+<li><a href="#org50c6de1">1.4.1. make</a></li>
+<li><a href="#orge9ee372">1.4.2. send</a></li>
+<li><a href="#orgfa90f5d">1.4.3. recv</a></li>
+<li><a href="#orga72e263">1.4.4. close</a></li>
+<li><a href="#orgdd44095">1.4.5. 基本情况的特殊问题</a></li>
 </ul>
 </li>
-<li><a href="#org233b1f4">select</a>
+</ul>
+</li>
+<li><a href="#orga09d088">2. select</a>
 <ul>
-<li><a href="#org81da678">介绍 情况</a></li>
+<li><a href="#org532895e">2.1. 介绍 情况</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org5ff0894" class="outline-2">
-<h2 id="org5ff0894">概述</h2>
-<div class="outline-text-2" id="text-org5ff0894">
+<div id="outline-container-org8a564d2" class="outline-2">
+<h2 id="org8a564d2"><span class="section-number-2">1</span> 概述</h2>
+<div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga50b248" class="outline-3">
-<h3 id="orga50b248">并发模型</h3>
-<div class="outline-text-3" id="text-orga50b248">
+<div id="outline-container-orgff0879b" class="outline-3">
+<h3 id="orgff0879b"><span class="section-number-3">1.1</span> 并发模型</h3>
+<div class="outline-text-3" id="text-1-1">
 <pre class="example">
-并行计算: 共享内存 或者 消息通信 
+并行计算: 共享内存 或者 消息通信
 
 目的   : 目的是解决多线程的数据一致性
 
 共享内存: 提供互斥锁同步原语
 
-消息通信: channel 
+消息通信: channel
 
-对于go : 同事提供了 sync.* 和 atomic.* 的基于共享内存的同步原语 
+对于go : 同事提供了 sync.* 和 atomic.* 的基于共享内存的同步原语
 
 </pre>
 </div>
 </div>
-<div id="outline-container-org68cc157" class="outline-3">
-<h3 id="org68cc157">G P M 模型</h3>
-<div class="outline-text-3" id="text-org68cc157">
+<div id="outline-container-orgeb91c5e" class="outline-3">
+<h3 id="orgeb91c5e"><span class="section-number-3">1.2</span> G P M 模型</h3>
+<div class="outline-text-3" id="text-1-2">
 <pre class="example">
-调度的方法 
+调度的方法
 
 G --- &gt; Goroutine  代码在这里
 
-m ----&gt; machine    线程 go 运行的时候 会创建很多 m 然后去 调度 G 
-                   调度的前提是 必须持有 P 
+m ----&gt; machine    线程 go 运行的时候 会创建很多 m 然后去 调度 G
+                   调度的前提是 必须持有 P
 
-p ----&gt; processor  为了编程的方便 我们不希望所有的M 都去调全局队列的G 
-                   所以创建了p 每次 M 调度 G 的时候 就会拿到一个 P 
-                   得到了全局队列 , 所以 P 更像 存放全局变量的东西 
+p ----&gt; processor  为了编程的方便 我们不希望所有的M 都去调全局队列的G
+                   所以创建了p 每次 M 调度 G 的时候 就会拿到一个 P
+                   得到了全局队列 , 所以 P 更像 存放全局变量的东西
 
 调度eg  : 线程 去 执行  Goroutine  去拿本地队列  如果空了 就去拿其他人的
          Goroutine  如果某一时刻 两个人都空了  那么就去看全局队列  有的话
-         拿一半 
+         拿一半
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgd2ce35f" class="outline-3">
-<h3 id="orgd2ce35f">channel 的 struct</h3>
-<div class="outline-text-3" id="text-orgd2ce35f">
+<div id="outline-container-org76c1139" class="outline-3">
+<h3 id="org76c1139"><span class="section-number-3">1.3</span> channel 的 struct</h3>
+<div class="outline-text-3" id="text-1-3">
 <pre class="example">
-Channel 的结构 
+Channel 的结构
 type hchan struct {
      qcount   uint           // total data in the queue
      dataqsiz uint           // size of the circular queue
@@ -333,7 +335,7 @@ type hchan struct {
      lock mutex
 }
 
-Sudog 的结构 
+Sudog 的结构
 type sudog struct {
      g *g
      isSelect bool
@@ -352,95 +354,95 @@ type sudog struct {
 </div>
 </div>
 
-<div id="outline-container-orgc8ca2d6" class="outline-3">
-<h3 id="orgc8ca2d6">channel 4 种 情况 (基于ring buffer 先进先出)</h3>
-<div class="outline-text-3" id="text-orgc8ca2d6">
+<div id="outline-container-orgb22e946" class="outline-3">
+<h3 id="orgb22e946"><span class="section-number-3">1.4</span> channel 4 种 情况 (基于ring buffer 先进先出)</h3>
+<div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org8f17a8c" class="outline-4">
-<h4 id="org8f17a8c">make</h4>
-<div class="outline-text-4" id="text-org8f17a8c">
+<div id="outline-container-org50c6de1" class="outline-4">
+<h4 id="org50c6de1"><span class="section-number-4">1.4.1</span> make</h4>
+<div class="outline-text-4" id="text-1-4-1">
 <pre class="example">
 ch := make(chan interface{},0) -- &gt; runtime.makechan(interface{},0)
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org783e7dd" class="outline-4">
-<h4 id="org783e7dd">send</h4>
-<div class="outline-text-4" id="text-org783e7dd">
+<div id="outline-container-orge9ee372" class="outline-4">
+<h4 id="orge9ee372"><span class="section-number-4">1.4.2</span> send</h4>
+<div class="outline-text-4" id="text-1-4-2">
 <pre class="example">
 
 ch &lt;- v1       ------&gt;    runtime.chansend1(ch,&amp;v)
-过程 : lock ---- &gt; 发送数据给buf --- &gt; 解锁 
+过程 : lock ---- &gt; 发送数据给buf --- &gt; 解锁
 
-结果 : sendx++ 
+结果 : sendx++
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6d8c154" class="outline-4">
-<h4 id="org6d8c154">recv</h4>
-<div class="outline-text-4" id="text-org6d8c154">
+<div id="outline-container-orgfa90f5d" class="outline-4">
+<h4 id="orgfa90f5d"><span class="section-number-4">1.4.3</span> recv</h4>
+<div class="outline-text-4" id="text-1-4-3">
 <pre class="example">
 
 1 : v1 &lt;- ch     ------&gt;   runtime.chanrecv1(ch,&amp;v)
-2 : v1,ok &lt;- ch     ------- &gt; ok := runtime.chanrecv2(ch , &amp;v) 
+2 : v1,ok &lt;- ch     ------- &gt; ok := runtime.chanrecv2(ch , &amp;v)
 
 过程 :  lock --- &gt; 从buf取出数据 ---- &gt; 解锁
-结果 :  recvx++ 
+结果 :  recvx++
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgec5adb5" class="outline-4">
-<h4 id="orgec5adb5">close</h4>
-<div class="outline-text-4" id="text-orgec5adb5">
+<div id="outline-container-orga72e263" class="outline-4">
+<h4 id="orga72e263"><span class="section-number-4">1.4.4</span> close</h4>
+<div class="outline-text-4" id="text-1-4-4">
 <pre class="example">
 close(ch)
 
 加锁 ----&gt; closed == 1 (标志位) ----&gt; ready 所有的sendq 和 recvq ---&gt; 解锁
 
-ready sendq 和 recvq : 
+ready sendq 和 recvq :
      1 . 把所有的 阻塞 q 的 Goroutine 放到glist 的一个临时变量
-     想要尽快的解锁 因为可能buf还有数据, recvx 还有别人读数据 
+     想要尽快的解锁 因为可能buf还有数据, recvx 还有别人读数据
 </pre>
 </div>
 </div>
-<div id="outline-container-orgacb005a" class="outline-4">
-<h4 id="orgacb005a">基本情况的特殊问题</h4>
-<div class="outline-text-4" id="text-orgacb005a">
+<div id="outline-container-orgdd44095" class="outline-4">
+<h4 id="orgdd44095"><span class="section-number-4">1.4.5</span> 基本情况的特殊问题</h4>
+<div class="outline-text-4" id="text-1-4-5">
 <pre class="example">
-gopark : 
-     1 . + 线程 解除当前的g 
+gopark :
+     1 . + 线程 解除当前的g
      2 . + m 重新进入调度队列
      3 . 此时g 没有进入调度队列 然后就阻塞
 </pre>
 
 <pre class="example">
-1 . 发送时 buf 满了 
-ans : 使用 sudog 的结构 包裹 g 和要发送的数据  ---- &gt; 
+1 . 发送时 buf 满了
+ans : 使用 sudog 的结构 包裹 g 和要发送的数据  ---- &gt;
       入队 sendq (正常发送是在sendx) ---- &gt; gopark
 
 后续 : 来了一个新的接收方把之前满的buf取走了一个
      过程 : sendq出队 ---&gt; 从buf 拷贝到队头 (因为取走的时候是队头 先进先出)
-           ----&gt; (再次 ringbuffer 消费掉的数据是会自动到队尾) 
+           ----&gt; (再次 ringbuffer 消费掉的数据是会自动到队尾)
            ----&gt; Goroutine再次被放到队列中 等待调度
 </pre>
 
 <pre class="example">
 2  . 如果 recv 的时候 buf 为空
-ans : 使用sudog 包裹g 和要接受的数据 --- &gt; 
-      入队recvq ---&gt; gopark 
-后续 : 如果有一个新的 send 发送数据 ---&gt; recvq 出队 ---&gt; 
+ans : 使用sudog 包裹g 和要接受的数据 --- &gt;
+      入队recvq ---&gt; gopark
+后续 : 如果有一个新的 send 发送数据 ---&gt; recvq 出队 ---&gt;
       直接将send Goroutine的数据 copy 到 阻塞的 recvq Goroutine
       (因为recvq 出队 是阻塞状态 不会被竞争  所以这个write操作很安全)
       整个操作没有buf 参与 与unbuffer 的情况一模一样
 </pre>
 <pre class="example">
-3  . 读取一个已经关闭的channel 
-     sendq recvq === nil 
-     buf &lt;&gt; nil/data 
+3  . 读取一个已经关闭的channel
+     sendq recvq === nil
+     buf &lt;&gt; nil/data
      if buf== nil{
         清零reader 的读取位置
      }else{
@@ -448,7 +450,7 @@ ans : 使用sudog 包裹g 和要接受的数据 --- &gt;
      }
 
      等到没有 Goroutine 来使用channel 的时候
-     channel就会释放内存 
+     channel就会释放内存
      (假如两个Goroutine 都有操作channel 的指针 ,
      她们两个Goroutine执行完毕 那么channel就会释放)
 </pre>
@@ -457,13 +459,13 @@ ans : 使用sudog 包裹g 和要接受的数据 --- &gt;
 </div>
 </div>
 
-<div id="outline-container-org233b1f4" class="outline-2">
-<h2 id="org233b1f4">select</h2>
-<div class="outline-text-2" id="text-org233b1f4">
+<div id="outline-container-orga09d088" class="outline-2">
+<h2 id="orga09d088"><span class="section-number-2">2</span> select</h2>
+<div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org81da678" class="outline-3">
-<h3 id="org81da678">介绍 情况</h3>
-<div class="outline-text-3" id="text-org81da678">
+<div id="outline-container-org532895e" class="outline-3">
+<h3 id="org532895e"><span class="section-number-3">2.1</span> 介绍 情况</h3>
+<div class="outline-text-3" id="text-2-1">
 <pre class="example">
 
 </pre>
@@ -474,7 +476,7 @@ ans : 使用sudog 包裹g 和要接受的数据 --- &gt;
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-22</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-09-22 二 09:32</p>
+<p class="date">Created: 2020-12-03 四 15:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

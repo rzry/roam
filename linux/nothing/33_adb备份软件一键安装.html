@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 14:03 -->
+<!-- 2020-12-03 四 15:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>安卓一键软件备份-安装</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,24 +248,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga4f6753">爬所有的软件包名</a></li>
-<li><a href="#org56ab31f">替换一下</a></li>
-<li><a href="#orgfca92b9">把data/app 提出来</a></li>
-<li><a href="#org96378af">可以直接  adb pull</a></li>
-<li><a href="#org1b9fc31">方法</a></li>
-<li><a href="#org7abacd9">设置权限</a></li>
-<li><a href="#org83553d4">安装</a></li>
-<li><a href="#org9b42613">搞了个这个 把我分支感染了  就离谱</a></li>
-<li><a href="#orge0bf27e">我真是服了自己</a></li>
+<li><a href="#orgda3e0f1">1. 爬所有的软件包名</a></li>
+<li><a href="#orgf2a5730">2. 替换一下</a></li>
+<li><a href="#org32dbd8d">3. 把data/app 提出来</a></li>
+<li><a href="#orgf191bb7">4. 可以直接  adb pull</a></li>
+<li><a href="#orgfcafb3f">5. 方法</a></li>
+<li><a href="#orgc363661">6. 设置权限</a></li>
+<li><a href="#org9ae3176">7. 安装</a></li>
+<li><a href="#org072f329">8. 搞了个这个 把我分支感染了  就离谱</a></li>
+<li><a href="#org2c0eeee">9. 我真是服了自己</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-orga4f6753" class="outline-2">
-<h2 id="orga4f6753">爬所有的软件包名</h2>
-<div class="outline-text-2" id="text-orga4f6753">
+
+<div id="outline-container-orgda3e0f1" class="outline-2">
+<h2 id="orgda3e0f1"><span class="section-number-2">1</span> 爬所有的软件包名</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 adb shell pm list package
 </p>
@@ -281,11 +274,11 @@ adb shell pm list packages &gt;&gt; 1.txt
 </div>
 </div>
 
-<div id="outline-container-org56ab31f" class="outline-2">
-<h2 id="org56ab31f">替换一下</h2>
-<div class="outline-text-2" id="text-org56ab31f">
+<div id="outline-container-orgf2a5730" class="outline-2">
+<h2 id="orgf2a5730"><span class="section-number-2">2</span> 替换一下</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-sed -e 's///g'  1.txt 拿到单独的名字  
+sed -e 's///g'  1.txt 拿到单独的名字
 </p>
 
 
@@ -295,83 +288,83 @@ adb shell pm path com.hpbr.bosszhipin &gt;&gt; package  拿到路径
 </div>
 </div>
 
-<div id="outline-container-orgfca92b9" class="outline-2">
-<h2 id="orgfca92b9">把data/app 提出来</h2>
-<div class="outline-text-2" id="text-orgfca92b9">
+<div id="outline-container-org32dbd8d" class="outline-2">
+<h2 id="org32dbd8d"><span class="section-number-2">3</span> 把data/app 提出来</h2>
+<div class="outline-text-2" id="text-3">
 <p>
-sed -n '\/data\/app/p' package 
+sed -n '\/data\/app/p' package
 </p>
 </div>
 </div>
 
-<div id="outline-container-org96378af" class="outline-2">
-<h2 id="org96378af">可以直接  adb pull</h2>
-<div class="outline-text-2" id="text-org96378af">
+<div id="outline-container-orgf191bb7" class="outline-2">
+<h2 id="orgf191bb7"><span class="section-number-2">4</span> 可以直接  adb pull</h2>
+<div class="outline-text-2" id="text-4">
 <pre class="example">
-问题   因为  软件 我们 批量导出的时候 
+问题   因为  软件 我们 批量导出的时候
 
-adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/base.apk ./ 
-adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/split_config.zh.apk ./ 
-adb pull /data/app/com.hpbr.bosszhipin-yK6g-htg_HFL4zr4AnDSmQ==/base.apk ./ 
-adb pull /data/app/com.google.android.googlequicksearchbox-5IemJHVD9vbt2Cb0M0dPJw==/base.apk ./ 
+adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/base.apk ./
+adb pull /data/app/com.google.android.youtube-VnqhGs8cQZrD4S6UAEEioQ==/split_config.zh.apk ./
+adb pull /data/app/com.hpbr.bosszhipin-yK6g-htg_HFL4zr4AnDSmQ==/base.apk ./
+adb pull /data/app/com.google.android.googlequicksearchbox-5IemJHVD9vbt2Cb0M0dPJw==/base.apk ./
 
-这会有多个名字一样的软件  这是 7.0 以上的通病 
+这会有多个名字一样的软件  这是 7.0 以上的通病
 为了避免这种情况 我们给后面直接重命名自增一个
 
 </pre>
 </div>
 </div>
-<div id="outline-container-org1b9fc31" class="outline-2">
-<h2 id="org1b9fc31">方法</h2>
-<div class="outline-text-2" id="text-org1b9fc31">
+<div id="outline-container-orgfcafb3f" class="outline-2">
+<h2 id="orgfcafb3f"><span class="section-number-2">5</span> 方法</h2>
+<div class="outline-text-2" id="text-5">
 <pre class="example">
 给末尾添加 一个 sed    sed 's/$/&amp;sed/g' 4.sh &gt;&gt; 8.sh
 
-然后 以 sed 为关键字 让它自增 
+然后 以 sed 为关键字 让它自增
  awk -v RS="sed" '{n+=1;printf $0n}' 8.sh  &gt; 9.sh
 
- 然后再给末尾加一个  .apk  
+ 然后再给末尾加一个  .apk
  sed 's/$/&amp;.apk/g' 9.sh &gt;&gt; 10.sh
 </pre>
 </div>
 </div>
-<div id="outline-container-org7abacd9" class="outline-2">
-<h2 id="org7abacd9">设置权限</h2>
-<div class="outline-text-2" id="text-org7abacd9">
+<div id="outline-container-orgc363661" class="outline-2">
+<h2 id="orgc363661"><span class="section-number-2">6</span> 设置权限</h2>
+<div class="outline-text-2" id="text-6">
 <pre class="example">
 chmod  777 10.sh ok 完成了
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org83553d4" class="outline-2">
-<h2 id="org83553d4">安装</h2>
-<div class="outline-text-2" id="text-org83553d4">
+<div id="outline-container-org9ae3176" class="outline-2">
+<h2 id="org9ae3176"><span class="section-number-2">7</span> 安装</h2>
+<div class="outline-text-2" id="text-7">
 <pre class="example">
-使用 tcp 连接 
-adb tcpip 5555 
+使用 tcp 连接
+adb tcpip 5555
 
 adb connect 192.168.2.150
 
-然后  cp -r 10.sh ./11.sh   
-我们处理 11.sh 
+然后  cp -r 10.sh ./11.sh
+我们处理 11.sh
 awk '{print $NF}' 10.sh &gt;&gt; 11.sh    (拿到11.sh 最后一个值)
-设置权限  执行   ok   wait  安装完成吧 
+设置权限  执行   ok   wait  安装完成吧
 
 </pre>
 </div>
 </div>
-<div id="outline-container-org9b42613" class="outline-2">
-<h2 id="org9b42613">搞了个这个 把我分支感染了  就离谱</h2>
+<div id="outline-container-org072f329" class="outline-2">
+<h2 id="org072f329"><span class="section-number-2">8</span> 搞了个这个 把我分支感染了  就离谱</h2>
 </div>
-<div id="outline-container-orge0bf27e" class="outline-2">
-<h2 id="orge0bf27e">我真是服了自己</h2>
+<div id="outline-container-org2c0eeee" class="outline-2">
+<h2 id="org2c0eeee"><span class="section-number-2">9</span> 我真是服了自己</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 14:03</p>
+<p class="date">Created: 2020-12-03 四 15:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

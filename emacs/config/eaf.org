@@ -3,12 +3,9 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-29
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
+
 * 安装插件
- - sudo apt-get install libdbus-1-dev    
+ - sudo apt-get install libdbus-1-dev
  - pip3 install dbus-python
  - pip3 install pyqt5
  - pip3 install pyqt5-sip
@@ -16,4 +13,3 @@
  - pip3 install pymupdf
  - pip3 install grip
  - pip install nodejs
-

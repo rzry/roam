@@ -3,17 +3,11 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
-* 题目 
-  #+BEGIN_SRC 
+
+* 题目
+  #+BEGIN_SRC
   公司计划面试 2N 人。第 i 人飞往 A 市的费用为 costs[i][0]，飞往 B 市的费用为 costs[i][1]。
-  
+
   返回将每个人都飞到某座城市的最低费用，要求每个城市都有 N 人抵达。
 
    
@@ -39,21 +33,21 @@
 
   #+END_SRC
 * 解析   (看大佬和官方的解法  简单的总结一下)
-  #+BEGIN_SRC 
+  #+BEGIN_SRC
   假设 有 4 个人  A B C D
-  两个地点   西安 +  深圳 各位的花费如下 
+  两个地点   西安 +  深圳 各位的花费如下
   A {10,20}  B {30,40} C{40,60} D{70,60}
-  那我们要求最少的花费  
+  那我们要求最少的花费
   我们假设 所有的人都去 深圳  那么就是  20+40+60+60 = 180
-  然后 我们再 找一下 看 那些人  去两地的价格差是最大的 
-  A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D 
-  所以 我们 的选择就是 把 C  和 A或者B 改变行程 让他们去 西安 
-  所以 最后的 value 就是  150 
-  
+  然后 我们再 找一下 看 那些人  去两地的价格差是最大的
+  A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D
+  所以 我们 的选择就是 把 C  和 A或者B 改变行程 让他们去 西安
+  所以 最后的 value 就是  150
+
   代码思路 :
-      每组切片的参数相减 排序 
-      让N/2 前的 去 西安  
-      让N/2 后的 去 深圳 
+      每组切片的参数相减 排序
+      让N/2 前的 去 西安
+      让N/2 后的 去 深圳
   #+END_SRC
 * 代码
   #+BEGIN_SRC go
@@ -132,4 +126,4 @@ func main() {
 }
   #+END_SRC
 
-对切片 做差排序  
+对切片 做差排序

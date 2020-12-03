@@ -3,40 +3,36 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-24
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
-* DONE 第三章 
+* DONE 第三章
   CLOSED: [2020-09-24 四 19:46]
-** shell 
+** shell
  - /etc/passwd文件包含了所有系统用户账户列表以及每个用户的基本配置信息
  - rzry:x:1000:1000:rzry,,,:/home/rzry:/bin/zsh
 -----
 -----
-* DONE 第四章 
+* DONE 第四章
   CLOSED: [2020-09-24 四 20:17]
 ** 监测
-*** top 的输出 
-   #+BEGIN_SRC 
- pid    USER   PR    NI    VIRT     RES     SHR       S     %CPU             %MEM     TIME+ COMMAND                                                                                                                                                                                    
- 2712   root   20    0    715060   271296  133612     R      6.6              0.8     51:59.30 Xorg   
+*** top 的输出
+   #+BEGIN_SRC
+ pid    USER   PR    NI    VIRT     RES     SHR       S     %CPU             %MEM     TIME+ COMMAND
+ 2712   root   20    0    715060   271296  133612     R      6.6              0.8     51:59.30 Xorg
  进程id 用户名 优先级  谦让度 虚拟内存  物理内存 共享内存总量 状态  cpu使用的时间比例  内存占用比例  时间   程序名
 
-D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵化   
- 
+D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵化
+
    #+END_SRC
 -----
 -----
 *** 磁盘空间
-    #+BEGIN_SRC 
+    #+BEGIN_SRC
     默认情况下， mount命令会输出当前系统上挂载的设备列表
     nsfs on /run/snapd/ns/gnome-calculator.mnt type nsfs (rw)
     媒体的设备文件名  nsfs
     媒体挂载到虚拟目录的挂载点 /run/....
     文件系统类型   type
-    访问状态 rw 
+    访问状态 rw
      #+END_SRC
 -----
 -----
@@ -45,8 +41,8 @@ D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵�
     - 把一个vfat的类型的文件从/dev/sdb1 挂载到/media/rzry
     - -o 参数 允许增加额外选项 , ro 只读形式 , rw 读写 check=none 等
 ***** 卸载
-    - umount 卸载 没有n 
-      #+BEGIN_SRC 
+    - umount 卸载 没有n
+      #+BEGIN_SRC
       用法：
       umount [-hV]
       umount -a [选项]
@@ -55,26 +51,26 @@ D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵�
 -----
 -----
 ***** du命令 查看大文件并处理数据
-      #+BEGIN_SRC 
-      du 会输出类似tree 输出 
-      du -sh * | sort -nr 
-      -nr r 会让文件按降序输出 
+      #+BEGIN_SRC
+      du 会输出类似tree 输出
+      du -sh * | sort -nr
+      -nr r 会让文件按降序输出
       #+END_SRC
 ***** grep 搜索
-      #+BEGIN_SRC 
+      #+BEGIN_SRC
       -v 反向
       -n 行号
       -c 返回多少匹配 返回数字
       #+END_SRC
-      
+
 * DONE 第五章
   CLOSED: [2020-09-27 日 11:39]
 *** shell
-    - cat /etc/passwd 查看user shell 
+    - cat /etc/passwd 查看user shell
     - 查看默认shell为什么 也可以使用 /bin/bash *.sh
-*** 命令别名　alias 
+*** 命令别名　alias
     - alias -> l='ls -lah'
 * TODO 变量
 *** 查看变量
-    - env printenv set 
+    - env printenv set
     - set 会显示全局变量, 局部变量 用户定义变量

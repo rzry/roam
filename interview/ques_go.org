@@ -3,15 +3,11 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-10-26
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
 
-** ques 
+** ques
    - rune类型
-     - int64 - 64/8 =8 
+     - int64 - 64/8 =8
      - float64 - 64/8 = 8
      - float32 - 32/8 = 4
      - rune 就是 int32类型  = 4 byte
@@ -28,12 +24,12 @@
      }
      #+END_SRC
      - slice = 3*8 = 24
-     - complex64 = 8 
-     - uintptr = 32/64 -- uint32 uint64 
+     - complex64 = 8
+     - uintptr = 32/64 -- uint32 uint64
      - bool = 1
-     - byte = 1 
-     
-   - 拼接字符串 
+     - byte = 1
+
+   - 拼接字符串
      - strings.builder
        #+BEGIN_SRC go
        func Test4(t *testing.T){
@@ -43,10 +39,10 @@
 	qs.WriteString(str)
 	t.Log(len(qs.String()))
 	t.Log(qs.String())
-	
+
        }
        #+END_SRC
-     - fmt.Sprintln 
+     - fmt.Sprintln
      - bytes.buffer (io.write)
        #+BEGIN_SRC go
        func Test4(t *testing.T){
@@ -82,8 +78,8 @@
      #+END_SRC
 
    - 默认/可选参数(看一下options)
-     
-   - struct tag 
+
+   - struct tag
 
    - 值传递,参数传递
 
@@ -91,23 +87,23 @@
 
    - 空struct{}
 
-   - init() 执行 
+   - init() 执行
 
    - interface != interface ??
 
-   - go 的Gc 
+   - go 的Gc
 
    - 非接口的任意类型T 能够调用*T 的方法? 反过来
 
-   - 变量与常量  
+   - 变量与常量
 
-   - 作用域 
+   - 作用域
 
    - defer 延迟调用
 
-   - 协程泄露 
+   - 协程泄露
 
-   - for range 
+   - for range
      #+BEGIN_SRC go
        func Test2(t *testing.T) {
            slice := []int{0, 1, 2, 3}
@@ -123,16 +119,16 @@
        }
      #+END_SRC
      - for range 在循环的时候 会创建每个元素的副本,而不是元素的引用. 所以在取地址的时候
-       所有的map的元素值都是变量val 的地址.因为最后val被赋值为3 所以所有输出都为3 
+       所有的map的元素值都是变量val 的地址.因为最后val被赋值为3 所以所有输出都为3
 
-   - make 和 new 区别 
+   - make 和 new 区别
      #+BEGIN_SRC go
        func Test1(t *testing.T)  {
        //make-初始化 开辟空间 对字段初始化 设置长度.容量等等
            i := make([]int,2)
            i = append(i,1,2,3)
            t.Log(i)
-	  
+
        // new 开辟空间
        // new 相当于 var n int return &int
        // 返回的是零值指针.
@@ -141,8 +137,5 @@
            t.Log(s)
        }
 
-       //make channel map slice 但是不能make int string  
+       //make channel map slice 但是不能make int string
      #+END_SRC
-
-
-

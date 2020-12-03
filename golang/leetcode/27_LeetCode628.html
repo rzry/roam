@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:05 -->
+<!-- 2020-12-03 四 15:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LeetCode628-三个数的最大乘积</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,17 +248,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7aace2a">题目</a></li>
-<li><a href="#org7a4d491">解答</a></li>
+<li><a href="#org2d3d050">1. 题目</a></li>
+<li><a href="#org2e52b13">2. 解答</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-org7aace2a" class="outline-2">
-<h2 id="org7aace2a">题目</h2>
-<div class="outline-text-2" id="text-org7aace2a">
+
+<div id="outline-container-org2d3d050" class="outline-2">
+<h2 id="org2d3d050"><span class="section-number-2">1</span> 题目</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
  给定一个整型数组，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
 
@@ -283,41 +276,41 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org7a4d491" class="outline-2">
-<h2 id="org7a4d491">解答</h2>
-<div class="outline-text-2" id="text-org7a4d491">
+<div id="outline-container-org2e52b13" class="outline-2">
+<h2 id="org2e52b13"><span class="section-number-2">2</span> 解答</h2>
+<div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main 
+<pre class="src src-go">  <span style="color: #81A1C1;">package</span> main
 
-<span style="color: #4f97d7; font-weight: bold;">import</span>(
-        <span style="color: #2d9574;">"fmt"</span>
-        <span style="color: #2d9574;">"sort"</span>
+<span style="color: #81A1C1;">import</span>(
+        <span style="color: #A3BE8C;">"fmt"</span>
+        <span style="color: #A3BE8C;">"sort"</span>
 )
 
-<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">maximumProduct</span>(<span style="color: #7590db;">nums</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
-        sort.<span style="color: #bc6ec5; font-weight: bold;">Ints</span>(nums)
-        <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#19977;&#20010;&#25968;&#26368;&#22823; , &#25490;&#24207;&#23436;&#20102; &#26368;&#22823;&#30340;3&#20010;&#20056;</span>
-        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#26377; &#36127;&#25968; &#36824;&#35201;&#26368;&#22823; &#37027;&#23601;&#21482;&#33021;&#26377;&#20004;&#20010;&#36127;&#25968;  &#20004;&#20010;&#30340;&#35805; &#23601;&#26159; &#26368;&#38752;&#21069;&#30340;&#20004;&#20010;&#36127;&#25968;+&#26368;&#22823;&#30340;&#27491;&#25968;</span>
-        <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#36824;&#26377;&#19968;&#31181; 3&#20010;&#37117;&#26159;&#36127;&#25968; &#37027;&#26679;&#23601;&#21482;&#33021;&#21462; &#26368;&#22823;&#30340;&#19977;&#20010;&#36127;&#25968;</span>
-        <span style="color: #7590db;">i</span> := nums[<span style="color: #4f97d7;">len</span>(nums)-1] * nums[<span style="color: #4f97d7;">len</span>(nums)-2] * nums[<span style="color: #4f97d7;">len</span>(nums)-3]
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">maximumProduct</span>(<span style="color: #D8DEE9;">nums</span> []<span style="color: #8FBCBB;">int</span>) <span style="color: #8FBCBB;">int</span> {
+        sort.<span style="color: #8FBCBB;">Ints</span>(nums)
+        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#19977;&#20010;&#25968;&#26368;&#22823; , &#25490;&#24207;&#23436;&#20102; &#26368;&#22823;&#30340;3&#20010;&#20056;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#26377; &#36127;&#25968; &#36824;&#35201;&#26368;&#22823; &#37027;&#23601;&#21482;&#33021;&#26377;&#20004;&#20010;&#36127;&#25968;  &#20004;&#20010;&#30340;&#35805; &#23601;&#26159; &#26368;&#38752;&#21069;&#30340;&#20004;&#20010;&#36127;&#25968;+&#26368;&#22823;&#30340;&#27491;&#25968;</span>
+        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36824;&#26377;&#19968;&#31181; 3&#20010;&#37117;&#26159;&#36127;&#25968; &#37027;&#26679;&#23601;&#21482;&#33021;&#21462; &#26368;&#22823;&#30340;&#19977;&#20010;&#36127;&#25968;</span>
+        <span style="color: #D8DEE9;">i</span> := nums[<span style="color: #81A1C1;">len</span>(nums)-1] * nums[<span style="color: #81A1C1;">len</span>(nums)-2] * nums[<span style="color: #81A1C1;">len</span>(nums)-3]
 
-        <span style="color: #7590db;">j</span> := nums[0]*<span style="color: #ce537a; font-weight: bold;">nums</span>[1]*<span style="color: #ce537a; font-weight: bold;">nums</span>[<span style="color: #4f97d7;">len</span>(nums)-1]
+        <span style="color: #D8DEE9;">j</span> := nums[0]*<span style="color: #8FBCBB;">nums</span>[1]*<span style="color: #8FBCBB;">nums</span>[<span style="color: #81A1C1;">len</span>(nums)-1]
 
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(nums)
+        fmt.<span style="color: #8FBCBB;">Println</span>(nums)
 
-        <span style="color: #4f97d7; font-weight: bold;">if</span> i&gt;j {
-                <span style="color: #4f97d7; font-weight: bold;">return</span> i
-        }<span style="color: #4f97d7; font-weight: bold;">else</span>{
-                <span style="color: #4f97d7; font-weight: bold;">return</span> j
+        <span style="color: #81A1C1;">if</span> i&gt;j {
+                <span style="color: #81A1C1;">return</span> i
+        }<span style="color: #81A1C1;">else</span>{
+                <span style="color: #81A1C1;">return</span> j
         }
 }
 
-<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">main</span>() {
 
-        <span style="color: #7590db;">arr</span> := []<span style="color: #ce537a; font-weight: bold;">int</span>{-1,-2,-3,-4}
+        <span style="color: #D8DEE9;">arr</span> := []<span style="color: #8FBCBB;">int</span>{-1,-2,-3,-4}
 
-        <span style="color: #7590db;">a</span> := <span style="color: #bc6ec5; font-weight: bold;">maximumProduct</span>(arr)
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(a)
+        <span style="color: #D8DEE9;">a</span> := <span style="color: #8FBCBB;">maximumProduct</span>(arr)
+        fmt.<span style="color: #8FBCBB;">Println</span>(a)
 }
 </pre>
 </div>
@@ -327,7 +320,7 @@ for the JavaScript code in this tag.
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:05</p>
+<p class="date">Created: 2020-12-03 四 15:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

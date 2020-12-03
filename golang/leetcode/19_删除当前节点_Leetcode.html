@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:04 -->
+<!-- 2020-12-03 四 15:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>leetcode-删除当前节点</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,20 +248,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbbaae6b">思路</a>
+<li><a href="#orgd2949d1">1. 思路</a>
 <ul>
-<li><a href="#org82c2e20">第二次的代码</a></li>
-<li><a href="#orgcc5cf98">第一次的代码</a></li>
+<li><a href="#org1f67799">1.1. 第二次的代码</a></li>
+<li><a href="#orgd37f504">1.2. 第一次的代码</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-
-
 <p>
 题目地址 <a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/submissions/">https://leetcode-cn.com/problems/delete-node-in-a-linked-list/submissions/</a>
 </p>
@@ -274,55 +264,55 @@ for the JavaScript code in this tag.
 <pre class="example">
 输入: head = [4,5,1,9], node = 5
 输出: [4,1,9]
-解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9 
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9
 </pre>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Definition for singly-linked list.</span>
- <span style="color: #4f97d7; font-weight: bold;">type</span> <span style="color: #ce537a; font-weight: bold;">ListNode</span> <span style="color: #4f97d7; font-weight: bold;">struct</span> {
-     Val <span style="color: #ce537a; font-weight: bold;">int</span>
-     Next *<span style="color: #ce537a; font-weight: bold;">ListNode</span>
+<pre class="src src-go"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">Definition for singly-linked list.</span>
+ <span style="color: #81A1C1;">type</span> <span style="color: #8FBCBB;">ListNode</span> <span style="color: #81A1C1;">struct</span> {
+     Val <span style="color: #8FBCBB;">int</span>
+     Next *<span style="color: #8FBCBB;">ListNode</span>
  }
 </pre>
 </div>
 
-<div id="outline-container-orgbbaae6b" class="outline-2">
-<h2 id="orgbbaae6b">思路</h2>
-<div class="outline-text-2" id="text-orgbbaae6b">
+<div id="outline-container-orgd2949d1" class="outline-2">
+<h2 id="orgd2949d1"><span class="section-number-2">1</span> 思路</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
 一般思路是 : 修改node 之前节点的next 指针 直接让他指向之后的节点
 因为我们现在只知道当权的节点node  所以 我们无法访问node 的前节点.也无法修改node前节点
-的next指针 所以我们必要将想删除的节点的值替换为它后面节点中的值 然后删除它的节点 
+的next指针 所以我们必要将想删除的节点的值替换为它后面节点中的值 然后删除它的节点
 
 </pre>
 </div>
 
-<div id="outline-container-org82c2e20" class="outline-3">
-<h3 id="org82c2e20">第二次的代码</h3>
-<div class="outline-text-3" id="text-org82c2e20">
+<div id="outline-container-org1f67799" class="outline-3">
+<h3 id="org1f67799"><span class="section-number-3">1.1</span> 第二次的代码</h3>
+<div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">deleteNode</span>(<span style="color: #7590db;">node</span> *<span style="color: #ce537a; font-weight: bold;">ListNode</span>) {
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">deleteNode</span>(<span style="color: #D8DEE9;">node</span> *<span style="color: #8FBCBB;">ListNode</span>) {
 *node = *node.Next
 }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc5cf98" class="outline-3">
-<h3 id="orgcc5cf98">第一次的代码</h3>
-<div class="outline-text-3" id="text-orgcc5cf98">
+<div id="outline-container-orgd37f504" class="outline-3">
+<h3 id="orgd37f504"><span class="section-number-3">1.2</span> 第一次的代码</h3>
+<div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-go">   <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">deleteNode</span>(<span style="color: #7590db;">node</span> *<span style="color: #ce537a; font-weight: bold;">ListNode</span>) {
-    <span style="color: #4f97d7; font-weight: bold;">if</span> node != <span style="color: #a45bad;">nil</span> {
-        <span style="color: #4f97d7; font-weight: bold;">if</span> node.Next == <span style="color: #a45bad;">nil</span> {
-            node = <span style="color: #a45bad;">nil</span>
-        } <span style="color: #4f97d7; font-weight: bold;">else</span> {
+<pre class="src src-go">   <span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">deleteNode</span>(<span style="color: #D8DEE9;">node</span> *<span style="color: #8FBCBB;">ListNode</span>) {
+    <span style="color: #81A1C1;">if</span> node != <span style="color: #81A1C1;">nil</span> {
+        <span style="color: #81A1C1;">if</span> node.Next == <span style="color: #81A1C1;">nil</span> {
+            node = <span style="color: #81A1C1;">nil</span>
+        } <span style="color: #81A1C1;">else</span> {
             node.Val = node.Next.Val
             node.Next = node.Next.Next
         }
     }
 }
-<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#23601;&#26159;  &#19979;&#20010;&#33410;&#28857;&#30340;&#20540; &#32473;  &#24403;&#21069;&#33410;&#28857; </span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226;  &#19979;&#19979;&#20010;&#33410;&#28857; &#32473; &#19979;&#20010;&#33410;&#28857; </span>
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36825;&#23601;&#26159;  &#19979;&#20010;&#33410;&#28857;&#30340;&#20540; &#32473;  &#24403;&#21069;&#33410;&#28857;</span>
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#25226;  &#19979;&#19979;&#20010;&#33410;&#28857; &#32473; &#19979;&#20010;&#33410;&#28857;</span>
 </pre>
 </div>
 </div>
@@ -332,7 +322,7 @@ for the JavaScript code in this tag.
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:04</p>
+<p class="date">Created: 2020-12-03 四 15:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

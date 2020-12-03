@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:16 -->
+<!-- 2020-12-03 四 15:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mysql笔记总结</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,80 +248,77 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcbd8b99">基础查询</a></li>
-<li><a href="#org94630a8">条件查询 <b>*</b></a></li>
-<li><a href="#orgc1b00a4">排序查询 <b>*</b></a></li>
-<li><a href="#org2598789">常见函数***</a></li>
-<li><a href="#org50a2aac">数学函数***</a></li>
-<li><a href="#orgb49ee9e">日期函数***</a></li>
-<li><a href="#org28be0fb">其他函数***</a></li>
-<li><a href="#org2d8f4da">流程控制函数 <b>*</b></a></li>
-<li><a href="#orgae2a78e">插入</a></li>
-<li><a href="#org375fe2e">难一点的</a></li>
-<li><a href="#org6fdbbcd">修改</a></li>
-<li><a href="#orgc11f8f8">多表</a></li>
-<li><a href="#org01de21f">删除</a></li>
-<li><a href="#org6649306">多表</a></li>
-<li><a href="#org865c798">删除的下一个方式</a></li>
-<li><a href="#org5509889">库的创建</a></li>
-<li><a href="#orga9f4f99">更改字符集</a></li>
-<li><a href="#org163053f">库的删除</a></li>
-<li><a href="#org0bece47">表的管理</a></li>
-<li><a href="#orga6e6194">表的创建</a></li>
-<li><a href="#orgdf99842">表的修改</a></li>
-<li><a href="#org03bf472">修改类型和约束</a></li>
-<li><a href="#org51241da">添加新列</a></li>
-<li><a href="#org6310054">删除列</a></li>
-<li><a href="#orgd79b041">修改表名</a></li>
-<li><a href="#org87c6080">表的删除</a></li>
-<li><a href="#org7264ba7">通常我们创建一个新的表的话  我们会先删除  再 create</a></li>
-<li><a href="#org3b0776d">表的复制</a>
+<li><a href="#org07d52fe">1. 基础查询</a></li>
+<li><a href="#org8070503">2. 条件查询 <b>*</b></a></li>
+<li><a href="#orgb62969c">3. 排序查询 <b>*</b></a></li>
+<li><a href="#org48116fc">4. 常见函数***</a></li>
+<li><a href="#orgf6e7a6e">5. 数学函数***</a></li>
+<li><a href="#org1d20638">6. 日期函数***</a></li>
+<li><a href="#org261cfbc">7. 其他函数***</a></li>
+<li><a href="#org67d8718">8. 流程控制函数 <b>*</b></a></li>
+<li><a href="#org099e1bb">9. 插入</a></li>
+<li><a href="#orgc9a77f1">10. 难一点的</a></li>
+<li><a href="#orgbdee0ca">11. 修改</a></li>
+<li><a href="#orgf9f73b5">12. 多表</a></li>
+<li><a href="#orgf305bac">13. 删除</a></li>
+<li><a href="#orgb9839b3">14. 多表</a></li>
+<li><a href="#org2d5ff0c">15. 删除的下一个方式</a></li>
+<li><a href="#org99351fb">16. 库的创建</a></li>
+<li><a href="#orge5ca605">17. 更改字符集</a></li>
+<li><a href="#org9df2e65">18. 库的删除</a></li>
+<li><a href="#orgee8c6ee">19. 表的管理</a></li>
+<li><a href="#org69efb2c">20. 表的创建</a></li>
+<li><a href="#orge0d1bc6">21. 表的修改</a></li>
+<li><a href="#org63015c8">22. 修改类型和约束</a></li>
+<li><a href="#org42a82a8">23. 添加新列</a></li>
+<li><a href="#orged73d59">24. 删除列</a></li>
+<li><a href="#orgd3bb852">25. 修改表名</a></li>
+<li><a href="#org1c3971e">26. 表的删除</a></li>
+<li><a href="#org380526e">27. 通常我们创建一个新的表的话  我们会先删除  再 create</a></li>
+<li><a href="#org8e30b14">28. 表的复制</a>
 <ul>
-<li><a href="#org5abb6fe">只复制结构 赋值 类型 之类的</a></li>
-<li><a href="#org16b20a3">赋值表的结构和数据</a></li>
-<li><a href="#orgd9c0e58">复制部分数据</a></li>
-<li><a href="#org6eb2620">不要值 只要字段</a></li>
+<li><a href="#org3649b88">28.1. 只复制结构 赋值 类型 之类的</a></li>
+<li><a href="#orgdc507cc">28.2. 赋值表的结构和数据</a></li>
+<li><a href="#orgab9777d">28.3. 复制部分数据</a></li>
+<li><a href="#orge1c3713">28.4. 不要值 只要字段</a></li>
 </ul>
 </li>
-<li><a href="#org8f147d6">数据类型</a>
+<li><a href="#orgd9c4112">29. 数据类型</a>
 <ul>
-<li><a href="#orgf91bad6">字符型</a></li>
-<li><a href="#org33baab7">日期型</a></li>
+<li><a href="#orgef23221">29.1. 字符型</a></li>
+<li><a href="#org9cdb286">29.2. 日期型</a></li>
 </ul>
 </li>
-<li><a href="#orga2b5c68">常见约束</a></li>
-<li><a href="#orgda4cc21">标识列  又称为 自增长列</a></li>
-<li><a href="#org51ada85">事务  tcl 语言</a></li>
+<li><a href="#orgc047877">30. 常见约束</a></li>
+<li><a href="#orgcd5aaf3">31. 标识列  又称为 自增长列</a></li>
+<li><a href="#orge1fef09">32. 事务  tcl 语言</a></li>
 </ul>
 </div>
-</div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
 
 
-<div id="outline-container-orgcbd8b99" class="outline-2">
-<h2 id="orgcbd8b99">基础查询</h2>
-<div class="outline-text-2" id="text-orgcbd8b99">
+<div id="outline-container-org07d52fe" class="outline-2">
+<h2 id="org07d52fe"><span class="section-number-2">1</span> 基础查询</h2>
+<div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-mysql">
-select 查询列表 from 表名     查询列表可以有多个 就比如 我一次性想查 名字,性别,年龄  都可以使用逗号 隔开 一次性查询 
+select 查询列表 from 表名     查询列表可以有多个 就比如 我一次性想查 名字,性别,年龄  都可以使用逗号 隔开 一次性查询
 查询可以起别名  select  查询列表 as 别名  (查询的就是这样 空格和as 都可以作为别名的关键词)
-查询途中可以去重  distinct 直接加在 select 后面就行了 
-concat 函数  把多个字符串拼接起来   
+查询途中可以去重  distinct 直接加在 select 后面就行了
+concat 函数  把多个字符串拼接起来
 ifnull 函数  判断是否为 null 是的话 就给个值 ifnull(`commission_pct`,0)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org94630a8" class="outline-2">
-<h2 id="org94630a8">条件查询 <b>*</b></h2>
-<div class="outline-text-2" id="text-org94630a8">
+<div id="outline-container-org8070503" class="outline-2">
+<h2 id="org8070503"><span class="section-number-2">2</span> 条件查询 <b>*</b></h2>
+<div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-mysql">后面加where   	  &amp;&amp; 和and  两个都为真 结果为true 
-|| 和 or  有一个为真 结果为 true 
-! 和 not  本身为真 结果为flase 
+<pre class="src src-mysql">后面加where   	  &amp;&amp; 和and  两个都为真 结果为true
+|| 和 or  有一个为真 结果为 true
+! 和 not  本身为真 结果为flase
 like 模糊查询 类似于汉语中的 这个里面有什么 像什么
 between  and	在什么什么之间 包含领界值
 in 		判断一个字段的值是不是属于in 列表的一项   in 列表的置类型必须一致或者兼容
@@ -336,62 +328,62 @@ is null	 	判断是不是为null 只能判断是不是null  &lt;=&gt; 这个还�
 </div>
 </div>
 
-<div id="outline-container-orgc1b00a4" class="outline-2">
-<h2 id="orgc1b00a4">排序查询 <b>*</b></h2>
-<div class="outline-text-2" id="text-orgc1b00a4">
+<div id="outline-container-orgb62969c" class="outline-2">
+<h2 id="orgb62969c"><span class="section-number-2">3</span> 排序查询 <b>*</b></h2>
+<div class="outline-text-2" id="text-3">
 <p>
-后面加一个 order by 排序列表 ][asc][desc] 它的位置是在where 的后面 如果没有limit字句 它就是最后面的哪一个 ORDER BY salary asc 
+后面加一个 order by 排序列表 ][asc][desc] 它的位置是在where 的后面 如果没有limit字句 它就是最后面的哪一个 ORDER BY salary asc
 </p>
 </div>
 </div>
-<div id="outline-container-org2598789" class="outline-2">
-<h2 id="org2598789">常见函数***</h2>
-<div class="outline-text-2" id="text-org2598789">
+<div id="outline-container-org48116fc" class="outline-2">
+<h2 id="org48116fc"><span class="section-number-2">4</span> 常见函数***</h2>
+<div class="outline-text-2" id="text-4">
 <pre class="example">
-length 获取参数值的字节个数   
+length 获取参数值的字节个数
 concat  拼接字符串
 upper,lower 大写变小写,小写变大写
 substr substring 检索并且截取 一个参数 就是到哪里 两个参数就是从哪里到哪里
 SUBSTR('少时诵诗书所所所所', 7) SUBSTR('爱仕达所大所大撒多所多',1,3)
 instr 返回位置 查询的感觉 返回字符串 字符 第一次出现的索引,如果找不到就返回0
-trim 去掉两边的字符 去掉空格没有参数 直接trim 加 字段的值 
+trim 去掉两边的字符 去掉空格没有参数 直接trim 加 字段的值
 去掉特定字符 使用'特定字符'from '字段的值'
-lpad 使用指定的字符实现左填充指定长度 	LPAD('对对对',10,'*') 
+lpad 使用指定的字符实现左填充指定长度 	LPAD('对对对',10,'*')
 rpad 右填充  RPAD('大手大',12,'ab')
 replace 替换 repalce('源文件','被替换的文件','想让什么来替换')
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org50a2aac" class="outline-2">
-<h2 id="org50a2aac">数学函数***</h2>
-<div class="outline-text-2" id="text-org50a2aac">
+<div id="outline-container-orgf6e7a6e" class="outline-2">
+<h2 id="orgf6e7a6e"><span class="section-number-2">5</span> 数学函数***</h2>
+<div class="outline-text-2" id="text-5">
 <pre class="example">
 round 四舍五入  可以后加参数确定小数点后保留几位
 ceil 向上取整 返回&gt;= 该参数的最小整数
 floor 向下取整  通ceil
 truncate 截断 后加参数 确定小数点后位数 截断这个小数 TRUNCATE(1.69999,2);
-mod 取余 
+mod 取余
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgb49ee9e" class="outline-2">
-<h2 id="orgb49ee9e">日期函数***</h2>
-<div class="outline-text-2" id="text-orgb49ee9e">
+<div id="outline-container-org1d20638" class="outline-2">
+<h2 id="org1d20638"><span class="section-number-2">6</span> 日期函数***</h2>
+<div class="outline-text-2" id="text-6">
 <pre class="example">
-select now() 返回当前时间 
+select now() 返回当前时间
 curdate 返回日期 不包含时间
 curtime 返回时间,不包含日期
-str_to_date 字符串格式转换 两个参数 原本的格式,想要的格式 
-date_format 将日期转换为字符 
+str_to_date 字符串格式转换 两个参数 原本的格式,想要的格式
+date_format 将日期转换为字符
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org28be0fb" class="outline-2">
-<h2 id="org28be0fb">其他函数***</h2>
-<div class="outline-text-2" id="text-org28be0fb">
+<div id="outline-container-org261cfbc" class="outline-2">
+<h2 id="org261cfbc"><span class="section-number-2">7</span> 其他函数***</h2>
+<div class="outline-text-2" id="text-7">
 <pre class="example">
  SELECT VERSION();
 SELECT DATABASE();
@@ -400,9 +392,9 @@ SELECT USER();
 </div>
 </div>
 
-<div id="outline-container-org2d8f4da" class="outline-2">
-<h2 id="org2d8f4da">流程控制函数 <b>*</b></h2>
-<div class="outline-text-2" id="text-org2d8f4da">
+<div id="outline-container-org67d8718" class="outline-2">
+<h2 id="org67d8718"><span class="section-number-2">8</span> 流程控制函数 <b>*</b></h2>
+<div class="outline-text-2" id="text-8">
 <p>
 SELECT IF(10&lt;5,'大','小');  如果条件是真 选第一个  是假就选最后一个
 </p>
@@ -413,9 +405,9 @@ SELECT IF(10&lt;5,'大','小');  如果条件是真 选第一个  是假就选�
 </div>
 </div>
 
-<div id="outline-container-orgae2a78e" class="outline-2">
-<h2 id="orgae2a78e">插入</h2>
-<div class="outline-text-2" id="text-orgae2a78e">
+<div id="outline-container-org099e1bb" class="outline-2">
+<h2 id="org099e1bb"><span class="section-number-2">9</span> 插入</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 insert into beauty (id,name) value (1,'邓紫棋')
 </p>
@@ -426,11 +418,11 @@ insert into beauty values (18,"gem")
 </div>
 </div>
 
-<div id="outline-container-org375fe2e" class="outline-2">
-<h2 id="org375fe2e">难一点的</h2>
-<div class="outline-text-2" id="text-org375fe2e">
+<div id="outline-container-orgc9a77f1" class="outline-2">
+<h2 id="orgc9a77f1"><span class="section-number-2">10</span> 难一点的</h2>
+<div class="outline-text-2" id="text-10">
 <p>
-insert into beauty 
+insert into beauty
 </p>
 
 <p>
@@ -438,9 +430,9 @@ set id = 19,name = "sss"
 </p>
 </div>
 </div>
-<div id="outline-container-org6fdbbcd" class="outline-2">
-<h2 id="org6fdbbcd">修改</h2>
-<div class="outline-text-2" id="text-org6fdbbcd">
+<div id="outline-container-orgbdee0ca" class="outline-2">
+<h2 id="orgbdee0ca"><span class="section-number-2">11</span> 修改</h2>
+<div class="outline-text-2" id="text-11">
 <pre class="example">
 update beauty set id = 55
 where name like '邓%'
@@ -448,9 +440,9 @@ where name like '邓%'
 </div>
 </div>
 
-<div id="outline-container-orgc11f8f8" class="outline-2">
-<h2 id="orgc11f8f8">多表</h2>
-<div class="outline-text-2" id="text-orgc11f8f8">
+<div id="outline-container-orgf9f73b5" class="outline-2">
+<h2 id="orgf9f73b5"><span class="section-number-2">12</span> 多表</h2>
+<div class="outline-text-2" id="text-12">
 <pre class="example">
 UPDATE boys bo
 RIGHT JOIN beauty b ON bo.`id`=b.`boyfriend_id`
@@ -461,18 +453,18 @@ WHERE bo.`id` IS NULL;
 </div>
 
 
-<div id="outline-container-org01de21f" class="outline-2">
-<h2 id="org01de21f">删除</h2>
-<div class="outline-text-2" id="text-org01de21f">
+<div id="outline-container-orgf305bac" class="outline-2">
+<h2 id="orgf305bac"><span class="section-number-2">13</span> 删除</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 delete from 那个表 where 条件
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6649306" class="outline-2">
-<h2 id="org6649306">多表</h2>
-<div class="outline-text-2" id="text-org6649306">
+<div id="outline-container-orgb9839b3" class="outline-2">
+<h2 id="orgb9839b3"><span class="section-number-2">14</span> 多表</h2>
+<div class="outline-text-2" id="text-14">
 <pre class="example">
 #案例：删除黄晓明的信息 以及 他女朋友的信息
  DELETE b,bo
@@ -484,54 +476,54 @@ delete from 那个表 where 条件
 </div>
 </div>
 
-<div id="outline-container-org865c798" class="outline-2">
-<h2 id="org865c798">删除的下一个方式</h2>
-<div class="outline-text-2" id="text-org865c798">
+<div id="outline-container-org2d5ff0c" class="outline-2">
+<h2 id="org2d5ff0c"><span class="section-number-2">15</span> 删除的下一个方式</h2>
+<div class="outline-text-2" id="text-15">
 <p>
 truncate  table 表名
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5509889" class="outline-2">
-<h2 id="org5509889">库的创建</h2>
-<div class="outline-text-2" id="text-org5509889">
+<div id="outline-container-org99351fb" class="outline-2">
+<h2 id="org99351fb"><span class="section-number-2">16</span> 库的创建</h2>
+<div class="outline-text-2" id="text-16">
 <p>
-create database if not exists 库的名字 
+create database if not exists 库的名字
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga9f4f99" class="outline-2">
-<h2 id="orga9f4f99">更改字符集</h2>
-<div class="outline-text-2" id="text-orga9f4f99">
+<div id="outline-container-orge5ca605" class="outline-2">
+<h2 id="orge5ca605"><span class="section-number-2">17</span> 更改字符集</h2>
+<div class="outline-text-2" id="text-17">
 <p>
 alter database 库的名字 character set utf8
 </p>
 </div>
 </div>
 
-<div id="outline-container-org163053f" class="outline-2">
-<h2 id="org163053f">库的删除</h2>
-<div class="outline-text-2" id="text-org163053f">
+<div id="outline-container-org9df2e65" class="outline-2">
+<h2 id="org9df2e65"><span class="section-number-2">18</span> 库的删除</h2>
+<div class="outline-text-2" id="text-18">
 <p>
-drop database if exists 库的名字 
+drop database if exists 库的名字
 </p>
 </div>
 </div>
 
 
-<div id="outline-container-org0bece47" class="outline-2">
-<h2 id="org0bece47">表的管理</h2>
+<div id="outline-container-orgee8c6ee" class="outline-2">
+<h2 id="orgee8c6ee"><span class="section-number-2">19</span> 表的管理</h2>
 </div>
 
-<div id="outline-container-orga6e6194" class="outline-2">
-<h2 id="orga6e6194">表的创建</h2>
-<div class="outline-text-2" id="text-orga6e6194">
+<div id="outline-container-org69efb2c" class="outline-2">
+<h2 id="org69efb2c"><span class="section-number-2">20</span> 表的创建</h2>
+<div class="outline-text-2" id="text-20">
 <pre class="example">
 
 create table if not exists 表的名字 (
-id int 
+id int
 bname varchar(20)
 
 )
@@ -540,63 +532,63 @@ bname varchar(20)
 </div>
 
 
-<div id="outline-container-orgdf99842" class="outline-2">
-<h2 id="orgdf99842">表的修改</h2>
-<div class="outline-text-2" id="text-orgdf99842">
+<div id="outline-container-orge0d1bc6" class="outline-2">
+<h2 id="orge0d1bc6"><span class="section-number-2">21</span> 表的修改</h2>
+<div class="outline-text-2" id="text-21">
 <p>
 alter table 表名 change column 老名字 新名字 类型(varchar(60))
 </p>
 </div>
 </div>
 
-<div id="outline-container-org03bf472" class="outline-2">
-<h2 id="org03bf472">修改类型和约束</h2>
-<div class="outline-text-2" id="text-org03bf472">
+<div id="outline-container-org63015c8" class="outline-2">
+<h2 id="org63015c8"><span class="section-number-2">22</span> 修改类型和约束</h2>
+<div class="outline-text-2" id="text-22">
 <p>
 alter table 表名 modify column 那一列列的名字(name) 新类型 (varchar(60))
 </p>
 </div>
 </div>
 
-<div id="outline-container-org51241da" class="outline-2">
-<h2 id="org51241da">添加新列</h2>
-<div class="outline-text-2" id="text-org51241da">
+<div id="outline-container-org42a82a8" class="outline-2">
+<h2 id="org42a82a8"><span class="section-number-2">23</span> 添加新列</h2>
+<div class="outline-text-2" id="text-23">
 <p>
-alter table 表名 drop column 添加的列的名字 添加的列的类型 
+alter table 表名 drop column 添加的列的名字 添加的列的类型
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6310054" class="outline-2">
-<h2 id="org6310054">删除列</h2>
-<div class="outline-text-2" id="text-org6310054">
+<div id="outline-container-orged73d59" class="outline-2">
+<h2 id="orged73d59"><span class="section-number-2">24</span> 删除列</h2>
+<div class="outline-text-2" id="text-24">
 <p>
-alter table 表名 drop column 删除的那一列的名字 
+alter table 表名 drop column 删除的那一列的名字
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd79b041" class="outline-2">
-<h2 id="orgd79b041">修改表名</h2>
-<div class="outline-text-2" id="text-orgd79b041">
+<div id="outline-container-orgd3bb852" class="outline-2">
+<h2 id="orgd3bb852"><span class="section-number-2">25</span> 修改表名</h2>
+<div class="outline-text-2" id="text-25">
 <p>
-alter table 表名 rename to 新的表名  
+alter table 表名 rename to 新的表名
 </p>
 </div>
 </div>
 
-<div id="outline-container-org87c6080" class="outline-2">
-<h2 id="org87c6080">表的删除</h2>
-<div class="outline-text-2" id="text-org87c6080">
+<div id="outline-container-org1c3971e" class="outline-2">
+<h2 id="org1c3971e"><span class="section-number-2">26</span> 表的删除</h2>
+<div class="outline-text-2" id="text-26">
 <p>
-drop table if exists 删除的表的名字 
+drop table if exists 删除的表的名字
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7264ba7" class="outline-2">
-<h2 id="org7264ba7">通常我们创建一个新的表的话  我们会先删除  再 create</h2>
-<div class="outline-text-2" id="text-org7264ba7">
+<div id="outline-container-org380526e" class="outline-2">
+<h2 id="org380526e"><span class="section-number-2">27</span> 通常我们创建一个新的表的话  我们会先删除  再 create</h2>
+<div class="outline-text-2" id="text-27">
 <pre class="example">
 DROP DATABASE IF EXISTS 旧库名;
 CREATE DATABASE 新库名;
@@ -604,48 +596,48 @@ CREATE DATABASE 新库名;
 </div>
 </div>
 
-<div id="outline-container-org3b0776d" class="outline-2">
-<h2 id="org3b0776d">表的复制</h2>
-<div class="outline-text-2" id="text-org3b0776d">
+<div id="outline-container-org8e30b14" class="outline-2">
+<h2 id="org8e30b14"><span class="section-number-2">28</span> 表的复制</h2>
+<div class="outline-text-2" id="text-28">
 </div>
-<div id="outline-container-org5abb6fe" class="outline-3">
-<h3 id="org5abb6fe">只复制结构 赋值 类型 之类的</h3>
-<div class="outline-text-3" id="text-org5abb6fe">
+<div id="outline-container-org3649b88" class="outline-3">
+<h3 id="org3649b88"><span class="section-number-3">28.1</span> 只复制结构 赋值 类型 之类的</h3>
+<div class="outline-text-3" id="text-28-1">
 <p>
-create table 赋值完的表的名字 like 被复制的那个表的名字 
+create table 赋值完的表的名字 like 被复制的那个表的名字
 </p>
 </div>
 </div>
 
-<div id="outline-container-org16b20a3" class="outline-3">
-<h3 id="org16b20a3">赋值表的结构和数据</h3>
-<div class="outline-text-3" id="text-org16b20a3">
+<div id="outline-container-orgdc507cc" class="outline-3">
+<h3 id="orgdc507cc"><span class="section-number-3">28.2</span> 赋值表的结构和数据</h3>
+<div class="outline-text-3" id="text-28-2">
 <pre class="example">
-create table 复制的新表名字 
+create table 复制的新表名字
 select *from 要被复制的表的名字
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-orgd9c0e58" class="outline-3">
-<h3 id="orgd9c0e58">复制部分数据</h3>
-<div class="outline-text-3" id="text-orgd9c0e58">
+<div id="outline-container-orgab9777d" class="outline-3">
+<h3 id="orgab9777d"><span class="section-number-3">28.3</span> 复制部分数据</h3>
+<div class="outline-text-3" id="text-28-3">
 <pre class="example">
 create table 复制的新表名字
-select 要复制的列 
+select 要复制的列
 from 复制的那个表的名字
-where 加一个筛选 
+where 加一个筛选
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-org6eb2620" class="outline-3">
-<h3 id="org6eb2620">不要值 只要字段</h3>
-<div class="outline-text-3" id="text-org6eb2620">
+<div id="outline-container-orge1c3713" class="outline-3">
+<h3 id="orge1c3713"><span class="section-number-3">28.4</span> 不要值 只要字段</h3>
+<div class="outline-text-3" id="text-28-4">
 <pre class="example">
-CREATE TABLE copy4 
+CREATE TABLE copy4
 SELECT id,au_name
 FROM author
 WHERE 0;
@@ -655,11 +647,11 @@ WHERE 0;
 </div>
 </div>
 
-<div id="outline-container-org8f147d6" class="outline-2">
-<h2 id="org8f147d6">数据类型</h2>
-<div class="outline-text-2" id="text-org8f147d6">
+<div id="outline-container-orgd9c4112" class="outline-2">
+<h2 id="orgd9c4112"><span class="section-number-2">29</span> 数据类型</h2>
+<div class="outline-text-2" id="text-29">
 <p>
-int 4个字节   默认是有符号的  设置无符号 用 unsigned  zerofill  是用来占位的 左填充 
+int 4个字节   默认是有符号的  设置无符号 用 unsigned  zerofill  是用来占位的 左填充
 </p>
 
 <p>
@@ -667,36 +659,36 @@ int 4个字节   默认是有符号的  设置无符号 用 unsigned  zerofill  
 </p>
 </div>
 
-<div id="outline-container-orgf91bad6" class="outline-3">
-<h3 id="orgf91bad6">字符型</h3>
-<div class="outline-text-3" id="text-orgf91bad6">
+<div id="outline-container-orgef23221" class="outline-3">
+<h3 id="orgef23221"><span class="section-number-3">29.1</span> 字符型</h3>
+<div class="outline-text-3" id="text-29-1">
 <p>
-char(m) 固定长度字符m代表最大的字符数 可以省略 默认为1 
+char(m) 固定长度字符m代表最大的字符数 可以省略 默认为1
 </p>
 
 <p>
-varchar	(m) 可变长度的字符 不可省略  
+varchar	(m) 可变长度的字符 不可省略
 </p>
 </div>
 </div>
-<div id="outline-container-org33baab7" class="outline-3">
-<h3 id="org33baab7">日期型</h3>
-<div class="outline-text-3" id="text-org33baab7">
+<div id="outline-container-org9cdb286" class="outline-3">
+<h3 id="org9cdb286"><span class="section-number-3">29.2</span> 日期型</h3>
+<div class="outline-text-3" id="text-29-2">
 <p>
-date  日期      time   时间      year   年  
+date  日期      time   时间      year   年
 </p>
 
 <p>
-datetime  日期+时间    time+stamp 日期+时间 
+datetime  日期+时间    time+stamp 日期+时间
 </p>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orga2b5c68" class="outline-2">
-<h2 id="orga2b5c68">常见约束</h2>
-<div class="outline-text-2" id="text-orga2b5c68">
+<div id="outline-container-orgc047877" class="outline-2">
+<h2 id="orgc047877"><span class="section-number-2">30</span> 常见约束</h2>
+<div class="outline-text-2" id="text-30">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -754,35 +746,35 @@ datetime  日期+时间    time+stamp 日期+时间
 </div>
 </div>
 
-<div id="outline-container-orgda4cc21" class="outline-2">
-<h2 id="orgda4cc21">标识列  又称为 自增长列</h2>
-<div class="outline-text-2" id="text-orgda4cc21">
+<div id="outline-container-orgcd5aaf3" class="outline-2">
+<h2 id="orgcd5aaf3"><span class="section-number-2">31</span> 标识列  又称为 自增长列</h2>
+<div class="outline-text-2" id="text-31">
 <pre class="example">
-auto_increment 不用手动的插入值 必须搭配key 来使用 
-id int unique auto_increment 
-可以使用  set auto_increment_increment = **  来修改步长 
+auto_increment 不用手动的插入值 必须搭配key 来使用
+id int unique auto_increment
+可以使用  set auto_increment_increment = **  来修改步长
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org51ada85" class="outline-2">
-<h2 id="org51ada85">事务  tcl 语言</h2>
-<div class="outline-text-2" id="text-org51ada85">
+<div id="outline-container-orge1fef09" class="outline-2">
+<h2 id="orge1fef09"><span class="section-number-2">32</span> 事务  tcl 语言</h2>
+<div class="outline-text-2" id="text-32">
 <p>
-创建 1 开启事务  set autocommit = 0 
+创建 1 开启事务  set autocommit = 0
 </p>
 
 <p>
-start transaction  
+start transaction
 </p>
 
 <p>
-2   事务语句 
+2   事务语句
 </p>
 <pre class="example">
 update account set balance = 1000 where username = ...
 update addount set balance = 1000 where username = ///
-3 结束事务  ---  三个选择  commit 提交  rollback   回滚   savepoint   保存节点 
+3 结束事务  ---  三个选择  commit 提交  rollback   回滚   savepoint   保存节点
 rollback
 </pre>
 </div>
@@ -791,7 +783,7 @@ rollback
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:16</p>
+<p class="date">Created: 2020-12-03 四 15:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

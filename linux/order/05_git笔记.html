@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:19 -->
+<!-- 2020-12-03 四 15:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git的使用笔记</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,51 +248,62 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org679b5b2">命令笔记</a>
+<li><a href="#org2bfba8b">1. 命令笔记</a>
 <ul>
-<li><a href="#org1132430">初始化</a></li>
-<li><a href="#orgceb17eb">操作</a></li>
-<li><a href="#orgf0ef483">撤销操作</a></li>
-<li><a href="#orgbf3685a">分支相关</a></li>
-<li><a href="#org7f858a3">冲突处理</a></li>
-<li><a href="#orgbea0b30">其他</a></li>
+<li><a href="#org95cde8e">1.1. 初始化</a></li>
+<li><a href="#org7a833a9">1.2. 操作</a></li>
+<li><a href="#org14a8098">1.3. 撤销操作</a></li>
+<li><a href="#org5934e81">1.4. 分支相关</a></li>
+<li><a href="#org7cba5d3">1.5. 冲突处理</a></li>
+<li><a href="#orgd773b81">1.6. 其他</a></li>
 </ul>
 </li>
-<li><a href="#org202e408">多人操作</a></li>
-<li><a href="#orgeb181c9">实操</a>
+<li><a href="#org0a47dc9">2. 多人操作</a></li>
+<li><a href="#org9416da7">3. 实操</a>
 <ul>
-<li><a href="#org02245b1">① 创建版本库</a></li>
-<li><a href="#org0b47a35">② 添加远程库</a></li>
-<li><a href="#org461931c">③ 从远程库克隆(我都是用这种)</a></li>
+<li><a href="#org0c82725">3.1. ① 创建版本库</a>
+<ul>
+<li><a href="#orgdab685e">3.1.1. 第一步，用命令git add告诉Git，把文件添加到仓库：</a></li>
+<li><a href="#org51441f1">3.1.2. 第二步</a></li>
 </ul>
 </li>
-<li><a href="#orgdf3fca9">场景操作</a>
+<li><a href="#org33b840b">3.2. ② 添加远程库</a>
 <ul>
-<li><a href="#orgd00a17d">时光机穿梭</a></li>
-<li><a href="#orgc012abf">版本回退</a></li>
-<li><a href="#org5b4a159">撤销修改</a></li>
-<li><a href="#orgdb1fc5e">场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</a></li>
-<li><a href="#orgdbfd891">删除文件</a></li>
-<li><a href="#org40694e3">创建与合并分支</a></li>
-<li><a href="#orgc94fab5">git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</a></li>
-<li><a href="#orga3e7bd2">多人协作</a></li>
+<li><a href="#org6bd5694">3.2.1. 下一步，就可以把本地库的所有内容推送到远程库上：</a></li>
+<li><a href="#org5c4ef76">3.2.2. 总结：</a></li>
 </ul>
 </li>
-<li><a href="#org01067cf">忽略特殊文件</a></li>
+<li><a href="#orgb8902c6">3.3. ③ 从远程库克隆(我都是用这种)</a></li>
+</ul>
+</li>
+<li><a href="#orgf0b7a77">4. 场景操作</a>
+<ul>
+<li><a href="#org9fa2913">4.1. 时光机穿梭</a></li>
+<li><a href="#org8388f0c">4.2. 版本回退</a></li>
+<li><a href="#orge2de951">4.3. 撤销修改</a></li>
+<li><a href="#org3295a3e">4.4. 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</a></li>
+<li><a href="#org09ba668">4.5. 删除文件</a></li>
+<li><a href="#org4d556de">4.6. 创建与合并分支</a></li>
+<li><a href="#org3532547">4.7. git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</a></li>
+<li><a href="#org9ee0b62">4.8. 多人协作</a>
+<ul>
+<li><a href="#org396d112">4.8.1. 小结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org29a1209">5. 忽略特殊文件</a></li>
 </ul>
 </div>
-</div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
 </div>
 
-<div id="outline-container-org679b5b2" class="outline-2">
-<h2 id="org679b5b2">命令笔记</h2>
-<div class="outline-text-2" id="text-org679b5b2">
+<div id="outline-container-org2bfba8b" class="outline-2">
+<h2 id="org2bfba8b"><span class="section-number-2">1</span> 命令笔记</h2>
+<div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1132430" class="outline-3">
-<h3 id="org1132430">初始化</h3>
-<div class="outline-text-3" id="text-org1132430">
+<div id="outline-container-org95cde8e" class="outline-3">
+<h3 id="org95cde8e"><span class="section-number-3">1.1</span> 初始化</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 git init //创建
 </p>
@@ -316,9 +322,9 @@ git config &#x2013;global user.name "Name" //配置用户名
 </div>
 </div>
 
-<div id="outline-container-orgceb17eb" class="outline-3">
-<h3 id="orgceb17eb">操作</h3>
-<div class="outline-text-3" id="text-orgceb17eb">
+<div id="outline-container-org7a833a9" class="outline-3">
+<h3 id="org7a833a9"><span class="section-number-3">1.2</span> 操作</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 git add &lt;file&gt; // 文件添加，A → B
 </p>
@@ -365,9 +371,9 @@ git show//显示某次提交的内容
 </div>
 </div>
 
-<div id="outline-container-orgf0ef483" class="outline-3">
-<h3 id="orgf0ef483">撤销操作</h3>
-<div class="outline-text-3" id="text-orgf0ef483">
+<div id="outline-container-org14a8098" class="outline-3">
+<h3 id="org14a8098"><span class="section-number-3">1.3</span> 撤销操作</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 git reset &lt;file&gt;//某个文件索引会回滚到最后一次提交， C → B
 </p>
@@ -394,9 +400,9 @@ git checkout HEAD &#x2013; files // 文件从local repository复制到workspace�
 </div>
 </div>
 
-<div id="outline-container-orgbf3685a" class="outline-3">
-<h3 id="orgbf3685a">分支相关</h3>
-<div class="outline-text-3" id="text-orgbf3685a">
+<div id="outline-container-org5934e81" class="outline-3">
+<h3 id="org5934e81"><span class="section-number-3">1.4</span> 分支相关</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
 git checkout -b branch<sub>name</sub> //创建名叫“branch<sub>name</sub>”的分支，并切换过去
 </p>
@@ -423,9 +429,9 @@ git rebase //衍合，线性化的自动， D → A
 </div>
 </div>
 
-<div id="outline-container-org7f858a3" class="outline-3">
-<h3 id="org7f858a3">冲突处理</h3>
-<div class="outline-text-3" id="text-org7f858a3">
+<div id="outline-container-org7cba5d3" class="outline-3">
+<h3 id="org7cba5d3"><span class="section-number-3">1.5</span> 冲突处理</h3>
+<div class="outline-text-3" id="text-1-5">
 <p>
 git diff //对比workspace与index
 </p>
@@ -444,9 +450,9 @@ git add &lt;filename&gt; //修改完冲突，需要add以标记合并成功
 </div>
 </div>
 
-<div id="outline-container-orgbea0b30" class="outline-3">
-<h3 id="orgbea0b30">其他</h3>
-<div class="outline-text-3" id="text-orgbea0b30">
+<div id="outline-container-orgd773b81" class="outline-3">
+<h3 id="orgd773b81"><span class="section-number-3">1.6</span> 其他</h3>
+<div class="outline-text-3" id="text-1-6">
 <p>
 gitk //开灯图形化git
 </p>
@@ -466,9 +472,9 @@ git add -i //交互式添加文件到暂存区
 </div>
 </div>
 
-<div id="outline-container-org202e408" class="outline-2">
-<h2 id="org202e408">多人操作</h2>
-<div class="outline-text-2" id="text-org202e408">
+<div id="outline-container-org0a47dc9" class="outline-2">
+<h2 id="org0a47dc9"><span class="section-number-2">2</span> 多人操作</h2>
+<div class="outline-text-2" id="text-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -538,21 +544,21 @@ git add -i //交互式添加文件到暂存区
 </div>
 </div>
 
-<div id="outline-container-orgeb181c9" class="outline-2">
-<h2 id="orgeb181c9">实操</h2>
-<div class="outline-text-2" id="text-orgeb181c9">
+<div id="outline-container-org9416da7" class="outline-2">
+<h2 id="org9416da7"><span class="section-number-2">3</span> 实操</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org02245b1" class="outline-3">
-<h3 id="org02245b1">① 创建版本库</h3>
-<div class="outline-text-3" id="text-org02245b1">
+<div id="outline-container-org0c82725" class="outline-3">
+<h3 id="org0c82725"><span class="section-number-3">3.1</span> ① 创建版本库</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 通过git init命令把这个目录变成Git可以管理的仓库
 </p>
 </div>
 
-<div id="outline-container-orgd3d9c2d" class="outline-4">
-<h4 id="orgd3d9c2d">第一步，用命令git add告诉Git，把文件添加到仓库：</h4>
-<div class="outline-text-4" id="text-orgd3d9c2d">
+<div id="outline-container-orgdab685e" class="outline-4">
+<h4 id="orgdab685e"><span class="section-number-4">3.1.1</span> 第一步，用命令git add告诉Git，把文件添加到仓库：</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <p>
 $ git add readme.txt
 </p>
@@ -563,9 +569,9 @@ $ git add readme.txt
 </div>
 </div>
 
-<div id="outline-container-org9fc530d" class="outline-4">
-<h4 id="org9fc530d">第二步</h4>
-<div class="outline-text-4" id="text-org9fc530d">
+<div id="outline-container-org51441f1" class="outline-4">
+<h4 id="org51441f1"><span class="section-number-4">3.1.2</span> 第二步</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <p>
 用命令git commit -m "xxx" 告诉Git，把文件提交到仓库，-m后面输入的是本次提交的说明，能从历史记录里方便地找到改动记录。
 </p>
@@ -573,11 +579,11 @@ $ git add readme.txt
 </div>
 </div>
 
-<div id="outline-container-org0b47a35" class="outline-3">
-<h3 id="org0b47a35">② 添加远程库</h3>
-<div class="outline-text-3" id="text-org0b47a35">
+<div id="outline-container-org33b840b" class="outline-3">
+<h3 id="org33b840b"><span class="section-number-3">3.2</span> ② 添加远程库</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
-git remote add origin git@github.com:tcyfree/test.git(或<a href="https://github.com/tcyfree/test.git%EF%BC%8C%E7%94%A8git@%E6%AF%94https%E5%BF%AB">https://github.com/tcyfree/test.git%EF%BC%8C%E7%94%A8git@%E6%AF%94https%E5%BF%AB</a>) 
+git remote add origin git@github.com:tcyfree/test.git(或<a href="https://github.com/tcyfree/test.git%EF%BC%8C%E7%94%A8git@%E6%AF%94https%E5%BF%AB">https://github.com/tcyfree/test.git%EF%BC%8C%E7%94%A8git@%E6%AF%94https%E5%BF%AB</a>)
 </p>
 
 <p>
@@ -585,9 +591,9 @@ git remote add origin git@github.com:tcyfree/test.git(或<a href="https://github
 </p>
 </div>
 
-<div id="outline-container-org32ed063" class="outline-4">
-<h4 id="org32ed063">下一步，就可以把本地库的所有内容推送到远程库上：</h4>
-<div class="outline-text-4" id="text-org32ed063">
+<div id="outline-container-org6bd5694" class="outline-4">
+<h4 id="org6bd5694"><span class="section-number-4">3.2.1</span> 下一步，就可以把本地库的所有内容推送到远程库上：</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <p>
 $ git push -u origin master
 把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
@@ -597,9 +603,9 @@ $ git push -u origin master
 </div>
 </div>
 
-<div id="outline-container-org4bf45c8" class="outline-4">
-<h4 id="org4bf45c8">总结：</h4>
-<div class="outline-text-4" id="text-org4bf45c8">
+<div id="outline-container-org5c4ef76" class="outline-4">
+<h4 id="org5c4ef76"><span class="section-number-4">3.2.2</span> 总结：</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <p>
 从现在起，只要本地作了提交，就可以通过命令：git push origin master
 把本地master分支的最新修改推送至GitHub
@@ -615,9 +621,9 @@ $ git push -u origin master
 </div>
 </div>
 
-<div id="outline-container-org461931c" class="outline-3">
-<h3 id="org461931c">③ 从远程库克隆(我都是用这种)</h3>
-<div class="outline-text-3" id="text-org461931c">
+<div id="outline-container-orgb8902c6" class="outline-3">
+<h3 id="orgb8902c6"><span class="section-number-3">3.3</span> ③ 从远程库克隆(我都是用这种)</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 上次我们讲了先有本地库，后有远程库的时候，如何关联远程库。
 现在，假设我们从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。
@@ -627,22 +633,22 @@ Git支持多种协议，包括https，但通过ssh支持的原生git协议速度
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf3fca9" class="outline-2">
-<h2 id="orgdf3fca9">场景操作</h2>
-<div class="outline-text-2" id="text-orgdf3fca9">
+<div id="outline-container-orgf0b7a77" class="outline-2">
+<h2 id="orgf0b7a77"><span class="section-number-2">4</span> 场景操作</h2>
+<div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgd00a17d" class="outline-3">
-<h3 id="orgd00a17d">时光机穿梭</h3>
-<div class="outline-text-3" id="text-orgd00a17d">
+<div id="outline-container-org9fa2913" class="outline-3">
+<h3 id="org9fa2913"><span class="section-number-3">4.1</span> 时光机穿梭</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 1.要随时掌握工作区的状态，使用git status命令。
 2.如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
 </p>
 </div>
 </div>
-<div id="outline-container-orgc012abf" class="outline-3">
-<h3 id="orgc012abf">版本回退</h3>
-<div class="outline-text-3" id="text-orgc012abf">
+<div id="outline-container-org8388f0c" class="outline-3">
+<h3 id="org8388f0c"><span class="section-number-3">4.2</span> 版本回退</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 1.HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset &#x2013;hard commit<sub>id</sub>。
 2.穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
@@ -655,9 +661,9 @@ git diff HEAD &#x2013; readme.txt命令可以查看工作区和版本库里面�
 </div>
 </div>
 
-<div id="outline-container-org5b4a159" class="outline-3">
-<h3 id="org5b4a159">撤销修改</h3>
-<div class="outline-text-3" id="text-org5b4a159">
+<div id="outline-container-orge2de951" class="outline-3">
+<h3 id="orge2de951"><span class="section-number-3">4.3</span> 撤销修改</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout &#x2013; file。
 </p>
@@ -669,13 +675,13 @@ git diff HEAD &#x2013; readme.txt命令可以查看工作区和版本库里面�
 </div>
 </div>
 
-<div id="outline-container-orgdb1fc5e" class="outline-3">
-<h3 id="orgdb1fc5e">场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</h3>
+<div id="outline-container-org3295a3e" class="outline-3">
+<h3 id="org3295a3e"><span class="section-number-3">4.4</span> 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</h3>
 </div>
 
-<div id="outline-container-orgdbfd891" class="outline-3">
-<h3 id="orgdbfd891">删除文件</h3>
-<div class="outline-text-3" id="text-orgdbfd891">
+<div id="outline-container-org09ba668" class="outline-3">
+<h3 id="org09ba668"><span class="section-number-3">4.5</span> 删除文件</h3>
+<div class="outline-text-3" id="text-4-5">
 <p>
 1.命令git rm用于删除一个文件。
 2.确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
@@ -717,9 +723,9 @@ git pull origin master
 </div>
 </div>
 
-<div id="outline-container-org40694e3" class="outline-3">
-<h3 id="org40694e3">创建与合并分支</h3>
-<div class="outline-text-3" id="text-org40694e3">
+<div id="outline-container-org4d556de" class="outline-3">
+<h3 id="org4d556de"><span class="section-number-3">4.6</span> 创建与合并分支</h3>
+<div class="outline-text-3" id="text-4-6">
 <p>
 截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交
 而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
@@ -730,9 +736,9 @@ git pull origin master
 </div>
 </div>
 
-<div id="outline-container-orgc94fab5" class="outline-3">
-<h3 id="orgc94fab5">git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</h3>
-<div class="outline-text-3" id="text-orgc94fab5">
+<div id="outline-container-org3532547" class="outline-3">
+<h3 id="org3532547"><span class="section-number-3">4.7</span> git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</h3>
+<div class="outline-text-3" id="text-4-7">
 <p>
 $ git branch dev
 </p>
@@ -768,9 +774,9 @@ git branch命令会列出所有分支，当前分支前面会标一个*号。
 </div>
 </div>
 
-<div id="outline-container-orga3e7bd2" class="outline-3">
-<h3 id="orga3e7bd2">多人协作</h3>
-<div class="outline-text-3" id="text-orga3e7bd2">
+<div id="outline-container-org9ee0b62" class="outline-3">
+<h3 id="org9ee0b62"><span class="section-number-3">4.8</span> 多人协作</h3>
+<div class="outline-text-3" id="text-4-8">
 <p>
 当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
 </p>
@@ -825,9 +831,9 @@ feature分支是否推到远程，取决于你是否需要和其他人一起协�
 用命令git branch &#x2013;set-upstream branch-name origin/branch-name。
 </p>
 </div>
-<div id="outline-container-org4c43433" class="outline-4">
-<h4 id="org4c43433">小结</h4>
-<div class="outline-text-4" id="text-org4c43433">
+<div id="outline-container-org396d112" class="outline-4">
+<h4 id="org396d112"><span class="section-number-4">4.8.1</span> 小结</h4>
+<div class="outline-text-4" id="text-4-8-1">
 <p>
 查看远程库信息，使用git remote -v；
 </p>
@@ -860,9 +866,9 @@ feature分支是否推到远程，取决于你是否需要和其他人一起协�
 </div>
 </div>
 
-<div id="outline-container-org01067cf" class="outline-2">
-<h2 id="org01067cf">忽略特殊文件</h2>
-<div class="outline-text-2" id="text-org01067cf">
+<div id="outline-container-org29a1209" class="outline-2">
+<h2 id="org29a1209"><span class="section-number-2">5</span> 忽略特殊文件</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 有些时候，你必须把某些文件放到Git工作目录中，但又不能提交它们，比如保存了数据库密码的配置文件啦，等等，每次git status都会显示Untracked files &#x2026;，有强迫症的童鞋心里肯定不爽。
 </p>
@@ -886,7 +892,7 @@ feature分支是否推到远程，取决于你是否需要和其他人一起协�
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:19</p>
+<p class="date">Created: 2020-12-03 四 15:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

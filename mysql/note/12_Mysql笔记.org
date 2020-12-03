@@ -3,30 +3,23 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
 
 
-** 基础查询 
+** 基础查询
 #+BEGIN_SRC mysql
 
-   select 查询列表 from 表名     查询列表可以有多个 就比如 我一次性想查 名字,性别,年龄  都可以使用逗号 隔开 一次性查询 
+   select 查询列表 from 表名     查询列表可以有多个 就比如 我一次性想查 名字,性别,年龄  都可以使用逗号 隔开 一次性查询
    查询可以起别名  select  查询列表 as 别名  (查询的就是这样 空格和as 都可以作为别名的关键词)
-   查询途中可以去重  distinct 直接加在 select 后面就行了 
-   concat 函数  把多个字符串拼接起来   
+   查询途中可以去重  distinct 直接加在 select 后面就行了
+   concat 函数  把多个字符串拼接起来
    ifnull 函数  判断是否为 null 是的话 就给个值 ifnull(`commission_pct`,0)
 #+END_SRC
 
 ** 条件查询 ***
-#+BEGIN_SRC mysql 
-   后面加where   	  && 和and  两个都为真 结果为true 
-   || 和 or  有一个为真 结果为 true 
-   ! 和 not  本身为真 结果为flase 
+#+BEGIN_SRC mysql
+   后面加where   	  && 和and  两个都为真 结果为true
+   || 和 or  有一个为真 结果为 true
+   ! 和 not  本身为真 结果为flase
    like 模糊查询 类似于汉语中的 这个里面有什么 像什么
    between  and	在什么什么之间 包含领界值
    in 		判断一个字段的值是不是属于in 列表的一项   in 列表的置类型必须一致或者兼容
@@ -34,40 +27,40 @@
 #+END_SRC
 
 ** 排序查询 ***
-   后面加一个 order by 排序列表 ][asc][desc] 它的位置是在where 的后面 如果没有limit字句 它就是最后面的哪一个 ORDER BY salary asc 
+   后面加一个 order by 排序列表 ][asc][desc] 它的位置是在where 的后面 如果没有limit字句 它就是最后面的哪一个 ORDER BY salary asc
 ** 常见函数***
-#+BEGIN_SRC 
-   length 获取参数值的字节个数   
+#+BEGIN_SRC
+   length 获取参数值的字节个数
    concat  拼接字符串
    upper,lower 大写变小写,小写变大写
    substr substring 检索并且截取 一个参数 就是到哪里 两个参数就是从哪里到哪里
    SUBSTR('少时诵诗书所所所所', 7) SUBSTR('爱仕达所大所大撒多所多',1,3)
    instr 返回位置 查询的感觉 返回字符串 字符 第一次出现的索引,如果找不到就返回0
-   trim 去掉两边的字符 去掉空格没有参数 直接trim 加 字段的值 
+   trim 去掉两边的字符 去掉空格没有参数 直接trim 加 字段的值
    去掉特定字符 使用'特定字符'from '字段的值'
-   lpad 使用指定的字符实现左填充指定长度 	LPAD('对对对',10,'*') 
+   lpad 使用指定的字符实现左填充指定长度 	LPAD('对对对',10,'*')
    rpad 右填充  RPAD('大手大',12,'ab')
    replace 替换 repalce('源文件','被替换的文件','想让什么来替换')
 #+END_SRC
 
 ** 数学函数***
-#+BEGIN_SRC 
+#+BEGIN_SRC
    round 四舍五入  可以后加参数确定小数点后保留几位
    ceil 向上取整 返回>= 该参数的最小整数
    floor 向下取整  通ceil
    truncate 截断 后加参数 确定小数点后位数 截断这个小数 TRUNCATE(1.69999,2);
-   mod 取余 
+   mod 取余
 #+END_SRC
- 
+
 ** 日期函数***
-#+BEGIN_SRC 
-   select now() 返回当前时间 
+#+BEGIN_SRC
+   select now() 返回当前时间
    curdate 返回日期 不包含时间
    curtime 返回时间,不包含日期
-   str_to_date 字符串格式转换 两个参数 原本的格式,想要的格式 
-   date_format 将日期转换为字符 
+   str_to_date 字符串格式转换 两个参数 原本的格式,想要的格式
+   date_format 将日期转换为字符
 #+END_SRC
- 
+
 ** 其他函数***
 #+BEGIN_SRC
     SELECT VERSION();
@@ -86,30 +79,30 @@
    insert into beauty values (18,"gem")
 
 ** 难一点的
-   insert into beauty 
+   insert into beauty
 
    set id = 19,name = "sss"
 ** 修改
-#+BEGIN_SRC 
+#+BEGIN_SRC
    update beauty set id = 55
    where name like '邓%'
 #+END_SRC
 
-** 多表 
-   #+BEGIN_SRC 
+** 多表
+   #+BEGIN_SRC
    UPDATE boys bo
    RIGHT JOIN beauty b ON bo.`id`=b.`boyfriend_id`
    SET b.`boyfriend_id`=2
    WHERE bo.`id` IS NULL;
    #+END_SRC
- 
 
-** 删除  
+
+** 删除
 
    delete from 那个表 where 条件
 
 ** 多表
-#+BEGIN_SRC 
+#+BEGIN_SRC
   #案例：删除黄晓明的信息 以及 他女朋友的信息
    DELETE b,bo
    FROM beauty b
@@ -117,113 +110,113 @@
    WHERE bo.`boyName`='黄晓明';
 
 #+END_SRC
- 
-** 删除的下一个方式  
+
+** 删除的下一个方式
    truncate  table 表名
 
-** 库的创建 
+** 库的创建
 
-   create database if not exists 库的名字 
+   create database if not exists 库的名字
 
-** 更改字符集 
+** 更改字符集
 
    alter database 库的名字 character set utf8
 
-** 库的删除 
-   drop database if exists 库的名字 
+** 库的删除
+   drop database if exists 库的名字
 
 
-** 表的管理 
+** 表的管理
 
-** 表的创建 
-#+BEGIN_SRC 
+** 表的创建
+#+BEGIN_SRC
 
    create table if not exists 表的名字 (
-   id int 
+   id int
    bname varchar(20)
-       
+
    )
 #+END_SRC
 
 
-** 表的修改 
+** 表的修改
 
    alter table 表名 change column 老名字 新名字 类型(varchar(60))
 
-** 修改类型和约束 
+** 修改类型和约束
 
    alter table 表名 modify column 那一列列的名字(name) 新类型 (varchar(60))
 
-** 添加新列 
+** 添加新列
 
-   alter table 表名 drop column 添加的列的名字 添加的列的类型 
+   alter table 表名 drop column 添加的列的名字 添加的列的类型
 
-** 删除列 
+** 删除列
 
-   alter table 表名 drop column 删除的那一列的名字 
+   alter table 表名 drop column 删除的那一列的名字
 
-** 修改表名 
+** 修改表名
 
-   alter table 表名 rename to 新的表名  
+   alter table 表名 rename to 新的表名
 
-** 表的删除 
+** 表的删除
 
-   drop table if exists 删除的表的名字 
+   drop table if exists 删除的表的名字
 
-** 通常我们创建一个新的表的话  我们会先删除  再 create 
-#+BEGIN_SRC 
+** 通常我们创建一个新的表的话  我们会先删除  再 create
+#+BEGIN_SRC
    DROP DATABASE IF EXISTS 旧库名;
    CREATE DATABASE 新库名;
 #+END_SRC
 
-** 表的复制  
+** 表的复制
 
-*** 只复制结构 赋值 类型 之类的  
+*** 只复制结构 赋值 类型 之类的
 
-    create table 赋值完的表的名字 like 被复制的那个表的名字 
+    create table 赋值完的表的名字 like 被复制的那个表的名字
 
 *** 赋值表的结构和数据
-#+BEGIN_SRC 
-    create table 复制的新表名字 
+#+BEGIN_SRC
+    create table 复制的新表名字
     select *from 要被复制的表的名字
 #+END_SRC
 
 
-*** 复制部分数据 
-#+BEGIN_SRC 
+*** 复制部分数据
+#+BEGIN_SRC
     create table 复制的新表名字
-    select 要复制的列 
+    select 要复制的列
     from 复制的那个表的名字
-    where 加一个筛选 
+    where 加一个筛选
 #+END_SRC
 
 
 *** 不要值 只要字段
-#+BEGIN_SRC 
-    CREATE TABLE copy4 
+#+BEGIN_SRC
+    CREATE TABLE copy4
     SELECT id,au_name
     FROM author
     WHERE 0;
 
 #+END_SRC
 
-** 数据类型  
+** 数据类型
 
-   int 4个字节   默认是有符号的  设置无符号 用 unsigned  zerofill  是用来占位的 左填充 
+   int 4个字节   默认是有符号的  设置无符号 用 unsigned  zerofill  是用来占位的 左填充
 
    小数 float(m,n) double(m,n)   m 代表 整数加小数位数  n代表小数位数
 
-*** 字符型  
-   char(m) 固定长度字符m代表最大的字符数 可以省略 默认为1 
+*** 字符型
+   char(m) 固定长度字符m代表最大的字符数 可以省略 默认为1
 
-   varchar	(m) 可变长度的字符 不可省略  
-*** 日期型 
-   date  日期      time   时间      year   年  
+   varchar	(m) 可变长度的字符 不可省略
+*** 日期型
+   date  日期      time   时间      year   年
 
-   datetime  日期+时间    time+stamp 日期+时间 
+   datetime  日期+时间    time+stamp 日期+时间
 
 
-** 常见约束 
+** 常见约束
    | not null    | 非空                  | name varchar(20) not null                                             |
    | default     | 默认值	        | age int default 18                                                    |
    | primary key | 主键                  | id int primary key                                                    |
@@ -232,23 +225,22 @@
    | foreign key | 外键一般写在 表约束   | CONSTRAINT fk_stuinfo_major FOREIGN KEY(majorid) REFERENCES major(id) |
    |             |                       |                                                                       |
 
-** 标识列  又称为 自增长列 
-#+BEGIN_SRC 
-   auto_increment 不用手动的插入值 必须搭配key 来使用 
-   id int unique auto_increment 
-   可以使用  set auto_increment_increment = **  来修改步长 
+** 标识列  又称为 自增长列
+#+BEGIN_SRC
+   auto_increment 不用手动的插入值 必须搭配key 来使用
+   id int unique auto_increment
+   可以使用  set auto_increment_increment = **  来修改步长
 #+END_SRC
 
 ** 事务  tcl 语言
-   创建 1 开启事务  set autocommit = 0 
+   创建 1 开启事务  set autocommit = 0
 
-   start transaction  
+   start transaction
 
-   2   事务语句 
-#+BEGIN_SRC 
+   2   事务语句
+#+BEGIN_SRC
    update account set balance = 1000 where username = ...
    update addount set balance = 1000 where username = ///
-   3 结束事务  ---  三个选择  commit 提交  rollback   回滚   savepoint   保存节点 
+   3 结束事务  ---  三个选择  commit 提交  rollback   回滚   savepoint   保存节点
    rollback
 #+END_SRC
-

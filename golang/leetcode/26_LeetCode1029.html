@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:05 -->
+<!-- 2020-12-03 四 15:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LeetCode1029-两地调度</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,19 +248,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga391454">题目</a></li>
-<li><a href="#org3658196">解析   (看大佬和官方的解法  简单的总结一下)</a></li>
-<li><a href="#org65ba920">代码</a></li>
-<li><a href="#org7d4dea9">通用代码</a></li>
+<li><a href="#org178a397">1. 题目</a></li>
+<li><a href="#org38a49ac">2. 解析   (看大佬和官方的解法  简单的总结一下)</a></li>
+<li><a href="#org7dd4892">3. 代码</a></li>
+<li><a href="#orgedaf0ea">4. 通用代码</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-orga391454" class="outline-2">
-<h2 id="orga391454">题目</h2>
-<div class="outline-text-2" id="text-orga391454">
+
+<div id="outline-container-org178a397" class="outline-2">
+<h2 id="org178a397"><span class="section-number-2">1</span> 题目</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
 公司计划面试 2N 人。第 i 人飞往 A 市的费用为 costs[i][0]，飞往 B 市的费用为 costs[i][1]。
 
@@ -295,105 +288,105 @@ costs.length 为偶数
 </pre>
 </div>
 </div>
-<div id="outline-container-org3658196" class="outline-2">
-<h2 id="org3658196">解析   (看大佬和官方的解法  简单的总结一下)</h2>
-<div class="outline-text-2" id="text-org3658196">
+<div id="outline-container-org38a49ac" class="outline-2">
+<h2 id="org38a49ac"><span class="section-number-2">2</span> 解析   (看大佬和官方的解法  简单的总结一下)</h2>
+<div class="outline-text-2" id="text-2">
 <pre class="example">
 假设 有 4 个人  A B C D
-两个地点   西安 +  深圳 各位的花费如下 
+两个地点   西安 +  深圳 各位的花费如下
 A {10,20}  B {30,40} C{40,60} D{70,60}
-那我们要求最少的花费  
+那我们要求最少的花费
 我们假设 所有的人都去 深圳  那么就是  20+40+60+60 = 180
-然后 我们再 找一下 看 那些人  去两地的价格差是最大的 
-A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D 
-所以 我们 的选择就是 把 C  和 A或者B 改变行程 让他们去 西安 
-所以 最后的 value 就是  150 
+然后 我们再 找一下 看 那些人  去两地的价格差是最大的
+A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D
+所以 我们 的选择就是 把 C  和 A或者B 改变行程 让他们去 西安
+所以 最后的 value 就是  150
 
 代码思路 :
-    每组切片的参数相减 排序 
-    让N/2 前的 去 西安  
-    让N/2 后的 去 深圳 
+    每组切片的参数相减 排序
+    让N/2 前的 去 西安
+    让N/2 后的 去 深圳
 </pre>
 </div>
 </div>
-<div id="outline-container-org65ba920" class="outline-2">
-<h2 id="org65ba920">代码</h2>
-<div class="outline-text-2" id="text-org65ba920">
+<div id="outline-container-org7dd4892" class="outline-2">
+<h2 id="org7dd4892"><span class="section-number-2">3</span> 代码</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">package</span> main
+<pre class="src src-go">  <span style="color: #81A1C1;">package</span> main
 
-<span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #2d9574;">"fmt"</span>
+<span style="color: #81A1C1;">import</span> <span style="color: #A3BE8C;">"fmt"</span>
 
-<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(<span style="color: #7590db;">costs</span> [][]<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
-        <span style="color: #7590db;">sum</span>, <span style="color: #7590db;">lenCosts</span> := 0, <span style="color: #4f97d7;">len</span>(costs)    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;</span>
-        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 0; i &lt; lenCosts-1; i++ { <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207;</span>
-                <span style="color: #7590db;">min</span> := i
-                <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">j</span> := i; j &lt; lenCosts; j++ {
-                        <span style="color: #4f97d7; font-weight: bold;">if</span> costs[j][0]-costs[j][1] &lt; costs[min][0]-costs[min][1] { <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226;&#27599;&#19968;&#20010; &#20256;&#36827;&#26469;&#30340; &#21435;a&#22320; - &#21435;b&#22320; &#30340;&#20540; &#25490;&#24207;</span>
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">twoCitySchedCost</span>(<span style="color: #D8DEE9;">costs</span> [][]<span style="color: #8FBCBB;">int</span>) <span style="color: #8FBCBB;">int</span> {
+        <span style="color: #D8DEE9;">sum</span>, <span style="color: #D8DEE9;">lenCosts</span> := 0, <span style="color: #81A1C1;">len</span>(costs)    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#21021;&#22987;&#35805;</span>
+        <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">i</span> := 0; i &lt; lenCosts-1; i++ { <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#25490;&#24207;</span>
+                <span style="color: #D8DEE9;">min</span> := i
+                <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">j</span> := i; j &lt; lenCosts; j++ {
+                        <span style="color: #81A1C1;">if</span> costs[j][0]-costs[j][1] &lt; costs[min][0]-costs[min][1] { <span style="color: #6f7787;">//  </span><span style="color: #6f7787;">&#25226;&#27599;&#19968;&#20010; &#20256;&#36827;&#26469;&#30340; &#21435;a&#22320; - &#21435;b&#22320; &#30340;&#20540; &#25490;&#24207;</span>
                                 min = j
-                                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"if vlaue "</span>, costs[j][0])
+                                fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"if vlaue "</span>, costs[j][0])
                         }
 
                 }
-                <span style="color: #7590db;">temp</span> := costs[i]
+                <span style="color: #D8DEE9;">temp</span> := costs[i]
                 costs[i] = costs[min]
                 costs[min] = temp
 
         }
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"limt value "</span>, costs)
-        <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207; &#23436;&#20043;&#21518;  costs &#23601;&#26159;&#19968;&#20010;  &#25353;&#29031;  a -b &#30340;&#20540; &#26469;&#25490;&#24207;&#30340;&#19968;&#20010;&#20108;&#32500;&#20999;&#29255;</span>
-        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#36825;&#20010;  &#27604;&#22914;&#36825;&#27425;&#30340;testing  4&#20010;&#20540; &#25490;&#24207;&#23436;  &#25105;&#20204;&#35753; &#21069;&#20004;&#20010;&#20540; &#30340;[0] &#30456;&#21152;</span>
-        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">costs [0][0] + costs [1][0]&#30456;&#21152;</span>
-        <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#22823;&#20110;2 &#30340;&#26102;&#20505;  &#23601;&#21040; &#31532;&#19977;&#20010;&#25968;&#20102; &#37027;&#20040;&#23601;&#29992; &#31532;&#20108;&#20010;&#20540;&#26469;&#21152;</span>
-        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#23601;&#26159;  sum += costs[3][1]+costs[4][1]</span>
-        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 0; i &lt; lenCosts; i++ {
-                <span style="color: #4f97d7; font-weight: bold;">if</span> i &lt; lenCosts/2 {
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"limt value "</span>, costs)
+        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#25490;&#24207; &#23436;&#20043;&#21518;  costs &#23601;&#26159;&#19968;&#20010;  &#25353;&#29031;  a -b &#30340;&#20540; &#26469;&#25490;&#24207;&#30340;&#19968;&#20010;&#20108;&#32500;&#20999;&#29255;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#19979;&#38754;&#36825;&#20010;  &#27604;&#22914;&#36825;&#27425;&#30340;testing  4&#20010;&#20540; &#25490;&#24207;&#23436;  &#25105;&#20204;&#35753; &#21069;&#20004;&#20010;&#20540; &#30340;[0] &#30456;&#21152;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">costs [0][0] + costs [1][0]&#30456;&#21152;</span>
+        <span style="color: #6f7787;">//  </span><span style="color: #6f7787;">&#22914;&#26524;&#22823;&#20110;2 &#30340;&#26102;&#20505;  &#23601;&#21040; &#31532;&#19977;&#20010;&#25968;&#20102; &#37027;&#20040;&#23601;&#29992; &#31532;&#20108;&#20010;&#20540;&#26469;&#21152;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#23601;&#26159;  sum += costs[3][1]+costs[4][1]</span>
+        <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">i</span> := 0; i &lt; lenCosts; i++ {
+                <span style="color: #81A1C1;">if</span> i &lt; lenCosts/2 {
                         sum += costs[i][0]
-                } <span style="color: #4f97d7; font-weight: bold;">else</span> {
+                } <span style="color: #81A1C1;">else</span> {
                         sum += costs[i][1]
                 }
-                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"now value "</span>, costs[i])
+                fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"now value "</span>, costs[i])
         }
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(sum)
-        <span style="color: #4f97d7; font-weight: bold;">return</span> sum
+        fmt.<span style="color: #8FBCBB;">Println</span>(sum)
+        <span style="color: #81A1C1;">return</span> sum
 }
 
-<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-        <span style="color: #7590db;">consts</span> := [][]<span style="color: #ce537a; font-weight: bold;">int</span>{{10, 20}, {30, 40}, {40, 60}, {70, 60}}
-        <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(consts)
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">main</span>() {
+        <span style="color: #D8DEE9;">consts</span> := [][]<span style="color: #8FBCBB;">int</span>{{10, 20}, {30, 40}, {40, 60}, {70, 60}}
+        <span style="color: #8FBCBB;">twoCitySchedCost</span>(consts)
 }
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7d4dea9" class="outline-2">
-<h2 id="org7d4dea9">通用代码</h2>
-<div class="outline-text-2" id="text-org7d4dea9">
+<div id="outline-container-orgedaf0ea" class="outline-2">
+<h2 id="orgedaf0ea"><span class="section-number-2">4</span> 通用代码</h2>
+<div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">twoCitySchedCost</span>(<span style="color: #7590db;">costs</span> [][]<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">int</span> {
-        <span style="color: #7590db;">sum</span>, <span style="color: #7590db;">lenCosts</span> := 0, <span style="color: #4f97d7;">len</span>(costs)    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;</span>
-        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span> := 0; i &lt; lenCosts-1; i++ { <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207;</span>
-                <span style="color: #7590db;">min</span> := i
-                <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">j</span> := i; j &lt; lenCosts; j++ {
-                        <span style="color: #4f97d7; font-weight: bold;">if</span> costs[j][0]-costs[j][1] &lt; costs[min][0]-costs[min][1] { <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226;&#27599;&#19968;&#20010; &#20256;&#36827;&#26469;&#30340; &#21435;a&#22320; - &#21435;b&#22320; &#30340;&#20540; &#25490;&#24207;</span>
+<pre class="src src-go">  <span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">twoCitySchedCost</span>(<span style="color: #D8DEE9;">costs</span> [][]<span style="color: #8FBCBB;">int</span>) <span style="color: #8FBCBB;">int</span> {
+        <span style="color: #D8DEE9;">sum</span>, <span style="color: #D8DEE9;">lenCosts</span> := 0, <span style="color: #81A1C1;">len</span>(costs)    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#21021;&#22987;&#35805;</span>
+        <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">i</span> := 0; i &lt; lenCosts-1; i++ { <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#25490;&#24207;</span>
+                <span style="color: #D8DEE9;">min</span> := i
+                <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">j</span> := i; j &lt; lenCosts; j++ {
+                        <span style="color: #81A1C1;">if</span> costs[j][0]-costs[j][1] &lt; costs[min][0]-costs[min][1] { <span style="color: #6f7787;">//  </span><span style="color: #6f7787;">&#25226;&#27599;&#19968;&#20010; &#20256;&#36827;&#26469;&#30340; &#21435;a&#22320; - &#21435;b&#22320; &#30340;&#20540; &#25490;&#24207;</span>
                                 min = j
-                                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"if vlaue "</span>, costs[j][0])
+                                fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"if vlaue "</span>, costs[j][0])
                         }
 
                 }
-                <span style="color: #7590db;">temp</span> := costs[i]
+                <span style="color: #D8DEE9;">temp</span> := costs[i]
                 costs[i] = costs[min]
                 costs[min] = temp
 
         }
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"limt value "</span>, costs)
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"limt value "</span>, costs)
 }
 </pre>
 </div>
 
 <p>
-对切片 做差排序  
+对切片 做差排序
 </p>
 </div>
 </div>
@@ -401,7 +394,7 @@ A -10    B -10  C -20  D 10    所以 它的排序 就是  C -- A and B --D
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:05</p>
+<p class="date">Created: 2020-12-03 四 15:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

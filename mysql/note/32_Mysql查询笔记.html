@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:16 -->
+<!-- 2020-12-03 四 15:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mysql查询</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,101 +248,97 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6f7ad35">基础查询</a></li>
-<li><a href="#orgb6ca3c6">条件查询</a></li>
-<li><a href="#orgc21d907">排序查询</a></li>
-<li><a href="#org9b86f5b">常见函数</a></li>
-<li><a href="#org3a7fc82">分组查询</a></li>
-<li><a href="#org7d39e6d">连接查询</a></li>
-<li><a href="#org9983406">连接查询99语法</a></li>
-<li><a href="#orgac4f865">子查询</a></li>
-<li><a href="#org16eaf99">子查询例题</a></li>
-<li><a href="#orgf672c2f">分页查询</a></li>
-<li><a href="#org6610d13">联合查询</a></li>
-<li><a href="#orgb75687f">插入修改删除</a></li>
-<li><a href="#orgfc7b8dc">库和表的使用</a></li>
-<li><a href="#orgd07b4d3">数据类型</a></li>
-<li><a href="#org54e9e35">常见约束</a></li>
-<li><a href="#org8743e3c">标示自增列</a></li>
-<li><a href="#orgf64291b">事物</a></li>
+<li><a href="#org0776d01">1. 基础查询</a></li>
+<li><a href="#org105e62e">2. 条件查询</a></li>
+<li><a href="#org17ee372">3. 排序查询</a></li>
+<li><a href="#orga83af78">4. 常见函数</a></li>
+<li><a href="#orgd0ac672">5. 分组查询</a></li>
+<li><a href="#orgd06cb9c">6. 连接查询</a></li>
+<li><a href="#orgc355e27">7. 连接查询99语法</a></li>
+<li><a href="#org8dc98ca">8. 子查询</a></li>
+<li><a href="#orge4ab7f5">9. 子查询例题</a></li>
+<li><a href="#org61dde8a">10. 分页查询</a></li>
+<li><a href="#orgcdc9061">11. 联合查询</a></li>
+<li><a href="#orga81962c">12. 插入修改删除</a></li>
+<li><a href="#orgdeef83c">13. 库和表的使用</a></li>
+<li><a href="#org8b05bc7">14. 数据类型</a></li>
+<li><a href="#orgf1b0023">15. 常见约束</a></li>
+<li><a href="#orgef8bd63">16. 标示自增列</a></li>
+<li><a href="#orga2b621f">17. 事物</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
 
-
-<div id="outline-container-org6f7ad35" class="outline-2">
-<h2 id="org6f7ad35">基础查询</h2>
-<div class="outline-text-2" id="text-org6f7ad35">
+<div id="outline-container-org0776d01" class="outline-2">
+<h2 id="org0776d01"><span class="section-number-2">1</span> 基础查询</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
-# 进阶1 : 基础查询 
-/* 
-语法 : 
+# 进阶1 : 基础查询
+/*
+语法 :
 select 查询列表
  from 表名;
 */
 use myemployees;
-# 查询表中的单个字段 
-select job_id 
+# 查询表中的单个字段
+select job_id
 from jobs;
 
-select last_name 
+select last_name
 from employees;
 
-# 查询多个字段 
+# 查询多个字段
 select last_name,first_name,email
  from employees;
 
-# 查询所有字段 
-select * 
+# 查询所有字段
+select *
 from employees;
 
-#  查询常量值  
+#  查询常量值
 select 100;
 select 'ks';
 
-#查询表达式 
+#查询表达式
 select 100%98;
 
-#查询函数 
+#查询函数
 select Version();
 
-#起别名 
+#起别名
  #方式一
 select 100%98 as 结果;
-select last_name as 姓 ,first_name as 名 
+select last_name as 姓 ,first_name as 名
 from employees;
 
-#方式二  空格 
+#方式二  空格
 select last_name 姓 ,first_name 名
 from employees;
 # 案例  查询 salary  让他显示结果为 out put  (有空格 )
 select salary as "out put"
 from employees;
 
-# 8 . 去重  //distinct 
+# 8 . 去重  //distinct
 # 案例 查询员工表中设计到的所有的部门编号
  select distinct department_id
 from employees;
 
-#9  + 的作用 
-/* 
-mysql 中 加 号 只有一个 功能 就是 运算符 
+#9  + 的作用
+/*
+mysql 中 加 号 只有一个 功能 就是 运算符
 select 100+30;
 select '123'+30;
 select 'ggg'+60; 如果不能将字符值转换程数值 那么就把字符型转换成0
-select null+10;  只要一个是null  结果就是 null 
+select null+10;  只要一个是null  结果就是 null
 */
-#  查询 员工的 姓 和名  显示成姓名  
+#  查询 员工的 姓 和名  显示成姓名
 select concat(last_name,first_name) as 结果
 from employees;
 
 
 # 案例  显示表 employees 的全部列 , 各个列之间用逗号隔开 ,列头显示为 out_put
 
-##  新知识  判断是否为 null   是null  就给个值  0 
+##  新知识  判断是否为 null   是null  就给个值  0
 
 select ifnull(`commission_pct`,0) as 奖金率,
                 commission_pct
@@ -359,129 +350,129 @@ from employees;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb6ca3c6" class="outline-2">
-<h2 id="orgb6ca3c6">条件查询</h2>
-<div class="outline-text-2" id="text-orgb6ca3c6">
+<div id="outline-container-org105e62e" class="outline-2">
+<h2 id="org105e62e"><span class="section-number-2">2</span> 条件查询</h2>
+<div class="outline-text-2" id="text-2">
 <pre class="example">
-# 条件查询 
-/* 
-语法  : 
-                select  查询列表 
-                from  表名 
-                where 筛选条件 ; 
+# 条件查询
+/*
+语法  :
+                select  查询列表
+                from  表名
+                where 筛选条件 ;
 
         分类 :
-                1 . 按条件表达式筛选 
-         条件运算符   ;  &gt;  &lt;  = !=  &lt;&gt;  &gt;=  &lt;= 
-                2 . 按逻辑表达式筛选 
+                1 . 按条件表达式筛选
+         条件运算符   ;  &gt;  &lt;  = !=  &lt;&gt;  &gt;=  &lt;=
+                2 . 按逻辑表达式筛选
         作用 :  用于链接条件表达式
-        逻辑运算符  : 
-                        &amp;&amp; ||  ! 
-            and or not 
+        逻辑运算符  :
+                        &amp;&amp; ||  !
+            and or not
 
-            &amp;&amp; 和and  两个都为真 结果为true 
-            || 和 or  有一个为真 结果为 true 
-            ! 和 not  本身为真 结果为flase 
-                3 . 模糊查询 
-                        like 
-            between and 
-            in 
-            is null 
+            &amp;&amp; 和and  两个都为真 结果为true
+            || 和 or  有一个为真 结果为 true
+            ! 和 not  本身为真 结果为flase
+                3 . 模糊查询
+                        like
+            between and
+            in
+            is null
  */
 
- #1  按条件表达式 筛选 
-# 案例1 查询 工资&gt; 12000 的 员工信息  	
-        select * 
+ #1  按条件表达式 筛选
+# 案例1 查询 工资&gt; 12000 的 员工信息
+        select *
         from  employees
         where  salary &gt; 12000;
 # 查询 部门编号 不等于90 的员工名 和部门编号
 
         select last_name,department_id
-        from employees 
+        from employees
         where department_id&lt;&gt;90;
 
-# 2  按逻辑表达式筛选 
- # 案例1  查询工资在 10000 到20000 之间的 员工名 . 工资 以及奖金 
+# 2  按逻辑表达式筛选
+ # 案例1  查询工资在 10000 到20000 之间的 员工名 . 工资 以及奖金
          select last_name,salary,commission_pct
-         from 
+         from
          where salary &gt;= 10000 and salary &lt;= 20000;
-# 案例2  部门编号不是在 90 到 110 之间或者 工资高于15000 的员工信息 
-        select * 
+# 案例2  部门编号不是在 90 到 110 之间或者 工资高于15000 的员工信息
+        select *
         from employees
         where department_id &lt; 90 or department_id &gt; 110 or salary &gt;15000;
 
-# 3  模糊查询  
+# 3  模糊查询
 
 #查询 名字中 有 a 的员工信息
-        select * 
+        select *
         from employees
         where last_name like '%a%';
-# 查询 员工名中 第三个字符为 n 第五个字符为 l 的员工名 和工资 
+# 查询 员工名中 第三个字符为 n 第五个字符为 l 的员工名 和工资
         select last_name,salary
         from employees
         where last_name like '__n_l%';
-# 查询 员工名中 第二个字符为 _ 的员工名 
-        select last_name 
+# 查询 员工名中 第二个字符为 _ 的员工名
+        select last_name
         from employees
         where last_name like '_\_%';
-# 可以转义  如果想自定义转义  
+# 可以转义  如果想自定义转义
         # last_name like '_$_% escape '$'';
 
-# between and  
+# between and
 /*
-         between and  包含临界值 
-     不能调换顺序  
+         between and  包含临界值
+     不能调换顺序
 */
- # 案例 1  员工编号在 100 到 120 之间的 员工信息 
-        select * 
+ # 案例 1  员工编号在 100 到 120 之间的 员工信息
+        select *
         from employees
         where employee_id between 100 and 120;
 
-#  in 
+#  in
 
 /*
-  含义 :  判断 某字段的值 是否属于in 列表中的 某一项 
-  特点 :  in 列表的 值类型 必须一致 或者 兼容 
+  含义 :  判断 某字段的值 是否属于in 列表中的 某一项
+  特点 :  in 列表的 值类型 必须一致 或者 兼容
 */
 
-34 
+34
         # 查询员工的工种编号 是 ad_vp , AD_PRES 中的一个员工名和工种编号
             select last_name,job_id
             from employees
             where job_id in ('AD_VP','AD_PRES');
 
-# is null 
+# is null
 
-# 案例1  查询 没有奖金的员工名和奖金率  
+# 案例1  查询 没有奖金的员工名和奖金率
             select commission_pct,last_name
-            from employees 
+            from employees
             where commission_pct is null
 
 # 安全等于 &lt;=&gt;
           select commission_pct,salary
-                 from employees 
+                 from employees
                  where salary &lt;=&gt; 12000
 
 # is null pk &lt;=&gt;
-is null : 仅仅可以判断null值 可读性比较高 
+is null : 仅仅可以判断null值 可读性比较高
 &lt;=&gt; : 既可以判断null值 又可以判断普通的数值, 可读性低 (不推荐)
 
 # 练习题  ----------------------------------------------------------------------
 
 #1. 查询工资大于 12000 的员工姓名和工资
-                select last_name,first_name as 姓名 ,salary as 工资 
+                select last_name,first_name as 姓名 ,salary as 工资
                 from employees
                 where salary &gt; 12000;
 #2. 查询员工号为 176 的员工的姓名和部门号和年薪
 #(我先做的 )
                 select last_name,first_name as 姓名 ,department_id,salary*12
-                from employees 
+                from employees
                 where employee_id &lt;=&gt; 176
 #(老师做的 )
                 select last_name,first_name as 姓名 ,
                                 department_id,
                                 salary*12*(1+ifnull(commission_pct,0))as 年薪
-                from employees 
+                from employees
                 where employee_id &lt;=&gt; 176
 #3. 选择工资不在 5000 到 12000 的员工的姓名和工资
 
@@ -497,7 +488,7 @@ is null : 仅仅可以判断null值 可读性比较高
 #5. 选择公司中没有管理者的员工姓名及 job_id
                 select last_name as 姓名,
                                 job_id
-                from employees 
+                from employees
                 where  manager_id is null;
 
 #6. 选择公司中有奖金的员工姓名，工资和奖金级别
@@ -511,7 +502,7 @@ is null : 仅仅可以判断null值 可读性比较高
                 from employees
                 where last_name like '__a%';
 #8. 选择姓名中有字母 a 和 e 的员工姓名
-                select last_name as 姓名 
+                select last_name as 姓名
                 from employees
                 where last_name like '%a%' or '%e%';
 #9. 显示出表 employees 表中 first_name 以 'e'结尾的员工信息
@@ -535,18 +526,18 @@ is null : 仅仅可以判断null值 可读性比较高
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc21d907" class="outline-2">
-<h2 id="orgc21d907">排序查询</h2>
-<div class="outline-text-2" id="text-orgc21d907">
+<div id="outline-container-org17ee372" class="outline-2">
+<h2 id="org17ee372"><span class="section-number-2">3</span> 排序查询</h2>
+<div class="outline-text-2" id="text-3">
 <pre class="example">
-# 进阶3 排序查询 
+# 进阶3 排序查询
 #引入
-select * 
+select *
 from employees
 
-/* 语法  
-        select 查询列表 
-            from 表 
+/* 语法
+        select 查询列表
+            from 表
             [where 条件]
             order by 排序列表 [asc | desc ]
                 */
@@ -582,7 +573,7 @@ from employees
 #5、按函数排序
 #案例：查询员工名，并且按名字的长度降序
 
-        SELECT LENGTH(last_name),last_name 
+        SELECT LENGTH(last_name),last_name
         FROM employees
         ORDER BY LENGTH(last_name) DESC;
 
@@ -593,9 +584,9 @@ from employees
         FROM employees
         ORDER BY salary DESC,employee_id ASC;
 
-# 练习 
+# 练习
 #1. 查询员工的姓名和部门号和年薪，按年薪降序 按姓名升序
-        select last_name 姓名 , department_id,salary*12*(1+ifnull(commission_pct,0)) as 年薪 
+        select last_name 姓名 , department_id,salary*12*(1+ifnull(commission_pct,0)) as 年薪
         from employees
         order by 年薪 desc,姓名 asc
 2. 选择工资不在 8000 到 17000 的员工的姓名和工资，按工资降序
@@ -604,7 +595,7 @@ from employees
         where salary &lt; 8000 or salary &gt; 17000  # not between 8000 and 17000
         order by salary desc
 3. 查询邮箱中包含 e 的员工信息，并先按邮箱的字节数降序，再按部门号升序
-        select * 
+        select *
         from employees
         where email like '%e%'
         order by LENGTH(email) desc,employee_id asc
@@ -626,7 +617,7 @@ from employees
 #Dream Salary
 #King earns 24000 monthly but wants 72000
 
-        select last_name,salary 工资,salary * 3 期望工资    # 我做的 全错  
+        select last_name,salary 工资,salary * 3 期望工资    # 我做的 全错
 
         select concat( last_name ,'earns',salary,'monthly but wants',salary*3)as "Dream Salary"
         from employees
@@ -635,16 +626,16 @@ from employees
 </pre>
 </div>
 </div>
-<div id="outline-container-org9b86f5b" class="outline-2">
-<h2 id="org9b86f5b">常见函数</h2>
-<div class="outline-text-2" id="text-org9b86f5b">
+<div id="outline-container-orga83af78" class="outline-2">
+<h2 id="orga83af78"><span class="section-number-2">4</span> 常见函数</h2>
+<div class="outline-text-2" id="text-4">
 <pre class="example">
 /*
 
 概念：类似于java的方法，将一组逻辑语句封装在方法体中，对外暴露方法名
 好处：1、隐藏了实现细节  2、提高代码的重用性
 调用：select 函数名(实参列表) 【from 表】;
-特点： 
+特点：
         ①叫什么（函数名）
         ②干什么（函数功能）
 
@@ -738,7 +729,7 @@ from employees
 
         SELECT INSTR('杨不殷六侠悔爱上了殷六侠','殷八侠') AS out_put;
 
-#6.trim 去掉两边的字符 
+#6.trim 去掉两边的字符
 
         SELECT LENGTH(TRIM('    张翠山    ')) AS out_put;
 
@@ -763,21 +754,21 @@ from employees
 
 #二、数学函数
 
-#round 四舍五入 
+#round 四舍五入
         SELECT ROUND(-1.55);
-        SELECT ROUND(1.567,2); #小数点后保留两位 
+        SELECT ROUND(1.567,2); #小数点后保留两位
 
 
 #ceil 向上取整,返回&gt;=该参数的最小整数
 
-        SELECT CEIL(-1.02); 
+        SELECT CEIL(-1.02);
 
 #floor 向下取整，返回&lt;=该参数的最大整数
         SELECT FLOOR(-9.99);
 
 #truncate 截断
 
-        SELECT TRUNCATE(1.69999,2);  # 小数点后保留两位 
+        SELECT TRUNCATE(1.69999,2);  # 小数点后保留两位
 
 #mod取余
 /*
@@ -907,7 +898,7 @@ else{
 
 mysql中：
 
-case 
+case
 when 条件1 then 要显示的值1或语句1
 when 条件2 then 要显示的值2或语句2
 。。。
@@ -923,7 +914,7 @@ end
 
 
         SELECT salary,
-        CASE 
+        CASE
         WHEN salary&gt;20000 THEN 'A'
         WHEN salary&gt;15000 THEN 'B'
         WHEN salary&gt;10000 THEN 'C'
@@ -1024,7 +1015,7 @@ FROM employees;
 select max(salary) 最高,min(salary) 最小, avg(salary) 平均,sum(salary)
 from employees
 #2. 查询员工表中的最大入职时间和最小入职时间的相差天数 （DIFFRENCE）
-select max(hiredate) - min(hiredate) as diffrence 
+select max(hiredate) - min(hiredate) as diffrence
 from employees
 
 # 一个函数  datediff
@@ -1040,9 +1031,9 @@ where department_id = 90
 </pre>
 </div>
 </div>
-<div id="outline-container-org3a7fc82" class="outline-2">
-<h2 id="org3a7fc82">分组查询</h2>
-<div class="outline-text-2" id="text-org3a7fc82">
+<div id="outline-container-orgd0ac672" class="outline-2">
+<h2 id="orgd0ac672"><span class="section-number-2">5</span> 分组查询</h2>
+<div class="outline-text-2" id="text-5">
 <pre class="example">
 #进阶5：分组查询
 
@@ -1094,14 +1085,14 @@ SELECT COUNT(*) FROM employees WHERE department_id=90;
 
         SELECT COUNT(*),location_id
         FROM departments
-        GROUP BY location_id; 
+        GROUP BY location_id;
 
 
 #2、可以实现分组前的筛选
 
 #案例1：查询邮箱中包含a字符的 每个部门的最高工资
- #随手记 :  这样想  每个后面的就是分组 然后  的后面就是 查询的东西 
-                #每当有每个这样的词 那么我们就 加一个 GROUP BY 
+ #随手记 :  这样想  每个后面的就是分组 然后  的后面就是 查询的东西
+                #每当有每个这样的词 那么我们就 加一个 GROUP BY
         SELECT MAX(salary),department_id
         FROM employees
         WHERE email LIKE '%a%'
@@ -1148,16 +1139,16 @@ SELECT COUNT(*) FROM employees WHERE department_id=90;
 ###################案例3：领导编号&gt;102的每个领导手下的最低工资大于5000的领导编号和最低工资
 
         select manager_id , min(salary)
-        from employees 
+        from employees
         where manager_id &gt; 102
-        group by manager_id 
+        group by manager_id
         having min(salary)&gt;5000
-#  先分开做   
+#  先分开做
         select manager_id , min(salary)
         from employees
-        group by manager_id 
+        group by manager_id
 # 再加筛选条件   看条件在那个表中  如果在原始表 就是 where  如果在 group by
-# 后 就   hav  ing  
+# 后 就   hav  ing
 
 
 
@@ -1192,13 +1183,13 @@ ORDER BY MIN(salary) DESC;
         order by job_id desc
 
 
-#2. 查询员工最高工资和最低工资的差距（DIFFERENCE）   
-                #每个员工 
+#2. 查询员工最高工资和最低工资的差距（DIFFERENCE）
+                #每个员工
         select job_id,max(salary),min(salary)
     from employees
-    group by job_id 
-    having DATEDIFF(max(salary),min(salary)) 
-    #上面的 全错 我想复杂了 
+    group by job_id
+    having DATEDIFF(max(salary),min(salary))
+    #上面的 全错 我想复杂了
 
         select max(salary)-min(salary) as 差距
     from employees
@@ -1211,7 +1202,7 @@ ORDER BY MIN(salary) DESC;
     from employees
     where manager_id is not null
     group by manager_id
-    having min(salary) &gt; 6000 
+    having min(salary) &gt; 6000
 
 #4. 查询所有部门的编号，员工数量和工资平均值,并按平均工资降序
         select department_id,count(*),avg(salary)
@@ -1220,7 +1211,7 @@ ORDER BY MIN(salary) DESC;
     order by avg(salary) desc
 
 #5. 选择具有各个 job_id 的员工人数
-        select count(*) ,job_id 
+        select count(*) ,job_id
     from employees
     group by job_id
 
@@ -1228,9 +1219,9 @@ ORDER BY MIN(salary) DESC;
 </pre>
 </div>
 </div>
-<div id="outline-container-org7d39e6d" class="outline-2">
-<h2 id="org7d39e6d">连接查询</h2>
-<div class="outline-text-2" id="text-org7d39e6d">
+<div id="outline-container-orgd06cb9c" class="outline-2">
+<h2 id="orgd06cb9c"><span class="section-number-2">6</span> 连接查询</h2>
+<div class="outline-text-2" id="text-6">
 <pre class="example">
 #进阶6：连接查询
 /*
@@ -1287,7 +1278,7 @@ ORDER BY MIN(salary) DESC;
 
 
 #案例1：查询女神名和对应的男神名
-        SELECT NAME,boyName 
+        SELECT NAME,boyName
         FROM boys,beauty
         WHERE beauty.boyfriend_id= boys.id;
 
@@ -1430,7 +1421,7 @@ VALUES('F', 25000, 40000);
 
 #3、自连接
 
-#同一张表找两次 
+#同一张表找两次
 
 #案例：查询 员工名和上级的名称
 
@@ -1442,14 +1433,14 @@ VALUES('F', 25000, 40000);
 
 
 
-   ################################################## 
+   ##################################################
     #显示员工表的最大工资,平均工资
 
         select max(salary),avg(salary)
         from employees
 
 #查询员工表的employee_id, job_id , last_name 按照 department_id 降序
-#salary 升序 
+#salary 升序
         select e.employee_id,e.job_id,e.last_name,d.department_id,e.salary
         from employees e,departments d
         order by d.department_id desc,salary asc
@@ -1457,21 +1448,21 @@ VALUES('F', 25000, 40000);
 
 #查询员工表的 job_id中包含a 和 e 的,并且 a在e 的前面
 
-        select job_id 
-        from employees 
+        select job_id
+        from employees
         where job_id like "%a%e%"
 
 # 已知 表 student 里面有 id (学号) ,name ,gradeID (年纪号)
         #已知表 grade 里面有  id (年级编号) name (年级名字)
     #已知表 result 里面有 id,scoure,studentNO(学号)
-    #要求查  姓名.年级名  成绩 
+    #要求查  姓名.年级名  成绩
 
         select s.name ,g.name ,r.scoure
     from student s , grade g,result r
     where g.id = s.gradeID
     and s.id = r.studentNO
 
-#显示当前日期  ,以及去前后空格,截取子字符串的函数 
+#显示当前日期  ,以及去前后空格,截取子字符串的函数
 
         select now()
         select trim()
@@ -1491,7 +1482,7 @@ VALUES('F', 25000, 40000);
     where e.department_id = d.department_id
 #2. 查询 90 号部门员工的 job_id 和 90 号部门的 location_id
         select job_id ,location_id ,d.department_id
-    from departments d , employees e 
+    from departments d , employees e
     where e.department_id = d.department_id
     and d.department_id = 90
 #3. 选择所有有奖金的员工的
@@ -1499,7 +1490,7 @@ VALUES('F', 25000, 40000);
         select e.last_name,d.department_name,l.location_id,l.city ,e.commission_pct
     from employees e,departments d,locations l
     where l.location_id = d.location_id
-    and d.department_id = e.department_id 
+    and d.department_id = e.department_id
     and commission_pct is not null
 
 
@@ -1527,16 +1518,16 @@ select l.country_id ,count(*) as 部门个数
 </pre>
 </div>
 </div>
-<div id="outline-container-org9983406" class="outline-2">
-<h2 id="org9983406">连接查询99语法</h2>
-<div class="outline-text-2" id="text-org9983406">
+<div id="outline-container-orgc355e27" class="outline-2">
+<h2 id="orgc355e27"><span class="section-number-2">7</span> 连接查询99语法</h2>
+<div class="outline-text-2" id="text-7">
 <pre class="example">
 #二、sql99语法
 /*
 语法：
         select 查询列表
         from 表1 别名 【连接类型】
-        join 表2 别名 
+        join 表2 别名
         on 连接条件
         【where 筛选条件】
         【group by 分组】
@@ -1550,7 +1541,7 @@ select l.country_id ,count(*) as 部门个数
         左外(★):left 【outer】
         右外(★)：right 【outer】
         全外：full【outer】
-交叉连接：cross 
+交叉连接：cross
 
 */
 
@@ -1693,7 +1684,7 @@ on 连接条件;
         外连接查询结果=内连接结果+主表中有而从表没有的记录
  2、左外连接，left join左边的是主表
     右外连接，right join右边的是主表
- 3、左外和右外交换两个表的顺序，可以实现同样的效果 
+ 3、左外和右外交换两个表的顺序，可以实现同样的效果
  4、全外连接=内连接的结果+表1中有但表2没有的+表2中有但表1没有的
  */
  #引入：查询男朋友 不在男神表的的女神名
@@ -1738,7 +1729,7 @@ on 连接条件;
          ON b.`boyfriend_id` = bo.id;
 
 
- #交叉连接   交叉连接  全部乘一遍 
+ #交叉连接   交叉连接  全部乘一遍
 
          SELECT b.*,bo.*
          FROM beauty b
@@ -1750,7 +1741,7 @@ on 连接条件;
  /*
  功能：sql99支持的较多
  可读性：sql99实现连接条件和筛选条件的分离，可读性较高
- */ 
+ */
 
 
 
@@ -1767,7 +1758,7 @@ use girls
     on bo.id = b.boyfriend_id
     where b.id &gt;3
 
-    做错了   改正版     女神是主表  有的女神不一定有男朋友  
+    做错了   改正版     女神是主表  有的女神不一定有男朋友
     select  bo.* , b.name,b.id
         from beauty b
         left outer join boys bo
@@ -1777,29 +1768,29 @@ use girls
 #二、查询哪个城市没有部门
         use myemployees
 
-    select city, d.department_name 
+    select city, d.department_name
     from locations l
     left outer join departments d
     on d.location_id = l.location_id
     where d.department_name is null
 
 
-城市是主表 有的城市 没有部门  不一定有部门 
+城市是主表 有的城市 没有部门  不一定有部门
 
 #三、查询部门名为 SAL 或 IT 的员工信息
-        select e.* ,department_name 
+        select e.* ,department_name
     from departments d
     left outer join employees e
     on d.department_id = e.department_id
     where department_name in ("SAL",'IT')
 
-        错了  这样想 部门是肯定有的  
+        错了  这样想 部门是肯定有的
 </pre>
 </div>
 </div>
-<div id="outline-container-orgac4f865" class="outline-2">
-<h2 id="orgac4f865">子查询</h2>
-<div class="outline-text-2" id="text-orgac4f865">
+<div id="outline-container-org8dc98ca" class="outline-2">
+<h2 id="org8dc98ca"><span class="section-number-2">8</span> 子查询</h2>
+<div class="outline-text-2" id="text-8">
 <pre class="example">
 #进阶7：子查询
 /*
@@ -2033,7 +2024,7 @@ in、any/some、all
 
 
 
-        SELECT * 
+        SELECT *
         FROM employees
         WHERE (employee_id,salary)=(
                 SELECT MIN(employee_id),MAX(salary)
@@ -2076,15 +2067,15 @@ in、any/some、all
         SELECT d.*,(
 
                 SELECT COUNT(*)
-                FROM employees e 
+                FROM employees e
                 WHERE e.department_id = d.`department_id`
          ) 个数
          FROM departments d;
 
 
  #案例2：查询员工号=102的部门名
-        select department_name , employee_id 
-        from departments d 
+        select department_name , employee_id
+        from departments d
         inner join employees e
         on d.department_id = e.department_id
         where e.employee_id= 102
@@ -2151,7 +2142,7 @@ exists(完整的查询语句)
 
 #in
 
-        select department_name 
+        select department_name
         from departments d
         where department_id is not null
 
@@ -2165,19 +2156,19 @@ exists(完整的查询语句)
 
         )
 
-        按照本意 我写的  是第一个  答案是第二个  我发现好像两个  department_id 不同 我们去查一下 
-        select DISTINCT department_id 
+        按照本意 我写的  是第一个  答案是第二个  我发现好像两个  department_id 不同 我们去查一下
+        select DISTINCT department_id
         from departments    27rows
 
-        select DISTINCT department_id 
-        from employees 		107 rows 
+        select DISTINCT department_id
+        from employees 		107 rows
 
-        所以我错了  因该是  
+        所以我错了  因该是
 
         select department_name
         from departments d
         where d.department_id in (
-                                select department_id 
+                                select department_id
                                 from employees
         )
 
@@ -2208,9 +2199,9 @@ exists(完整的查询语句)
         )
 
         select bo.*
-        from boys bo 
+        from boys bo
         where exists (
-                select boyfriend_id 
+                select boyfriend_id
                 from beauty b
                 where bo.`id`=b.`boyfriend_id`
         )
@@ -2224,7 +2215,7 @@ exists(完整的查询语句)
                 FROM beauty b
                 WHERE bo.`id`=b.`boyfriend_id`
 
-        ); 
+        );
 
 
 
@@ -2237,14 +2228,14 @@ exists(完整的查询语句)
 
 
 
--------------------------------课后题 
+-------------------------------课后题
 #1. 查询和 Zlotkey 相同部门的员工姓名和工资
 
         use myemployees
 
         select last_name
         from employees
-                #(1) 先查询zlotkey 的部门 
+                #(1) 先查询zlotkey 的部门
             select d.department_name
             from departments d
                 join employees e
@@ -2253,7 +2244,7 @@ exists(完整的查询语句)
     #(2) 再查询这个部门 每个员工的 姓名和 工资
 
 
-                select last_name , salary 
+                select last_name , salary
                 from employees
                 where department_id = (
                         SELECT department_id
@@ -2262,19 +2253,19 @@ exists(完整的查询语句)
                  )
 
     94
-    #(3) 再  筛选 
+    #(3) 再  筛选
 
 
 #1. 查询和 Zlotkey 相同部门的员工姓名和工资
 
-        select department_id 
+        select department_id
             from employees
             where last_name = "Zlotkey"
 
-            select last_name , salary 
-            from employees 
+            select last_name , salary
+            from employees
             where department_id = (
-                        select department_id 
+                        select department_id
                         from employees
                         where last_name = "Zlotkey"
                 )
@@ -2298,14 +2289,14 @@ exists(完整的查询语句)
                                 from employees
         )
 
-       ---标准答案 
+       ---标准答案
         SELECT last_name,employee_id,salary
         FROM employees
         WHERE salary&gt;(
 
                 SELECT AVG(salary)
                 FROM employees
-        );    
+        );
 
 
 
@@ -2314,7 +2305,7 @@ exists(完整的查询语句)
 
 
 
-#3. 查询各部门中工资比本部门平均工资高  的员工的员工号, 姓名和工资   (做错了  )  
+#3. 查询各部门中工资比本部门平均工资高  的员工的员工号, 姓名和工资   (做错了  )
         select avg(salary)
     from employees
     group by department_id
@@ -2322,7 +2313,7 @@ exists(完整的查询语句)
 
 
         select job_id,last_name,salary,department_id
-            from employees 
+            from employees
             where salary &gt; any(
                                 select avg(salary)
                                 from employees
@@ -2344,7 +2335,7 @@ exists(完整的查询语句)
 
 #4. 查询姓名中包含字母 u 的员工 在相同部门 的 员工的员工号和姓名
         select department_id
-    from employees 
+    from employees
     where last_name like "%u%"
 
 
@@ -2352,7 +2343,7 @@ exists(完整的查询语句)
     from employees
     where department_id = any(
                         select department_id
-                        from employees 
+                        from employees
                         where last_name like "%u%"
     )
 
@@ -2373,8 +2364,8 @@ exists(完整的查询语句)
     where location_id = 1700
 
 
-        select employee_id 
-    from employees 
+        select employee_id
+    from employees
     where department_id = any(
                         select distinct department_id
                         from departments
@@ -2396,14 +2387,14 @@ exists(完整的查询语句)
 
 
 #6. 查询管理者是 King 的员工姓名和工资
-        select employee_id 
+        select employee_id
     from employees
     where last_name = 'K_ing'
 
         select last_name,salary
     from employees
     where manager_id = any(
-                        select employee_id 
+                        select employee_id
                         from employees
                         where last_name = 'K_ing'
     )
@@ -2433,20 +2424,20 @@ WHERE salary=(
 </pre>
 </div>
 </div>
-<div id="outline-container-org16eaf99" class="outline-2">
-<h2 id="org16eaf99">子查询例题</h2>
-<div class="outline-text-2" id="text-org16eaf99">
+<div id="outline-container-orge4ab7f5" class="outline-2">
+<h2 id="orge4ab7f5"><span class="section-number-2">9</span> 子查询例题</h2>
+<div class="outline-text-2" id="text-9">
 <pre class="example">
 # 1. 查询工资最低的员工信息: last_name, salary
 
 #①查询最低的工资
-select min(salary) 
+select min(salary)
 from employees
 #②查询last_name,salary，要求salary=①
-select last_name ,salary 
+select last_name ,salary
 from employees
 where salary = (
-        select min(salary) 
+        select min(salary)
         from employees
 )
 
@@ -2473,7 +2464,7 @@ where salary = (
 #③查询哪个部门的平均工资=②
         select avg(salary),department_id
     from employees
-    group by department_id 
+    group by department_id
     having avg(salary) = (
                                         select min(ag)
                                 from (
@@ -2490,7 +2481,7 @@ where salary = (
     where d.department_id = (
         select avg(salary),department_id
                 from employees
-                group by department_id 
+                group by department_id
                 having avg(salary) = (
                                                 select min(ag)
                                                 from (
@@ -2536,7 +2527,7 @@ WHERE department_id=(
         SELECT department_id
         FROM employees
         GROUP BY department_id
-        ORDER BY AVG(salary) 
+        ORDER BY AVG(salary)
         LIMIT 1
 );
 
@@ -2552,11 +2543,11 @@ WHERE department_id=(
 
 
 #②求出最低平均工资的部门编号
-        select department_id 
-    from employees 
+        select department_id
+    from employees
     group by department_id
     order by avg(salary)
-    limit 1 
+    limit 1
 
 
 #③查询部门信息
@@ -2564,11 +2555,11 @@ WHERE department_id=(
     from departments d
         join (
                 select department_id ,avg(salary) ag
-                from employees 
+                from employees
                 group by department_id
                 order by ag
                 limit 1
-    )ag_dep 
+    )ag_dep
     on d.department_id = ag_dep.department_id
 
 # 4. 查询平均工资最高的 job 信息
@@ -2589,7 +2580,7 @@ WHERE department_id=(
                 order by avg(salary) desc
                 limit 1
 
-    ) 
+    )
 
 
 
@@ -2605,7 +2596,7 @@ WHERE department_id=(
     group by department_id
 #③筛选②结果集，满足平均工资&gt;①
         SELECT AVG(salary),department_id
-    from employees 
+    from employees
     group by department_id
     having avg(salary) &gt; (
                 select avg(salary)
@@ -2636,7 +2627,7 @@ WHERE department_id=(
         select department_id
     from employees
     group by department_id
-    order by max(salary) 
+    order by max(salary)
     limit 1
 
 #②查询①结果的那个部门的最低工资
@@ -2646,7 +2637,7 @@ WHERE department_id=(
                         select department_id
                         from employees
                         group by department_id
-                        order by max(salary) 
+                        order by max(salary)
                         limit 1
     )
 
@@ -2656,37 +2647,37 @@ WHERE department_id=(
 #: last_name, department_id, email, salary
 
 #①查询平均工资最高的部门编号
-        SELECT 
-                department_id 
+        SELECT
+                department_id
         FROM
-                employees 
-        GROUP BY department_id 
-        ORDER BY AVG(salary) DESC 
-        LIMIT 1 
+                employees
+        GROUP BY department_id
+        ORDER BY AVG(salary) DESC
+        LIMIT 1
 
 #②将employees和departments连接查询，筛选条件是①
 
-    SELECT 
-        last_name, d.department_id, email, salary 
+    SELECT
+        last_name, d.department_id, email, salary
     FROM
-        employees e 
-        inner join departments d 
-        ON d.manager_id = e.employee_id 
-        WHERE d.department_id = 
-                        (SELECT 
-                                department_id 
+        employees e
+        inner join departments d
+        ON d.manager_id = e.employee_id
+        WHERE d.department_id =
+                        (SELECT
+                                department_id
                         FROM
-                                employees 
-                        GROUP BY department_id 
-                        ORDER BY AVG(salary) DESC 
-                        LIMIT 1) ;  
+                                employees
+                        GROUP BY department_id
+                        ORDER BY AVG(salary) DESC
+                        LIMIT 1) ;
 
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf672c2f" class="outline-2">
-<h2 id="orgf672c2f">分页查询</h2>
-<div class="outline-text-2" id="text-orgf672c2f">
+<div id="outline-container-org61dde8a" class="outline-2">
+<h2 id="org61dde8a"><span class="section-number-2">10</span> 分页查询</h2>
+<div class="outline-text-2" id="text-10">
 <pre class="example">
 #进阶8：分页查询 ★
 /*
@@ -2715,7 +2706,7 @@ WHERE department_id=(
         limit (page-1)*size,size;
 
         size=10
-        page  
+        page
         1	0
         2  	10
         3	20
@@ -2733,20 +2724,20 @@ WHERE department_id=(
 
 
 #案例3：有奖金的员工信息，并且工资较高的前10名显示出来
-        SELECT 
-                * 
+        SELECT
+                *
         FROM
-                employees 
-        WHERE commission_pct IS NOT NULL 
-        ORDER BY salary DESC 
+                employees
+        WHERE commission_pct IS NOT NULL
+        ORDER BY salary DESC
         LIMIT 10 ;
 
 </pre>
 </div>
 </div>
-<div id="outline-container-org6610d13" class="outline-2">
-<h2 id="org6610d13">联合查询</h2>
-<div class="outline-text-2" id="text-org6610d13">
+<div id="outline-container-orgcdc9061" class="outline-2">
+<h2 id="orgcdc9061"><span class="section-number-2">11</span> 联合查询</h2>
+<div class="outline-text-2" id="text-11">
 <pre class="example">
 #进阶9：联合查询
 /*
@@ -2790,9 +2781,9 @@ SELECT t_id,tname FROM t_ua WHERE tGender='male';
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb75687f" class="outline-2">
-<h2 id="orgb75687f">插入修改删除</h2>
-<div class="outline-text-2" id="text-orgb75687f">
+<div id="outline-container-orga81962c" class="outline-2">
+<h2 id="orga81962c"><span class="section-number-2">12</span> 插入修改删除</h2>
+<div class="outline-text-2" id="text-12">
 <pre class="example">
 #DML语言
 /*
@@ -3118,9 +3109,9 @@ TRUNCATE TABLE my_employees;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfc7b8dc" class="outline-2">
-<h2 id="orgfc7b8dc">库和表的使用</h2>
-<div class="outline-text-2" id="text-orgfc7b8dc">
+<div id="outline-container-orgdeef83c" class="outline-2">
+<h2 id="orgdeef83c"><span class="section-number-2">13</span> 库和表的使用</h2>
+<div class="outline-text-2" id="text-13">
 <pre class="example">
 /*
 
@@ -3144,7 +3135,7 @@ TRUNCATE TABLE my_employees;
 /*
 语法：
 create database  [if not exists]库名;
-*/ 
+*/
 
 
 #案例：创建库Books
@@ -3204,7 +3195,7 @@ create table 表名(
                 au_name VARCHAR(20),
                 nation VARCHAR(10)
 
-        ) 
+        )
         DESC author;
 
 
@@ -3228,7 +3219,7 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
         ALTER TABLE author MODIFY COLUMN au_name varchar(60);
         alter table author modify column nation varchar(60)
 #③添加新列
-        ALTER TABLE author ADD COLUMN annual DOUBLE; 
+        ALTER TABLE author ADD COLUMN annual DOUBLE;
 
 #④删除列
 
@@ -3279,9 +3270,9 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
         SELECT * FROM author;
         SELECT * FROM copy2;
 #1.仅仅复制表的结构
-        show variables like "%character%"; // 查看表的结构 
+        show variables like "%character%"; // 查看表的结构
 
-        alter table `author` convert to character set utf8; // 修改表的结构 
+        alter table `author` convert to character set utf8; // 修改表的结构
 
 
         CREATE TABLE copy LIKE author;
@@ -3296,13 +3287,13 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
 #只复制部分数据
         CREATE TABLE copy3
         SELECT id,au_name
-        FROM author 
+        FROM author
         WHERE nation='中国';
 
         select * from copy3
 #仅仅复制某些字段
 #不要值 只要字段
-        CREATE TABLE copy4 
+        CREATE TABLE copy4
         SELECT id,au_name
         FROM author
         WHERE 0;
@@ -3323,7 +3314,7 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
 
 
 #2. 将表 departments 中的数据插入新表 dept2 中
-#跨越库 去插入 的 
+#跨越库 去插入 的
 
         create table  dept2
         select department_id,department_name
@@ -3345,7 +3336,7 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
                 Dept_id 			int(7)
         )
 #4. 将列 Last_name 的长度增加到 50
-        alter table emp5 modify column last_name varchar(50)	
+        alter table emp5 modify column last_name varchar(50)
 
 #5. 根据表 employees 创建 employees2
         create table employees2 like myemployees.employees
@@ -3367,9 +3358,9 @@ alter table 表名 add|drop|modify|change column 列名 【列类型 约束】;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd07b4d3" class="outline-2">
-<h2 id="orgd07b4d3">数据类型</h2>
-<div class="outline-text-2" id="text-orgd07b4d3">
+<div id="outline-container-org8b05bc7" class="outline-2">
+<h2 id="org8b05bc7"><span class="section-number-2">14</span> 数据类型</h2>
+<div class="outline-text-2" id="text-14">
 <pre class="example">
 #常见的数据类型
 /*
@@ -3407,7 +3398,7 @@ tinyint、smallint、mediumint、int/integer、bigint
 DROP TABLE IF EXISTS tab_int;
 CREATE TABLE tab_int(
         t1 INT(7) ZEROFILL,
-        t2 INT(7) ZEROFILL 
+        t2 INT(7) ZEROFILL
 
 );
 
@@ -3574,9 +3565,9 @@ SET time_zone='+9:00';
 </pre>
 </div>
 </div>
-<div id="outline-container-org54e9e35" class="outline-2">
-<h2 id="org54e9e35">常见约束</h2>
-<div class="outline-text-2" id="text-org54e9e35">
+<div id="outline-container-orgf1b0023" class="outline-2">
+<h2 id="orgf1b0023"><span class="section-number-2">15</span> 常见约束</h2>
+<div class="outline-text-2" id="text-15">
 <pre class="example">
 #常见约束
 
@@ -3596,7 +3587,7 @@ SET time_zone='+9:00';
         UNIQUE:唯一，用于保证该字段的值具有唯一性，可以为空
         比如座位号
         CHECK:检查约束【mysql中不支持】
-        比如年龄、性别 
+        比如年龄、性别
         FOREIGN KEY:外键，用于限制两个表的关系，用于保证该字段的值必须来自于主表的关联列的值
                 在从表添加外键约束，用于引用主表中某列的值
         比如学生表的专业编号，员工表的部门编号，员工表的工种编号
@@ -3657,9 +3648,9 @@ DROP TABLE stuinfo;
 CREATE TABLE stuinfo(
         id INT PRIMARY KEY,#主键
         stuName VARCHAR(20) NOT NULL UNIQUE,#非空
-        gender CHAR(1) CHECK(gender='男' OR gender ='女'),#检查  不支持 
-        seat INT UNIQUE,#唯一   座位号 
-        age INT DEFAULT  18,#默认约束   
+        gender CHAR(1) CHECK(gender='男' OR gender ='女'),#检查  不支持
+        seat INT UNIQUE,#唯一   座位号
+        age INT DEFAULT  18,#默认约束
         majorId INT REFERENCES major(id)#外键  专业名   不支持
 
 );
@@ -3678,9 +3669,9 @@ SHOW INDEX FROM stuinfo;
 /*
 
 语法：在各个字段的最下面
- 【constraint 约束名】 约束类型(字段名) 
+ 【constraint 约束名】 约束类型(字段名)
 
- 约束名是随便起的   
+ 约束名是随便起的
 */
 
 DROP TABLE IF EXISTS stuinfo;
@@ -3762,7 +3753,7 @@ ALTER TABLE stuinfo ADD UNIQUE(seat);
 
 
 #5.添加外键
-ALTER TABLE stuinfo ADD CONSTRAINT fk_stuinfo_major FOREIGN KEY(majorid) REFERENCES major(id); 
+ALTER TABLE stuinfo ADD CONSTRAINT fk_stuinfo_major FOREIGN KEY(majorid) REFERENCES major(id);
 
 #三、修改表时删除约束
 
@@ -3784,13 +3775,13 @@ ALTER TABLE stuinfo DROP FOREIGN KEY fk_stuinfo_major;
 SHOW INDEX FROM stuinfo;
 
 
------------------------------练习题 
+-----------------------------练习题
 
 #1. 向表 emp2 的 id 列中添加 PRIMARY KEY 约束（my_emp_id_pk）
 
          #列添加
      alter table emp2 modify column id int primary key;
-    #表添加 
+    #表添加
         alter table emp2 add constraint my_emp_id_pk primary key(id)
 
 
@@ -3802,16 +3793,16 @@ SHOW INDEX FROM stuinfo;
 
 #3. 向表 emp2 中添加列 dept_id，并在其中定义 FOREIGN KEY 约束，与之相关联的列是
 #dept2 表中的 id 列。
-        alter table emp2 add column dept_id int; //添加一个 新列 
+        alter table emp2 add column dept_id int; //添加一个 新列
         alter table emp2 add constraint fk_emp2_dept2 foreign key(dept_id) references dept2(id)
 
 
 </pre>
 </div>
 </div>
-<div id="outline-container-org8743e3c" class="outline-2">
-<h2 id="org8743e3c">标示自增列</h2>
-<div class="outline-text-2" id="text-org8743e3c">
+<div id="outline-container-orgef8bd63" class="outline-2">
+<h2 id="orgef8bd63"><span class="section-number-2">16</span> 标示自增列</h2>
+<div class="outline-text-2" id="text-16">
 <pre class="example">
 #标识列
 /*
@@ -3835,8 +3826,8 @@ SHOW INDEX FROM stuinfo;
 DROP TABLE IF EXISTS tab_identity;
 CREATE TABLE tab_identity(
         id INT  ,
-        NAME FLOAT UNIQUE AUTO_INCREMENT,#自增长 
-        seat INT 
+        NAME FLOAT UNIQUE AUTO_INCREMENT,#自增长
+        seat INT
 
 
 );
@@ -3857,9 +3848,9 @@ SET auto_increment_increment=3;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf64291b" class="outline-2">
-<h2 id="orgf64291b">事物</h2>
-<div class="outline-text-2" id="text-orgf64291b">
+<div id="outline-container-orga2b621f" class="outline-2">
+<h2 id="orga2b621f"><span class="section-number-2">17</span> 事物</h2>
+<div class="outline-text-2" id="text-17">
 <pre class="example">
 #TCL
 /*
@@ -3935,7 +3926,7 @@ set session|global transaction isolation level 隔离级别;
 开启事务的语句;
 update 表 set 张三丰的余额=500 where name='张三丰'
 
-update 表 set 郭襄的余额=1500 where name='郭襄' 
+update 表 set 郭襄的余额=1500 where name='郭襄'
 结束事务的语句;
 
 
@@ -3989,7 +3980,7 @@ SELECT * FROM account;
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:16</p>
+<p class="date">Created: 2020-12-03 四 15:11</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

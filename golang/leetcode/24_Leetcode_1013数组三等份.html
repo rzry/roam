@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:05 -->
+<!-- 2020-12-03 四 15:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LeetCode-1013-将数组分成和相等的三个部分</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,22 +248,19 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4ee23ee">题目</a></li>
-<li><a href="#org3f46334">思考过程</a>
+<li><a href="#orgfc90f9f">1. 题目</a></li>
+<li><a href="#org793b71f">2. 思考过程</a>
 <ul>
-<li><a href="#org27e30aa">分析</a></li>
-<li><a href="#org7ce1739">代码</a></li>
+<li><a href="#orge4d1fa6">2.1. 分析</a></li>
+<li><a href="#org620e90c">2.2. 代码</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-org4ee23ee" class="outline-2">
-<h2 id="org4ee23ee">题目</h2>
-<div class="outline-text-2" id="text-org4ee23ee">
+<div id="outline-container-orgfc90f9f" class="outline-2">
+<h2 id="orgfc90f9f"><span class="section-number-2">1</span> 题目</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
 给定一个整数数组A，只有我们可以将其划分为三个和相等的非空部分时才返回true，否则返回 false。
 
@@ -296,73 +288,73 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3f46334" class="outline-2">
-<h2 id="org3f46334">思考过程</h2>
-<div class="outline-text-2" id="text-org3f46334">
+<div id="outline-container-org793b71f" class="outline-2">
+<h2 id="org793b71f"><span class="section-number-2">2</span> 思考过程</h2>
+<div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org27e30aa" class="outline-3">
-<h3 id="org27e30aa">分析</h3>
-<div class="outline-text-3" id="text-org27e30aa">
+<div id="outline-container-orge4d1fa6" class="outline-3">
+<h3 id="orge4d1fa6"><span class="section-number-3">2.1</span> 分析</h3>
+<div class="outline-text-3" id="text-2-1">
 <pre class="example">
 题目说的  数组  必须是要按照顺序 比如示例中 11 个数  只能 前几个 +
-不能 第一个 + 第三个这种加 
-所以 我们 要能整分 3份 所以先判断整体能不能  
-1 .  求和  然后 分三分 能不能整除 
-2 . 我的做法是 看着解析的思路 求前后两头  然后 只要前后都等于  除3 的值 
-    那么肯定就可以整分了  如果不行就肯定是  false 
+不能 第一个 + 第三个这种加
+所以 我们 要能整分 3份 所以先判断整体能不能
+1 .  求和  然后 分三分 能不能整除
+2 . 我的做法是 看着解析的思路 求前后两头  然后 只要前后都等于  除3 的值
+    那么肯定就可以整分了  如果不行就肯定是  false
 </pre>
 </div>
 </div>
-<div id="outline-container-org7ce1739" class="outline-3">
-<h3 id="org7ce1739">代码</h3>
-<div class="outline-text-3" id="text-org7ce1739">
+<div id="outline-container-org620e90c" class="outline-3">
+<h3 id="org620e90c"><span class="section-number-3">2.2</span> 代码</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #4f97d7; font-weight: bold;">package</span> main
+<pre class="src src-go"><span style="color: #81A1C1;">package</span> main
 
-<span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #2d9574;">"fmt"</span>
+<span style="color: #81A1C1;">import</span> <span style="color: #A3BE8C;">"fmt"</span>
 
-<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">canThreePartsEqualSum</span>(<span style="color: #7590db;">A</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) <span style="color: #ce537a; font-weight: bold;">bool</span> {
-        <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">All</span>, <span style="color: #7590db;">value</span> <span style="color: #ce537a; font-weight: bold;">int</span>
-        <span style="color: #4f97d7; font-weight: bold;">for</span> _, value = <span style="color: #4f97d7; font-weight: bold;">range</span> A {
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">canThreePartsEqualSum</span>(<span style="color: #D8DEE9;">A</span> []<span style="color: #8FBCBB;">int</span>) <span style="color: #8FBCBB;">bool</span> {
+        <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">All</span>, <span style="color: #D8DEE9;">value</span> <span style="color: #8FBCBB;">int</span>
+        <span style="color: #81A1C1;">for</span> _, value = <span style="color: #81A1C1;">range</span> A {
                 All += value
 
         }
-        <span style="color: #4f97d7; font-weight: bold;">if</span> All%3 != 0 {
-                <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">false</span>
-                fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"&#19981;&#33021;&#22815;&#25972;&#38500;"</span>)
+        <span style="color: #81A1C1;">if</span> All%3 != 0 {
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">false</span>
+                fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"&#19981;&#33021;&#22815;&#25972;&#38500;"</span>)
         }
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #2d9574;">"&#33021;&#22815;&#25972;&#38500;"</span>)
-        <span style="color: #7590db;">res</span> := All / 3 <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">res &#23601;&#26159;&#19977;&#31561;&#20221;&#30340;&#20540;</span>
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"&#33021;&#22815;&#25972;&#38500;"</span>)
+        <span style="color: #D8DEE9;">res</span> := All / 3 <span style="color: #6f7787;">//</span><span style="color: #6f7787;">res &#23601;&#26159;&#19977;&#31561;&#20221;&#30340;&#20540;</span>
 
-        <span style="color: #7590db;">i</span> := 0
-        <span style="color: #7590db;">j</span> := <span style="color: #4f97d7;">len</span>(A) - 1
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(<span style="color: #4f97d7;">len</span>(A))
-        <span style="color: #7590db;">rue</span> := <span style="color: #a45bad;">false</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#35805;&#19968;&#20010;&#36820;&#22238;&#30340;&#20540;</span>
-        <span style="color: #7590db;">lans</span>, <span style="color: #7590db;">rans</span> := 0, 0
+        <span style="color: #D8DEE9;">i</span> := 0
+        <span style="color: #D8DEE9;">j</span> := <span style="color: #81A1C1;">len</span>(A) - 1
+        fmt.<span style="color: #8FBCBB;">Println</span>(<span style="color: #81A1C1;">len</span>(A))
+        <span style="color: #D8DEE9;">rue</span> := <span style="color: #81A1C1;">false</span> <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#21021;&#22987;&#35805;&#19968;&#20010;&#36820;&#22238;&#30340;&#20540;</span>
+        <span style="color: #D8DEE9;">lans</span>, <span style="color: #D8DEE9;">rans</span> := 0, 0
 
-        <span style="color: #4f97d7; font-weight: bold;">for</span> i &lt; j {
-                <span style="color: #4f97d7; font-weight: bold;">if</span> lans != res {
+        <span style="color: #81A1C1;">for</span> i &lt; j {
+                <span style="color: #81A1C1;">if</span> lans != res {
                         lans += A[i]
                         i += 1
                 }
-                <span style="color: #4f97d7; font-weight: bold;">if</span> rans != res {
+                <span style="color: #81A1C1;">if</span> rans != res {
                         rans += A[j]
                         j -= 1
                 }
-                <span style="color: #4f97d7; font-weight: bold;">if</span> (lans == res) &amp;&amp; (rans == res) {
-                        rue = <span style="color: #a45bad;">true</span>
-                        <span style="color: #4f97d7; font-weight: bold;">break</span>
+                <span style="color: #81A1C1;">if</span> (lans == res) &amp;&amp; (rans == res) {
+                        rue = <span style="color: #81A1C1;">true</span>
+                        <span style="color: #81A1C1;">break</span>
                 }
         }
 
-        <span style="color: #4f97d7; font-weight: bold;">return</span> rue
+        <span style="color: #81A1C1;">return</span> rue
 
 }
 
-<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-        <span style="color: #7590db;">arr</span> := []<span style="color: #ce537a; font-weight: bold;">int</span>{0, 2, 2, -6, 6, -7, 10, 1, 2, 0, 1}
-        <span style="color: #7590db;">res</span> := <span style="color: #bc6ec5; font-weight: bold;">canThreePartsEqualSum</span>(arr)
-        fmt.<span style="color: #bc6ec5; font-weight: bold;">Println</span>(res)
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">main</span>() {
+        <span style="color: #D8DEE9;">arr</span> := []<span style="color: #8FBCBB;">int</span>{0, 2, 2, -6, 6, -7, 10, 1, 2, 0, 1}
+        <span style="color: #D8DEE9;">res</span> := <span style="color: #8FBCBB;">canThreePartsEqualSum</span>(arr)
+        fmt.<span style="color: #8FBCBB;">Println</span>(res)
 }
 </pre>
 </div>
@@ -373,7 +365,7 @@ for the JavaScript code in this tag.
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:05</p>
+<p class="date">Created: 2020-12-03 四 15:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

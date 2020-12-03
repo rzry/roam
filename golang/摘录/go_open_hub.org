@@ -3,10 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-24
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
 
 #+roam_key: https://www.bookstack.cn/read/topgoer/c07d056e0978b6bf.md
@@ -20,4 +16,3 @@
 #+roam_key: https://github.com/sirupsen/logrus
 #+roam_alias:
 [2020-09-24 四 09:28] Logrus is a structured logger for Go (golang)
-

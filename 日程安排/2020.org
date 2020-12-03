@@ -3,19 +3,15 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-22
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
 * 2020
   -  *Link* : [[file:2020/2020.8.org][2020.8]]
-    
+
   -  *Link* : [[file:2020/2020.9.org][2020-09]]
 
   -  *Link* : [[file:2020/2020.10.org][2020.10]]
 * TODO 列表
-*** TODO go return 逃逸分析 内联优化 
-    - Link : 
+*** TODO go return 逃逸分析 内联优化
+    - Link :
 
 *** TODO sed 和 awk review

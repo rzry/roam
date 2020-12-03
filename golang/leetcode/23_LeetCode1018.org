@@ -3,15 +3,9 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
+
 * ques
-  #+BEGIN_SRC 
+  #+BEGIN_SRC
   给定由若干 0 和 1 组成的数组 A。
 我们定义 N_i：从 A[0] 到 A[i] 的
 第 i 个子数组被解释为一个二进制数
@@ -25,12 +19,12 @@
 
   #+END_SRC
 ** 题目解释
-  #+BEGIN_SRC 
-  就是给定一个数组 比如 我给你一个 [0,1,0,1] 
+  #+BEGIN_SRC
+  就是给定一个数组 比如 我给你一个 [0,1,0,1]
  那么 它按照题目格式展开就是  0 , 01,010,0101
-  然后把这个二进制转换为10进制 再去%5 
- 看一下结果 如果整除就 true  
-  
+  然后把这个二进制转换为10进制 再去%5
+ 看一下结果 如果整除就 true
+
   #+END_SRC
 ** 题目答案
   #+BEGIN_SRC go
@@ -48,12 +42,12 @@
 
 }
   #+END_SRC
-** 代码解析 . 
-  #+BEGIN_SRC 
+** 代码解析 .
+  #+BEGIN_SRC
   只需关心最后一位. 所以不用转10进制 . 让它往左移位+遍历的value 然后去 %5
-  
+
   #+END_SRC
-* 第二种方式 
+* 第二种方式
   #+BEGIN_SRC go
   func prefixesDivBy5(A []int) []bool {
     sum := 0
@@ -70,6 +64,6 @@
 }
   #+END_SRC
 * 解析
-  #+BEGIN_SRC 
+  #+BEGIN_SRC
   sum = (sum*2 + v) % 5  不是很懂这个  所以  这个题  先背着
   #+END_SRC

@@ -3,10 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 -----
 ** config
   -  *Link* : [[file:config/20200915173026-emacs_roma.org][emacs-roma]]
@@ -14,4 +10,3 @@
   -  *Link* : [[file:lisp/08_lisp语法.org][lisp语法]]
 ** nothing
   -  *Link* : [[file:nothing/emacs中那些不常用的行操作命令.org][Emacs中那些不常用的行操作命令]]
-

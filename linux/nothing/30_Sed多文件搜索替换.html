@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:18 -->
+<!-- 2020-12-03 四 15:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sed多文件搜索替换</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,18 +248,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgad76a35">Sed 基本使用</a></li>
-<li><a href="#orgd20ccd4">关于指定行替换 行寻址 后面用到再补</a></li>
-<li><a href="#orgcbc7984">批量替换</a></li>
+<li><a href="#org48723ba">1. Sed 基本使用</a></li>
+<li><a href="#org23654e0">2. 关于指定行替换 行寻址 后面用到再补</a></li>
+<li><a href="#org02db362">3. 批量替换</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-orgad76a35" class="outline-2">
-<h2 id="orgad76a35">Sed 基本使用</h2>
-<div class="outline-text-2" id="text-orgad76a35">
+<div id="outline-container-org48723ba" class="outline-2">
+<h2 id="org48723ba"><span class="section-number-2">1</span> Sed 基本使用</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
 来看一个简单的文本替换示例：
 echo "hi,my name is xxx" | sed 's/xxx/kinsomy/'
@@ -279,16 +271,16 @@ sed 's/xxx/kinsomy/; s/***/hhh/' data.txt
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd20ccd4" class="outline-2">
-<h2 id="orgd20ccd4">关于指定行替换 行寻址 后面用到再补</h2>
+<div id="outline-container-org23654e0" class="outline-2">
+<h2 id="org23654e0"><span class="section-number-2">2</span> 关于指定行替换 行寻址 后面用到再补</h2>
 </div>
-<div id="outline-container-orgcbc7984" class="outline-2">
-<h2 id="orgcbc7984">批量替换</h2>
-<div class="outline-text-2" id="text-orgcbc7984">
+<div id="outline-container-org02db362" class="outline-2">
+<h2 id="org02db362"><span class="section-number-2">3</span> 批量替换</h2>
+<div class="outline-text-2" id="text-3">
 <pre class="example">
 多文件批量替换一个字符串
 sed -r -i "s/github.com\/avenssi/Video/g" ` grep github.com/avenssi -rl ./*`
-``使用了 反引号 把 grep的搜索当做 sed 的输入 
+``使用了 反引号 把 grep的搜索当做 sed 的输入
 </pre>
 </div>
 </div>
@@ -296,7 +288,7 @@ sed -r -i "s/github.com\/avenssi/Video/g" ` grep github.com/avenssi -rl ./*`
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:18</p>
+<p class="date">Created: 2020-12-03 四 15:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

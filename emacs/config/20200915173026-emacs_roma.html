@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:10 -->
+<!-- 2020-12-03 四 15:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs-roma</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,60 +248,56 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org84367c2">org-protocol config</a></li>
-<li><a href="#orge709577"></a></li>
+<li><a href="#org394a738">1. org-protocol config</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
 
-<div id="outline-container-org84367c2" class="outline-2">
-<h2 id="org84367c2">org-protocol config</h2>
-<div class="outline-text-2" id="text-org84367c2">
+<div id="outline-container-org394a738" class="outline-2">
+<h2 id="org394a738"><span class="section-number-2">1</span> org-protocol config</h2>
+<div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-shell">
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">1 . &#21019;&#24314;&#19968;&#20010;&#22270;&#26631;</span>
-<span style="color: #4f97d7;">cd</span> ~/.local/share/applications/org-protocol.desktop
+<span style="color: #6f7787;"># </span><span style="color: #6f7787;">1 . &#21019;&#24314;&#19968;&#20010;&#22270;&#26631;</span>
+<span style="color: #81A1C1;">cd</span> ~/.local/share/applications/org-protocol.desktop
 
 [Desktop Entry]
-<span style="color: #7590db;">Name</span>=Org-Protocol
-<span style="color: #7590db;">Exec</span>=emacsclient %u
-<span style="color: #7590db;">Icon</span>=emacs-icon
-<span style="color: #7590db;">Type</span>=Application
-<span style="color: #7590db;">Terminal</span>=false
-<span style="color: #7590db;">MimeType</span>=x-scheme-handler/org-protocol
+<span style="color: #D8DEE9;">Name</span>=Org-Protocol
+<span style="color: #D8DEE9;">Exec</span>=emacsclient %u
+<span style="color: #D8DEE9;">Icon</span>=emacs-icon
+<span style="color: #D8DEE9;">Type</span>=Application
+<span style="color: #D8DEE9;">Terminal</span>=false
+<span style="color: #D8DEE9;">MimeType</span>=x-scheme-handler/org-protocol
 
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">2 . org-protocol://links </span>
+<span style="color: #6f7787;"># </span><span style="color: #6f7787;">2 . org-protocol://links</span>
 xdg-mime default org-protocol.desktop x-scheme-handler/org-protocol
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">3 . &#31105;&#29992; Chrome &#20013;&#30340;&#8220;&#30830;&#35748;&#8221;&#25552;&#31034;</span>
+<span style="color: #6f7787;"># </span><span style="color: #6f7787;">3 . &#31105;&#29992; Chrome &#20013;&#30340;&#8220;&#30830;&#35748;&#8221;&#25552;&#31034;</span>
 
 sudo mkdir -p /etc/opt/chrome/policies/managed/
-sudo tee /etc/opt/chrome/policies/managed/external_protocol_dialog.json &gt;/dev/null &lt;&lt;<span style="color: #2d9574;">'EOF'</span>
-<span style="color: #ffff00; font-weight: bold;">{</span>
-<span style="color: #ffff00; font-weight: bold;">"ExternalProtocolDialogShowAlwaysOpenCheckbox": true</span>
-<span style="color: #ffff00; font-weight: bold;">}</span>
-<span style="color: #ffff00; font-weight: bold;">EOF</span>
+sudo tee /etc/opt/chrome/policies/managed/external_protocol_dialog.json &gt;/dev/null &lt;&lt;<span style="color: #A3BE8C;">'EOF'</span>
+<span style="color: #A3BE8C;">{</span>
+<span style="color: #A3BE8C;">"ExternalProtocolDialogShowAlwaysOpenCheckbox": true</span>
+<span style="color: #A3BE8C;">}</span>
+<span style="color: #A3BE8C;">EOF</span>
 sudo chmod 644 /etc/opt/chrome/policies/managed/external_protocol_dialog.json
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">4 . chrome  Chrome://restart </span>
+<span style="color: #6f7787;"># </span><span style="color: #6f7787;">4 . chrome  Chrome://restart</span>
 </pre>
 </div>
-</div>
-</div>
 
 
-<div id="outline-container-orge709577" class="outline-2">
-<h2 id="orge709577"></h2>
+<p>
+*
+</p>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-15</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:10</p>
+<p class="date">Created: 2020-12-03 四 15:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

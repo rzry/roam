@@ -3,13 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
 
 * 命令笔记
 ** 初始化
@@ -88,7 +81,7 @@
 
    git add -i //交互式添加文件到暂存区
 
-* 多人操作 
+* 多人操作
   | 建立分支             | git branch ...                 | git branch ...                                     |
   | 查看分之             | git branch                     |                                                    |
   | 推送到远端           | git push origin ...            |                                                    |
@@ -113,8 +106,8 @@
    用命令git commit -m "xxx" 告诉Git，把文件提交到仓库，-m后面输入的是本次提交的说明，能从历史记录里方便地找到改动记录。
 
 ** ② 添加远程库
-   git remote add origin git@github.com:tcyfree/test.git(或https://github.com/tcyfree/test.git，用git@比https快) 
-   
+   git remote add origin git@github.com:tcyfree/test.git(或https://github.com/tcyfree/test.git，用git@比https快)
+
    添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
 
 *** 下一步，就可以把本地库的所有内容推送到远程库上：
@@ -150,7 +143,7 @@
 
 ** 撤销修改
    场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
-   
+
    场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
    （git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。）
 
@@ -209,7 +202,7 @@
   当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
 
   要查看远程库的信息，用git remote或者，用git remote -v显示更详细的信息。
-  
+
   并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
 
   master分支是主分支，因此要时刻与远程同步；

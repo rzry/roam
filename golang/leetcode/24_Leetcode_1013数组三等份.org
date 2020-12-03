@@ -3,15 +3,8 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
 * 题目
-#+BEGIN_SRC 
+#+BEGIN_SRC
 给定一个整数数组A，只有我们可以将其划分为三个和相等的非空部分时才返回true，否则返回 false。
 
 形式上，如果我们可以找出索引i+1 < j且满足
@@ -19,7 +12,7 @@
 
 #+END_SRC
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 示例 1：
 
 输出：[0,2,1,-6,6,-7,9,1,2,0,1]
@@ -36,17 +29,17 @@
 解释：3 + 3 = 6 = 5 - 2 + 2 + 5 + 1 - 9 + 4
 #+END_SRC
 
-* 思考过程 
-** 分析  
-   #+BEGIN_SRC 
+* 思考过程
+** 分析
+   #+BEGIN_SRC
  题目说的  数组  必须是要按照顺序 比如示例中 11 个数  只能 前几个 +
- 不能 第一个 + 第三个这种加 
- 所以 我们 要能整分 3份 所以先判断整体能不能  
- 1 .  求和  然后 分三分 能不能整除 
- 2 . 我的做法是 看着解析的思路 求前后两头  然后 只要前后都等于  除3 的值 
-     那么肯定就可以整分了  如果不行就肯定是  false 
-   #+END_SRC 
-** 代码 
+ 不能 第一个 + 第三个这种加
+ 所以 我们 要能整分 3份 所以先判断整体能不能
+ 1 .  求和  然后 分三分 能不能整除
+ 2 . 我的做法是 看着解析的思路 求前后两头  然后 只要前后都等于  除3 的值
+     那么肯定就可以整分了  如果不行就肯定是  false
+   #+END_SRC
+** 代码
 
    #+BEGIN_SRC go
 package main
@@ -100,6 +93,3 @@ func main() {
 
    #+RESULTS:
    : false
-   
-
-

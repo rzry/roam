@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-22 二 10:04 -->
+<!-- 2020-12-03 四 15:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode-1018-被5整除的二进制前缀</title>
@@ -193,12 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,24 +248,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4629818">ques</a>
+<li><a href="#orgf3a8477">1. ques</a>
 <ul>
-<li><a href="#org06c97a7">题目解释</a></li>
-<li><a href="#orgb14a055">题目答案</a></li>
-<li><a href="#org9d35052">代码解析 .</a></li>
+<li><a href="#orgc50ad9f">1.1. 题目解释</a></li>
+<li><a href="#orge91e86c">1.2. 题目答案</a></li>
+<li><a href="#org2b56443">1.3. 代码解析 .</a></li>
 </ul>
 </li>
-<li><a href="#orgf153912">第二种方式</a></li>
-<li><a href="#orgaa84d84">解析</a></li>
+<li><a href="#org1478469">2. 第二种方式</a></li>
+<li><a href="#org8640d1d">3. 解析</a></li>
 </ul>
 </div>
 </div>
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-<div id="outline-container-org4629818" class="outline-2">
-<h2 id="org4629818">ques</h2>
-<div class="outline-text-2" id="text-org4629818">
+
+<div id="outline-container-orgf3a8477" class="outline-2">
+<h2 id="orgf3a8477"><span class="section-number-2">1</span> ques</h2>
+<div class="outline-text-2" id="text-1">
 <pre class="example">
   给定由若干 0 和 1 组成的数组 A。
 我们定义 N_i：从 A[0] 到 A[i] 的
@@ -285,42 +278,42 @@ for the JavaScript code in this tag.
 
 </pre>
 </div>
-<div id="outline-container-org06c97a7" class="outline-3">
-<h3 id="org06c97a7">题目解释</h3>
-<div class="outline-text-3" id="text-org06c97a7">
+<div id="outline-container-orgc50ad9f" class="outline-3">
+<h3 id="orgc50ad9f"><span class="section-number-3">1.1</span> 题目解释</h3>
+<div class="outline-text-3" id="text-1-1">
 <pre class="example">
- 就是给定一个数组 比如 我给你一个 [0,1,0,1] 
+ 就是给定一个数组 比如 我给你一个 [0,1,0,1]
 那么 它按照题目格式展开就是  0 , 01,010,0101
- 然后把这个二进制转换为10进制 再去%5 
-看一下结果 如果整除就 true  
+ 然后把这个二进制转换为10进制 再去%5
+看一下结果 如果整除就 true
 
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb14a055" class="outline-3">
-<h3 id="orgb14a055">题目答案</h3>
-<div class="outline-text-3" id="text-orgb14a055">
+<div id="outline-container-orge91e86c" class="outline-3">
+<h3 id="orge91e86c"><span class="section-number-3">1.2</span> 题目答案</h3>
+<div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">prefixesDivBy5</span>(<span style="color: #7590db;">A</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) []<span style="color: #ce537a; font-weight: bold;">bool</span> {
-    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">temp</span> <span style="color: #ce537a; font-weight: bold;">int</span>
-    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">res</span> = <span style="color: #4f97d7;">make</span>([]<span style="color: #ce537a; font-weight: bold;">bool</span>,<span style="color: #4f97d7;">len</span>(A))
-    <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">i</span>, <span style="color: #7590db;">v</span>:= <span style="color: #4f97d7; font-weight: bold;">range</span> <span style="color: #ce537a; font-weight: bold;">A</span>{
+<pre class="src src-go">  <span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">prefixesDivBy5</span>(<span style="color: #D8DEE9;">A</span> []<span style="color: #8FBCBB;">int</span>) []<span style="color: #8FBCBB;">bool</span> {
+    <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">temp</span> <span style="color: #8FBCBB;">int</span>
+    <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">res</span> = <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">bool</span>,<span style="color: #81A1C1;">len</span>(A))
+    <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">i</span>, <span style="color: #D8DEE9;">v</span>:= <span style="color: #81A1C1;">range</span> <span style="color: #8FBCBB;">A</span>{
         temp = temp&lt;&lt;1 + v
-        <span style="color: #4f97d7; font-weight: bold;">if</span> temp % 5 == <span style="color: #ce537a; font-weight: bold;">0</span>{
-            res[i] = <span style="color: #a45bad;">true</span>
+        <span style="color: #81A1C1;">if</span> temp % 5 == <span style="color: #8FBCBB;">0</span>{
+            res[i] = <span style="color: #81A1C1;">true</span>
         }
         temp %= 5
     }
-    <span style="color: #4f97d7; font-weight: bold;">return</span> res
+    <span style="color: #81A1C1;">return</span> res
 
 }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org9d35052" class="outline-3">
-<h3 id="org9d35052">代码解析 .</h3>
-<div class="outline-text-3" id="text-org9d35052">
+<div id="outline-container-org2b56443" class="outline-3">
+<h3 id="org2b56443"><span class="section-number-3">1.3</span> 代码解析 .</h3>
+<div class="outline-text-3" id="text-1-3">
 <pre class="example">
 只需关心最后一位. 所以不用转10进制 . 让它往左移位+遍历的value 然后去 %5
 
@@ -328,30 +321,30 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf153912" class="outline-2">
-<h2 id="orgf153912">第二种方式</h2>
-<div class="outline-text-2" id="text-orgf153912">
+<div id="outline-container-org1478469" class="outline-2">
+<h2 id="org1478469"><span class="section-number-2">2</span> 第二种方式</h2>
+<div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-go">  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">prefixesDivBy5</span>(<span style="color: #7590db;">A</span> []<span style="color: #ce537a; font-weight: bold;">int</span>) []<span style="color: #ce537a; font-weight: bold;">bool</span> {
-    <span style="color: #7590db;">sum</span> := 0
-        <span style="color: #7590db;">result</span> := <span style="color: #4f97d7;">make</span>([]<span style="color: #ce537a; font-weight: bold;">bool</span>, 0)
-        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">_</span>, <span style="color: #7590db;">v</span> := <span style="color: #4f97d7; font-weight: bold;">range</span> A {
+<pre class="src src-go">  <span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">prefixesDivBy5</span>(<span style="color: #D8DEE9;">A</span> []<span style="color: #8FBCBB;">int</span>) []<span style="color: #8FBCBB;">bool</span> {
+    <span style="color: #D8DEE9;">sum</span> := 0
+        <span style="color: #D8DEE9;">result</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">bool</span>, 0)
+        <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>, <span style="color: #D8DEE9;">v</span> := <span style="color: #81A1C1;">range</span> A {
         sum = (sum*2 + v) % 5
-                <span style="color: #4f97d7; font-weight: bold;">if</span> sum == 0 {
-                        result = <span style="color: #4f97d7;">append</span>(result, <span style="color: #a45bad;">true</span>)
-                } <span style="color: #4f97d7; font-weight: bold;">else</span> {
-                        result = <span style="color: #4f97d7;">append</span>(result, <span style="color: #a45bad;">false</span>)
+                <span style="color: #81A1C1;">if</span> sum == 0 {
+                        result = <span style="color: #81A1C1;">append</span>(result, <span style="color: #81A1C1;">true</span>)
+                } <span style="color: #81A1C1;">else</span> {
+                        result = <span style="color: #81A1C1;">append</span>(result, <span style="color: #81A1C1;">false</span>)
                 }
         }
-    <span style="color: #4f97d7; font-weight: bold;">return</span> result
+    <span style="color: #81A1C1;">return</span> result
 }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa84d84" class="outline-2">
-<h2 id="orgaa84d84">解析</h2>
-<div class="outline-text-2" id="text-orgaa84d84">
+<div id="outline-container-org8640d1d" class="outline-2">
+<h2 id="org8640d1d"><span class="section-number-2">3</span> 解析</h2>
+<div class="outline-text-2" id="text-3">
 <pre class="example">
 sum = (sum*2 + v) % 5  不是很懂这个  所以  这个题  先背着
 </pre>
@@ -361,7 +354,7 @@ sum = (sum*2 + v) % 5  不是很懂这个  所以  这个题  先背着
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-16</p>
 <p class="author">Author: rzry</p>
-<p class="date">Created: 2020-09-22 二 10:04</p>
+<p class="date">Created: 2020-12-03 四 15:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

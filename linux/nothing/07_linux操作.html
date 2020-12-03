@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-12-03 四 15:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>linux.setting</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">linux.setting</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc03dfd8">1. linux<sub>基本优化与操作</sub></a>
+<ul>
+<li><a href="#org208f7ff">1.1. :computer: 1 .安装. vmware 还有物理机安装( 百度得到 唯一不同的就是 bios设置)</a>
+<ul>
+<li><a href="#orgcaecca0">1.1.1. 虚拟机安装 &#x2026;</a></li>
+</ul>
+</li>
+<li><a href="#org2ecbcbb">1.2. :pencil2: 2 .常用命令</a>
+<ul>
+<li><a href="#orgc944b3d">1.2.1. 目录结构</a></li>
+<li><a href="#orgbd9de56">1.2.2. bin , /usr/bin</a></li>
+<li><a href="#org6348433">1.2.3. mnt</a></li>
+<li><a href="#org17e6482">1.2.4. 重定向命令</a></li>
+<li><a href="#org897c086">1.2.5. more 查看大文件</a></li>
+<li><a href="#orgaddbd9a">1.2.6. 管道  ls | more</a></li>
+<li><a href="#org613b2fa">1.2.7. 软连接 ln</a></li>
+<li><a href="#orgff9fdb5">1.2.8. grep 查看文件内的内容</a></li>
+<li><a href="#org20e710d">1.2.9. find  查找文件</a></li>
+<li><a href="#org830cac3">1.2.10. tar 打包 不会压缩</a></li>
+<li><a href="#org8742b9e">1.2.11. 压缩</a></li>
+<li><a href="#orgce12355">1.2.12. 解压</a></li>
+<li><a href="#orgcdd1c41">1.2.13. gzip 压缩打包</a></li>
+<li><a href="#orgcc3655d">1.2.14. 打包</a></li>
+<li><a href="#org60738af">1.2.15. 压缩</a></li>
+<li><a href="#org7ecbe48">1.2.16. 解压</a></li>
+<li><a href="#orgd088e84">1.2.17. 解包</a></li>
+<li><a href="#org85cb067">1.2.18. 打包+压缩</a></li>
+<li><a href="#org262141c">1.2.19. 压缩</a></li>
+<li><a href="#org945bf0d">1.2.20. 解压</a></li>
+<li><a href="#org3580409">1.2.21. which 查看命令所在的位置</a></li>
+<li><a href="#orgb095687">1.2.22. chmod</a></li>
+<li><a href="#orgb655e0b">1.2.23. d 的解释</a></li>
+</ul>
+</li>
+<li><a href="#org0b01c41">1.3. :cloud: 3 .优化</a>
+<ul>
+<li><a href="#org49c8311">1.3.1. 1. 卸载  卸载掉所有你认为没用的&#x2026;</a></li>
+<li><a href="#org8b6d70e">1.3.2. 2. 安装推荐</a></li>
+<li><a href="#orge13a6be">1.3.3. 邮箱  chrome</a></li>
+<li><a href="#org676f926">1.3.4. 歌曲  网易云  chrome</a></li>
+<li><a href="#org4a45380">1.3.5. qq  微信 钉钉  http://mirrors.aliyun.com/deepin/pool/non-free/d/  如果deepin 定制的windows软件 &#x2026; 其实就是内置了 wine   双击deb</a></li>
+<li><a href="#org4499af2">1.3.6. 流程图  xmind</a></li>
+<li><a href="#org1b7a95d">1.3.7. 终端  zsh</a></li>
+<li><a href="#org57e7edb">1.3.8. 写代码的  emacs(&#x2026;)    vscode    什么都有</a></li>
+<li><a href="#orga3a75ba">1.3.9. 表格  word   &#x2026; wps(linux的wps 没有广告  非常完美)</a></li>
+<li><a href="#org7fc12e6">1.3.10. 视频播放  vlc</a></li>
+<li><a href="#orgcb9a180">1.3.11. 录屏  obs</a></li>
+<li><a href="#orgcd8dd57">1.3.12. 网卡的配置</a></li>
+<li><a href="#orgf00d1ca">1.3.13. 手机投屏 scscpy</a></li>
+<li><a href="#org94d571e">1.3.14. ssr &#x2026; 百度 记得开防火墙 和代理 不然也不能有梯子</a></li>
+<li><a href="#orgb266b2d">1.3.15. 百度云 &#x2014;问我要我发给你</a></li>
+</ul>
+</li>
+<li><a href="#orgfdc3581">1.4. :art: 4 .快捷键</a>
+<ul>
+<li><a href="#org326340c">1.4.1. 切换工作区设置</a></li>
+<li><a href="#orge11369b">1.4.2. 快捷启动</a></li>
+<li><a href="#org4345b71">1.4.3. 搜索栏</a></li>
+</ul>
+</li>
+<li><a href="#org0babc77">1.5. :floppy<sub>disk</sub>: 5 .公司</a>
+<ul>
+<li><a href="#orge6fa30e">1.5.1. opencv</a></li>
+<li><a href="#orgb7720be">1.5.2. docker 测试</a></li>
+</ul>
+</li>
+<li><a href="#orgef0eac0">1.6. :bulb: 6 .杂谈</a>
+<ul>
+<li><a href="#org8811719">1.6.1. 软件</a></li>
+<li><a href="#org4e8fdd9">1.6.2. chrome</a></li>
+<li><a href="#orgbeb3d9f">1.6.3. 搜索</a></li>
+<li><a href="#orgf6da25f">1.6.4. 安全</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc03dfd8" class="outline-2">
+<h2 id="orgc03dfd8"><span class="section-number-2">1</span> linux<sub>基本优化与操作</sub></h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org208f7ff" class="outline-3">
+<h3 id="org208f7ff"><span class="section-number-3">1.1</span> :computer: 1 .安装. vmware 还有物理机安装( 百度得到 唯一不同的就是 bios设置)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+bios 设置的 (开机按(百度型号+进bios)) Secure Boot 安全启动  把这个关了就行 然后做启动盘 这些百度得到
+uefi 引导  第一次装的时候  双系统分区很重要  推荐最方便的 3个挂载点  就是  swap , /,  home, boot(强制主分区)   就完了
+</p>
+</div>
+<div id="outline-container-orgcaecca0" class="outline-4">
+<h4 id="orgcaecca0"><span class="section-number-4">1.1.1</span> 虚拟机安装 &#x2026;</h4>
+</div>
+</div>
+<div id="outline-container-org2ecbcbb" class="outline-3">
+<h3 id="org2ecbcbb"><span class="section-number-3">1.2</span> :pencil2: 2 .常用命令</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="org0f2970c"></a>1. ls — List. &#x2026;<br /></li>
+<li><a id="orgafcc528"></a>2.mkdir — Make Directory. &#x2026;<br /></li>
+<li><a id="orgcfc8dc6"></a>3.pwd — Print Working Directory. &#x2026;<br /></li>
+<li><a id="org92bee18"></a>4.cd — Change Directory. &#x2026;<br /></li>
+<li><a id="org82be37a"></a>5.rmdir— Remove Directory. &#x2026;<br /></li>
+<li><a id="org26203ea"></a>6.rm— Remove. &#x2026;<br /></li>
+<li><a id="orgf3834f9"></a>7.cp— Copy. &#x2026;<br /></li>
+<li><a id="orgc7a43b8"></a>8. mv— Move.<br /></li>
+<li><a id="org017a249"></a>9.cat<br /></li>
+<li><a id="orgf129d55"></a>10.less / more<br /></li>
+<li><a id="org3ac8f54"></a>12.grep<br /></li>
+<li><a id="org13d5519"></a>13.find<br /></li>
+<li><a id="org064dd51"></a>14.tar unzip gzip<br /></li>
+<li><a id="org729277e"></a>15.top<br /></li>
+<li><a id="org5fde923"></a>16.free<br /></li>
+<li><a id="org9f6e578"></a>17.netstat<br /></li>
+<li><a id="org1c5184f"></a>18.df<br /></li>
+</ol>
+
+<div id="outline-container-orgc944b3d" class="outline-4">
+<h4 id="orgc944b3d"><span class="section-number-4">1.2.1</span> 目录结构</h4>
+</div>
+<div id="outline-container-orgbd9de56" class="outline-4">
+<h4 id="orgbd9de56"><span class="section-number-4">1.2.2</span> bin , /usr/bin</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+这个里面存二进制的可执行文件   比如 ls  tar  mv cat
+</p>
+</div>
+</div>
+<div id="outline-container-org6348433" class="outline-4">
+<h4 id="org6348433"><span class="section-number-4">1.2.3</span> mnt</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+挂载点  比如安卓的目录  就是  mnt   /sd
+</p>
+</div>
+</div>
+<div id="outline-container-org17e6482" class="outline-4">
+<h4 id="org17e6482"><span class="section-number-4">1.2.4</span> 重定向命令</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+重定向 &gt;
+ls   &gt; 1.txt  一个大于号 是覆盖
+ls &gt;&gt; pwd   两个大于号追加
+</p>
+</div>
+</div>
+<div id="outline-container-org897c086" class="outline-4">
+<h4 id="org897c086"><span class="section-number-4">1.2.5</span> more 查看大文件</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+more 1.txt  空格下  b 回看
+</p>
+</div>
+</div>
+<div id="outline-container-orgaddbd9a" class="outline-4">
+<h4 id="orgaddbd9a"><span class="section-number-4">1.2.6</span> 管道  ls | more</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<p>
+把左边命令 交给右边处理
+</p>
+</div>
+</div>
+<div id="outline-container-org613b2fa" class="outline-4">
+<h4 id="org613b2fa"><span class="section-number-4">1.2.7</span> 软连接 ln</h4>
+<div class="outline-text-4" id="text-1-2-7">
+<p>
+ln -s 2.txt 1<sub>ln.txt</sub>
+记住 源文件一定要全路径  sudo ln -s /home/rzry/go/src/Video/api设计.txt  go
+硬链接就是 不加 -s  这就跟copy 一样
+</p>
+</div>
+</div>
+<div id="outline-container-orgff9fdb5" class="outline-4">
+<h4 id="orgff9fdb5"><span class="section-number-4">1.2.8</span> grep 查看文件内的内容</h4>
+<div class="outline-text-4" id="text-1-2-8">
+<p>
+grep -n 查找的东西  查的路径   . -r   如果是目录 就加 -r
+-n  显示匹配的行号    i   不区分大小写   v 反向查找  查找不包含的哪一行
+</p>
+</div>
+</div>
+<div id="outline-container-org20e710d" class="outline-4">
+<h4 id="org20e710d"><span class="section-number-4">1.2.9</span> find  查找文件</h4>
+<div class="outline-text-4" id="text-1-2-9">
+<p>
+find + 目录  + -name + '<b>txt'
+find ./ -name 'eli</b>'
+</p>
+</div>
+</div>
+<div id="outline-container-org830cac3" class="outline-4">
+<h4 id="org830cac3"><span class="section-number-4">1.2.10</span> tar 打包 不会压缩</h4>
+</div>
+<div id="outline-container-org8742b9e" class="outline-4">
+<h4 id="org8742b9e"><span class="section-number-4">1.2.11</span> 压缩</h4>
+<div class="outline-text-4" id="text-1-2-11">
+<p>
+tar -cf tar的名字 + 要tar的文件
+</p>
+</div>
+</div>
+<div id="outline-container-orgce12355" class="outline-4">
+<h4 id="orgce12355"><span class="section-number-4">1.2.12</span> 解压</h4>
+<div class="outline-text-4" id="text-1-2-12">
+<p>
+tar -xf 解压的tar的文件
+解压到别的文件夹   tar -xf 解压的tar -C 指定的文件夹
+</p>
+</div>
+</div>
+<div id="outline-container-orgcdd1c41" class="outline-4">
+<h4 id="orgcdd1c41"><span class="section-number-4">1.2.13</span> gzip 压缩打包</h4>
+</div>
+<div id="outline-container-orgcc3655d" class="outline-4">
+<h4 id="orgcc3655d"><span class="section-number-4">1.2.14</span> 打包</h4>
+<div class="outline-text-4" id="text-1-2-14">
+<p>
+tar cf a.tar *
+</p>
+</div>
+</div>
+<div id="outline-container-org60738af" class="outline-4">
+<h4 id="org60738af"><span class="section-number-4">1.2.15</span> 压缩</h4>
+<div class="outline-text-4" id="text-1-2-15">
+<p>
+gzip -r a.tar
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ecbe48" class="outline-4">
+<h4 id="org7ecbe48"><span class="section-number-4">1.2.16</span> 解压</h4>
+<div class="outline-text-4" id="text-1-2-16">
+<p>
+gzip -d  a.tar.gz
+</p>
+</div>
+</div>
+<div id="outline-container-orgd088e84" class="outline-4">
+<h4 id="orgd088e84"><span class="section-number-4">1.2.17</span> 解包</h4>
+<div class="outline-text-4" id="text-1-2-17">
+<p>
+tar xf a.tar -C ~/桌面
+</p>
+</div>
+</div>
+<div id="outline-container-org85cb067" class="outline-4">
+<h4 id="org85cb067"><span class="section-number-4">1.2.18</span> 打包+压缩</h4>
+</div>
+<div id="outline-container-org262141c" class="outline-4">
+<h4 id="org262141c"><span class="section-number-4">1.2.19</span> 压缩</h4>
+<div class="outline-text-4" id="text-1-2-19">
+<p>
+tar -czf b.tar.gz *
+</p>
+</div>
+</div>
+<div id="outline-container-org945bf0d" class="outline-4">
+<h4 id="org945bf0d"><span class="section-number-4">1.2.20</span> 解压</h4>
+<div class="outline-text-4" id="text-1-2-20">
+<p>
+tar zxf b.tar.gz -C ~/桌面
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3580409" class="outline-4">
+<h4 id="org3580409"><span class="section-number-4">1.2.21</span> which 查看命令所在的位置</h4>
+<div class="outline-text-4" id="text-1-2-21">
+<p>
+ubuntu 下 需要 sudo
+sudo which ls
+</p>
+</div>
+</div>
+<div id="outline-container-orgb095687" class="outline-4">
+<h4 id="orgb095687"><span class="section-number-4">1.2.22</span> chmod</h4>
+<div class="outline-text-4" id="text-1-2-22">
+<p>
+chmod u+r test.txt  给文件的拥有者 user 添加 r 读的权限
+</p>
+<ul class="org-ul">
+<li>添加  - 删除 = 设置</li>
+</ul>
+
+<p>
+读 4  写 2  执行 1
+chomd 566 test.txt  可读可执行
+</p>
+
+<p>
+owner group others
+ r   w      x
+rwx   r-x  r-x 7 5 5
+</p>
+</div>
+</div>
+<div id="outline-container-orgb655e0b" class="outline-4">
+<h4 id="orgb655e0b"><span class="section-number-4">1.2.23</span> d 的解释</h4>
+</div>
+</div>
+
+<div id="outline-container-org0b01c41" class="outline-3">
+<h3 id="org0b01c41"><span class="section-number-3">1.3</span> :cloud: 3 .优化</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org49c8311" class="outline-4">
+<h4 id="org49c8311"><span class="section-number-4">1.3.1</span> 1. 卸载  卸载掉所有你认为没用的&#x2026;</h4>
+</div>
+<div id="outline-container-org8b6d70e" class="outline-4">
+<h4 id="org8b6d70e"><span class="section-number-4">1.3.2</span> 2. 安装推荐</h4>
+</div>
+<div id="outline-container-orge13a6be" class="outline-4">
+<h4 id="orge13a6be"><span class="section-number-4">1.3.3</span> 邮箱  chrome</h4>
+</div>
+<div id="outline-container-org676f926" class="outline-4">
+<h4 id="org676f926"><span class="section-number-4">1.3.4</span> 歌曲  网易云  chrome</h4>
+</div>
+<div id="outline-container-org4a45380" class="outline-4">
+<h4 id="org4a45380"><span class="section-number-4">1.3.5</span> qq  微信 钉钉  <a href="http://mirrors.aliyun.com/deepin/pool/non-free/d/">http://mirrors.aliyun.com/deepin/pool/non-free/d/</a>  如果deepin 定制的windows软件 &#x2026; 其实就是内置了 wine   双击deb</h4>
+</div>
+<div id="outline-container-org4499af2" class="outline-4">
+<h4 id="org4499af2"><span class="section-number-4">1.3.6</span> 流程图  xmind</h4>
+</div>
+<div id="outline-container-org1b7a95d" class="outline-4">
+<h4 id="org1b7a95d"><span class="section-number-4">1.3.7</span> 终端  zsh</h4>
+</div>
+<div id="outline-container-org57e7edb" class="outline-4">
+<h4 id="org57e7edb"><span class="section-number-4">1.3.8</span> 写代码的  emacs(&#x2026;)    vscode    什么都有</h4>
+</div>
+<div id="outline-container-orga3a75ba" class="outline-4">
+<h4 id="orga3a75ba"><span class="section-number-4">1.3.9</span> 表格  word   &#x2026; wps(linux的wps 没有广告  非常完美)</h4>
+</div>
+<div id="outline-container-org7fc12e6" class="outline-4">
+<h4 id="org7fc12e6"><span class="section-number-4">1.3.10</span> 视频播放  vlc</h4>
+</div>
+<div id="outline-container-orgcb9a180" class="outline-4">
+<h4 id="orgcb9a180"><span class="section-number-4">1.3.11</span> 录屏  obs</h4>
+</div>
+<div id="outline-container-orgcd8dd57" class="outline-4">
+<h4 id="orgcd8dd57"><span class="section-number-4">1.3.12</span> 网卡的配置</h4>
+</div>
+<div id="outline-container-orgf00d1ca" class="outline-4">
+<h4 id="orgf00d1ca"><span class="section-number-4">1.3.13</span> 手机投屏 scscpy</h4>
+</div>
+<div id="outline-container-org94d571e" class="outline-4">
+<h4 id="org94d571e"><span class="section-number-4">1.3.14</span> ssr &#x2026; 百度 记得开防火墙 和代理 不然也不能有梯子</h4>
+</div>
+<div id="outline-container-orgb266b2d" class="outline-4">
+<h4 id="orgb266b2d"><span class="section-number-4">1.3.15</span> 百度云 &#x2014;问我要我发给你</h4>
+<div class="outline-text-4" id="text-1-3-15">
+<p>
+<a href="http://linux.vbird.org/linux_basic/">http://linux.vbird.org/linux_basic/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfdc3581" class="outline-3">
+<h3 id="orgfdc3581"><span class="section-number-3">1.4</span> :art: 4 .快捷键</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org326340c" class="outline-4">
+<h4 id="org326340c"><span class="section-number-4">1.4.1</span> 切换工作区设置</h4>
+</div>
+<div id="outline-container-orge11369b" class="outline-4">
+<h4 id="orge11369b"><span class="section-number-4">1.4.2</span> 快捷启动</h4>
+</div>
+<div id="outline-container-org4345b71" class="outline-4">
+<h4 id="org4345b71"><span class="section-number-4">1.4.3</span> 搜索栏</h4>
+</div>
+</div>
+<div id="outline-container-org0babc77" class="outline-3">
+<h3 id="org0babc77"><span class="section-number-3">1.5</span> :floppy<sub>disk</sub>: 5 .公司</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orge6fa30e" class="outline-4">
+<h4 id="orge6fa30e"><span class="section-number-4">1.5.1</span> opencv</h4>
+</div>
+<div id="outline-container-orgb7720be" class="outline-4">
+<h4 id="orgb7720be"><span class="section-number-4">1.5.2</span> docker 测试</h4>
+</div>
+</div>
+<div id="outline-container-orgef0eac0" class="outline-3">
+<h3 id="orgef0eac0"><span class="section-number-3">1.6</span> :bulb: 6 .杂谈</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-org8811719" class="outline-4">
+<h4 id="org8811719"><span class="section-number-4">1.6.1</span> 软件</h4>
+</div>
+<div id="outline-container-org4e8fdd9" class="outline-4">
+<h4 id="org4e8fdd9"><span class="section-number-4">1.6.2</span> chrome</h4>
+</div>
+<div id="outline-container-orgbeb3d9f" class="outline-4">
+<h4 id="orgbeb3d9f"><span class="section-number-4">1.6.3</span> 搜索</h4>
+</div>
+<div id="outline-container-orgf6da25f" class="outline-4">
+<h4 id="orgf6da25f"><span class="section-number-4">1.6.4</span> 安全</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-09-16</p>
+<p class="author">Author: rzry</p>
+<p class="date">Created: 2020-12-03 四 15:10</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

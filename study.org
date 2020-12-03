@@ -3,11 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ./org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-
-#+end_export
 -----
 - *一级标题可查看详情*
 -----
@@ -15,7 +10,7 @@
   :PROPERTIES:
   :CATEGORY: golang
   :END:
-*** DONE note
+** DONE note
     CLOSED: [2020-09-22 二 12:01]
   - *NOTE* : [golang笔记]
 
@@ -27,7 +22,7 @@
 
   - *NOTE* : [channel_select]
 
-*** DONE leetcode
+** DONE leetcode
     CLOSED: [2020-09-22 二 12:02]
   -  *NOTE* : [LeetCode628-三个数的最大乘积]
 
@@ -39,19 +34,19 @@
 
   -  *NOTE* : [leetcode-删除当前节点]
 
-*** TODO reading
+** TODO reading
   -  *NOTE* : [go标准库学习]
 
-  -  *NOTE* : 
-*** TODO 摘录
+  -  *NOTE* :
+** TODO 摘录
   -  *NOTE* : [go-open-hub]
 
-  -  *NOTE* : 
-*** DONE nothing
+  -  *NOTE* :
+** DONE nothing
     CLOSED: [2020-09-22 二 12:02]
-  -  *NOTE* : 
+  -  *NOTE* :
 
-  -  *NOTE* : 
+  -  *NOTE* :
 
  -----
 * [[file:emacs/20200916-allemacs.org][emacs]]
@@ -91,8 +86,8 @@
 -----
 * [[file:rust/rust.org][rust]]
 ** TODO note
-   -  *NOTE* : [官方文档] 
-* TODO 日程管理  
+   -  *NOTE* : [官方文档]
+* TODO 日程管理
 
 ** -> [[file:日程安排/2020.org][2020]]
   -  *NOTE* : [2020.9]
@@ -102,12 +97,12 @@
   -  *NOTE* : [2020.10]
 -----
 * TODO reading
-  :PROPERTIES: 
+  :PROPERTIES:
   :CATEGORY: reading
   :END:
-** book link 
-   -  *NOTE* : 
+** book link
+   -  *NOTE* :
 
-   -  *NOTE* : 
+   -  *NOTE* :
    -----
 -----

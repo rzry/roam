@@ -3,11 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-
-#+end_export
 
 ** nothing
    -  *Link* : [[file:nothing/30_Sed多文件搜索替换.org][Sed多文件搜索替换]]
@@ -22,8 +17,8 @@
 ** book
   -  *Link* : [[file:book/linux_shell.org][linux就该这么学]]
 
-  -  *Link* : 
+  -  *Link* :
 ** config
-  -  *Link* : 
+  -  *Link* :
 
-  -  *Link* : 
+  -  *Link* :

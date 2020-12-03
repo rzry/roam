@@ -3,12 +3,8 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-10-30
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
-* 文件  
+* 文件
   - 一个备份文件 timestamp_back.tar
 
 * 操作
@@ -28,20 +24,17 @@ services:
       - "8088:80"
       - "443:443"
       - "2200:22"
-      
+
     #+end_src
-  - tar.gz 解压  tar 打包 
+  - tar.gz 解压  tar 打包
   - 启动docker-compose之后  exec进入
-    #+begin_src 
+    #+begin_src
     gitlab-ctl stop unicorn
     gitlab-ctl stop sidekiq
     #+end_src
-  - 恢复 
-    #+begin_src 
+  - 恢复
+    #+begin_src
      gitlab-rake gitlab:backup:restore BACKUP=****
     #+end_src
   - gitlab-ctl start
-  - restart 
-
-
-
+  - restart

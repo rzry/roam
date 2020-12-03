@@ -3,20 +3,13 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
 * linux_基本优化与操作
 **  :computer: 1 .安装. vmware 还有物理机安装( 百度得到 唯一不同的就是 bios设置)
-  bios 设置的 (开机按(百度型号+进bios)) Secure Boot 安全启动  把这个关了就行 然后做启动盘 这些百度得到 
-  uefi 引导  第一次装的时候  双系统分区很重要  推荐最方便的 3个挂载点  就是  swap , /,  home, boot(强制主分区)   就完了 
-*** 虚拟机安装 ... 
+  bios 设置的 (开机按(百度型号+进bios)) Secure Boot 安全启动  把这个关了就行 然后做启动盘 这些百度得到
+  uefi 引导  第一次装的时候  双系统分区很重要  推荐最方便的 3个挂载点  就是  swap , /,  home, boot(强制主分区)   就完了
+*** 虚拟机安装 ...
 **  :pencil2: 2 .常用命令
-****   1. ls — List. ...   
+****   1. ls — List. ...
 ****   2.mkdir — Make Directory. ...
 ****   3.pwd — Print Working Directory. ...
 ****   4.cd — Change Directory. ...
@@ -24,91 +17,91 @@
 ****   6.rm— Remove. ...
 ****   7.cp— Copy. ...
 ****   8. mv— Move.
-****   9.cat 
-****   10.less / more 
+****   9.cat
+****   10.less / more
 ****   12.grep
 ****   13.find
-****   14.tar unzip gzip 
-****   15.top 
-****   16.free  
-****   17.netstat 
-****   18.df 
+****   14.tar unzip gzip
+****   15.top
+****   16.free
+****   17.netstat
+****   18.df
 
-*** 目录结构   
-*** bin , /usr/bin  
-    这个里面存二进制的可执行文件   比如 ls  tar  mv cat 
-***  mnt  
-    挂载点  比如安卓的目录  就是  mnt   /sd 
-*** 重定向命令 
-   重定向 >  
+*** 目录结构
+*** bin , /usr/bin
+    这个里面存二进制的可执行文件   比如 ls  tar  mv cat
+***  mnt
+    挂载点  比如安卓的目录  就是  mnt   /sd
+*** 重定向命令
+   重定向 >
    ls   > 1.txt  一个大于号 是覆盖
-   ls >> pwd   两个大于号追加  
-*** more 查看大文件 
-   more 1.txt  空格下  b 回看 
-*** 管道  ls | more  
-   把左边命令 交给右边处理  
-*** 软连接 ln 
-   ln -s 2.txt 1_ln.txt 
-   记住 源文件一定要全路径  sudo ln -s /home/rzry/go/src/Video/api设计.txt  go 
-   硬链接就是 不加 -s  这就跟copy 一样   
-*** grep 查看文件内的内容  
-   grep -n 查找的东西  查的路径   . -r   如果是目录 就加 -r 
+   ls >> pwd   两个大于号追加
+*** more 查看大文件
+   more 1.txt  空格下  b 回看
+*** 管道  ls | more
+   把左边命令 交给右边处理
+*** 软连接 ln
+   ln -s 2.txt 1_ln.txt
+   记住 源文件一定要全路径  sudo ln -s /home/rzry/go/src/Video/api设计.txt  go
+   硬链接就是 不加 -s  这就跟copy 一样
+*** grep 查看文件内的内容
+   grep -n 查找的东西  查的路径   . -r   如果是目录 就加 -r
    -n  显示匹配的行号    i   不区分大小写   v 反向查找  查找不包含的哪一行
-*** find  查找文件  
+*** find  查找文件
    find + 目录  + -name + '*txt'
    find ./ -name 'eli*'
-*** tar 打包 不会压缩 
+*** tar 打包 不会压缩
 *** 压缩
-   tar -cf tar的名字 + 要tar的文件    
+   tar -cf tar的名字 + 要tar的文件
 *** 解压
    tar -xf 解压的tar的文件
    解压到别的文件夹   tar -xf 解压的tar -C 指定的文件夹
-*** gzip 压缩打包 
-*** 打包 
+*** gzip 压缩打包
+*** 打包
     tar cf a.tar *
-*** 压缩 
+*** 压缩
     gzip -r a.tar
- 
+
 *** 解压
     gzip -d  a.tar.gz
-*** 解包  
+*** 解包
     tar xf a.tar -C ~/桌面
-*** 打包+压缩 
+*** 打包+压缩
 *** 压缩
    tar -czf b.tar.gz *
-*** 解压 
+*** 解压
     tar zxf b.tar.gz -C ~/桌面
 
-*** which 查看命令所在的位置 
-   ubuntu 下 需要 sudo  
-   sudo which ls 
-*** chmod 
-   
-   chmod u+r test.txt  给文件的拥有者 user 添加 r 读的权限
-   + 添加  - 删除 = 设置 
+*** which 查看命令所在的位置
+   ubuntu 下 需要 sudo
+   sudo which ls
+*** chmod
 
-   读 4  写 2  执行 1  
+   chmod u+r test.txt  给文件的拥有者 user 添加 r 读的权限
+   + 添加  - 删除 = 设置
+
+   读 4  写 2  执行 1
    chomd 566 test.txt  可读可执行
-   
+
   owner group others
    r   w      x
   rwx   r-x  r-x 7 5 5
-*** d 的解释 
+*** d 的解释
 
-**  :cloud: 3 .优化 
-*** 1. 卸载  卸载掉所有你认为没用的... 
+**  :cloud: 3 .优化
+*** 1. 卸载  卸载掉所有你认为没用的...
 *** 2. 安装推荐
-*** 邮箱  chrome 
-*** 歌曲  网易云  chrome 
-*** qq  微信 钉钉  http://mirrors.aliyun.com/deepin/pool/non-free/d/  如果deepin 定制的windows软件 ... 其实就是内置了 wine   双击deb 
-*** 流程图  xmind  
-*** 终端  zsh  
-*** 写代码的  emacs(...)    vscode    什么都有 
+*** 邮箱  chrome
+*** 歌曲  网易云  chrome
+*** qq  微信 钉钉  http://mirrors.aliyun.com/deepin/pool/non-free/d/  如果deepin 定制的windows软件 ... 其实就是内置了 wine   双击deb
+*** 流程图  xmind
+*** 终端  zsh
+*** 写代码的  emacs(...)    vscode    什么都有
 *** 表格  word   ... wps(linux的wps 没有广告  非常完美)
-*** 视频播放  vlc  
-*** 录屏  obs  
-*** 网卡的配置 
-*** 手机投屏 scscpy 
+*** 视频播放  vlc
+*** 录屏  obs
+*** 网卡的配置
+*** 手机投屏 scscpy
 *** ssr ... 百度 记得开防火墙 和代理 不然也不能有梯子
 *** 百度云 ---问我要我发给你
 http://linux.vbird.org/linux_basic/
@@ -117,10 +110,10 @@ http://linux.vbird.org/linux_basic/
 *** 快捷启动
 *** 搜索栏
 **  :floppy_disk: 5 .公司
-*** opencv     
-*** docker 测试  
-**  :bulb: 6 .杂谈 
+*** opencv
+*** docker 测试
+**  :bulb: 6 .杂谈
 *** 软件
-*** chrome 
-*** 搜索   
-*** 安全  
+*** chrome
+*** 搜索
+*** 安全

@@ -3,10 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-11-09
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 
 
 * bufio

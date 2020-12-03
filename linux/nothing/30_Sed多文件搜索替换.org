@@ -3,15 +3,8 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-16
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-<div class="right">
-<a href="https://github.com/rzry" class="fa fa-github"> Edit on GitHub</a>
-</div>
-#+end_export
 * Sed 基本使用
-#+BEGIN_SRC 
+#+BEGIN_SRC
 来看一个简单的文本替换示例：
 echo "hi,my name is xxx" | sed 's/xxx/kinsomy/'
 #修改文件
@@ -23,10 +16,10 @@ sed 's/xxx/kinsomy/; s/***/hhh/' data.txt
 注意：sed操作文本文件中的数据，仅仅是将修改的数据输出到STDOUT，但是并不会修改文件本身的数据
 
 #+END_SRC
-* 关于指定行替换 行寻址 后面用到再补 
+* 关于指定行替换 行寻址 后面用到再补
 * 批量替换
-  #+BEGIN_SRC 
+  #+BEGIN_SRC
   多文件批量替换一个字符串
   sed -r -i "s/github.com\/avenssi/Video/g" ` grep github.com/avenssi -rl ./*`
-  ``使用了 反引号 把 grep的搜索当做 sed 的输入 
+  ``使用了 反引号 把 grep的搜索当做 sed 的输入
   #+END_SRC

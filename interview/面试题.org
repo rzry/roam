@@ -3,40 +3,35 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-22
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:2
-#+SETUPFILE: ../org-html-themes/setup/theme-readtheorg.setup
-#+begin_export html
-#+end_export
 ** 题目
-1 . switch 和 select 的用法区别 
+1 . switch 和 select 的用法区别
 
-2 . channel 的用处 
+2 . channel 的用处
 
-3 . go struct ... (大概就是能不能比较) 
+3 . go struct ... (大概就是能不能比较)
 
-4 . context 的用途 
+4 . context 的用途
 
 5 . slice 和 array 的区别  怎么扩容 共享  底层结构
 
-6 . 反射包的对应方法 
+6 . 反射包的对应方法
 
-7 . go channel 有缓冲和无缓存的区别  底层的区别 
+7 . go channel 有缓冲和无缓存的区别  底层的区别
 
-8 . Goroutine 调用了什么系统调度 
+8 . Goroutine 调用了什么系统调度
 
-9 . 内存飙升  cpu 飙升的排查 
+9 . 内存飙升  cpu 飙升的排查
 
-10 .go 的调度 
+10 .go 的调度
 
 11 . 值传递和引用传递
 
 12 . go 的  runtime 怎么做
 
-13 . ctx包的用途 
+13 . ctx包的用途
 
-14 . 怎么理解go 的interface 
+14 . 怎么理解go 的interface
 
 15 .  分布式锁 (我就好奇了 问的都是啥东西 )
 
-16 . grpc   然后go_micro 
-
+16 . grpc   然后go_micro
