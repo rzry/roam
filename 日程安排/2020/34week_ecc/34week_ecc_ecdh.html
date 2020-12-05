@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-12-04 五 21:13 -->
+<!-- 2020-12-06 日 03:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ecc.ecdh</title>
@@ -193,7 +193,6 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -248,36 +247,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb8dc6f8">1. 介绍</a></li>
-<li><a href="#org2f6a7f6">2. 一些简单的代码实现</a>
+<li><a href="#orgffcfe67">1. 介绍</a></li>
+<li><a href="#org7c8b84b">2. 一些简单的代码实现</a>
 <ul>
-<li><a href="#orgbe1e7b7">2.1. 秘钥生成</a></li>
+<li><a href="#org132d457">2.1. 秘钥生成</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb8dc6f8" class="outline-2">
-<h2 id="orgb8dc6f8"><span class="section-number-2">1</span> 介绍</h2>
+<div id="outline-container-orgffcfe67" class="outline-2">
+<h2 id="orgffcfe67"><span class="section-number-2">1</span> 介绍</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><p>
 秘钥生成
 </p>
 <div class="org-src-container">
-<pre class="src src-go">    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">GenerateKey generates a public and private key pair.</span>
-<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">GenerateKey</span>(<span style="color: #D8DEE9;">c</span> <span style="color: #8FBCBB;">elliptic.Curve</span>, <span style="color: #D8DEE9;">rand</span> <span style="color: #8FBCBB;">io.Reader</span>) (*<span style="color: #8FBCBB;">PrivateKey</span>, <span style="color: #8FBCBB;">error</span>) {
-        <span style="color: #D8DEE9;">k</span>, <span style="color: #D8DEE9;">err</span> := <span style="color: #8FBCBB;">randFieldElement</span>(c, rand)
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">nil</span>, err
+<pre class="src src-go">    <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">GenerateKey generates a public and private key pair.</span>
+<span style="color: #00ffff;">func</span> <span style="color: #87cefa;">GenerateKey</span>(<span style="color: #eedd82;">c</span> <span style="color: #98fb98;">elliptic.Curve</span>, <span style="color: #eedd82;">rand</span> <span style="color: #98fb98;">io.Reader</span>) (*<span style="color: #98fb98;">PrivateKey</span>, <span style="color: #98fb98;">error</span>) {
+        <span style="color: #eedd82;">k</span>, <span style="color: #eedd82;">err</span> := <span style="color: #87cefa;">randFieldElement</span>(c, rand)
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                <span style="color: #00ffff;">return</span> <span style="color: #7fffd4;">nil</span>, err
         }
 
-        <span style="color: #D8DEE9;">priv</span> := <span style="color: #81A1C1;">new</span>(<span style="color: #8FBCBB;">PrivateKey</span>)
+        <span style="color: #eedd82;">priv</span> := <span style="color: #b0c4de;">new</span>(<span style="color: #98fb98;">PrivateKey</span>)
         priv.PublicKey.Curve = c
         priv.D = k
-        priv.PublicKey.X, priv.PublicKey.Y = c.<span style="color: #8FBCBB;">ScalarBaseMult</span>(k.<span style="color: #8FBCBB;">Bytes</span>())
-        <span style="color: #81A1C1;">return</span> priv, <span style="color: #81A1C1;">nil</span>
+        priv.PublicKey.X, priv.PublicKey.Y = c.<span style="color: #87cefa;">ScalarBaseMult</span>(k.<span style="color: #87cefa;">Bytes</span>())
+        <span style="color: #00ffff;">return</span> priv, <span style="color: #7fffd4;">nil</span>
 }
 </pre>
 </div>
@@ -285,11 +284,11 @@ for the JavaScript code in this tag.
 传入一个 椭圆曲线 和一个 io.reader 会得到一个 private
 </p>
 <div class="org-src-container">
-<pre class="src src-go"> <span style="color: #81A1C1;">type</span> <span style="color: #8FBCBB;">PrivateKey</span> <span style="color: #81A1C1;">struct</span> {
+<pre class="src src-go"> <span style="color: #00ffff;">type</span> <span style="color: #98fb98;">PrivateKey</span> <span style="color: #00ffff;">struct</span> {
      PublicKey
-     D *<span style="color: #8FBCBB;">big.Int</span>
+     D *<span style="color: #98fb98;">big.Int</span>
 }
-big.int  <span style="color: #8FBCBB;">&#22823;&#25968;&#23383;</span>, &#22810;&#31934;&#24230;...
+big.int  <span style="color: #98fb98;">&#22823;&#25968;&#23383;</span>, &#22810;&#31934;&#24230;...
 </pre>
 </div>
 
@@ -297,12 +296,12 @@ big.int  <span style="color: #8FBCBB;">&#22823;&#25968;&#23383;</span>, &#22810;
 生成公钥 私钥
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #D8DEE9;">private</span>, <span style="color: #D8DEE9;">err</span> := ecdsa.<span style="color: #8FBCBB;">GenerateKey</span>(elliptic.<span style="color: #8FBCBB;">P256</span>(),rand.Reader)
+<pre class="src src-go"><span style="color: #eedd82;">private</span>, <span style="color: #eedd82;">err</span> := ecdsa.<span style="color: #87cefa;">GenerateKey</span>(elliptic.<span style="color: #87cefa;">P256</span>(),rand.Reader)
 
-<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
-<span style="color: #6f7787;">//</span><span style="color: #6f7787;">todo</span>
+<span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span>{
+<span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">todo</span>
 }
-<span style="color: #D8DEE9;">public</span> := private.PublicKey
+<span style="color: #eedd82;">public</span> := private.PublicKey
 </pre>
 </div></li>
 </ul>
@@ -394,39 +393,39 @@ K * Data = N  私钥 * Data = N(签名数据)
 
 
 
-<div id="outline-container-org2f6a7f6" class="outline-2">
-<h2 id="org2f6a7f6"><span class="section-number-2">2</span> 一些简单的代码实现</h2>
+<div id="outline-container-org7c8b84b" class="outline-2">
+<h2 id="org7c8b84b"><span class="section-number-2">2</span> 一些简单的代码实现</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbe1e7b7" class="outline-3">
-<h3 id="orgbe1e7b7"><span class="section-number-3">2.1</span> 秘钥生成</h3>
+<div id="outline-container-org132d457" class="outline-3">
+<h3 id="org132d457"><span class="section-number-3">2.1</span> 秘钥生成</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><p>
 生成
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #D8DEE9;">private</span>, <span style="color: #D8DEE9;">err</span> := ecdsa.<span style="color: #8FBCBB;">GenerateKey</span>(elliptic.<span style="color: #8FBCBB;">P256</span>(),rand.Reader)
+<pre class="src src-go"><span style="color: #eedd82;">private</span>, <span style="color: #eedd82;">err</span> := ecdsa.<span style="color: #87cefa;">GenerateKey</span>(elliptic.<span style="color: #87cefa;">P256</span>(),rand.Reader)
 
-<span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span>{
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">todo</span>
+<span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span>{
+        <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">todo</span>
 }
 
-<span style="color: #D8DEE9;">public</span> := private.PublicKey
+<span style="color: #eedd82;">public</span> := private.PublicKey
 </pre>
 </div></li>
 <li><p>
 eth 把key 转换为 []byte
 </p>
 <div class="org-src-container">
-<pre class="src src-go">eth.<span style="color: #8FBCBB;">FromECDSAPub</span>(&amp;public)
-eth.<span style="color: #8FBCBB;">FromECDSA</span>(private)
+<pre class="src src-go">eth.<span style="color: #87cefa;">FromECDSAPub</span>(&amp;public)
+eth.<span style="color: #87cefa;">FromECDSA</span>(private)
 
-<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">FromECDSAPub</span>(<span style="color: #D8DEE9;">pub</span> *<span style="color: #8FBCBB;">ecdsa.PublicKey</span>) []<span style="color: #8FBCBB;">byte</span> {
-     <span style="color: #81A1C1;">if</span> pub == <span style="color: #81A1C1;">nil</span> || pub.X == <span style="color: #81A1C1;">nil</span> || pub.Y == <span style="color: #81A1C1;">nil</span> {
-             <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">nil</span>
+<span style="color: #00ffff;">func</span> <span style="color: #87cefa;">FromECDSAPub</span>(<span style="color: #eedd82;">pub</span> *<span style="color: #98fb98;">ecdsa.PublicKey</span>) []<span style="color: #98fb98;">byte</span> {
+     <span style="color: #00ffff;">if</span> pub == <span style="color: #7fffd4;">nil</span> || pub.X == <span style="color: #7fffd4;">nil</span> || pub.Y == <span style="color: #7fffd4;">nil</span> {
+             <span style="color: #00ffff;">return</span> <span style="color: #7fffd4;">nil</span>
      }
-     <span style="color: #81A1C1;">return</span> elliptic.<span style="color: #8FBCBB;">Marshal</span>(<span style="color: #8FBCBB;">S256</span>(), pub.X, pub.Y)
+     <span style="color: #00ffff;">return</span> elliptic.<span style="color: #87cefa;">Marshal</span>(<span style="color: #87cefa;">S256</span>(), pub.X, pub.Y)
 }
 </pre>
 </div></li>
@@ -434,25 +433,25 @@ eth.<span style="color: #8FBCBB;">FromECDSA</span>(private)
 验证
 </p>
 <div class="org-src-container">
-<pre class="src src-go">    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#20351;&#29992;ECC&#31639;&#27861;,&#23545;&#23494;&#25991;&#21644;&#26126;&#25991;&#36827;&#34892;&#21305;&#37197;&#26657;&#39564;</span>
-<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">VerifyCryptEcc</span>(<span style="color: #D8DEE9;">srcStr</span>, <span style="color: #D8DEE9;">cryptStr</span> <span style="color: #8FBCBB;">string</span>) (<span style="color: #8FBCBB;">bool</span>, <span style="color: #8FBCBB;">error</span>) {
+<pre class="src src-go">    <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">&#20351;&#29992;ECC&#31639;&#27861;,&#23545;&#23494;&#25991;&#21644;&#26126;&#25991;&#36827;&#34892;&#21305;&#37197;&#26657;&#39564;</span>
+<span style="color: #00ffff;">func</span> <span style="color: #87cefa;">VerifyCryptEcc</span>(<span style="color: #eedd82;">srcStr</span>, <span style="color: #eedd82;">cryptStr</span> <span style="color: #98fb98;">string</span>) (<span style="color: #98fb98;">bool</span>, <span style="color: #98fb98;">error</span>) {
 
-        <span style="color: #D8DEE9;">decodeBytes</span>, <span style="color: #D8DEE9;">err</span> := hex.<span style="color: #8FBCBB;">DecodeString</span>(cryptStr)
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">false</span>, err
+        <span style="color: #eedd82;">decodeBytes</span>, <span style="color: #eedd82;">err</span> := hex.<span style="color: #87cefa;">DecodeString</span>(cryptStr)
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                <span style="color: #00ffff;">return</span> <span style="color: #7fffd4;">false</span>, err
         }
 
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#35299;&#23494;&#31614;&#21517;&#20449;&#24687;&#65292;&#36820;&#22238;&#26925;&#22278;&#26354;&#32447;&#21442;&#25968;&#65306;&#20004;&#20010;&#22823;&#25972;&#25968;</span>
-        <span style="color: #D8DEE9;">rint</span>, <span style="color: #D8DEE9;">sint</span>, <span style="color: #D8DEE9;">err</span> := <span style="color: #8FBCBB;">UnSignCryptEcc</span>(decodeBytes)
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                log.<span style="color: #8FBCBB;">Println</span>(<span style="color: #A3BE8C;">"err"</span>, err)
+        <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">&#35299;&#23494;&#31614;&#21517;&#20449;&#24687;&#65292;&#36820;&#22238;&#26925;&#22278;&#26354;&#32447;&#21442;&#25968;&#65306;&#20004;&#20010;&#22823;&#25972;&#25968;</span>
+        <span style="color: #eedd82;">rint</span>, <span style="color: #eedd82;">sint</span>, <span style="color: #eedd82;">err</span> := <span style="color: #87cefa;">UnSignCryptEcc</span>(decodeBytes)
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                log.<span style="color: #87cefa;">Println</span>(<span style="color: #ffa07a;">"err"</span>, err)
         }
-        <span style="color: #D8DEE9;">publicKey</span> := <span style="color: #8FBCBB;">Decode58</span>([]<span style="color: #8FBCBB;">byte</span>(<span style="color: #A3BE8C;">""</span>))
-        <span style="color: #D8DEE9;">pubket</span>, <span style="color: #D8DEE9;">err</span> := eth.<span style="color: #8FBCBB;">HexToECDSA</span>(<span style="color: #8FBCBB;">string</span>(publicKey))
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#20351;&#29992;&#20844;&#38053;&#12289;&#21407;&#25991;&#12289;&#20197;&#21450;&#31614;&#21517;&#20449;&#24687;&#35299;&#23494;&#21518;&#30340;&#20004;&#20010;&#26925;&#22278;&#26354;&#32447;&#30340;&#22823;&#25972;&#25968;&#21442;&#25968;&#36827;&#34892;&#26657;&#39564;</span>
-        <span style="color: #D8DEE9;">verify</span> := ecdsa.<span style="color: #8FBCBB;">Verify</span>(&amp;pubket.PublicKey, []<span style="color: #8FBCBB;">byte</span>(srcStr), &amp;rint, &amp;sint)
+        <span style="color: #eedd82;">publicKey</span> := <span style="color: #87cefa;">Decode58</span>([]<span style="color: #87cefa;">byte</span>(<span style="color: #ffa07a;">""</span>))
+        <span style="color: #eedd82;">pubket</span>, <span style="color: #eedd82;">err</span> := eth.<span style="color: #87cefa;">HexToECDSA</span>(<span style="color: #87cefa;">string</span>(publicKey))
+        <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">&#20351;&#29992;&#20844;&#38053;&#12289;&#21407;&#25991;&#12289;&#20197;&#21450;&#31614;&#21517;&#20449;&#24687;&#35299;&#23494;&#21518;&#30340;&#20004;&#20010;&#26925;&#22278;&#26354;&#32447;&#30340;&#22823;&#25972;&#25968;&#21442;&#25968;&#36827;&#34892;&#26657;&#39564;</span>
+        <span style="color: #eedd82;">verify</span> := ecdsa.<span style="color: #87cefa;">Verify</span>(&amp;pubket.PublicKey, []<span style="color: #87cefa;">byte</span>(srcStr), &amp;rint, &amp;sint)
 
-        <span style="color: #81A1C1;">return</span> verify, <span style="color: #81A1C1;">nil</span>
+        <span style="color: #00ffff;">return</span> verify, <span style="color: #7fffd4;">nil</span>
 }
 </pre>
 </div></li>
@@ -460,38 +459,38 @@ eth.<span style="color: #8FBCBB;">FromECDSA</span>(private)
 
 
 <div class="org-src-container">
-<pre class="src src-go">  <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#20351;&#29992;ECC&#31639;&#27861;&#35299;&#23494;,&#36820;&#22238;&#21152;&#23494;&#21069;&#30340;&#26925;&#22278;&#26354;&#32447;&#22823;&#25972;&#25968;</span>
-<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">UnSignCryptEcc</span>(<span style="color: #D8DEE9;">cryptBytes</span> []<span style="color: #8FBCBB;">byte</span>) (<span style="color: #D8DEE9;">rint</span>, <span style="color: #D8DEE9;">sint</span> <span style="color: #8FBCBB;">big.Int</span>, <span style="color: #D8DEE9;">err</span> <span style="color: #8FBCBB;">error</span>) {
-        <span style="color: #D8DEE9;">reader</span>, <span style="color: #D8DEE9;">err</span> := gzip.<span style="color: #8FBCBB;">NewReader</span>(bytes.<span style="color: #8FBCBB;">NewBuffer</span>(cryptBytes))
+<pre class="src src-go">  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">&#20351;&#29992;ECC&#31639;&#27861;&#35299;&#23494;,&#36820;&#22238;&#21152;&#23494;&#21069;&#30340;&#26925;&#22278;&#26354;&#32447;&#22823;&#25972;&#25968;</span>
+<span style="color: #00ffff;">func</span> <span style="color: #87cefa;">UnSignCryptEcc</span>(<span style="color: #eedd82;">cryptBytes</span> []<span style="color: #98fb98;">byte</span>) (<span style="color: #eedd82;">rint</span>, <span style="color: #eedd82;">sint</span> <span style="color: #98fb98;">big.Int</span>, <span style="color: #eedd82;">err</span> <span style="color: #98fb98;">error</span>) {
+        <span style="color: #eedd82;">reader</span>, <span style="color: #eedd82;">err</span> := gzip.<span style="color: #87cefa;">NewReader</span>(bytes.<span style="color: #87cefa;">NewBuffer</span>(cryptBytes))
 
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                err = errors.<span style="color: #8FBCBB;">New</span>(<span style="color: #A3BE8C;">"decode error,"</span> + err.<span style="color: #8FBCBB;">Error</span>())
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                err = errors.<span style="color: #87cefa;">New</span>(<span style="color: #ffa07a;">"decode error,"</span> + err.<span style="color: #87cefa;">Error</span>())
         }
-        <span style="color: #81A1C1;">defer</span> reader.<span style="color: #8FBCBB;">Close</span>()
+        <span style="color: #00ffff;">defer</span> reader.<span style="color: #87cefa;">Close</span>()
 
-        <span style="color: #D8DEE9;">buf</span> := <span style="color: #81A1C1;">make</span>([]<span style="color: #8FBCBB;">byte</span>, 1024)
-        <span style="color: #D8DEE9;">count</span>, <span style="color: #D8DEE9;">err</span> := reader.<span style="color: #8FBCBB;">Read</span>(buf)
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                err = errors.<span style="color: #8FBCBB;">New</span>(<span style="color: #A3BE8C;">"decode read error,"</span> + err.<span style="color: #8FBCBB;">Error</span>())
-        }
-
-        <span style="color: #D8DEE9;">rs</span> := strings.<span style="color: #8FBCBB;">Split</span>(<span style="color: #8FBCBB;">string</span>(buf[:count]), <span style="color: #A3BE8C;">"+"</span>)
-        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(rs) != 2 {
-                err = errors.<span style="color: #8FBCBB;">New</span>(<span style="color: #A3BE8C;">"decode fail"</span>)
-                <span style="color: #81A1C1;">return</span>
-        }
-        err = rint.<span style="color: #8FBCBB;">UnmarshalText</span>([]<span style="color: #8FBCBB;">byte</span>(rs[0]))
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                err = errors.<span style="color: #8FBCBB;">New</span>(<span style="color: #A3BE8C;">"decrypt rint fail, "</span> + err.<span style="color: #8FBCBB;">Error</span>())
-                <span style="color: #81A1C1;">return</span>
-        }
-        err = sint.<span style="color: #8FBCBB;">UnmarshalText</span>([]<span style="color: #8FBCBB;">byte</span>(rs[1]))
-        <span style="color: #81A1C1;">if</span> err != <span style="color: #81A1C1;">nil</span> {
-                err = errors.<span style="color: #8FBCBB;">New</span>(<span style="color: #A3BE8C;">"decrypt sint fail, "</span> + err.<span style="color: #8FBCBB;">Error</span>())
-                <span style="color: #81A1C1;">return</span>
+        <span style="color: #eedd82;">buf</span> := <span style="color: #b0c4de;">make</span>([]<span style="color: #98fb98;">byte</span>, 1024)
+        <span style="color: #eedd82;">count</span>, <span style="color: #eedd82;">err</span> := reader.<span style="color: #87cefa;">Read</span>(buf)
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                err = errors.<span style="color: #87cefa;">New</span>(<span style="color: #ffa07a;">"decode read error,"</span> + err.<span style="color: #87cefa;">Error</span>())
         }
 
-        <span style="color: #81A1C1;">return</span>
+        <span style="color: #eedd82;">rs</span> := strings.<span style="color: #87cefa;">Split</span>(<span style="color: #87cefa;">string</span>(buf[:count]), <span style="color: #ffa07a;">"+"</span>)
+        <span style="color: #00ffff;">if</span> <span style="color: #b0c4de;">len</span>(rs) != 2 {
+                err = errors.<span style="color: #87cefa;">New</span>(<span style="color: #ffa07a;">"decode fail"</span>)
+                <span style="color: #00ffff;">return</span>
+        }
+        err = rint.<span style="color: #87cefa;">UnmarshalText</span>([]<span style="color: #87cefa;">byte</span>(rs[0]))
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                err = errors.<span style="color: #87cefa;">New</span>(<span style="color: #ffa07a;">"decrypt rint fail, "</span> + err.<span style="color: #87cefa;">Error</span>())
+                <span style="color: #00ffff;">return</span>
+        }
+        err = sint.<span style="color: #87cefa;">UnmarshalText</span>([]<span style="color: #87cefa;">byte</span>(rs[1]))
+        <span style="color: #00ffff;">if</span> err != <span style="color: #7fffd4;">nil</span> {
+                err = errors.<span style="color: #87cefa;">New</span>(<span style="color: #ffa07a;">"decrypt sint fail, "</span> + err.<span style="color: #87cefa;">Error</span>())
+                <span style="color: #00ffff;">return</span>
+        }
+
+        <span style="color: #00ffff;">return</span>
 }
 </pre>
 </div>
@@ -499,50 +498,50 @@ eth.<span style="color: #8FBCBB;">FromECDSA</span>(private)
 
 
 <div class="org-src-container">
-<pre class="src src-go">    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">Verify verifies the signature in r, s of hash using the public key, pub. Its</span>
-<span style="color: #6f7787;">// </span><span style="color: #6f7787;">return value records whether the signature is valid.</span>
-<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">Verify</span>(<span style="color: #D8DEE9;">pub</span> *<span style="color: #8FBCBB;">PublicKey</span>, <span style="color: #D8DEE9;">hash</span> []<span style="color: #8FBCBB;">byte</span>, <span style="color: #D8DEE9;">r</span>, <span style="color: #D8DEE9;">s</span> *<span style="color: #8FBCBB;">big.Int</span>) <span style="color: #8FBCBB;">bool</span> {
-        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">See [NSA] 3.4.2</span>
-        <span style="color: #D8DEE9;">c</span> := pub.Curve
-        <span style="color: #D8DEE9;">N</span> := c.<span style="color: #8FBCBB;">Params</span>().N
+<pre class="src src-go">    <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">Verify verifies the signature in r, s of hash using the public key, pub. Its</span>
+<span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">return value records whether the signature is valid.</span>
+<span style="color: #00ffff;">func</span> <span style="color: #87cefa;">Verify</span>(<span style="color: #eedd82;">pub</span> *<span style="color: #98fb98;">PublicKey</span>, <span style="color: #eedd82;">hash</span> []<span style="color: #98fb98;">byte</span>, <span style="color: #eedd82;">r</span>, <span style="color: #eedd82;">s</span> *<span style="color: #98fb98;">big.Int</span>) <span style="color: #98fb98;">bool</span> {
+        <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">See [NSA] 3.4.2</span>
+        <span style="color: #eedd82;">c</span> := pub.Curve
+        <span style="color: #eedd82;">N</span> := c.<span style="color: #87cefa;">Params</span>().N
 
-        <span style="color: #81A1C1;">if</span> r.<span style="color: #8FBCBB;">Sign</span>() &lt;= 0 || s.<span style="color: #8FBCBB;">Sign</span>() &lt;= 0 {
-                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">false</span>
+        <span style="color: #00ffff;">if</span> r.<span style="color: #87cefa;">Sign</span>() &lt;= 0 || s.<span style="color: #87cefa;">Sign</span>() &lt;= 0 {
+                <span style="color: #00ffff;">return</span> <span style="color: #7fffd4;">false</span>
         }
-        <span style="color: #81A1C1;">if</span> r.<span style="color: #8FBCBB;">Cmp</span>(N) &gt;= 0 || s.<span style="color: #8FBCBB;">Cmp</span>(N) &gt;= 0 {
-                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">false</span>
+        <span style="color: #00ffff;">if</span> r.<span style="color: #87cefa;">Cmp</span>(N) &gt;= 0 || s.<span style="color: #87cefa;">Cmp</span>(N) &gt;= 0 {
+                <span style="color: #00ffff;">return</span> <span style="color: #7fffd4;">false</span>
         }
-        <span style="color: #D8DEE9;">e</span> := <span style="color: #8FBCBB;">hashToInt</span>(hash, c)
+        <span style="color: #eedd82;">e</span> := <span style="color: #87cefa;">hashToInt</span>(hash, c)
 
-        <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">w</span> *<span style="color: #8FBCBB;">big.Int</span>
-        <span style="color: #81A1C1;">if</span> <span style="color: #D8DEE9;">in</span>, <span style="color: #D8DEE9;">ok</span> := c.(<span style="color: #8FBCBB;">invertible</span>); ok {
-                w = in.<span style="color: #8FBCBB;">Inverse</span>(s)
-        } <span style="color: #81A1C1;">else</span> {
-                w = <span style="color: #81A1C1;">new</span>(<span style="color: #8FBCBB;">big.Int</span>).<span style="color: #8FBCBB;">ModInverse</span>(s, N)
-        }
-
-        <span style="color: #D8DEE9;">u1</span> := e.<span style="color: #8FBCBB;">Mul</span>(e, w)
-        u1.<span style="color: #8FBCBB;">Mod</span>(u1, N)
-        <span style="color: #D8DEE9;">u2</span> := w.<span style="color: #8FBCBB;">Mul</span>(r, w)
-        u2.<span style="color: #8FBCBB;">Mod</span>(u2, N)
-
-        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">Check if implements S1*g + S2*p</span>
-        <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">x</span>, <span style="color: #D8DEE9;">y</span> *<span style="color: #8FBCBB;">big.Int</span>
-        <span style="color: #81A1C1;">if</span> <span style="color: #D8DEE9;">opt</span>, <span style="color: #D8DEE9;">ok</span> := c.(<span style="color: #8FBCBB;">combinedMult</span>); ok {
-                x, y = opt.<span style="color: #8FBCBB;">CombinedMult</span>(pub.X, pub.Y, u1.<span style="color: #8FBCBB;">Bytes</span>(), u2.<span style="color: #8FBCBB;">Bytes</span>())
-        } <span style="color: #81A1C1;">else</span> {
-                <span style="color: #D8DEE9;">x1</span>, <span style="color: #D8DEE9;">y1</span> := c.<span style="color: #8FBCBB;">ScalarBaseMult</span>(u1.<span style="color: #8FBCBB;">Bytes</span>())
-                <span style="color: #D8DEE9;">x2</span>, <span style="color: #D8DEE9;">y2</span> := c.<span style="color: #8FBCBB;">ScalarMult</span>(pub.X, pub.Y, u2.<span style="color: #8FBCBB;">Bytes</span>())
-                x, y = c.<span style="color: #8FBCBB;">Add</span>(x1, y1, x2, y2)
+        <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">w</span> *<span style="color: #98fb98;">big.Int</span>
+        <span style="color: #00ffff;">if</span> <span style="color: #eedd82;">in</span>, <span style="color: #eedd82;">ok</span> := c.(<span style="color: #98fb98;">invertible</span>); ok {
+                w = in.<span style="color: #87cefa;">Inverse</span>(s)
+        } <span style="color: #00ffff;">else</span> {
+                w = <span style="color: #b0c4de;">new</span>(<span style="color: #98fb98;">big.Int</span>).<span style="color: #87cefa;">ModInverse</span>(s, N)
         }
 
-        <span style="color: #81A1C1;">if</span> x.<span style="color: #8FBCBB;">Sign</span>() == 0 &amp;&amp; y.<span style="color: #8FBCBB;">Sign</span>() == 0 {
-                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">false</span>
+        <span style="color: #eedd82;">u1</span> := e.<span style="color: #87cefa;">Mul</span>(e, w)
+        u1.<span style="color: #87cefa;">Mod</span>(u1, N)
+        <span style="color: #eedd82;">u2</span> := w.<span style="color: #87cefa;">Mul</span>(r, w)
+        u2.<span style="color: #87cefa;">Mod</span>(u2, N)
+
+        <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">Check if implements S1*g + S2*p</span>
+        <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">x</span>, <span style="color: #eedd82;">y</span> *<span style="color: #98fb98;">big.Int</span>
+        <span style="color: #00ffff;">if</span> <span style="color: #eedd82;">opt</span>, <span style="color: #eedd82;">ok</span> := c.(<span style="color: #98fb98;">combinedMult</span>); ok {
+                x, y = opt.<span style="color: #87cefa;">CombinedMult</span>(pub.X, pub.Y, u1.<span style="color: #87cefa;">Bytes</span>(), u2.<span style="color: #87cefa;">Bytes</span>())
+        } <span style="color: #00ffff;">else</span> {
+                <span style="color: #eedd82;">x1</span>, <span style="color: #eedd82;">y1</span> := c.<span style="color: #87cefa;">ScalarBaseMult</span>(u1.<span style="color: #87cefa;">Bytes</span>())
+                <span style="color: #eedd82;">x2</span>, <span style="color: #eedd82;">y2</span> := c.<span style="color: #87cefa;">ScalarMult</span>(pub.X, pub.Y, u2.<span style="color: #87cefa;">Bytes</span>())
+                x, y = c.<span style="color: #87cefa;">Add</span>(x1, y1, x2, y2)
         }
-        x.<span style="color: #8FBCBB;">Mod</span>(x, N)
-        <span style="color: #81A1C1;">return</span> x.<span style="color: #8FBCBB;">Cmp</span>(r) == 0
+
+        <span style="color: #00ffff;">if</span> x.<span style="color: #87cefa;">Sign</span>() == 0 &amp;&amp; y.<span style="color: #87cefa;">Sign</span>() == 0 {
+                <span style="color: #00ffff;">return</span> <span style="color: #7fffd4;">false</span>
+        }
+        x.<span style="color: #87cefa;">Mod</span>(x, N)
+        <span style="color: #00ffff;">return</span> x.<span style="color: #87cefa;">Cmp</span>(r) == 0
 }
-   &#36825;&#37324;&#25105;&#20204;&#30340;key <span style="color: #8FBCBB;">&#20351;&#29992;</span> hex <span style="color: #8FBCBB;">&#25226;&#35777;&#20070;&#20998;&#35299;</span> &#25104; <span style="color: #8FBCBB;">r</span>  s ..&#28982;&#21518;&#21435;Verify
+   &#36825;&#37324;&#25105;&#20204;&#30340;key <span style="color: #98fb98;">&#20351;&#29992;</span> hex <span style="color: #98fb98;">&#25226;&#35777;&#20070;&#20998;&#35299;</span> &#25104; <span style="color: #98fb98;">r</span>  s ..&#28982;&#21518;&#21435;Verify
 </pre>
 </div>
 </div>
@@ -552,7 +551,7 @@ eth.<span style="color: #8FBCBB;">FromECDSA</span>(private)
 <div id="postamble" class="status">
 <p class="date">Date: 2020-12-02</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-12-04 五 21:13</p>
+<p class="date">Created: 2020-12-06 日 03:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
