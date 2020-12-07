@@ -1,0 +1,209 @@
+#+TITLE:     shell-node
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-12-07
+#+LANGUAGE:  en
+
+* shell
+  - +1
+  #+begin_src shell
+  a=0
+  echo $a
+  ((a++))
+  echo $a
+  #+RESULTS:
+  | 0 |
+  | 1 |
+  #+end_src
+
+
+  - let
+  #+begin_src shell
+  let a++
+  echo $a
+  let a=1+1 b=1+2
+  echo $a $b
+  let "t1=((a=1+3,b=1+4,c=1+2))"
+  echo "t1 = $t1"
+  #let后跟表达式, a默认是0
+  #可以一次定义多个
+  |  1 |   |   |
+  |  2 | 3 |   |
+  | t1 | = | 3 |
+  #+end_src
+  - expr
+  #+begin_src shell
+  a=1
+  a=$(expr $a + 1)
+  echo $a
+  # EXPR $a + 1 中间要有空格
+  # *要转义 \*
+  #+RESULTS:
+  : 2
+  #+end_src
+
+  - 进制转换
+  #+begin_src shell
+  #!/bin/bash
+  echo 'obase=2; ibase=10;   10' | bc -l
+  #输出 输出格式    输入格式  转换数字  使用方式
+  #+RESULTS:
+  : 1010
+  #+end_src
+
+  - 浮点数运算
+  #+begin_src shell
+  #let a=1.2+1.2  错误 不行
+  #a=10.1
+  #b=10.2
+  #echo $((a+b)) # 不支持
+  #bc
+  a=10.1
+  b=10.2
+  echo $a+$b|bc
+  echo 'scale=3;1/4'+1 |bc
+  #scale 精度
+  #+RESULTS:
+  | 20.3 |
+  | 1.25 |
+  #+end_src
+
+  - 三元运算符
+  #+begin_src shell
+  a=100
+  ((b = a > 100 ? 200 : 50))
+  echo $b
+  #+RESULTS:
+  : 50
+  #+end_src
+
+  - if
+  #+begin_src shell
+  a=20
+  if (($a > 10));then
+    echo "..."
+  fi
+  #+RESULTS:
+  : ...
+  #+end_src
+
+  #+begin_src shell
+  name="rzry"
+
+  if [[ "$1"=="" ]];then
+     name="$1"
+  elif [["$1"=="rzry"]];then
+     name="rzry_test"
+  else
+     name="else"
+  fi
+  echo $name
+
+  #+end_src
+  - until
+  #+begin_src shell
+  a=8
+  until ((a>=10));do
+      echo $((a++))
+  done
+  #条件为真时break
+  #+RESULTS:
+  | 8 |
+  | 9 |
+  #+end_src
+
+  - for
+  #+begin_src shell
+
+  for ((i=0;i<2;i++));do
+      echo "index : $i"
+  done
+
+  for i in {1..10..3};do
+      echo "Test2 : $i"
+  done
+
+  for i in `seq 1 2 5`; do
+      echo "Test3 : $i"
+  done
+  #+RESULTS:
+  | index | : |  0 |
+  | index | : |  1 |
+  | Test2 | : |  1 |
+  | Test2 | : |  4 |
+  | Test2 | : |  7 |
+  | Test2 | : | 10 |
+  | Test3 | : |  1 |
+  | Test3 | : |  3 |
+  | Test3 | : |  5 |
+  #+end_src
+
+  - while
+  #+begin_src shell
+  a=0
+  while [ $a -lt 2 ]; do
+      echo $a
+      ((a++))
+  done
+  #lt 小于
+  #+end_src
+
+  #+RESULTS:
+  | 0 |
+  | 1 |
+
+  #+begin_src shell
+  a=11
+  while [ $a -gt 10 ]; do
+      echo $((a--))
+  done
+  #+end_src
+
+  #+RESULTS:
+  : 11
+  #+begin_src
+  -eq           //等于
+  -ne           //不等于
+  -gt            //大于
+  -lt            //小于
+  -ge            //大于等于
+  -le            //小于等于
+  #+end_src
+
+  #+begin_src shell
+  cat ./1.txt | while read res hello; do # 利用 read 会读取 '\n' 特性，来一次读取一行
+    #echo $line 打印每一行
+     printf "%1s\n" $res $hello
+  done
+
+  #read 从标准输出得到结果,赋值给 多个变量
+  name=htop.txt
+  echo q| htop | aha --black --line-fix > $name
+  cat $name | while read pid user ; do
+      printf "%s %s \n" $pid $user
+  done
+  #+end_src
+  #+begin_src shell
+  while read  des what mask iface; do
+      #echo $des $what $mask $iface
+      printf "%s %s\n" $des $mask
+  done < <(route -n)
+  #+end_src
+
+  - switch
+  #+begin_src shell
+  case $1 in
+    a)       # 接受 a
+        echo "a"
+        ;;
+    b|c)     # 接受 b 或 c
+        echo "b or c"
+        ;;
+    ?)       # 接受任意一个字符
+        echo "chat default case"
+        ;;
+    *)       # 接受任意的字符或字符串
+        echo "default case"
+        ;;
+  esac
+  #+end_src

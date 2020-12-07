@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-12-07 一 20:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>shell-node</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry https://github.com/rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">shell-node</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3680d2a">1. shell</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3680d2a" class="outline-2">
+<h2 id="org3680d2a"><span class="section-number-2">1</span> shell</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>+1</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=0
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span>
+((a++))
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+| 0 |
+| 1 |
+</pre>
+</div>
+
+
+<ul class="org-ul">
+<li>let</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #81A1C1;">let</span> a++
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span>
+<span style="color: #81A1C1;">let</span> <span style="color: #D8DEE9;">a</span>=1+1 <span style="color: #D8DEE9;">b</span>=1+2
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span> $<span style="color: #D8DEE9;">b</span>
+<span style="color: #81A1C1;">let</span> <span style="color: #A3BE8C;">"t1=((a=1+3,b=1+4,c=1+2))"</span>
+<span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"t1 = $t1"</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">let&#21518;&#36319;&#34920;&#36798;&#24335;, a&#40664;&#35748;&#26159;0</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#21487;&#20197;&#19968;&#27425;&#23450;&#20041;&#22810;&#20010;</span>
+|  1 |   |   |
+|  2 | 3 |   |
+| t1 | = | 3 |
+</pre>
+</div>
+<ul class="org-ul">
+<li>expr</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=1
+<span style="color: #D8DEE9;">a</span>=$(expr $<span style="color: #D8DEE9;">a</span> + 1)
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span>
+<span style="color: #6f7787;"># </span><span style="color: #6f7787;">EXPR $a + 1 &#20013;&#38388;&#35201;&#26377;&#31354;&#26684;</span>
+<span style="color: #6f7787;"># </span><span style="color: #6f7787;">*&#35201;&#36716;&#20041; \*</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+: 2
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>进制转换</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #6f7787;">#</span><span style="color: #6f7787;">!/bin/</span><span style="color: #81A1C1;">bash</span>
+<span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">'obase=2; ibase=10;   10'</span> | bc -l
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#36755;&#20986; &#36755;&#20986;&#26684;&#24335;    &#36755;&#20837;&#26684;&#24335;  &#36716;&#25442;&#25968;&#23383;  &#20351;&#29992;&#26041;&#24335;</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+: 1010
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>浮点数运算</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #6f7787;">#</span><span style="color: #6f7787;">let a=1.2+1.2  &#38169;&#35823; &#19981;&#34892;</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">a=10.1</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">b=10.2</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">echo $((a+b)) # &#19981;&#25903;&#25345;</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">bc</span>
+<span style="color: #D8DEE9;">a</span>=10.1
+<span style="color: #D8DEE9;">b</span>=10.2
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span>+$<span style="color: #D8DEE9;">b</span>|bc
+<span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">'scale=3;1/4'</span>+1 |bc
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">scale &#31934;&#24230;</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+| 20.3 |
+| 1.25 |
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>三元运算符</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=100
+((<span style="color: #D8DEE9;">b</span> = a &gt; 100 ? 200 : 50))
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">b</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+: 50
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>if</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=20
+<span style="color: #81A1C1;">if</span> (($<span style="color: #D8DEE9;">a</span> &gt; 10));<span style="color: #81A1C1;">then</span>
+  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"..."</span>
+<span style="color: #81A1C1;">fi</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+: ...
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">name</span>=<span style="color: #A3BE8C;">"rzry"</span>
+
+<span style="color: #81A1C1;">if</span> [[ <span style="color: #A3BE8C;">"$1"</span>==<span style="color: #A3BE8C;">""</span> ]];<span style="color: #81A1C1;">then</span>
+   <span style="color: #D8DEE9;">name</span>=<span style="color: #A3BE8C;">"$1"</span>
+<span style="color: #81A1C1;">elif</span> [[<span style="color: #A3BE8C;">"$1"</span>==<span style="color: #A3BE8C;">"rzry"</span>]];<span style="color: #81A1C1;">then</span>
+   <span style="color: #D8DEE9;">name</span>=<span style="color: #A3BE8C;">"rzry_test"</span>
+<span style="color: #81A1C1;">else</span>
+   <span style="color: #D8DEE9;">name</span>=<span style="color: #A3BE8C;">"else"</span>
+<span style="color: #81A1C1;">fi</span>
+<span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">name</span>
+
+</pre>
+</div>
+<ul class="org-ul">
+<li>until</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=8
+<span style="color: #81A1C1;">until</span> ((a&gt;=10));<span style="color: #81A1C1;">do</span>
+    <span style="color: #81A1C1;">echo</span> $((a++))
+<span style="color: #81A1C1;">done</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#26465;&#20214;&#20026;&#30495;&#26102;break</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+| 8 |
+| 9 |
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>for</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell">
+<span style="color: #81A1C1;">for</span> ((<span style="color: #D8DEE9;">i</span>=0;i&lt;2;i++));<span style="color: #81A1C1;">do</span>
+    <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"index : $i"</span>
+<span style="color: #81A1C1;">done</span>
+
+<span style="color: #81A1C1;">for</span> i<span style="color: #81A1C1;"> in</span> {1..10..3};<span style="color: #81A1C1;">do</span>
+    <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Test2 : $i"</span>
+<span style="color: #81A1C1;">done</span>
+
+<span style="color: #81A1C1;">for</span> i<span style="color: #81A1C1;"> in</span> <span style="color: #81A1C1; font-weight: bold;">`seq 1 2 5`</span>; <span style="color: #81A1C1;">do</span>
+    <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Test3 : $i"</span>
+<span style="color: #81A1C1;">done</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">+RESULTS:</span>
+| index | : |  0 |
+| index | : |  1 |
+| Test2 | : |  1 |
+| Test2 | : |  4 |
+| Test2 | : |  7 |
+| Test2 | : | 10 |
+| Test3 | : |  1 |
+| Test3 | : |  3 |
+| Test3 | : |  5 |
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>while</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=0
+<span style="color: #81A1C1;">while</span> [ $<span style="color: #D8DEE9;">a</span> -lt 2 ]; <span style="color: #81A1C1;">do</span>
+    <span style="color: #81A1C1;">echo</span> $<span style="color: #D8DEE9;">a</span>
+    ((a++))
+<span style="color: #81A1C1;">done</span>
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">lt &#23567;&#20110;</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #D8DEE9;">a</span>=11
+<span style="color: #81A1C1;">while</span> [ $<span style="color: #D8DEE9;">a</span> -gt 10 ]; <span style="color: #81A1C1;">do</span>
+    <span style="color: #81A1C1;">echo</span> $((a--))
+<span style="color: #81A1C1;">done</span>
+</pre>
+</div>
+<pre class="example">
+-eq           //等于
+-ne           //不等于
+-gt            //大于
+-lt            //小于
+-ge            //大于等于
+-le            //小于等于
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-shell">cat ./1.txt | <span style="color: #81A1C1;">while </span><span style="color: #81A1C1;">read</span> res hello; <span style="color: #81A1C1;">do</span> <span style="color: #6f7787;"># </span><span style="color: #6f7787;">&#21033;&#29992; read &#20250;&#35835;&#21462; '\n' &#29305;&#24615;&#65292;&#26469;&#19968;&#27425;&#35835;&#21462;&#19968;&#34892;</span>
+  <span style="color: #6f7787;">#</span><span style="color: #6f7787;">echo $line &#25171;&#21360;&#27599;&#19968;&#34892;</span>
+   printf <span style="color: #A3BE8C;">"%1s\n"</span> $<span style="color: #D8DEE9;">res</span> $<span style="color: #D8DEE9;">hello</span>
+<span style="color: #81A1C1;">done</span>
+
+<span style="color: #6f7787;">#</span><span style="color: #6f7787;">read &#20174;&#26631;&#20934;&#36755;&#20986;&#24471;&#21040;&#32467;&#26524;,&#36171;&#20540;&#32473; &#22810;&#20010;&#21464;&#37327;</span>
+<span style="color: #D8DEE9;">name</span>=htop.txt
+<span style="color: #81A1C1;">echo</span> q| htop | aha --black --line-fix &gt; $<span style="color: #D8DEE9;">name</span>
+cat $<span style="color: #D8DEE9;">name</span> | <span style="color: #81A1C1;">while </span><span style="color: #81A1C1;">read</span> pid user ; <span style="color: #81A1C1;">do</span>
+    printf <span style="color: #A3BE8C;">"%s %s \n"</span> $<span style="color: #D8DEE9;">pid</span> $<span style="color: #D8DEE9;">user</span>
+<span style="color: #81A1C1;">done</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #81A1C1;">while </span><span style="color: #81A1C1;">read</span>  des what mask iface; <span style="color: #81A1C1;">do</span>
+    <span style="color: #6f7787;">#</span><span style="color: #6f7787;">echo $des $what $mask $iface</span>
+    printf <span style="color: #A3BE8C;">"%s %s\n"</span> $<span style="color: #D8DEE9;">des</span> $<span style="color: #D8DEE9;">mask</span>
+<span style="color: #81A1C1;">done</span> &lt; &lt;(route -n)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>switch</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #81A1C1;">case</span> $<span style="color: #D8DEE9;">1</span><span style="color: #81A1C1;"> in</span>
+  a)       <span style="color: #6f7787;"># </span><span style="color: #6f7787;">&#25509;&#21463; a</span>
+      <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"a"</span>
+      ;;
+  b|c)     <span style="color: #6f7787;"># </span><span style="color: #6f7787;">&#25509;&#21463; b &#25110; c</span>
+      <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"b or c"</span>
+      ;;
+  ?)       <span style="color: #6f7787;"># </span><span style="color: #6f7787;">&#25509;&#21463;&#20219;&#24847;&#19968;&#20010;&#23383;&#31526;</span>
+      <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"chat default case"</span>
+      ;;
+  *)       <span style="color: #6f7787;"># </span><span style="color: #6f7787;">&#25509;&#21463;&#20219;&#24847;&#30340;&#23383;&#31526;&#25110;&#23383;&#31526;&#20018;</span>
+      <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"default case"</span>
+      ;;
+<span style="color: #81A1C1;">esac</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-12-07</p>
+<p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
+<p class="date">Created: 2020-12-07 一 20:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
