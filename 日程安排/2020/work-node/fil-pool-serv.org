@@ -1,0 +1,53 @@
+#+TITLE:     fil-pool-server
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-12-11
+#+LANGUAGE:  en
+
+* Development record
+  - 首页数据
+    - 24hour矿工总算力
+      #+begin_src
+      func GetTotalPower
+      sql  total_power
+      quality_adj_power raw_byte_power 做了进制转换.
+      现在是到E
+
+      api "http://118.193.33.197:1234/rpc/v0"
+      #+end_src
+
+    - 24hour miner总算力
+      #+begin_src
+      func GetMinerPowerTotal
+      sql  coinstar_db.state_miner_power;
+      api "http://118.193.33.197:1234/rpc/v0"
+      #+end_src
+
+    - 平均爆块奖励
+      #+begin_src
+      func GetBlockReward
+      sql  coinstar_db.last_block_reward;
+      api "filscan/rpc/v0"
+      #+end_src
+
+    - 修复折线图时间,数值 显示
+      #+begin_src
+      拿真实数据,解决曲线波动较小(格式转换)
+      梳理首页数据模块,以正常显示
+      #+end_src
+
+    - 旧数据展示
+      #+begin_src
+      rename table  user_income_write --> user_income_write_back
+      #+end_src
+
+    - 修改income_role
+      #+begin_src
+      所有kjxq create type ==> 0
+      other ==> 1
+      #+end_src
+
+
+* plan for next week
+   - 对接需求, 完成gas fee,limit,precommit,procommit Obtain 60%
+   - Read DBS code

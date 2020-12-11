@@ -1,0 +1,6 @@
+#+TITLE:     linux-study-node
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2020-12-11
+#+LANGUAGE:  en
+
