@@ -3,4 +3,121 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-12-11
 #+LANGUAGE:  en
+* DONE 第三章
+  CLOSED: [2020-09-24 四 19:46]
+** shell
+ - /etc/passwd文件包含了所有系统用户账户列表以及每个用户的基本配置信息
+ - rzry:x:1000:1000:rzry,,,:/home/rzry:/bin/zsh
+-----
+-----
+* DONE 第四章
+  CLOSED: [2020-09-24 四 20:17]
+** 监测
+*** top 的输出
+   #+BEGIN_SRC
+ pid    USER   PR    NI    VIRT     RES     SHR       S     %CPU             %MEM     TIME+ COMMAND
+ 2712   root   20    0    715060   271296  133612     R      6.6              0.8     51:59.30 Xorg
+ 进程id 用户名 优先级  谦让度 虚拟内存  物理内存 共享内存总量 状态  cpu使用的时间比例  内存占用比例  时间   程序名
 
+D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵化
+
+   #+END_SRC
+-----
+-----
+*** 磁盘空间
+    #+BEGIN_SRC
+    默认情况下， mount命令会输出当前系统上挂载的设备列表
+    nsfs on /run/snapd/ns/gnome-calculator.mnt type nsfs (rw)
+    媒体的设备文件名  nsfs
+    媒体挂载到虚拟目录的挂载点 /run/....
+    文件系统类型   type
+    访问状态 rw
+     #+END_SRC
+-----
+-----
+***** 挂载
+    - mount -t vfat /dev/sdb1 /media/rzry
+    - 把一个vfat的类型的文件从/dev/sdb1 挂载到/media/rzry
+    - -o 参数 允许增加额外选项 , ro 只读形式 , rw 读写 check=none 等
+***** 卸载
+    - umount 卸载 没有n
+      #+BEGIN_SRC
+      用法：
+      umount [-hV]
+      umount -a [选项]
+      umount [选项] <源> | <目录>
+      #+END_SRC
+-----
+-----
+***** du命令 查看大文件并处理数据
+      #+BEGIN_SRC
+      du 会输出类似tree 输出
+      du -sh * | sort -nr
+      -nr r 会让文件按降序输出
+      #+END_SRC
+***** grep 搜索
+      #+BEGIN_SRC
+      -v 反向
+      -n 行号
+      -c 返回多少匹配 返回数字
+      #+END_SRC
+
+* DONE 第五章
+  CLOSED: [2020-09-27 日 11:39]
+*** shell
+    - cat /etc/passwd 查看user shell
+    - 查看默认shell为什么 也可以使用 /bin/bash *.sh
+*** 命令别名　alias
+    - alias -> l='ls -lah'
+*** type
+    - type -a vim
+      #+begin_src
+      vim is an alias for emacsclient
+      vim is /usr/bin/vim
+      type -a 显示了两种实现 which 只有外部命令文件
+      #+end_src
+*** history
+    #+begin_src
+    !! 变量 shell 中 自动读取上一次输入的命令
+    !10 第10条
+    #+end_src
+
+* DONE 变量
+  CLOSED: [2020-12-11 五 20:17]
+*** 查看变量
+    - env printenv set
+    - set 会显示全局变量, 局部变量 用户定义变量
+    - linux 没有一个只显示局部变量的命令
+*** 设置局部变量
+    #+begin_src shell
+    #一旦启动shell 就会创建一个 局部变量
+    a=1
+    echo $a
+    #定义的局部变量用的是小写,所有环境变量都使用大写
+    #涉及用户自定义变量时坚持使用小写字母
+    #+end_src
+*** 设置全局变量
+    #+begin_src shell
+    #先创建一个局部环境变量然后导出到全局
+    a=1
+    export 1
+    #全局变量只在当前 Shell 进程中有效，对其它 Shell 进程和子进程都无效
+    #export 后 可以在子进程访问 bash  echo $a
+    #+end_src
+*** 删除全局变量
+    #+begin_src shell
+    unset a
+    #子进程 unset 不会被 父进程有影响
+    #+end_src
+*** 设置Path环境变量
+    #+begin_src shell
+    #单次
+    echo $PATH
+    PATH=$PATH:/...
+    #全局
+    #zsh的配置文件
+    #/etc/profile 最好是在/etc/profile.d目录中创建一个以.sh结尾的文件
+    #+end_src
+*** 交互式shell 和非交互式shell  (过了)
+* TODO 文件权限
+***
