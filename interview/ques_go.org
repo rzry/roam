@@ -129,7 +129,7 @@
            i = append(i,1,2,3)
            t.Log(i)
 
-       // new 开辟空间
+       // znew 开辟空间
        // new 相当于 var n int return &int
        // 返回的是零值指针.
            s := *new([]int)

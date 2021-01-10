@@ -120,5 +120,27 @@ D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵�
     #/etc/profile 最好是在/etc/profile.d目录中创建一个以.sh结尾的文件
     #+end_src
 *** 交互式shell 和非交互式shell  (过了)
-* TODO 文件权限
-*** 
+* TODO 文件权限 和 用户
+*** 用户相关
+    - /user/sbin/useradd
+    - useradd --help eg : useradd -m test
+    - userdel -r test
+    - usermod 修改账户
+    - passwd chpasswd 修改密码
+    - chsh 修改 shell  chsh -s /bin/zsh rzry
+    - chfn 备注存进字段
+    - groupadd 创建新的用户组
+*** 文件权限相关
+    - ls
+      #+begin_src
+      ls -al
+      - 代表文件
+      d 代表 目录
+      1 代表链接
+      2 代表字符设备
+      drwx____ 文件标示和权限
+      #+end_src
+    - touch newfile
+      #+begin_src
+      1 . touch 默认权限是由umask 设置
+      #+end_src
