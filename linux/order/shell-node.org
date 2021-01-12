@@ -1,7 +1,7 @@
 #+TITLE:     shell-node
 #+AUTHOR:    rzry https://github.com/rzry
 #+EMAIL:     rzry36008@ccie.lol
-#+DATE:      2020-12-07
+#+DATE:      2021-01-12
 #+LANGUAGE:  en
 
 * shell

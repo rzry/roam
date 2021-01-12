@@ -17,7 +17,7 @@
 ** book
   -  *Link* : [[file:book/linux_shell.org][linux就该这么学]]
 
-  -  *Link* :
+  -  *Link* : [[file:order/shell-node.org][shell-node]]
 ** config
   -  *Link* :
 

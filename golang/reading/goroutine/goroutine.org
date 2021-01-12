@@ -1,0 +1,49 @@
+#+TITLE:     go并发之道
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-01-12
+#+LANGUAGE:  en
+
+* TODO note
+
+  - 最好不要让goroutine 异步调用
+    #+BEGIN_SRC go
+      func Server(){
+              go func(){
+                      println()
+              }()
+
+      }
+
+      func Server(){
+              println
+      }
+
+      go Server()
+    #+END_SRC
+  - 使用chan 来控制你创建的goroutine
+   #+BEGIN_SRC go
+    func init(){
+
+     }
+
+     func main(){
+             done := make(chan error,2)
+             stop := make(chan struct{},0)
+
+             go func(){
+
+             }()
+     }
+
+     func debug(){
+     }
+
+     func handler(){
+
+     }
+
+     func service(){
+
+     }
+   #+END_SRC
