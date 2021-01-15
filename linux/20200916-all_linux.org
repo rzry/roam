@@ -18,6 +18,7 @@
   -  *Link* : [[file:book/linux_shell.org][linux就该这么学]]
 
   -  *Link* : [[file:order/shell-node.org][shell-node]]
+  -  *LinK* : [[file:order/pipe.org][pipe]]
 ** config
   -  *Link* :
 

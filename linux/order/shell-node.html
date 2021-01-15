@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-13 三 00:53 -->
+<!-- 2021-01-13 三 01:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>shell-node</title>
@@ -193,6 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -247,23 +248,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbcf0d37">1. shell</a></li>
+<li><a href="#org5f5c6f4">1. shell</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgbcf0d37" class="outline-2">
-<h2 id="orgbcf0d37"><span class="section-number-2">1</span> shell</h2>
+<div id="outline-container-org5f5c6f4" class="outline-2">
+<h2 id="org5f5c6f4"><span class="section-number-2">1</span> shell</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>+1</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=0
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=0
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span>
 ((a++))
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 | 0 |
 | 1 |
 </pre>
@@ -274,14 +274,14 @@ for the JavaScript code in this tag.
 <li>let</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-68;">let</span> a++
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span>
-<span style="color: color-68;">let</span> <span style="color: color-79;">a</span>=1+1 <span style="color: color-79;">b</span>=1+2
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span> $<span style="color: color-79;">b</span>
-<span style="color: color-68;">let</span> <span style="color: color-113;">"t1=((a=1+3,b=1+4,c=1+2))"</span>
-<span style="color: color-68;">echo</span> <span style="color: color-113;">"t1 = $t1"</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">let&#21518;&#36319;&#34920;&#36798;&#24335;, a&#40664;&#35748;&#26159;0</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">&#21487;&#20197;&#19968;&#27425;&#23450;&#20041;&#22810;&#20010;</span>
+<pre class="src src-shell"><span style="color: #b0c4de;">let</span> a++
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span>
+<span style="color: #b0c4de;">let</span> <span style="color: #eedd82;">a</span>=1+1 <span style="color: #eedd82;">b</span>=1+2
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span> $<span style="color: #eedd82;">b</span>
+<span style="color: #b0c4de;">let</span> <span style="color: #ffa07a;">"t1=((a=1+3,b=1+4,c=1+2))"</span>
+<span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"t1 = $t1"</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">let&#21518;&#36319;&#34920;&#36798;&#24335;, a&#40664;&#35748;&#26159;0</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">&#21487;&#20197;&#19968;&#27425;&#23450;&#20041;&#22810;&#20010;</span>
 |  1 |   |   |
 |  2 | 3 |   |
 | t1 | = | 3 |
@@ -291,12 +291,12 @@ for the JavaScript code in this tag.
 <li>expr</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=1
-<span style="color: color-79;">a</span>=$(expr $<span style="color: color-79;">a</span> + 1)
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span>
-<span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">EXPR $a + 1 &#20013;&#38388;&#35201;&#26377;&#31354;&#26684;</span>
-<span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">*&#35201;&#36716;&#20041; \*</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=1
+<span style="color: #eedd82;">a</span>=$(expr $<span style="color: #eedd82;">a</span> + 1)
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span>
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">EXPR $a + 1 &#20013;&#38388;&#35201;&#26377;&#31354;&#26684;</span>
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">*&#35201;&#36716;&#20041; \*</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 : 2
 </pre>
 </div>
@@ -305,10 +305,10 @@ for the JavaScript code in this tag.
 <li>进制转换</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">!/bin/</span><span style="color: color-167;">bash</span>
-<span style="color: color-68;">echo</span> <span style="color: color-113;">'obase=2; ibase=10;   10'</span> | bc -l
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">&#36755;&#20986; &#36755;&#20986;&#26684;&#24335;    &#36755;&#20837;&#26684;&#24335;  &#36716;&#25442;&#25968;&#23383;  &#20351;&#29992;&#26041;&#24335;</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<pre class="src src-shell"><span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">!/bin/</span><span style="color: #00ffff;">bash</span>
+<span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">'obase=2; ibase=10;   10'</span> | bc -l
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">&#36755;&#20986; &#36755;&#20986;&#26684;&#24335;    &#36755;&#20837;&#26684;&#24335;  &#36716;&#25442;&#25968;&#23383;  &#20351;&#29992;&#26041;&#24335;</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 : 1010
 </pre>
 </div>
@@ -317,17 +317,17 @@ for the JavaScript code in this tag.
 <li>浮点数运算</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">let a=1.2+1.2  &#38169;&#35823; &#19981;&#34892;</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">a=10.1</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">b=10.2</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">echo $((a+b)) # &#19981;&#25903;&#25345;</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">bc</span>
-<span style="color: color-79;">a</span>=10.1
-<span style="color: color-79;">b</span>=10.2
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span>+$<span style="color: color-79;">b</span>|bc
-<span style="color: color-68;">echo</span> <span style="color: color-113;">'scale=3;1/4'</span>+1 |bc
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">scale &#31934;&#24230;</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<pre class="src src-shell"><span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">let a=1.2+1.2  &#38169;&#35823; &#19981;&#34892;</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">a=10.1</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">b=10.2</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">echo $((a+b)) # &#19981;&#25903;&#25345;</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">bc</span>
+<span style="color: #eedd82;">a</span>=10.1
+<span style="color: #eedd82;">b</span>=10.2
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span>+$<span style="color: #eedd82;">b</span>|bc
+<span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">'scale=3;1/4'</span>+1 |bc
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">scale &#31934;&#24230;</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 | 20.3 |
 | 1.25 |
 </pre>
@@ -337,10 +337,10 @@ for the JavaScript code in this tag.
 <li>三元运算符</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=100
-((<span style="color: color-79;">b</span> = a &gt; 100 ? 200 : 50))
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">b</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=100
+((<span style="color: #eedd82;">b</span> = a &gt; 100 ? 200 : 50))
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">b</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 : 50
 </pre>
 </div>
@@ -349,26 +349,26 @@ for the JavaScript code in this tag.
 <li>if</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=20
-<span style="color: color-167;">if</span> (($<span style="color: color-79;">a</span> &gt; 10));<span style="color: color-167;">then</span>
-  <span style="color: color-68;">echo</span> <span style="color: color-113;">"..."</span>
-<span style="color: color-167;">fi</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=20
+<span style="color: #00ffff;">if</span> (($<span style="color: #eedd82;">a</span> &gt; 10));<span style="color: #00ffff;">then</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"..."</span>
+<span style="color: #00ffff;">fi</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 : ...
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">name</span>=<span style="color: color-113;">"rzry"</span>
+<pre class="src src-shell"><span style="color: #eedd82;">name</span>=<span style="color: #ffa07a;">"rzry"</span>
 
-<span style="color: color-167;">if</span> [[ <span style="color: color-113;">"$1"</span>==<span style="color: color-113;">""</span> ]];<span style="color: color-167;">then</span>
-   <span style="color: color-79;">name</span>=<span style="color: color-113;">"$1"</span>
-<span style="color: color-167;">elif</span> [[<span style="color: color-113;">"$1"</span>==<span style="color: color-113;">"rzry"</span>]];<span style="color: color-167;">then</span>
-   <span style="color: color-79;">name</span>=<span style="color: color-113;">"rzry_test"</span>
-<span style="color: color-167;">else</span>
-   <span style="color: color-79;">name</span>=<span style="color: color-113;">"else"</span>
-<span style="color: color-167;">fi</span>
-<span style="color: color-68;">echo</span> $<span style="color: color-79;">name</span>
+<span style="color: #00ffff;">if</span> [[ <span style="color: #ffa07a;">"$1"</span>==<span style="color: #ffa07a;">""</span> ]];<span style="color: #00ffff;">then</span>
+   <span style="color: #eedd82;">name</span>=<span style="color: #ffa07a;">"$1"</span>
+<span style="color: #00ffff;">elif</span> [[<span style="color: #ffa07a;">"$1"</span>==<span style="color: #ffa07a;">"rzry"</span>]];<span style="color: #00ffff;">then</span>
+   <span style="color: #eedd82;">name</span>=<span style="color: #ffa07a;">"rzry_test"</span>
+<span style="color: #00ffff;">else</span>
+   <span style="color: #eedd82;">name</span>=<span style="color: #ffa07a;">"else"</span>
+<span style="color: #00ffff;">fi</span>
+<span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">name</span>
 
 </pre>
 </div>
@@ -376,12 +376,12 @@ for the JavaScript code in this tag.
 <li>until</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=8
-<span style="color: color-167;">until</span> ((a&gt;=10));<span style="color: color-167;">do</span>
-    <span style="color: color-68;">echo</span> $((a++))
-<span style="color: color-167;">done</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">&#26465;&#20214;&#20026;&#30495;&#26102;break</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=8
+<span style="color: #00ffff;">until</span> ((a&gt;=10));<span style="color: #00ffff;">do</span>
+    <span style="color: #b0c4de;">echo</span> $((a++))
+<span style="color: #00ffff;">done</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">&#26465;&#20214;&#20026;&#30495;&#26102;break</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 | 8 |
 | 9 |
 </pre>
@@ -392,18 +392,18 @@ for the JavaScript code in this tag.
 </ul>
 <div class="org-src-container">
 <pre class="src src-shell">
-<span style="color: color-167;">for</span> ((<span style="color: color-79;">i</span>=0;i&lt;2;i++));<span style="color: color-167;">do</span>
-    <span style="color: color-68;">echo</span> <span style="color: color-113;">"index : $i"</span>
-<span style="color: color-167;">done</span>
+<span style="color: #00ffff;">for</span> ((<span style="color: #eedd82;">i</span>=0;i&lt;2;i++));<span style="color: #00ffff;">do</span>
+    <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"index : $i"</span>
+<span style="color: #00ffff;">done</span>
 
-<span style="color: color-167;">for</span> i<span style="color: color-167;"> in</span> {1..10..3};<span style="color: color-167;">do</span>
-    <span style="color: color-68;">echo</span> <span style="color: color-113;">"Test2 : $i"</span>
-<span style="color: color-167;">done</span>
+<span style="color: #00ffff;">for</span> i<span style="color: #00ffff;"> in</span> {1..10..3};<span style="color: #00ffff;">do</span>
+    <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"Test2 : $i"</span>
+<span style="color: #00ffff;">done</span>
 
-<span style="color: color-167;">for</span> i<span style="color: color-167;"> in</span> <span style="color: color-68; font-weight: bold;">`seq 1 2 5`</span>; <span style="color: color-167;">do</span>
-    <span style="color: color-68;">echo</span> <span style="color: color-113;">"Test3 : $i"</span>
-<span style="color: color-167;">done</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">+RESULTS:</span>
+<span style="color: #00ffff;">for</span> i<span style="color: #00ffff;"> in</span> <span style="color: #fa8072;">`seq 1 2 5`</span>; <span style="color: #00ffff;">do</span>
+    <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"Test3 : $i"</span>
+<span style="color: #00ffff;">done</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">+RESULTS:</span>
 | index | : |  0 |
 | index | : |  1 |
 | Test2 | : |  1 |
@@ -420,20 +420,20 @@ for the JavaScript code in this tag.
 <li>while</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=0
-<span style="color: color-167;">while</span> [ $<span style="color: color-79;">a</span> -lt 2 ]; <span style="color: color-167;">do</span>
-    <span style="color: color-68;">echo</span> $<span style="color: color-79;">a</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=0
+<span style="color: #00ffff;">while</span> [ $<span style="color: #eedd82;">a</span> -lt 2 ]; <span style="color: #00ffff;">do</span>
+    <span style="color: #b0c4de;">echo</span> $<span style="color: #eedd82;">a</span>
     ((a++))
-<span style="color: color-167;">done</span>
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">lt &#23567;&#20110;</span>
+<span style="color: #00ffff;">done</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">lt &#23567;&#20110;</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-79;">a</span>=11
-<span style="color: color-167;">while</span> [ $<span style="color: color-79;">a</span> -gt 10 ]; <span style="color: color-167;">do</span>
-    <span style="color: color-68;">echo</span> $((a--))
-<span style="color: color-167;">done</span>
+<pre class="src src-shell"><span style="color: #eedd82;">a</span>=11
+<span style="color: #00ffff;">while</span> [ $<span style="color: #eedd82;">a</span> -gt 10 ]; <span style="color: #00ffff;">do</span>
+    <span style="color: #b0c4de;">echo</span> $((a--))
+<span style="color: #00ffff;">done</span>
 </pre>
 </div>
 <pre class="example">
@@ -446,24 +446,24 @@ for the JavaScript code in this tag.
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-shell">cat ./1.txt | <span style="color: color-167;">while </span><span style="color: color-68;">read</span> res hello; <span style="color: color-167;">do</span> <span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">&#21033;&#29992; read &#20250;&#35835;&#21462; '\n' &#29305;&#24615;&#65292;&#26469;&#19968;&#27425;&#35835;&#21462;&#19968;&#34892;</span>
-  <span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">echo $line &#25171;&#21360;&#27599;&#19968;&#34892;</span>
-   printf <span style="color: color-113;">"%1s\n"</span> $<span style="color: color-79;">res</span> $<span style="color: color-79;">hello</span>
-<span style="color: color-167;">done</span>
+<pre class="src src-shell">cat ./1.txt | <span style="color: #00ffff;">while </span><span style="color: #b0c4de;">read</span> res hello; <span style="color: #00ffff;">do</span> <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">&#21033;&#29992; read &#20250;&#35835;&#21462; '\n' &#29305;&#24615;&#65292;&#26469;&#19968;&#27425;&#35835;&#21462;&#19968;&#34892;</span>
+  <span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">echo $line &#25171;&#21360;&#27599;&#19968;&#34892;</span>
+   printf <span style="color: #ffa07a;">"%1s\n"</span> $<span style="color: #eedd82;">res</span> $<span style="color: #eedd82;">hello</span>
+<span style="color: #00ffff;">done</span>
 
-<span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">read &#20174;&#26631;&#20934;&#36755;&#20986;&#24471;&#21040;&#32467;&#26524;,&#36171;&#20540;&#32473; &#22810;&#20010;&#21464;&#37327;</span>
-<span style="color: color-79;">name</span>=htop.txt
-<span style="color: color-68;">echo</span> q| htop | aha --black --line-fix &gt; $<span style="color: color-79;">name</span>
-cat $<span style="color: color-79;">name</span> | <span style="color: color-167;">while </span><span style="color: color-68;">read</span> pid user ; <span style="color: color-167;">do</span>
-    printf <span style="color: color-113;">"%s %s \n"</span> $<span style="color: color-79;">pid</span> $<span style="color: color-79;">user</span>
-<span style="color: color-167;">done</span>
+<span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">read &#20174;&#26631;&#20934;&#36755;&#20986;&#24471;&#21040;&#32467;&#26524;,&#36171;&#20540;&#32473; &#22810;&#20010;&#21464;&#37327;</span>
+<span style="color: #eedd82;">name</span>=htop.txt
+<span style="color: #b0c4de;">echo</span> q| htop | aha --black --line-fix &gt; $<span style="color: #eedd82;">name</span>
+cat $<span style="color: #eedd82;">name</span> | <span style="color: #00ffff;">while </span><span style="color: #b0c4de;">read</span> pid user ; <span style="color: #00ffff;">do</span>
+    printf <span style="color: #ffa07a;">"%s %s \n"</span> $<span style="color: #eedd82;">pid</span> $<span style="color: #eedd82;">user</span>
+<span style="color: #00ffff;">done</span>
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-167;">while </span><span style="color: color-68;">read</span>  des what mask iface; <span style="color: color-167;">do</span>
-    <span style="color: color-243; font-style: italic;">#</span><span style="color: color-243; font-style: italic;">echo $des $what $mask $iface</span>
-    printf <span style="color: color-113;">"%s %s\n"</span> $<span style="color: color-79;">des</span> $<span style="color: color-79;">mask</span>
-<span style="color: color-167;">done</span> &lt; &lt;(route -n)
+<pre class="src src-shell"><span style="color: #00ffff;">while </span><span style="color: #b0c4de;">read</span>  des what mask iface; <span style="color: #00ffff;">do</span>
+    <span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">echo $des $what $mask $iface</span>
+    printf <span style="color: #ffa07a;">"%s %s\n"</span> $<span style="color: #eedd82;">des</span> $<span style="color: #eedd82;">mask</span>
+<span style="color: #00ffff;">done</span> &lt; &lt;(route -n)
 </pre>
 </div>
 
@@ -471,20 +471,20 @@ cat $<span style="color: color-79;">name</span> | <span style="color: color-167;
 <li>switch</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: color-167;">case</span> $<span style="color: color-79;">1</span><span style="color: color-167;"> in</span>
-  a)       <span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">&#25509;&#21463; a</span>
-      <span style="color: color-68;">echo</span> <span style="color: color-113;">"a"</span>
+<pre class="src src-shell"><span style="color: #00ffff;">case</span> $<span style="color: #eedd82;">1</span><span style="color: #00ffff;"> in</span>
+  a)       <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">&#25509;&#21463; a</span>
+      <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"a"</span>
       ;;
-  b|c)     <span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">&#25509;&#21463; b &#25110; c</span>
-      <span style="color: color-68;">echo</span> <span style="color: color-113;">"b or c"</span>
+  b|c)     <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">&#25509;&#21463; b &#25110; c</span>
+      <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"b or c"</span>
       ;;
-  ?)       <span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">&#25509;&#21463;&#20219;&#24847;&#19968;&#20010;&#23383;&#31526;</span>
-      <span style="color: color-68;">echo</span> <span style="color: color-113;">"chat default case"</span>
+  ?)       <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">&#25509;&#21463;&#20219;&#24847;&#19968;&#20010;&#23383;&#31526;</span>
+      <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"chat default case"</span>
       ;;
-  *)       <span style="color: color-243; font-style: italic;"># </span><span style="color: color-243; font-style: italic;">&#25509;&#21463;&#20219;&#24847;&#30340;&#23383;&#31526;&#25110;&#23383;&#31526;&#20018;</span>
-      <span style="color: color-68;">echo</span> <span style="color: color-113;">"default case"</span>
+  *)       <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">&#25509;&#21463;&#20219;&#24847;&#30340;&#23383;&#31526;&#25110;&#23383;&#31526;&#20018;</span>
+      <span style="color: #b0c4de;">echo</span> <span style="color: #ffa07a;">"default case"</span>
       ;;
-<span style="color: color-167;">esac</span>
+<span style="color: #00ffff;">esac</span>
 </pre>
 </div>
 </div>
@@ -493,7 +493,7 @@ cat $<span style="color: color-79;">name</span> | <span style="color: color-167;
 <div id="postamble" class="status">
 <p class="date">Date: 2021-01-12</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-13 三 00:53</p>
+<p class="date">Created: 2021-01-13 三 01:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

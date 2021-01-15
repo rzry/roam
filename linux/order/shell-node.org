@@ -3,7 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2021-01-12
 #+LANGUAGE:  en
-
 * shell
   - +1
   #+begin_src shell
