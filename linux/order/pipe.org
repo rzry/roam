@@ -1,0 +1,75 @@
+#+TITLE:     pipe
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-01-15
+#+LANGUAGE:  en
+
+* I/O 流
+** 基本
+   #+begin_src
+   stdin(键盘)、 stdout(屏幕)和 stderr(错误消息输出到屏幕上)
+   #+end_src
+
+** 重定向
+***  >
+    - 存在就覆盖 , 否则就创建
+      #+begin_src shell
+      #例如想吧ls -al 的输出 重定向到一个文件
+      ls -al > ls.log
+      #+end_src
+***  >>
+    - 存在就追加 , 否则就创建
+    - 同>使用方法.
+** 管道
+***  |
+    - 左边的输出 当做 右边的输入
+    - 所有有多个命令 和 | 组成 搭配 grep  xargs 等
+    #+begin_src shell
+    #一个几乎搭配所有指令的操作
+    ls -al | grep emacs
+    # 搜索当前目录下包含emacs 的文件
+    # 可以搭配 通配符来使用
+    # ls -l | more  类似与下文代码
+    #more 命令将 ls -l 的输出作为其输入。这个命令的效果是 ls -l 的输出一次显示一个屏幕。
+    #管道作为一个容器，接受 ls-l 的输出，并将其作为输入提供给 more
+    #此命令不使用磁盘将 ls-l 的标准输出连接到 more 的标准输入
+    #因为管道是在主存储器中实现的
+     ls -l > temp
+     more < temp (or more temp)
+     [contents of temp]
+     rm temp
+     #排序 做为输入 输出文件中唯一值
+     sort 1.txt | uniq
+    #+end_src
+    - 管道是单向的，即从左到右通过管道的数据流
+
+** Path
+   #+begin_src
+   eg : echo "hello xxx"
+   echo 是可执行文件 , 位于bin 下面
+   echo $PATH   可以打印出你的path 包含的路径(可以是相对)
+   只要 echo 这个文件在bin 下 bin 在path 中 那么就可以执行
+   不用再 /bin/echo
+   按顺序遍历冒号分隔的路径，直到找到可执行文件
+   因此，如果两个路径包含所需的可执行文件，Unix 将使用第一个路径
+   我们使用 export 命令向 PATH 变量添加一个新路径(临时的,可以放在你的.bashrc)
+   不同的shell(zsh , bash),只有交互式才可以读取这种配置(这个得说一天)
+   #+end_src
+
+* 番外
+  #+begin_src
+  1 . ls -al 输出结果
+     -代表是文件
+     d 代表目录
+     l 代表链接
+     b 代表特殊设备
+     drwx____ 代表文件标示和权限
+  2 . 权限  r = 4 , w = 2 , x = 1(8进制)
+     重复的 rwx 序列表示读(r)、写(w)和执行(x)权限的概念，
+     用于用户、组和其他(按此顺序)
+     -rw-rw-r--  一个普通的文件，用户和组都可以读写，但是只有其他人可以读。
+  3 . touch 一个 文件 会有默认权限 是通过umask 来设置的
+      ubuntu 普通用户 和 root  对于这个值 是不同的
+  4 . .. 再补吧
+
+  #+end_src
