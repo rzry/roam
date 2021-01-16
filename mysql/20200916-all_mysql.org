@@ -9,6 +9,6 @@
 
   -  *Link* : [[file:note/12_Mysql笔记.org][mysql笔记总结]]
 ** book
-  -  *Link* :
+  -  *Link* : [[file:book/innodb.org][innodb]]
 
   -  *Link* :

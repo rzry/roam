@@ -1,0 +1,117 @@
+#+TITLE:     innodb
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-01-16
+#+LANGUAGE:  en
+
+
+* DONE part 1 mysql体系结构和存储引擎
+  CLOSED: [2021-01-16 六 13:01]
+** innodb
+   #+begin_src
+   - 支持事务
+   - 特点(行锁,外键)
+   - 插入缓冲,二次写,自适应哈希索引
+   - 如果没有显示定义主键,innodb会为每一行生成6byte的rowid 作为主键
+   #+end_src
+** MylSam
+   #+begin_src
+   - 不支持事务,表锁.
+   - 支持全文索引
+   #+end_src
+** Ndb
+** memory
+   - ...
+* TODO InnoDb 存储引擎
+** detail
+   #+begin_src
+   Mysql 5.5 开始默认的表存储引擎
+   第一个完整支持ACID事务的存储应请
+   特点是行锁,支持MVCC(多版本并发控制)
+   支持外键,提供一致性非锁定读
+   #+end_src
+** 体系架构
+   [[./innodb-pic/2-1.png]]
+   #+begin_src
+   如上如,多个内存块组成内存池
+   1 . 维护进程/线程需要访问的多个内部数据结构
+   2 . 缓存数据 方便读取
+   3 . redo log 缓冲
+   后台线程的主要作用是 负责刷新内存池中的数据
+   #+end_src
+*** 后台线程
+**** Master thread
+     #+begin_src
+     负责将缓存池中的数据异步刷新到磁盘保证数据一致
+     (脏页的刷新,合并插入缓冲,undo页的回收)
+     #+end_src
+**** Io thread
+     #+begin_src
+     处理io的call back (write,read insert log)
+     show engine innodb status 来观察 innodb 的io thread
+     insert 的 线程id 为 0  log thread 为 1
+     剩下的就是读写线程 读线程id 总是小于写线程id
+     #+end_src
+     [[./innodb-pic/io.png]]
+**** Purge Thread
+     #+begin_src
+     事务被提交后,所使用的undolog 可能不再需要
+     所以需要这个线程来回收已经使用并分配的undo页
+     innodb_purge_threads=1 启用独立的purge thread
+     后续版可以支持多个,进一步加快undo 的回收
+     离散读取undo页 进一步利用磁盘的随机读取性能
+     #+end_src
+
+*** 内存
+**** 缓冲池
+     #+begin_src
+     innodb 是基于磁盘存储的,所以cpu和磁盘速度的鸿沟
+     基于磁盘的数据库系统通常使用缓冲池来提高数据库性能
+
+     简单来说是一块内存区域,通过内存来弥补磁盘速度慢对数据库的影响
+     读取页-->磁盘读到的页放在缓冲池(页"FIX"在缓冲池)(LRU列表)
+     下一次直接读取相同的页
+     缓冲池的大小直接影响数据库的整体性能
+     show variables like 'innodb_buffer_pool_size \G
+     下图为innodb内存的结构情况
+     #+end_src
+     [[./innodb-pic/pool-size.png]]
+     [[./innodb-pic/free.png]]
+     #+begin_src
+     可以设置多个缓冲池实例,
+     show variables like 'innodb_buffer_pool_instances' \G;
+     #+end_src
+*** 重做日志缓冲
+    #+begin_src
+    redo log buffer
+    ... todo
+    #+end_src
+
+* 番外
+** Mvcc
+   #+begin_src
+   mvcc 多版本并发控制
+   使用undo log 来进行
+   开启事务 , 会将要操作的数据备份到undo log(原子性)
+   redo log 是修改后数据的备份(持久性)
+   如果rollback 就使用undo log 恢复
+   1 . 操作前备份为 undo log  修改后 备份为 redo log
+   2 . 事务结束前 将数据写入到磁盘, 提交事务,数据就会持久化
+   3 . undo log 会先与数据持久化到磁盘,这样就算提交事务失败, 也可以rollback
+   4 . undo redo 虽然通过缓存 减少了写数据的io 但是 又要写read log 的io
+       所以为了提高性能 read log 存储在连续空间 批量写入 追加 并且即使回滚也不会删除
+   #+end_src
+** LRU列表
+   #+begin_src
+   latest recent used 最近最少使用
+   LRU列表用来管理已经读取的页,当数据库刚启动时,LRU列表是空的
+   这时页都存在Free列表中,后续从free列表中删除放到LRU 列表中
+   可以通过 show engine innodb status\G;来查看lru 和 free列表状态
+   pages made young 显示了lru 列表中 页移动到前端的次数
+   #+end_src
+   [[./innodb-pic/lru.png]]
+   #+begin_src
+   这个指令显示的是过去某个时间范围内 innodb 的状态
+   如下 显示的是过去6s
+   #+end_src
+     [[./innodb-pic/status-time.png]]

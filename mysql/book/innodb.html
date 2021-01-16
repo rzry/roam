@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-16 六 14:55 -->
+<!-- 2021-01-16 六 14:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>mysql</title>
+<title>innodb</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="rzry" />
+<meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -243,42 +243,246 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">mysql</h1>
+<h1 class="title">innodb</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge1d31b6">1. note</a></li>
-<li><a href="#orge622b32">2. book</a></li>
+<li><a href="#org90d79fe">1. <span class="done DONE">DONE</span> part 1 mysql体系结构和存储引擎</a>
+<ul>
+<li><a href="#org5a7848e">1.1. innodb</a></li>
+<li><a href="#org09663bd">1.2. MylSam</a></li>
+<li><a href="#org190dee0">1.3. Ndb</a></li>
+<li><a href="#orgfad825e">1.4. memory</a></li>
+</ul>
+</li>
+<li><a href="#orgbd9022e">2. <span class="todo TODO">TODO</span> InnoDb 存储引擎</a>
+<ul>
+<li><a href="#org4d59386">2.1. detail</a></li>
+<li><a href="#orgf9d4fe7">2.2. 体系架构</a>
+<ul>
+<li><a href="#orgf1d7d16">2.2.1. 后台线程</a></li>
+<li><a href="#org10e0093">2.2.2. 内存</a></li>
+<li><a href="#org0af439a">2.2.3. 重做日志缓冲</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf8570ef">3. 番外</a>
+<ul>
+<li><a href="#org910a30b">3.1. Mvcc</a></li>
+<li><a href="#orgcef4cb8">3.2. LRU列表</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge1d31b6" class="outline-2">
-<h2 id="orge1d31b6"><span class="section-number-2">1</span> note</h2>
+
+<div id="outline-container-org90d79fe" class="outline-2">
+<h2 id="org90d79fe"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> part 1 mysql体系结构和存储引擎</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org5a7848e" class="outline-3">
+<h3 id="org5a7848e"><span class="section-number-3">1.1</span> innodb</h3>
+<div class="outline-text-3" id="text-1-1">
+<pre class="example">
+- 支持事务
+- 特点(行锁,外键)
+- 插入缓冲,二次写,自适应哈希索引
+- 如果没有显示定义主键,innodb会为每一行生成6byte的rowid 作为主键
+</pre>
+</div>
+</div>
+<div id="outline-container-org09663bd" class="outline-3">
+<h3 id="org09663bd"><span class="section-number-3">1.2</span> MylSam</h3>
+<div class="outline-text-3" id="text-1-2">
+<pre class="example">
+- 不支持事务,表锁.
+- 支持全文索引
+</pre>
+</div>
+</div>
+<div id="outline-container-org190dee0" class="outline-3">
+<h3 id="org190dee0"><span class="section-number-3">1.3</span> Ndb</h3>
+</div>
+<div id="outline-container-orgfad825e" class="outline-3">
+<h3 id="orgfad825e"><span class="section-number-3">1.4</span> memory</h3>
+<div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=note/32_Mysql查询笔记.html>mysql查询</a></li>
-
-<li><b>Link</b> : <a href=note/12_Mysql笔记.html>mysql笔记总结</a></li>
+<li>&#x2026;</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge622b32" class="outline-2">
-<h2 id="orge622b32"><span class="section-number-2">2</span> book</h2>
+</div>
+<div id="outline-container-orgbd9022e" class="outline-2">
+<h2 id="orgbd9022e"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> InnoDb 存储引擎</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=book/innodb.html>innodb</a></li>
+</div>
+<div id="outline-container-org4d59386" class="outline-3">
+<h3 id="org4d59386"><span class="section-number-3">2.1</span> detail</h3>
+<div class="outline-text-3" id="text-2-1">
+<pre class="example">
+Mysql 5.5 开始默认的表存储引擎
+第一个完整支持ACID事务的存储应请
+特点是行锁,支持MVCC(多版本并发控制)
+支持外键,提供一致性非锁定读
+</pre>
+</div>
+</div>
+<div id="outline-container-orgf9d4fe7" class="outline-3">
+<h3 id="orgf9d4fe7"><span class="section-number-3">2.2</span> 体系架构</h3>
+<div class="outline-text-3" id="text-2-2">
 
-<li><b>Link</b> :</li>
-</ul>
+<div class="figure">
+<p><img src="./innodb-pic/2-1.png" alt="2-1.png" />
+</p>
+</div>
+<pre class="example">
+如上如,多个内存块组成内存池
+1 . 维护进程/线程需要访问的多个内部数据结构
+2 . 缓存数据 方便读取
+3 . redo log 缓冲
+后台线程的主要作用是 负责刷新内存池中的数据
+</pre>
+</div>
+<div id="outline-container-orgf1d7d16" class="outline-4">
+<h4 id="orgf1d7d16"><span class="section-number-4">2.2.1</span> 后台线程</h4>
+<div class="outline-text-4" id="text-2-2-1">
+</div>
+<ol class="org-ol">
+<li><a id="org7685b8f"></a>Master thread<br />
+<div class="outline-text-5" id="text-2-2-1-1">
+<pre class="example">
+负责将缓存池中的数据异步刷新到磁盘保证数据一致
+(脏页的刷新,合并插入缓冲,undo页的回收)
+</pre>
+</div>
+</li>
+<li><a id="orgb04964d"></a>Io thread<br />
+<div class="outline-text-5" id="text-2-2-1-2">
+<pre class="example">
+处理io的call back (write,read insert log)
+show engine innodb status 来观察 innodb 的io thread
+insert 的 线程id 为 0  log thread 为 1
+剩下的就是读写线程 读线程id 总是小于写线程id
+</pre>
+
+<div class="figure">
+<p><img src="./innodb-pic/io.png" alt="io.png" />
+</p>
+</div>
+</div>
+</li>
+<li><a id="org1ac7b02"></a>Purge Thread<br />
+<div class="outline-text-5" id="text-2-2-1-3">
+<pre class="example">
+事务被提交后,所使用的undolog 可能不再需要
+所以需要这个线程来回收已经使用并分配的undo页
+innodb_purge_threads=1 启用独立的purge thread
+后续版可以支持多个,进一步加快undo 的回收
+离散读取undo页 进一步利用磁盘的随机读取性能
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org10e0093" class="outline-4">
+<h4 id="org10e0093"><span class="section-number-4">2.2.2</span> 内存</h4>
+<div class="outline-text-4" id="text-2-2-2">
+</div>
+<ol class="org-ol">
+<li><a id="orge166adc"></a>缓冲池<br />
+<div class="outline-text-5" id="text-2-2-2-1">
+<pre class="example">
+innodb 是基于磁盘存储的,所以cpu和磁盘速度的鸿沟
+基于磁盘的数据库系统通常使用缓冲池来提高数据库性能
+
+简单来说是一块内存区域,通过内存来弥补磁盘速度慢对数据库的影响
+读取页--&gt;磁盘读到的页放在缓冲池(页"FIX"在缓冲池)(LRU列表)
+下一次直接读取相同的页
+缓冲池的大小直接影响数据库的整体性能
+show variables like 'innodb_buffer_pool_size \G
+下图为innodb内存的结构情况
+</pre>
+<p>
+<img src="./innodb-pic/pool-size.png" alt="pool-size.png" />
+<img src="./innodb-pic/free.png" alt="free.png" />
+</p>
+<pre class="example">
+可以设置多个缓冲池实例,
+show variables like 'innodb_buffer_pool_instances' \G;
+</pre>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org0af439a" class="outline-4">
+<h4 id="org0af439a"><span class="section-number-4">2.2.3</span> 重做日志缓冲</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<pre class="example">
+redo log buffer
+... todo
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf8570ef" class="outline-2">
+<h2 id="orgf8570ef"><span class="section-number-2">3</span> 番外</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org910a30b" class="outline-3">
+<h3 id="org910a30b"><span class="section-number-3">3.1</span> Mvcc</h3>
+<div class="outline-text-3" id="text-3-1">
+<pre class="example">
+mvcc 多版本并发控制
+使用undo log 来进行
+开启事务 , 会将要操作的数据备份到undo log(原子性)
+redo log 是修改后数据的备份(持久性)
+如果rollback 就使用undo log 恢复
+1 . 操作前备份为 undo log  修改后 备份为 redo log
+2 . 事务结束前 将数据写入到磁盘, 提交事务,数据就会持久化
+3 . undo log 会先与数据持久化到磁盘,这样就算提交事务失败, 也可以rollback
+4 . undo redo 虽然通过缓存 减少了写数据的io 但是 又要写read log 的io
+    所以为了提高性能 read log 存储在连续空间 批量写入 追加 并且即使回滚也不会删除
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcef4cb8" class="outline-3">
+<h3 id="orgcef4cb8"><span class="section-number-3">3.2</span> LRU列表</h3>
+<div class="outline-text-3" id="text-3-2">
+<pre class="example">
+latest recent used 最近最少使用
+LRU列表用来管理已经读取的页,当数据库刚启动时,LRU列表是空的
+这时页都存在Free列表中,后续从free列表中删除放到LRU 列表中
+可以通过 show engine innodb status\G;来查看lru 和 free列表状态
+pages made young 显示了lru 列表中 页移动到前端的次数
+</pre>
+
+<div class="figure">
+<p><img src="./innodb-pic/lru.png" alt="lru.png" />
+</p>
+</div>
+<pre class="example">
+这个指令显示的是过去某个时间范围内 innodb 的状态
+如下 显示的是过去6s
+</pre>
+
+<div class="figure">
+<p><img src="./innodb-pic/status-time.png" alt="status-time.png" />
+</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-16</p>
-<p class="author">Author: rzry</p>
-<p class="date">Created: 2021-01-16 六 14:55</p>
+<p class="date">Date: 2021-01-16</p>
+<p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
+<p class="date">Created: 2021-01-16 六 14:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
