@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-16 六 14:53 -->
+<!-- 2021-01-16 六 14:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>innodb</title>
@@ -248,30 +248,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org90d79fe">1. <span class="done DONE">DONE</span> part 1 mysql体系结构和存储引擎</a>
+<li><a href="#orga484d41">1. <span class="done DONE">DONE</span> part 1 mysql体系结构和存储引擎</a>
 <ul>
-<li><a href="#org5a7848e">1.1. innodb</a></li>
-<li><a href="#org09663bd">1.2. MylSam</a></li>
-<li><a href="#org190dee0">1.3. Ndb</a></li>
-<li><a href="#orgfad825e">1.4. memory</a></li>
+<li><a href="#orgfe9e980">1.1. innodb</a></li>
+<li><a href="#org1b942b7">1.2. MylSam</a></li>
+<li><a href="#org03786d9">1.3. Ndb</a></li>
+<li><a href="#org0adbfc5">1.4. memory</a></li>
 </ul>
 </li>
-<li><a href="#orgbd9022e">2. <span class="todo TODO">TODO</span> InnoDb 存储引擎</a>
+<li><a href="#org6a09d79">2. <span class="todo TODO">TODO</span> InnoDb 存储引擎</a>
 <ul>
-<li><a href="#org4d59386">2.1. detail</a></li>
-<li><a href="#orgf9d4fe7">2.2. 体系架构</a>
+<li><a href="#orgfdce6f2">2.1. detail</a></li>
+<li><a href="#org721f917">2.2. 体系架构</a>
 <ul>
-<li><a href="#orgf1d7d16">2.2.1. 后台线程</a></li>
-<li><a href="#org10e0093">2.2.2. 内存</a></li>
-<li><a href="#org0af439a">2.2.3. 重做日志缓冲</a></li>
+<li><a href="#orgfa4314c">2.2.1. 后台线程</a></li>
+<li><a href="#orgc24fc69">2.2.2. 内存</a></li>
+<li><a href="#org4668d34">2.2.3. 重做日志缓冲</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgf8570ef">3. 番外</a>
+<li><a href="#org568747b">3. 番外</a>
 <ul>
-<li><a href="#org910a30b">3.1. Mvcc</a></li>
-<li><a href="#orgcef4cb8">3.2. LRU列表</a></li>
+<li><a href="#org44f0a83">3.1. Mvcc</a></li>
+<li><a href="#org69291be">3.2. LRU列表</a></li>
 </ul>
 </li>
 </ul>
@@ -279,12 +279,12 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org90d79fe" class="outline-2">
-<h2 id="org90d79fe"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> part 1 mysql体系结构和存储引擎</h2>
+<div id="outline-container-orga484d41" class="outline-2">
+<h2 id="orga484d41"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> part 1 mysql体系结构和存储引擎</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5a7848e" class="outline-3">
-<h3 id="org5a7848e"><span class="section-number-3">1.1</span> innodb</h3>
+<div id="outline-container-orgfe9e980" class="outline-3">
+<h3 id="orgfe9e980"><span class="section-number-3">1.1</span> innodb</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 - 支持事务
@@ -294,8 +294,8 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org09663bd" class="outline-3">
-<h3 id="org09663bd"><span class="section-number-3">1.2</span> MylSam</h3>
+<div id="outline-container-org1b942b7" class="outline-3">
+<h3 id="org1b942b7"><span class="section-number-3">1.2</span> MylSam</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 - 不支持事务,表锁.
@@ -303,11 +303,11 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org190dee0" class="outline-3">
-<h3 id="org190dee0"><span class="section-number-3">1.3</span> Ndb</h3>
+<div id="outline-container-org03786d9" class="outline-3">
+<h3 id="org03786d9"><span class="section-number-3">1.3</span> Ndb</h3>
 </div>
-<div id="outline-container-orgfad825e" class="outline-3">
-<h3 id="orgfad825e"><span class="section-number-3">1.4</span> memory</h3>
+<div id="outline-container-org0adbfc5" class="outline-3">
+<h3 id="org0adbfc5"><span class="section-number-3">1.4</span> memory</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>&#x2026;</li>
@@ -315,12 +315,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbd9022e" class="outline-2">
-<h2 id="orgbd9022e"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> InnoDb 存储引擎</h2>
+<div id="outline-container-org6a09d79" class="outline-2">
+<h2 id="org6a09d79"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> InnoDb 存储引擎</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4d59386" class="outline-3">
-<h3 id="org4d59386"><span class="section-number-3">2.1</span> detail</h3>
+<div id="outline-container-orgfdce6f2" class="outline-3">
+<h3 id="orgfdce6f2"><span class="section-number-3">2.1</span> detail</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 Mysql 5.5 开始默认的表存储引擎
@@ -330,8 +330,8 @@ Mysql 5.5 开始默认的表存储引擎
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf9d4fe7" class="outline-3">
-<h3 id="orgf9d4fe7"><span class="section-number-3">2.2</span> 体系架构</h3>
+<div id="outline-container-org721f917" class="outline-3">
+<h3 id="org721f917"><span class="section-number-3">2.2</span> 体系架构</h3>
 <div class="outline-text-3" id="text-2-2">
 
 <div class="figure">
@@ -346,12 +346,12 @@ Mysql 5.5 开始默认的表存储引擎
 后台线程的主要作用是 负责刷新内存池中的数据
 </pre>
 </div>
-<div id="outline-container-orgf1d7d16" class="outline-4">
-<h4 id="orgf1d7d16"><span class="section-number-4">2.2.1</span> 后台线程</h4>
+<div id="outline-container-orgfa4314c" class="outline-4">
+<h4 id="orgfa4314c"><span class="section-number-4">2.2.1</span> 后台线程</h4>
 <div class="outline-text-4" id="text-2-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="org7685b8f"></a>Master thread<br />
+<li><a id="org0122ddd"></a>Master thread<br />
 <div class="outline-text-5" id="text-2-2-1-1">
 <pre class="example">
 负责将缓存池中的数据异步刷新到磁盘保证数据一致
@@ -359,7 +359,7 @@ Mysql 5.5 开始默认的表存储引擎
 </pre>
 </div>
 </li>
-<li><a id="orgb04964d"></a>Io thread<br />
+<li><a id="org4a88717"></a>Io thread<br />
 <div class="outline-text-5" id="text-2-2-1-2">
 <pre class="example">
 处理io的call back (write,read insert log)
@@ -374,7 +374,7 @@ insert 的 线程id 为 0  log thread 为 1
 </div>
 </div>
 </li>
-<li><a id="org1ac7b02"></a>Purge Thread<br />
+<li><a id="org1039499"></a>Purge Thread<br />
 <div class="outline-text-5" id="text-2-2-1-3">
 <pre class="example">
 事务被提交后,所使用的undolog 可能不再需要
@@ -388,12 +388,12 @@ innodb_purge_threads=1 启用独立的purge thread
 </ol>
 </div>
 
-<div id="outline-container-org10e0093" class="outline-4">
-<h4 id="org10e0093"><span class="section-number-4">2.2.2</span> 内存</h4>
+<div id="outline-container-orgc24fc69" class="outline-4">
+<h4 id="orgc24fc69"><span class="section-number-4">2.2.2</span> 内存</h4>
 <div class="outline-text-4" id="text-2-2-2">
 </div>
 <ol class="org-ol">
-<li><a id="orge166adc"></a>缓冲池<br />
+<li><a id="org902ef9e"></a>缓冲池<br />
 <div class="outline-text-5" id="text-2-2-2-1">
 <pre class="example">
 innodb 是基于磁盘存储的,所以cpu和磁盘速度的鸿沟
@@ -418,8 +418,8 @@ show variables like 'innodb_buffer_pool_instances' \G;
 </li>
 </ol>
 </div>
-<div id="outline-container-org0af439a" class="outline-4">
-<h4 id="org0af439a"><span class="section-number-4">2.2.3</span> 重做日志缓冲</h4>
+<div id="outline-container-org4668d34" class="outline-4">
+<h4 id="org4668d34"><span class="section-number-4">2.2.3</span> 重做日志缓冲</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <pre class="example">
 redo log buffer
@@ -430,12 +430,12 @@ redo log buffer
 </div>
 </div>
 
-<div id="outline-container-orgf8570ef" class="outline-2">
-<h2 id="orgf8570ef"><span class="section-number-2">3</span> 番外</h2>
+<div id="outline-container-org568747b" class="outline-2">
+<h2 id="org568747b"><span class="section-number-2">3</span> 番外</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org910a30b" class="outline-3">
-<h3 id="org910a30b"><span class="section-number-3">3.1</span> Mvcc</h3>
+<div id="outline-container-org44f0a83" class="outline-3">
+<h3 id="org44f0a83"><span class="section-number-3">3.1</span> Mvcc</h3>
 <div class="outline-text-3" id="text-3-1">
 <pre class="example">
 mvcc 多版本并发控制
@@ -451,8 +451,8 @@ redo log 是修改后数据的备份(持久性)
 </pre>
 </div>
 </div>
-<div id="outline-container-orgcef4cb8" class="outline-3">
-<h3 id="orgcef4cb8"><span class="section-number-3">3.2</span> LRU列表</h3>
+<div id="outline-container-org69291be" class="outline-3">
+<h3 id="org69291be"><span class="section-number-3">3.2</span> LRU列表</h3>
 <div class="outline-text-3" id="text-3-2">
 <pre class="example">
 latest recent used 最近最少使用
@@ -482,7 +482,7 @@ pages made young 显示了lru 列表中 页移动到前端的次数
 <div id="postamble" class="status">
 <p class="date">Date: 2021-01-16</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-16 六 14:53</p>
+<p class="date">Created: 2021-01-16 六 14:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
