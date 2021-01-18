@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-17 日 23:42 -->
+<!-- 2021-01-18 一 20:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>图解tcp-ip</title>
@@ -193,7 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -248,23 +248,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org95dbd10">1. 摘录</a></li>
-<li><a href="#orga215fd9">2. page -&gt; 87 .</a></li>
+<li><a href="#org5c9fd34">1. 摘录</a></li>
+<li><a href="#org260719f">2. page -&gt; 87 .</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org95dbd10" class="outline-2">
-<h2 id="org95dbd10"><span class="section-number-2">1</span> 摘录</h2>
+<div id="outline-container-org5c9fd34" class="outline-2">
+<h2 id="org5c9fd34"><span class="section-number-2">1</span> 摘录</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>为什么会有tcp/ip 出来 
+<li>为什么会有tcp/ip 出来
 <img src="./tcp.ip-pic/中心节点故障1.png" alt="中心节点故障1.png" />
 <img src="./tcp.ip-pic/tcp时间表.png" alt="tcp时间表.png" />
 <img src="./tcp.ip-pic/tcp-ip协议群.png" alt="tcp-ip协议群.png" /></li>
 
 <li><p>
-tpc/ip 是如何在媒介上传输的 
+tpc/ip 是如何在媒介上传输的
 <img src="./tcp.ip-pic/数据包头.png" alt="数据包头.png" />
 </p>
 <pre class="example">
@@ -278,10 +278,10 @@ tpc/ip 是如何在媒介上传输的
 </pre>
 <ul class="org-ul">
 <li><p>
-eg : A - &gt; B email 
+eg : A - &gt; B email
 </p>
 <pre class="example">
-1 . 应用程序处理 : 
+1 . 应用程序处理 :
   - 包括编码,管理何时建立通信,何时发送数据
 2 . tcp模块的处理:
   - 根据应用层的指示,来实际负责建立链接,发送数据
@@ -289,7 +289,7 @@ eg : A - &gt; B email
     发送到对端的可靠传输
   - 为了实现此功能,应用层数据前端需要附加一个tcp首部
     tcp首部包括,源,目的 端口号,序号(标注包中那部分是数据)
-    校验(判断数据是否被损坏),随后把这些数据打包发给ip 
+    校验(判断数据是否被损坏),随后把这些数据打包发给ip
 3 . ip模块的处理:
   - 先把上面的发送数据整合到一起当作自己的数据
     并且在tcp首部和tcp数据的前面加上自己ip的首部
@@ -321,14 +321,14 @@ eg : A - &gt; B email
 </div>
 </div>
 
-<div id="outline-container-orga215fd9" class="outline-2">
-<h2 id="orga215fd9"><span class="section-number-2">2</span> page -&gt; 87 .</h2>
+<div id="outline-container-org260719f" class="outline-2">
+<h2 id="org260719f"><span class="section-number-2">2</span> page -&gt; 87 .</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-01-17</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-17 日 23:42</p>
+<p class="date">Created: 2021-01-18 一 20:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

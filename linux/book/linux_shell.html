@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-12-11 五 20:19 -->
+<!-- 2021-01-18 一 20:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux就该这么学</title>
@@ -193,7 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -248,52 +248,53 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org03e9f5f">1. <span class="done DONE">DONE</span> 第三章</a>
+<li><a href="#org4badec1">1. <span class="done DONE">DONE</span> 第三章</a>
 <ul>
-<li><a href="#org755e23d">1.1. shell</a></li>
+<li><a href="#org9bb7fe6">1.1. shell</a></li>
 </ul>
 </li>
-<li><a href="#org9bc6afa">2. <span class="done DONE">DONE</span> 第四章</a>
+<li><a href="#org3663837">2. <span class="done DONE">DONE</span> 第四章</a>
 <ul>
-<li><a href="#org0c130a1">2.1. 监测</a>
+<li><a href="#org380d7a5">2.1. 监测</a>
 <ul>
-<li><a href="#org115a0ca">2.1.1. top 的输出</a></li>
-<li><a href="#org400ad5e">2.1.2. 磁盘空间</a></li>
+<li><a href="#orge0bb26e">2.1.1. top 的输出</a></li>
+<li><a href="#orgfdeb910">2.1.2. 磁盘空间</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org0f2e2c1">3. <span class="done DONE">DONE</span> 第五章</a>
+<li><a href="#org4a9ee59">3. <span class="done DONE">DONE</span> 第五章</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgef62aee">3.0.1. shell</a></li>
-<li><a href="#org9bc509e">3.0.2. 命令别名　alias</a></li>
-<li><a href="#orgb03534a">3.0.3. type</a></li>
-<li><a href="#orge8d71c4">3.0.4. history</a></li>
+<li><a href="#org8be0599">3.0.1. shell</a></li>
+<li><a href="#orgf8de52f">3.0.2. 命令别名　alias</a></li>
+<li><a href="#orge4dbc67">3.0.3. type</a></li>
+<li><a href="#org7e3d5d0">3.0.4. history</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org19eb6f2">4. <span class="done DONE">DONE</span> 变量</a>
+<li><a href="#orgb93c1d8">4. <span class="done DONE">DONE</span> 变量</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgc93fd10">4.0.1. 查看变量</a></li>
-<li><a href="#org525f7b4">4.0.2. 设置局部变量</a></li>
-<li><a href="#org73df968">4.0.3. 设置全局变量</a></li>
-<li><a href="#orgcd761d4">4.0.4. 删除全局变量</a></li>
-<li><a href="#org5fbd506">4.0.5. 设置Path环境变量</a></li>
-<li><a href="#org79925b0">4.0.6. 交互式shell 和非交互式shell  (过了)</a></li>
+<li><a href="#org2fa4cbf">4.0.1. 查看变量</a></li>
+<li><a href="#orgfb24512">4.0.2. 设置局部变量</a></li>
+<li><a href="#orgc1f7471">4.0.3. 设置全局变量</a></li>
+<li><a href="#orge17dc95">4.0.4. 删除全局变量</a></li>
+<li><a href="#orgf7ac5c2">4.0.5. 设置Path环境变量</a></li>
+<li><a href="#orgd412677">4.0.6. 交互式shell 和非交互式shell  (过了)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org0e348b5">5. <span class="todo TODO">TODO</span> 文件权限</a>
+<li><a href="#org324ad3f">5. <span class="todo TODO">TODO</span> 文件权限 和 用户</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orga17fcf5">5.0.1. </a></li>
+<li><a href="#org458efb7">5.0.1. 用户相关</a></li>
+<li><a href="#org299df8a">5.0.2. 文件权限相关</a></li>
 </ul>
 </li>
 </ul>
@@ -302,12 +303,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org03e9f5f" class="outline-2">
-<h2 id="org03e9f5f"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> 第三章</h2>
+<div id="outline-container-org4badec1" class="outline-2">
+<h2 id="org4badec1"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> 第三章</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org755e23d" class="outline-3">
-<h3 id="org755e23d"><span class="section-number-3">1.1</span> shell</h3>
+<div id="outline-container-org9bb7fe6" class="outline-3">
+<h3 id="org9bb7fe6"><span class="section-number-3">1.1</span> shell</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>/etc/passwd文件包含了所有系统用户账户列表以及每个用户的基本配置信息</li>
@@ -318,16 +319,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org9bc6afa" class="outline-2">
-<h2 id="org9bc6afa"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> 第四章</h2>
+<div id="outline-container-org3663837" class="outline-2">
+<h2 id="org3663837"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> 第四章</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0c130a1" class="outline-3">
-<h3 id="org0c130a1"><span class="section-number-3">2.1</span> 监测</h3>
+<div id="outline-container-org380d7a5" class="outline-3">
+<h3 id="org380d7a5"><span class="section-number-3">2.1</span> 监测</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org115a0ca" class="outline-4">
-<h4 id="org115a0ca"><span class="section-number-4">2.1.1</span> top 的输出</h4>
+<div id="outline-container-orge0bb26e" class="outline-4">
+<h4 id="orge0bb26e"><span class="section-number-4">2.1.1</span> top 的输出</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <pre class="example">
  pid    USER   PR    NI    VIRT     RES     SHR       S     %CPU             %MEM     TIME+ COMMAND
@@ -341,8 +342,8 @@ D 中断 ,  R 正在运行  , S休眠  , T 跟踪状态或停止状态  , Z 僵�
 <hr />
 </div>
 </div>
-<div id="outline-container-org400ad5e" class="outline-4">
-<h4 id="org400ad5e"><span class="section-number-4">2.1.2</span> 磁盘空间</h4>
+<div id="outline-container-orgfdeb910" class="outline-4">
+<h4 id="orgfdeb910"><span class="section-number-4">2.1.2</span> 磁盘空间</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <pre class="example">
 默认情况下， mount命令会输出当前系统上挂载的设备列表
@@ -356,7 +357,7 @@ nsfs on /run/snapd/ns/gnome-calculator.mnt type nsfs (rw)
 <hr />
 </div>
 <ol class="org-ol">
-<li><a id="org5c76895"></a>挂载<br />
+<li><a id="org1a7afc0"></a>挂载<br />
 <div class="outline-text-6" id="text-2-1-2-0-1">
 <ul class="org-ul">
 <li>mount -t vfat /dev/sdb1 /media/rzry</li>
@@ -365,7 +366,7 @@ nsfs on /run/snapd/ns/gnome-calculator.mnt type nsfs (rw)
 </ul>
 </div>
 </li>
-<li><a id="orgd7469ec"></a>卸载<br />
+<li><a id="org3c82f88"></a>卸载<br />
 <div class="outline-text-6" id="text-2-1-2-0-2">
 <ul class="org-ul">
 <li><p>
@@ -382,7 +383,7 @@ umount [选项] &lt;源&gt; | &lt;目录&gt;
 <hr />
 </div>
 </li>
-<li><a id="org899ac4e"></a>du命令 查看大文件并处理数据<br />
+<li><a id="org2d32488"></a>du命令 查看大文件并处理数据<br />
 <div class="outline-text-6" id="text-2-1-2-0-3">
 <pre class="example">
 du 会输出类似tree 输出
@@ -391,7 +392,7 @@ du -sh * | sort -nr
 </pre>
 </div>
 </li>
-<li><a id="org102762f"></a>grep 搜索<br />
+<li><a id="orgec80d0e"></a>grep 搜索<br />
 <div class="outline-text-6" id="text-2-1-2-0-4">
 <pre class="example">
 -v 反向
@@ -405,12 +406,12 @@ du -sh * | sort -nr
 </div>
 </div>
 
-<div id="outline-container-org0f2e2c1" class="outline-2">
-<h2 id="org0f2e2c1"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> 第五章</h2>
+<div id="outline-container-org4a9ee59" class="outline-2">
+<h2 id="org4a9ee59"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> 第五章</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgef62aee" class="outline-4">
-<h4 id="orgef62aee"><span class="section-number-4">3.0.1</span> shell</h4>
+<div id="outline-container-org8be0599" class="outline-4">
+<h4 id="org8be0599"><span class="section-number-4">3.0.1</span> shell</h4>
 <div class="outline-text-4" id="text-3-0-1">
 <ul class="org-ul">
 <li>cat /etc/passwd 查看user shell</li>
@@ -418,16 +419,16 @@ du -sh * | sort -nr
 </ul>
 </div>
 </div>
-<div id="outline-container-org9bc509e" class="outline-4">
-<h4 id="org9bc509e"><span class="section-number-4">3.0.2</span> 命令别名　alias</h4>
+<div id="outline-container-orgf8de52f" class="outline-4">
+<h4 id="orgf8de52f"><span class="section-number-4">3.0.2</span> 命令别名　alias</h4>
 <div class="outline-text-4" id="text-3-0-2">
 <ul class="org-ul">
 <li>alias -&gt; l='ls -lah'</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb03534a" class="outline-4">
-<h4 id="orgb03534a"><span class="section-number-4">3.0.3</span> type</h4>
+<div id="outline-container-orge4dbc67" class="outline-4">
+<h4 id="orge4dbc67"><span class="section-number-4">3.0.3</span> type</h4>
 <div class="outline-text-4" id="text-3-0-3">
 <ul class="org-ul">
 <li><p>
@@ -441,8 +442,8 @@ type -a 显示了两种实现 which 只有外部命令文件
 </ul>
 </div>
 </div>
-<div id="outline-container-orge8d71c4" class="outline-4">
-<h4 id="orge8d71c4"><span class="section-number-4">3.0.4</span> history</h4>
+<div id="outline-container-org7e3d5d0" class="outline-4">
+<h4 id="org7e3d5d0"><span class="section-number-4">3.0.4</span> history</h4>
 <div class="outline-text-4" id="text-3-0-4">
 <pre class="example">
 !! 变量 shell 中 自动读取上一次输入的命令
@@ -452,12 +453,12 @@ type -a 显示了两种实现 which 只有外部命令文件
 </div>
 </div>
 
-<div id="outline-container-org19eb6f2" class="outline-2">
-<h2 id="org19eb6f2"><span class="section-number-2">4</span> <span class="done DONE">DONE</span> 变量</h2>
+<div id="outline-container-orgb93c1d8" class="outline-2">
+<h2 id="orgb93c1d8"><span class="section-number-2">4</span> <span class="done DONE">DONE</span> 变量</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgc93fd10" class="outline-4">
-<h4 id="orgc93fd10"><span class="section-number-4">4.0.1</span> 查看变量</h4>
+<div id="outline-container-org2fa4cbf" class="outline-4">
+<h4 id="org2fa4cbf"><span class="section-number-4">4.0.1</span> 查看变量</h4>
 <div class="outline-text-4" id="text-4-0-1">
 <ul class="org-ul">
 <li>env printenv set</li>
@@ -466,8 +467,8 @@ type -a 显示了两种实现 which 只有外部命令文件
 </ul>
 </div>
 </div>
-<div id="outline-container-org525f7b4" class="outline-4">
-<h4 id="org525f7b4"><span class="section-number-4">4.0.2</span> 设置局部变量</h4>
+<div id="outline-container-orgfb24512" class="outline-4">
+<h4 id="orgfb24512"><span class="section-number-4">4.0.2</span> 设置局部变量</h4>
 <div class="outline-text-4" id="text-4-0-2">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#19968;&#26086;&#21551;&#21160;shell &#23601;&#20250;&#21019;&#24314;&#19968;&#20010; &#23616;&#37096;&#21464;&#37327;</span>
@@ -479,8 +480,8 @@ type -a 显示了两种实现 which 只有外部命令文件
 </div>
 </div>
 </div>
-<div id="outline-container-org73df968" class="outline-4">
-<h4 id="org73df968"><span class="section-number-4">4.0.3</span> 设置全局变量</h4>
+<div id="outline-container-orgc1f7471" class="outline-4">
+<h4 id="orgc1f7471"><span class="section-number-4">4.0.3</span> 设置全局变量</h4>
 <div class="outline-text-4" id="text-4-0-3">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#20808;&#21019;&#24314;&#19968;&#20010;&#23616;&#37096;&#29615;&#22659;&#21464;&#37327;&#28982;&#21518;&#23548;&#20986;&#21040;&#20840;&#23616;</span>
@@ -492,8 +493,8 @@ type -a 显示了两种实现 which 只有外部命令文件
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd761d4" class="outline-4">
-<h4 id="orgcd761d4"><span class="section-number-4">4.0.4</span> 删除全局变量</h4>
+<div id="outline-container-orge17dc95" class="outline-4">
+<h4 id="orge17dc95"><span class="section-number-4">4.0.4</span> 删除全局变量</h4>
 <div class="outline-text-4" id="text-4-0-4">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #81A1C1;">unset</span> a
@@ -502,8 +503,8 @@ type -a 显示了两种实现 which 只有外部命令文件
 </div>
 </div>
 </div>
-<div id="outline-container-org5fbd506" class="outline-4">
-<h4 id="org5fbd506"><span class="section-number-4">4.0.5</span> 设置Path环境变量</h4>
+<div id="outline-container-orgf7ac5c2" class="outline-4">
+<h4 id="orgf7ac5c2"><span class="section-number-4">4.0.5</span> 设置Path环境变量</h4>
 <div class="outline-text-4" id="text-4-0-5">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#21333;&#27425;</span>
@@ -516,23 +517,59 @@ type -a 显示了两种实现 which 只有外部命令文件
 </div>
 </div>
 </div>
-<div id="outline-container-org79925b0" class="outline-4">
-<h4 id="org79925b0"><span class="section-number-4">4.0.6</span> 交互式shell 和非交互式shell  (过了)</h4>
+<div id="outline-container-orgd412677" class="outline-4">
+<h4 id="orgd412677"><span class="section-number-4">4.0.6</span> 交互式shell 和非交互式shell  (过了)</h4>
 </div>
 </div>
-<div id="outline-container-org0e348b5" class="outline-2">
-<h2 id="org0e348b5"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> 文件权限</h2>
+<div id="outline-container-org324ad3f" class="outline-2">
+<h2 id="org324ad3f"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> 文件权限 和 用户</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orga17fcf5" class="outline-4">
-<h4 id="orga17fcf5"><span class="section-number-4">5.0.1</span> </h4>
+<div id="outline-container-org458efb7" class="outline-4">
+<h4 id="org458efb7"><span class="section-number-4">5.0.1</span> 用户相关</h4>
+<div class="outline-text-4" id="text-5-0-1">
+<ul class="org-ul">
+<li>/user/sbin/useradd</li>
+<li>useradd &#x2013;help eg : useradd -m test</li>
+<li>userdel -r test</li>
+<li>usermod 修改账户</li>
+<li>passwd chpasswd 修改密码</li>
+<li>chsh 修改 shell  chsh -s /bin/zsh rzry</li>
+<li>chfn 备注存进字段</li>
+<li>groupadd 创建新的用户组</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org299df8a" class="outline-4">
+<h4 id="org299df8a"><span class="section-number-4">5.0.2</span> 文件权限相关</h4>
+<div class="outline-text-4" id="text-5-0-2">
+<ul class="org-ul">
+<li><p>
+ls
+</p>
+<pre class="example">
+ls -al
+- 代表文件
+d 代表 目录
+1 代表链接
+2 代表字符设备
+drwx____ 文件标示和权限
+</pre></li>
+<li><p>
+touch newfile
+</p>
+<pre class="example">
+1 . touch 默认权限是由umask 设置
+</pre></li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-09-24</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-12-11 五 20:19</p>
+<p class="date">Created: 2021-01-18 一 20:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
