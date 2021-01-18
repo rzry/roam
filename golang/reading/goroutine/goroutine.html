@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-19 二 01:13 -->
+<!-- 2021-01-19 二 01:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>golang</title>
+<title>go并发之道</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -243,76 +243,156 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">golang</h1>
+<h1 class="title">go并发之道</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org92e1465">1. leetcode</a></li>
-<li><a href="#org6fa9635">2. note</a></li>
-<li><a href="#org118b380">3. 摘录</a></li>
-<li><a href="#org8cbbddb">4. Reading</a></li>
+<li><a href="#orga23c550">1. <span class="todo TODO">TODO</span> note</a></li>
+<li><a href="#org6c6a482">2. <span class="todo TODO">TODO</span> part 1</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org92e1465" class="outline-2">
-<h2 id="org92e1465"><span class="section-number-2">1</span> leetcode</h2>
+<div id="outline-container-orga23c550" class="outline-2">
+<h2 id="orga23c550"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=leetcode/27_LeetCode628.html>LeetCode628-三个数的最大乘积</a></li>
+<li><p>
+最好不要让goroutine 异步调用
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">Server</span>(){
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){
+                <span style="color: #51afef;">println</span>()
+        }()
 
-<li><b>Link</b> : <a href=leetcode/26_LeetCode1029.html>LeetCode1029-两地调度</a></li>
+}
 
-<li><b>Link</b> : <a href=leetcode/24_Leetcode_1013数组三等份.html>LeetCode-1013-将数组分成和相等的三个部分</a></li>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">Server</span>(){
+        println
+}
 
-<li><b>Link</b> : <a href=leetcode/23_LeetCode1018.html>Leetcode-1018-被5整除的二进制前缀</a></li>
+<span style="color: #51afef;">go</span> <span style="color: #44b9b1;">Server</span>()
+</pre>
+</div></li>
+<li><p>
+使用chan 来控制你创建的goroutine
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">init</span>(){
 
-<li><b>Link</b> : <a href=leetcode/19_删除当前节点_Leetcode.html>leetcode-删除当前节点</a></li>
+ }
+
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">main</span>(){
+         <span style="color: #979797;">done</span> := <span style="color: #51afef;">make</span>(<span style="color: #51afef;">chan</span> <span style="color: #44b9b1;">error</span>,2)
+         <span style="color: #979797;">stop</span> := <span style="color: #51afef;">make</span>(<span style="color: #51afef;">chan</span> <span style="color: #51afef;">struct</span>{},0)
+
+         <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){
+
+         }()
+ }
+
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">debug</span>(){
+ }
+
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">handler</span>(){
+
+ }
+
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">service</span>(){
+
+ }
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6fa9635" class="outline-2">
-<h2 id="org6fa9635"><span class="section-number-2">2</span> note</h2>
+<div id="outline-container-org6c6a482" class="outline-2">
+<h2 id="org6c6a482"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> part 1</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=note/11_Golang笔记.html>golang笔记</a></li>
-
-<li><b>Link</b> : <a href=note/15_指针_结构体复习.html>指针,结构体</a></li>
-
-<li><b>Link</b> : <a href=note/21_Go_Test.html>go test</a></li>
-
-<li><b>Link</b> : <a href=note/22_Channel图解.html>go channel</a></li>
-
-<li><b>Link</b> : <a href=../interview/channel_select.html>channel-select</a></li>
+<li>竞争条件</li>
 </ul>
-</div>
-</div>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #747474;">// </span><span style="color: #747474;">TestA ...</span>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>)  {
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">data</span> <span style="color: #44b9b1;">int</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){data++}()
 
-<div id="outline-container-org118b380" class="outline-2">
-<h2 id="org118b380"><span class="section-number-2">3</span> 摘录</h2>
-<div class="outline-text-2" id="text-3">
+        <span style="color: #51afef;">if</span> data == <span style="color: #44b9b1;">0</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,data)
+        }
+}
+<span style="color: #747474;">//</span><span style="color: #747474;">1 . &#20160;&#20040;&#37117;&#19981;&#25171;&#21360; data++ &#22312;if &#21069;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">2 . &#25171;&#21360;0 if  &#22312;data++ &#20043;&#21069;&#25191;&#34892;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">3 . &#25171;&#21360;1 data++&#22312;if&#20043;&#21518;&#25191;&#34892; &#20294;&#26159;log&#22312;data++&#21518;&#25191;&#34892;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#21738;&#24597;&#22312;if &#21069;&#21152;sleep &#20063;&#21482;&#26159;&#38477;&#20302;&#20102;&#36825;&#31181;&#21487;&#33021;&#24615;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#24182;&#19981;&#20250;&#26159;&#19968;&#20010;&#20581;&#24247;&#30340;&#31243;&#24207;</span>
+</pre>
+</div>
 <ul class="org-ul">
-<li><b>Link</b> : <a href=摘录/go_open_hub.html>go-open-hub</a></li>
-</ul>
+<li><p>
+内存访问同步 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #747474;">// </span><span style="color: #747474;">TestA ...</span>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>)  {
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">data</span> <span style="color: #44b9b1;">int</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){data++}()
+        <span style="color: #51afef;">if</span> data == <span style="color: #44b9b1;">0</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,data)
+        }<span style="color: #51afef;">else</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,data)
+        }
+}
+<span style="color: #747474;">// </span><span style="color: #747474;">data &#31639;&#26159; &#20849;&#20139;&#36164;&#28304; . &#23545;&#19978;&#36848;&#20363;&#23376;&#26377;&#19977;&#20010;&#20020;&#30028;&#21306;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#20020;&#30028;&#21306;&#26159;&#38656;&#35201;&#29420;&#21344;&#35775;&#38382;&#20849;&#20139;&#36164;&#28304;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">1 . goroutine &#22312;&#35753;data++ </span>
+<span style="color: #747474;">// </span><span style="color: #747474;">2 . if &#22312;&#26816;&#26597;data &#26159;&#21542;&#20026;0 </span>
+<span style="color: #747474;">// </span><span style="color: #747474;">3 . t.log &#27491;&#22312;&#26816;&#32034;&#24182;&#25171;&#21360;data &#30340;&#20540;</span>
+</pre>
 </div>
-</div>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>)  {
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">memoryAccess</span> <span style="color: #44b9b1;">sync.Mutex</span> 
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">value</span> <span style="color: #44b9b1;">int</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span> (){
+                memoryAccess.<span style="color: #44b9b1;">Lock</span>()
+                value++
+                memoryAccess.<span style="color: #44b9b1;">Unlock</span>()
+        }()
 
-<div id="outline-container-org8cbbddb" class="outline-2">
-<h2 id="org8cbbddb"><span class="section-number-2">4</span> Reading</h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=reading/go-standard-learn.html>standard-learn</a></li>
-<li><b>Link</b> : <a href=reading/goroutine/goroutine.html>go并发之道</a></li>
+        memoryAccess.<span style="color: #44b9b1;">Lock</span>()
+        <span style="color: #51afef;">if</span> value == <span style="color: #44b9b1;">0</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,value)
+        }<span style="color: #51afef;">else</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,value)
+        }
+        memory.Access.<span style="color: #44b9b1;">Unlock</span>()
+
+}
+<span style="color: #747474;">//</span><span style="color: #747474;">...&#34429;&#28982;&#24182;&#19981;&#20250;&#36825;&#26679;&#20570;,&#20294;&#26159;&#36825;&#21487;&#20197;&#31616;&#21333;&#28436;&#31034;&#20869;&#23384;&#35775;&#38382;&#21516;&#27493;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#22768;&#26126;&#19968;&#20010;&#38145; , &#30452;&#21040;&#38145;&#21462;&#28040;&#21069; goroutine &#24212;&#35813;&#29420;&#21344;&#20869;&#23384;&#30340;&#35775;&#38382;&#26435;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">unlock &#23459;&#24067;goroutine&#20351;&#29992;&#23436;&#36825;&#27573;&#20869;&#23384;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20877;&#22768;&#26126;&#19979;&#38754;&#30340; &#21028;&#26029;&#35821;&#21477;,&#35753;&#23427;&#29420;&#21344;data&#20869;&#23384;&#30340;&#35775;&#38382;&#26435;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#34429;&#28982;&#36825;&#26679;&#35299;&#20915;&#20102;&#25968;&#25454;&#31454;&#20105;,&#20294;&#26159;&#24182;&#27809;&#26377;&#23427;&#30340;&#25805;&#20316;&#39034;&#24207;&#26159;&#19981;&#30830;&#23450;&#30340;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#19978;&#36848;&#20195;&#30721;,goroutine&#21917;if/else &#37117;&#20250;&#26377;&#21487;&#33021;&#20808;&#25191;&#34892;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#24182;&#19988;&#19978;&#36848;&#21152;&#38145;&#20250;&#26377;&#24615;&#33021;&#38382;&#39064;,lock &#20250;&#35753;&#25105;&#20204;&#31243;&#24207;&#21464;&#24930;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">--ques </span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20020;&#30028;&#21306;&#26159;&#21542;&#39057;&#32321;&#20986;&#20837;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20020;&#30028;&#21306;&#35813;&#26377;&#22810;&#22823; .. context</span>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-22</p>
+<p class="date">Date: 2021-01-12</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-19 二 01:13</p>
+<p class="date">Created: 2021-01-19 二 01:12</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

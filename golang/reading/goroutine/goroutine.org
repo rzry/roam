@@ -47,3 +47,72 @@
 
      }
    #+END_SRC
+
+* TODO part 1 
+  - 竞争条件
+  #+begin_src go
+    // TestA ...
+    func TestA(t *testing.T)  {
+            var data int
+            go func(){data++}()
+
+            if data == 0{
+                    t.Log("this value is ",data)
+            }
+    }
+    //1 . 什么都不打印 data++ 在if 前
+    //2 . 打印0 if  在data++ 之前执行
+    //3 . 打印1 data++在if之后执行 但是log在data++后执行
+    // 哪怕在if 前加sleep 也只是降低了这种可能性
+    // 并不会是一个健康的程序
+  #+end_src
+  - 内存访问同步 
+    #+begin_src go
+      // TestA ...
+      func TestA(t *testing.T)  {
+              var data int
+              go func(){data++}()
+              if data == 0{
+                      t.Log("this value is ",data)
+              }else{
+                      t.Log("this value is ",data)
+              }
+      }
+      // data 算是 共享资源 . 对上述例子有三个临界区
+      //临界区是需要独占访问共享资源
+      // 1 . goroutine 在让data++ 
+      // 2 . if 在检查data 是否为0 
+      // 3 . t.log 正在检索并打印data 的值
+    #+end_src
+    #+begin_src go
+      func TestA(t *testing.T)  {
+              var memoryAccess sync.Mutex 
+              var value int
+              go func (){
+                      memoryAccess.Lock()
+                      value++
+                      memoryAccess.Unlock()
+              }()
+
+              memoryAccess.Lock()
+              if value == 0{
+                      t.Log("this value is ",value)
+              }else{
+                      t.Log("this value is ",value)
+              }
+              memory.Access.Unlock()
+	
+      }
+      //...虽然并不会这样做,但是这可以简单演示内存访问同步
+      // 声明一个锁 , 直到锁取消前 goroutine 应该独占内存的访问权
+      // unlock 宣布goroutine使用完这段内存
+      // 再声明下面的 判断语句,让它独占data内存的访问权
+      // 虽然这样解决了数据竞争,但是并没有它的操作顺序是不确定的
+      // 上述代码,goroutine喝if/else 都会有可能先执行
+      // 并且上述加锁会有性能问题,lock 会让我们程序变慢
+      // --ques 
+      // 临界区是否频繁出入
+      // 临界区该有多大 .. context
+    #+end_src
+
+

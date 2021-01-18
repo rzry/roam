@@ -31,3 +31,4 @@
 
 ** Reading
   - *Link* : [[file:reading/go-standard-learn.org][standard-learn]]
+  - *Link* : [[file:reading/goroutine/goroutine.org][go并发之道]]
