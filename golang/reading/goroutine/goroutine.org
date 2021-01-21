@@ -48,7 +48,8 @@
      }
    #+END_SRC
 
-* TODO part 1
+* DONE part 1
+  CLOSED: [2021-01-22 五 01:10]
   - 竞争条件
     #+begin_src go
     // TestA ...
@@ -146,3 +147,94 @@
       // 第二个 go 开始锁定b 然后在试着锁定 a
       // 两步同时进行,无限等待
     #+end_src
+  - 活锁
+    #+begin_src go
+    
+    #+end_src
+  - 饥饿
+    #+begin_src go
+      func TestGo(t *testing.T){
+              var wg sync.WaitGroup
+              var sharedLock sync.Mutex
+              const runtime = 1*time.Second
+
+              greedyWorker := func(){
+                      defer wg.Done()
+                      var count int
+                      for begin := time.Now();time.Since(begin) <= runtime;{
+                              sharedLock.Lock()
+                              time.Sleep(3*time.Nanosecond)
+                              sharedLock.Unlock()
+                              count++
+                      }
+                      t.Logf("贪心work execute %v",count)
+              }
+
+              politeWorker := func(){
+                      defer wg.Done()
+                      var count int
+                      for begin := time.Now();time.Since(begin)<= runtime;{
+
+                              sharedLock.Lock()
+                              time.Sleep(1*time.Nanosecond)
+                              sharedLock.Unlock()
+
+                              sharedLock.Lock()
+                              time.Sleep(1*time.Nanosecond)
+                              sharedLock.Unlock()
+
+                              sharedLock.Lock()
+                              time.Sleep(1*time.Nanosecond)
+                              sharedLock.Unlock()
+
+                              count++
+                      }
+                      t.Logf("平和 work execute %v",count)
+              }
+
+              wg.Add(2)
+              go greedyWorker()
+              go politeWorker()
+              wg.Wait()
+      }
+      // 贪婪的 count 值大 
+      // 两个程序 共享锁, 贪婪的work 会贪婪的抢占
+      // 平和的worker 只会在需要时锁定
+      // 两个人工作同样的工作,同样的时间,贪婪的工作量
+      // 是平和的work 的两倍
+      // 不知道可不可以理解为 每次加锁越多 就会越慢 要等待别人释放
+    #+end_src
+* DONE part 2 
+  CLOSED: [2021-01-22 五 01:30]
+  - 并发or并行
+    #+begin_src 
+    1 . 并发属于代码,并行属于程序
+    2 . csp 如果在 sync 和 channel 作出选择
+      - 传递数据所有权(类似生产消费)-->带缓存的channel来做
+      - 保护结构的内部状态,想要内部数据线程安全--> sync 
+      - 协调多个逻辑片段--> select,channel 
+        因为channel本质上比内存访问同步原语更具有组合性
+      - 性能...
+    3 . 追求简洁.尽量使用channel 并且认为goroutine没有成本
+    #+end_src
+* TODO part 3
+  - goroutine 
+    #+begin_src 
+    1 . go中的goroutine是独一无二的
+    2 . 不是os线程,也不是绿色线程(语言运行时管理的线程)
+    3 . 它们是协程(非抢占式,简单并发子goroutine(函数,闭包,方法))
+    4 . 他们可以在被阻塞时挂起,不阻塞时恢复.某种程度它们又称为可抢占的
+    5 . 协程和goroutine都是隐式并发结构,但是并发不是协程的属性
+        必须同时托管多个协程,并给每个协程一个可以执行的机会,
+        否则他们就不会并发,(但是go 协程并不是隐式并行的)
+    #+end_src
+  - go的主机托管机制
+    #+begin_src 
+    1 . 主机托管机制是,M:N 调度器实现的,M个绿色线程映射到N个OS线程
+        然后将goroutine运行在绿色线程.
+    2 . 当goroutine数量超过可用绿色线程的时候
+        调度程序将处理分布在可用线程上的goroutine
+        并且确保当这些goroutine被阻塞时,其他的goroutine可以运行      
+    #+end_src
+-------
+下接 page 49 fork-join

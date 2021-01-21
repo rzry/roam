@@ -1,7 +1,7 @@
 #+TITLE:     LeetCode628-三个数的最大乘积
 #+AUTHOR:    rzry
 #+EMAIL:     rzry36008@ccie.lol
-#+DATE:      2020-09-16
+#+DATE:      2021-01-22
 #+LANGUAGE:  en
 
 *  题目
@@ -13,7 +13,6 @@
 输入: [1,2,3]
 输出: 6
 示例 2:
-
 输入: [1,2,3,4]
 输出: 24
 注意:
