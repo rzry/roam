@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-22 五 01:40 -->
+<!-- 2021-01-23 六 01:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go并发之道</title>
@@ -248,61 +248,61 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd90540f">1. <span class="todo TODO">TODO</span> note</a></li>
-<li><a href="#orgbf8c877">2. <span class="done DONE">DONE</span> part 1</a></li>
-<li><a href="#orgde32614">3. <span class="done DONE">DONE</span> part 2</a></li>
-<li><a href="#org11bd258">4. <span class="todo TODO">TODO</span> part 3</a></li>
+<li><a href="#org1e8aaa1">1. <span class="todo TODO">TODO</span> note</a></li>
+<li><a href="#org423c965">2. <span class="done DONE">DONE</span> part 1</a></li>
+<li><a href="#org4fc80c1">3. <span class="done DONE">DONE</span> part 2</a></li>
+<li><a href="#orgd880baf">4. <span class="todo TODO">TODO</span> part 3</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd90540f" class="outline-2">
-<h2 id="orgd90540f"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
+<div id="outline-container-org1e8aaa1" class="outline-2">
+<h2 id="org1e8aaa1"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><p>
 最好不要让goroutine 异步调用
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-167;">func</span> <span style="color: color-179;">Server</span>(){
-        <span style="color: color-167;">go</span> <span style="color: color-167;">func</span>(){
-                <span style="color: color-68;">println</span>()
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">Server</span>(){
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){
+                <span style="color: #51afef;">println</span>()
         }()
 
 }
 
-<span style="color: color-167;">func</span> <span style="color: color-179;">Server</span>(){
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">Server</span>(){
         println
 }
 
-<span style="color: color-167;">go</span> <span style="color: color-179;">Server</span>()
+<span style="color: #51afef;">go</span> <span style="color: #44b9b1;">Server</span>()
 </pre>
 </div></li>
 <li><p>
 使用chan 来控制你创建的goroutine
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-167;">func</span> <span style="color: color-179;">init</span>(){
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">init</span>(){
 
  }
 
- <span style="color: color-167;">func</span> <span style="color: color-179;">main</span>(){
-         <span style="color: color-79;">done</span> := <span style="color: color-68;">make</span>(<span style="color: color-167;">chan</span> <span style="color: color-68;">error</span>,2)
-         <span style="color: color-79;">stop</span> := <span style="color: color-68;">make</span>(<span style="color: color-167;">chan</span> <span style="color: color-167;">struct</span>{},0)
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">main</span>(){
+         <span style="color: #979797;">done</span> := <span style="color: #51afef;">make</span>(<span style="color: #51afef;">chan</span> <span style="color: #44b9b1;">error</span>,2)
+         <span style="color: #979797;">stop</span> := <span style="color: #51afef;">make</span>(<span style="color: #51afef;">chan</span> <span style="color: #51afef;">struct</span>{},0)
 
-         <span style="color: color-167;">go</span> <span style="color: color-167;">func</span>(){
+         <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){
 
          }()
  }
 
- <span style="color: color-167;">func</span> <span style="color: color-179;">debug</span>(){
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">debug</span>(){
  }
 
- <span style="color: color-167;">func</span> <span style="color: color-179;">handler</span>(){
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">handler</span>(){
 
  }
 
- <span style="color: color-167;">func</span> <span style="color: color-179;">service</span>(){
+ <span style="color: #51afef;">func</span> <span style="color: #44b9b1;">service</span>(){
 
  }
 </pre>
@@ -311,80 +311,80 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgbf8c877" class="outline-2">
-<h2 id="orgbf8c877"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> part 1</h2>
+<div id="outline-container-org423c965" class="outline-2">
+<h2 id="org423c965"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> part 1</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><p>
 竞争条件
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">TestA ...</span>
-<span style="color: color-167;">func</span> <span style="color: color-179;">TestA</span>(<span style="color: color-79;">t</span> *<span style="color: color-68;">testing.T</span>)  {
-        <span style="color: color-167;">var</span> <span style="color: color-79;">data</span> <span style="color: color-68;">int</span>
-        <span style="color: color-167;">go</span> <span style="color: color-167;">func</span>(){data++}()
+<pre class="src src-go"><span style="color: #747474;">// </span><span style="color: #747474;">TestA ...</span>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>)  {
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">data</span> <span style="color: #44b9b1;">int</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){data++}()
 
-        <span style="color: color-167;">if</span> data == <span style="color: color-68;">0</span>{
-                t.<span style="color: color-179;">Log</span>(<span style="color: color-113;">"this value is "</span>,data)
+        <span style="color: #51afef;">if</span> data == <span style="color: #44b9b1;">0</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,data)
         }
 }
-<span style="color: color-243; font-style: italic;">//</span><span style="color: color-243; font-style: italic;">1 . &#20160;&#20040;&#37117;&#19981;&#25171;&#21360; data++ &#22312;if &#21069;</span>
-<span style="color: color-243; font-style: italic;">//</span><span style="color: color-243; font-style: italic;">2 . &#25171;&#21360;0 if  &#22312;data++ &#20043;&#21069;&#25191;&#34892;</span>
-<span style="color: color-243; font-style: italic;">//</span><span style="color: color-243; font-style: italic;">3 . &#25171;&#21360;1 data++&#22312;if&#20043;&#21518;&#25191;&#34892; &#20294;&#26159;log&#22312;data++&#21518;&#25191;&#34892;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#21738;&#24597;&#22312;if &#21069;&#21152;sleep &#20063;&#21482;&#26159;&#38477;&#20302;&#20102;&#36825;&#31181;&#21487;&#33021;&#24615;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#24182;&#19981;&#20250;&#26159;&#19968;&#20010;&#20581;&#24247;&#30340;&#31243;&#24207;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">1 . &#20160;&#20040;&#37117;&#19981;&#25171;&#21360; data++ &#22312;if &#21069;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">2 . &#25171;&#21360;0 if  &#22312;data++ &#20043;&#21069;&#25191;&#34892;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">3 . &#25171;&#21360;1 data++&#22312;if&#20043;&#21518;&#25191;&#34892; &#20294;&#26159;log&#22312;data++&#21518;&#25191;&#34892;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#21738;&#24597;&#22312;if &#21069;&#21152;sleep &#20063;&#21482;&#26159;&#38477;&#20302;&#20102;&#36825;&#31181;&#21487;&#33021;&#24615;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#24182;&#19981;&#20250;&#26159;&#19968;&#20010;&#20581;&#24247;&#30340;&#31243;&#24207;</span>
 </pre>
 </div></li>
 <li><p>
 内存访问同步
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">TestA ...</span>
-<span style="color: color-167;">func</span> <span style="color: color-179;">TestA</span>(<span style="color: color-79;">t</span> *<span style="color: color-68;">testing.T</span>)  {
-        <span style="color: color-167;">var</span> <span style="color: color-79;">data</span> <span style="color: color-68;">int</span>
-        <span style="color: color-167;">go</span> <span style="color: color-167;">func</span>(){data++}()
-        <span style="color: color-167;">if</span> data == <span style="color: color-68;">0</span>{
-                t.<span style="color: color-179;">Log</span>(<span style="color: color-113;">"this value is "</span>,data)
-        }<span style="color: color-167;">else</span>{
-                t.<span style="color: color-179;">Log</span>(<span style="color: color-113;">"this value is "</span>,data)
+<pre class="src src-go"><span style="color: #747474;">// </span><span style="color: #747474;">TestA ...</span>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>)  {
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">data</span> <span style="color: #44b9b1;">int</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(){data++}()
+        <span style="color: #51afef;">if</span> data == <span style="color: #44b9b1;">0</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,data)
+        }<span style="color: #51afef;">else</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,data)
         }
 }
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">data &#31639;&#26159; &#20849;&#20139;&#36164;&#28304; . &#23545;&#19978;&#36848;&#20363;&#23376;&#26377;&#19977;&#20010;&#20020;&#30028;&#21306;</span>
-<span style="color: color-243; font-style: italic;">//</span><span style="color: color-243; font-style: italic;">&#20020;&#30028;&#21306;&#26159;&#38656;&#35201;&#29420;&#21344;&#35775;&#38382;&#20849;&#20139;&#36164;&#28304;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">1 . goroutine &#22312;&#35753;data++</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">2 . if &#22312;&#26816;&#26597;data &#26159;&#21542;&#20026;0</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">3 . t.log &#27491;&#22312;&#26816;&#32034;&#24182;&#25171;&#21360;data &#30340;&#20540;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">data &#31639;&#26159; &#20849;&#20139;&#36164;&#28304; . &#23545;&#19978;&#36848;&#20363;&#23376;&#26377;&#19977;&#20010;&#20020;&#30028;&#21306;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#20020;&#30028;&#21306;&#26159;&#38656;&#35201;&#29420;&#21344;&#35775;&#38382;&#20849;&#20139;&#36164;&#28304;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">1 . goroutine &#22312;&#35753;data++</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">2 . if &#22312;&#26816;&#26597;data &#26159;&#21542;&#20026;0</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">3 . t.log &#27491;&#22312;&#26816;&#32034;&#24182;&#25171;&#21360;data &#30340;&#20540;</span>
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-167;">func</span> <span style="color: color-179;">TestA</span>(<span style="color: color-79;">t</span> *<span style="color: color-68;">testing.T</span>)  {
-        <span style="color: color-167;">var</span> <span style="color: color-79;">memoryAccess</span> <span style="color: color-68;">sync.Mutex</span>
-        <span style="color: color-167;">var</span> <span style="color: color-79;">value</span> <span style="color: color-68;">int</span>
-        <span style="color: color-167;">go</span> <span style="color: color-167;">func</span> (){
-                memoryAccess.<span style="color: color-179;">Lock</span>()
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>)  {
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">memoryAccess</span> <span style="color: #44b9b1;">sync.Mutex</span>
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">value</span> <span style="color: #44b9b1;">int</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span> (){
+                memoryAccess.<span style="color: #44b9b1;">Lock</span>()
                 value++
-                memoryAccess.<span style="color: color-179;">Unlock</span>()
+                memoryAccess.<span style="color: #44b9b1;">Unlock</span>()
         }()
 
-        memoryAccess.<span style="color: color-179;">Lock</span>()
-        <span style="color: color-167;">if</span> value == <span style="color: color-68;">0</span>{
-                t.<span style="color: color-179;">Log</span>(<span style="color: color-113;">"this value is "</span>,value)
-        }<span style="color: color-167;">else</span>{
-                t.<span style="color: color-179;">Log</span>(<span style="color: color-113;">"this value is "</span>,value)
+        memoryAccess.<span style="color: #44b9b1;">Lock</span>()
+        <span style="color: #51afef;">if</span> value == <span style="color: #44b9b1;">0</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,value)
+        }<span style="color: #51afef;">else</span>{
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"this value is "</span>,value)
         }
-        memory.Access.<span style="color: color-179;">Unlock</span>()
+        memory.Access.<span style="color: #44b9b1;">Unlock</span>()
 
 }
-<span style="color: color-243; font-style: italic;">//</span><span style="color: color-243; font-style: italic;">...&#34429;&#28982;&#24182;&#19981;&#20250;&#36825;&#26679;&#20570;,&#20294;&#26159;&#36825;&#21487;&#20197;&#31616;&#21333;&#28436;&#31034;&#20869;&#23384;&#35775;&#38382;&#21516;&#27493;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#22768;&#26126;&#19968;&#20010;&#38145; , &#30452;&#21040;&#38145;&#21462;&#28040;&#21069; goroutine &#24212;&#35813;&#29420;&#21344;&#20869;&#23384;&#30340;&#35775;&#38382;&#26435;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">unlock &#23459;&#24067;goroutine&#20351;&#29992;&#23436;&#36825;&#27573;&#20869;&#23384;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#20877;&#22768;&#26126;&#19979;&#38754;&#30340; &#21028;&#26029;&#35821;&#21477;,&#35753;&#23427;&#29420;&#21344;data&#20869;&#23384;&#30340;&#35775;&#38382;&#26435;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#34429;&#28982;&#36825;&#26679;&#35299;&#20915;&#20102;&#25968;&#25454;&#31454;&#20105;,&#20294;&#26159;&#24182;&#27809;&#26377;&#23427;&#30340;&#25805;&#20316;&#39034;&#24207;&#26159;&#19981;&#30830;&#23450;&#30340;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#19978;&#36848;&#20195;&#30721;,goroutine&#21917;if/else &#37117;&#20250;&#26377;&#21487;&#33021;&#20808;&#25191;&#34892;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#24182;&#19988;&#19978;&#36848;&#21152;&#38145;&#20250;&#26377;&#24615;&#33021;&#38382;&#39064;,lock &#20250;&#35753;&#25105;&#20204;&#31243;&#24207;&#21464;&#24930;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">--ques</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#20020;&#30028;&#21306;&#26159;&#21542;&#39057;&#32321;&#20986;&#20837;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#20020;&#30028;&#21306;&#35813;&#26377;&#22810;&#22823; .. context</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">...&#34429;&#28982;&#24182;&#19981;&#20250;&#36825;&#26679;&#20570;,&#20294;&#26159;&#36825;&#21487;&#20197;&#31616;&#21333;&#28436;&#31034;&#20869;&#23384;&#35775;&#38382;&#21516;&#27493;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#22768;&#26126;&#19968;&#20010;&#38145; , &#30452;&#21040;&#38145;&#21462;&#28040;&#21069; goroutine &#24212;&#35813;&#29420;&#21344;&#20869;&#23384;&#30340;&#35775;&#38382;&#26435;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">unlock &#23459;&#24067;goroutine&#20351;&#29992;&#23436;&#36825;&#27573;&#20869;&#23384;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20877;&#22768;&#26126;&#19979;&#38754;&#30340; &#21028;&#26029;&#35821;&#21477;,&#35753;&#23427;&#29420;&#21344;data&#20869;&#23384;&#30340;&#35775;&#38382;&#26435;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#34429;&#28982;&#36825;&#26679;&#35299;&#20915;&#20102;&#25968;&#25454;&#31454;&#20105;,&#20294;&#26159;&#24182;&#27809;&#26377;&#23427;&#30340;&#25805;&#20316;&#39034;&#24207;&#26159;&#19981;&#30830;&#23450;&#30340;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#19978;&#36848;&#20195;&#30721;,goroutine&#21917;if/else &#37117;&#20250;&#26377;&#21487;&#33021;&#20808;&#25191;&#34892;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#24182;&#19988;&#19978;&#36848;&#21152;&#38145;&#20250;&#26377;&#24615;&#33021;&#38382;&#39064;,lock &#20250;&#35753;&#25105;&#20204;&#31243;&#24207;&#21464;&#24930;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">--ques</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20020;&#30028;&#21306;&#26159;&#21542;&#39057;&#32321;&#20986;&#20837;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20020;&#30028;&#21306;&#35813;&#26377;&#22810;&#22823; .. context</span>
 </pre>
 </div></li>
 
@@ -392,34 +392,34 @@ for the JavaScript code in this tag.
 死锁
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-167;">type</span> <span style="color: color-68;">Value</span> <span style="color: color-167;">struct</span> {
-        mu <span style="color: color-68;">sync.Mutex</span>
-        value <span style="color: color-68;">int</span>
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #44b9b1;">Value</span> <span style="color: #51afef;">struct</span> {
+        mu <span style="color: #44b9b1;">sync.Mutex</span>
+        value <span style="color: #44b9b1;">int</span>
 }
 
-<span style="color: color-167;">func</span> <span style="color: color-179;">TestA</span>(<span style="color: color-79;">t</span> *<span style="color: color-68;">testing.T</span>){
-        <span style="color: color-167;">var</span> <span style="color: color-79;">wg</span> <span style="color: color-68;">sync.WaitGroup</span>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestA</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>){
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">wg</span> <span style="color: #44b9b1;">sync.WaitGroup</span>
 
-        <span style="color: color-79;">printSum</span> := <span style="color: color-167;">func</span>(<span style="color: color-79;">v1</span>,<span style="color: color-79;">v2</span> *<span style="color: color-68;">Value</span>){
-                <span style="color: color-167;">defer</span> wg.<span style="color: color-179;">Done</span>()
+        <span style="color: #979797;">printSum</span> := <span style="color: #51afef;">func</span>(<span style="color: #979797;">v1</span>,<span style="color: #979797;">v2</span> *<span style="color: #44b9b1;">Value</span>){
+                <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
 
-                v1.mu.<span style="color: color-179;">Lock</span>()
-                <span style="color: color-167;">defer</span> v1.mu.<span style="color: color-179;">Unlock</span>()
+                v1.mu.<span style="color: #44b9b1;">Lock</span>()
+                <span style="color: #51afef;">defer</span> v1.mu.<span style="color: #44b9b1;">Unlock</span>()
 
-                time.<span style="color: color-179;">Sleep</span>(2*time.Second)
-                v2.mu.<span style="color: color-179;">Lock</span>()
-                <span style="color: color-167;">defer</span> v2.mu.<span style="color: color-179;">Unlock</span>()
-                t.<span style="color: color-179;">Logf</span>(<span style="color: color-113;">"sum = %v"</span>,v1.value+v2.value)
+                time.<span style="color: #44b9b1;">Sleep</span>(2*time.Second)
+                v2.mu.<span style="color: #44b9b1;">Lock</span>()
+                <span style="color: #51afef;">defer</span> v2.mu.<span style="color: #44b9b1;">Unlock</span>()
+                t.<span style="color: #44b9b1;">Logf</span>(<span style="color: #99bb66;">"sum = %v"</span>,v1.value+v2.value)
         }
-        <span style="color: color-167;">var</span> <span style="color: color-79;">a</span> ,b <span style="color: color-68;">Value</span>
-        wg.<span style="color: color-179;">Add</span>(2)
-        <span style="color: color-167;">go</span> <span style="color: color-179;">printSum</span>(&amp;a,&amp;b)
-        <span style="color: color-167;">go</span> <span style="color: color-179;">printSum</span>(&amp;b,&amp;a)
-        wg.<span style="color: color-179;">Wait</span>()
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">a</span> ,b <span style="color: #44b9b1;">Value</span>
+        wg.<span style="color: #44b9b1;">Add</span>(2)
+        <span style="color: #51afef;">go</span> <span style="color: #44b9b1;">printSum</span>(&amp;a,&amp;b)
+        <span style="color: #51afef;">go</span> <span style="color: #44b9b1;">printSum</span>(&amp;b,&amp;a)
+        wg.<span style="color: #44b9b1;">Wait</span>()
 }
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#31532;&#19968;&#20010; go &#35843;&#29992; &#20989;&#25968; &#38145;&#23450;a &#28982;&#21518;&#31561;&#24453;2s &#20934;&#22791;&#38145;&#23450;b</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#31532;&#20108;&#20010; go &#24320;&#22987;&#38145;&#23450;b &#28982;&#21518;&#22312;&#35797;&#30528;&#38145;&#23450; a</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#20004;&#27493;&#21516;&#26102;&#36827;&#34892;,&#26080;&#38480;&#31561;&#24453;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#31532;&#19968;&#20010; go &#35843;&#29992; &#20989;&#25968; &#38145;&#23450;a &#28982;&#21518;&#31561;&#24453;2s &#20934;&#22791;&#38145;&#23450;b</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#31532;&#20108;&#20010; go &#24320;&#22987;&#38145;&#23450;b &#28982;&#21518;&#22312;&#35797;&#30528;&#38145;&#23450; a</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20004;&#27493;&#21516;&#26102;&#36827;&#34892;,&#26080;&#38480;&#31561;&#24453;</span>
 </pre>
 </div></li>
 <li><p>
@@ -433,63 +433,63 @@ for the JavaScript code in this tag.
 饥饿
 </p>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: color-167;">func</span> <span style="color: color-179;">TestGo</span>(<span style="color: color-79;">t</span> *<span style="color: color-68;">testing.T</span>){
-        <span style="color: color-167;">var</span> <span style="color: color-79;">wg</span> <span style="color: color-68;">sync.WaitGroup</span>
-        <span style="color: color-167;">var</span> <span style="color: color-79;">sharedLock</span> <span style="color: color-68;">sync.Mutex</span>
-        <span style="color: color-167;">const</span> <span style="color: color-98;">runtime</span> = 1*time.Second
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestGo</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>){
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">wg</span> <span style="color: #44b9b1;">sync.WaitGroup</span>
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">sharedLock</span> <span style="color: #44b9b1;">sync.Mutex</span>
+        <span style="color: #51afef;">const</span> <span style="color: #51afef;">runtime</span> = 1*time.Second
 
-        <span style="color: color-79;">greedyWorker</span> := <span style="color: color-167;">func</span>(){
-                <span style="color: color-167;">defer</span> wg.<span style="color: color-179;">Done</span>()
-                <span style="color: color-167;">var</span> <span style="color: color-79;">count</span> <span style="color: color-68;">int</span>
-                <span style="color: color-167;">for</span> <span style="color: color-79;">begin</span> := time.<span style="color: color-179;">Now</span>();time.<span style="color: color-179;">Since</span>(begin) &lt;= runtime;{
-                        sharedLock.<span style="color: color-179;">Lock</span>()
-                        time.<span style="color: color-179;">Sleep</span>(3*time.Nanosecond)
-                        sharedLock.<span style="color: color-179;">Unlock</span>()
+        <span style="color: #979797;">greedyWorker</span> := <span style="color: #51afef;">func</span>(){
+                <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
+                <span style="color: #51afef;">var</span> <span style="color: #979797;">count</span> <span style="color: #44b9b1;">int</span>
+                <span style="color: #51afef;">for</span> <span style="color: #979797;">begin</span> := time.<span style="color: #44b9b1;">Now</span>();time.<span style="color: #44b9b1;">Since</span>(begin) &lt;= runtime;{
+                        sharedLock.<span style="color: #44b9b1;">Lock</span>()
+                        time.<span style="color: #44b9b1;">Sleep</span>(3*time.Nanosecond)
+                        sharedLock.<span style="color: #44b9b1;">Unlock</span>()
                         count++
                 }
-                t.<span style="color: color-179;">Logf</span>(<span style="color: color-113;">"&#36138;&#24515;work execute %v"</span>,count)
+                t.<span style="color: #44b9b1;">Logf</span>(<span style="color: #99bb66;">"&#36138;&#24515;work execute %v"</span>,count)
         }
 
-        <span style="color: color-79;">politeWorker</span> := <span style="color: color-167;">func</span>(){
-                <span style="color: color-167;">defer</span> wg.<span style="color: color-179;">Done</span>()
-                <span style="color: color-167;">var</span> <span style="color: color-79;">count</span> <span style="color: color-68;">int</span>
-                <span style="color: color-167;">for</span> <span style="color: color-79;">begin</span> := time.<span style="color: color-179;">Now</span>();time.<span style="color: color-179;">Since</span>(begin)&lt;= runtime;{
+        <span style="color: #979797;">politeWorker</span> := <span style="color: #51afef;">func</span>(){
+                <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
+                <span style="color: #51afef;">var</span> <span style="color: #979797;">count</span> <span style="color: #44b9b1;">int</span>
+                <span style="color: #51afef;">for</span> <span style="color: #979797;">begin</span> := time.<span style="color: #44b9b1;">Now</span>();time.<span style="color: #44b9b1;">Since</span>(begin)&lt;= runtime;{
 
-                        sharedLock.<span style="color: color-179;">Lock</span>()
-                        time.<span style="color: color-179;">Sleep</span>(1*time.Nanosecond)
-                        sharedLock.<span style="color: color-179;">Unlock</span>()
+                        sharedLock.<span style="color: #44b9b1;">Lock</span>()
+                        time.<span style="color: #44b9b1;">Sleep</span>(1*time.Nanosecond)
+                        sharedLock.<span style="color: #44b9b1;">Unlock</span>()
 
-                        sharedLock.<span style="color: color-179;">Lock</span>()
-                        time.<span style="color: color-179;">Sleep</span>(1*time.Nanosecond)
-                        sharedLock.<span style="color: color-179;">Unlock</span>()
+                        sharedLock.<span style="color: #44b9b1;">Lock</span>()
+                        time.<span style="color: #44b9b1;">Sleep</span>(1*time.Nanosecond)
+                        sharedLock.<span style="color: #44b9b1;">Unlock</span>()
 
-                        sharedLock.<span style="color: color-179;">Lock</span>()
-                        time.<span style="color: color-179;">Sleep</span>(1*time.Nanosecond)
-                        sharedLock.<span style="color: color-179;">Unlock</span>()
+                        sharedLock.<span style="color: #44b9b1;">Lock</span>()
+                        time.<span style="color: #44b9b1;">Sleep</span>(1*time.Nanosecond)
+                        sharedLock.<span style="color: #44b9b1;">Unlock</span>()
 
                         count++
                 }
-                t.<span style="color: color-179;">Logf</span>(<span style="color: color-113;">"&#24179;&#21644; work execute %v"</span>,count)
+                t.<span style="color: #44b9b1;">Logf</span>(<span style="color: #99bb66;">"&#24179;&#21644; work execute %v"</span>,count)
         }
 
-        wg.<span style="color: color-179;">Add</span>(2)
-        <span style="color: color-167;">go</span> <span style="color: color-179;">greedyWorker</span>()
-        <span style="color: color-167;">go</span> <span style="color: color-179;">politeWorker</span>()
-        wg.<span style="color: color-179;">Wait</span>()
+        wg.<span style="color: #44b9b1;">Add</span>(2)
+        <span style="color: #51afef;">go</span> <span style="color: #44b9b1;">greedyWorker</span>()
+        <span style="color: #51afef;">go</span> <span style="color: #44b9b1;">politeWorker</span>()
+        wg.<span style="color: #44b9b1;">Wait</span>()
 }
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#36138;&#23146;&#30340; count &#20540;&#22823; </span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#20004;&#20010;&#31243;&#24207; &#20849;&#20139;&#38145;, &#36138;&#23146;&#30340;work &#20250;&#36138;&#23146;&#30340;&#25250;&#21344;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#24179;&#21644;&#30340;worker &#21482;&#20250;&#22312;&#38656;&#35201;&#26102;&#38145;&#23450;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#20004;&#20010;&#20154;&#24037;&#20316;&#21516;&#26679;&#30340;&#24037;&#20316;,&#21516;&#26679;&#30340;&#26102;&#38388;,&#36138;&#23146;&#30340;&#24037;&#20316;&#37327;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#26159;&#24179;&#21644;&#30340;work &#30340;&#20004;&#20493;</span>
-<span style="color: color-243; font-style: italic;">// </span><span style="color: color-243; font-style: italic;">&#19981;&#30693;&#36947;&#21487;&#19981;&#21487;&#20197;&#29702;&#35299;&#20026; &#27599;&#27425;&#21152;&#38145;&#36234;&#22810; &#23601;&#20250;&#36234;&#24930; &#35201;&#31561;&#24453;&#21035;&#20154;&#37322;&#25918;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#36138;&#23146;&#30340; count &#20540;&#22823; </span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20004;&#20010;&#31243;&#24207; &#20849;&#20139;&#38145;, &#36138;&#23146;&#30340;work &#20250;&#36138;&#23146;&#30340;&#25250;&#21344;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#24179;&#21644;&#30340;worker &#21482;&#20250;&#22312;&#38656;&#35201;&#26102;&#38145;&#23450;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#20004;&#20010;&#20154;&#24037;&#20316;&#21516;&#26679;&#30340;&#24037;&#20316;,&#21516;&#26679;&#30340;&#26102;&#38388;,&#36138;&#23146;&#30340;&#24037;&#20316;&#37327;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#26159;&#24179;&#21644;&#30340;work &#30340;&#20004;&#20493;</span>
+<span style="color: #747474;">// </span><span style="color: #747474;">&#19981;&#30693;&#36947;&#21487;&#19981;&#21487;&#20197;&#29702;&#35299;&#20026; &#27599;&#27425;&#21152;&#38145;&#36234;&#22810; &#23601;&#20250;&#36234;&#24930; &#35201;&#31561;&#24453;&#21035;&#20154;&#37322;&#25918;</span>
 </pre>
 </div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgde32614" class="outline-2">
-<h2 id="orgde32614"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> part 2</h2>
+<div id="outline-container-org4fc80c1" class="outline-2">
+<h2 id="org4fc80c1"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> part 2</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><p>
@@ -508,8 +508,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org11bd258" class="outline-2">
-<h2 id="org11bd258"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> part 3</h2>
+<div id="outline-container-orgd880baf" class="outline-2">
+<h2 id="orgd880baf"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> part 3</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><p>
@@ -534,17 +534,106 @@ go的主机托管机制
     调度程序将处理分布在可用线程上的goroutine
     并且确保当这些goroutine被阻塞时,其他的goroutine可以运行      
 </pre></li>
+<li><p>
+join point 
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestGg</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>){
+        <span style="color: #51afef;">var</span> <span style="color: #979797;">wg</span> <span style="color: #44b9b1;">sync.WaitGroup</span>
+
+        <span style="color: #979797;">sayHi</span> := <span style="color: #51afef;">func</span>() {
+                <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
+                t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"hello world"</span>)
+        }
+        wg.<span style="color: #44b9b1;">Add</span>(1)
+        <span style="color: #51afef;">go</span> <span style="color: #44b9b1;">sayHi</span>()
+        wg.<span style="color: #44b9b1;">Wait</span>()
+}
+<span style="color: #747474;">//</span><span style="color: #747474;">&#22914;&#19978;&#25991;,&#25105;&#20204;&#20351;&#29992;&#35768;&#22810;&#30340;&#21311;&#21517;&#20989;&#25968;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#26469;&#21019;&#24314;goroutine , &#22914;&#26524;&#25105;&#20204;&#22312;goroutine</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#36816;&#34892;&#19968;&#20010;&#38381;&#21253;,&#37027;&#20040;&#38381;&#21253;&#26159;&#22312;&#21464;&#37327;&#30340;&#21103;&#26412;&#36816;&#34892;&#24456;&#26159;&#22312;&#21407;&#20540;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#30340;&#24341;&#29992;&#19978;&#36816;&#34892;?</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestGg</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>){
+    <span style="color: #51afef;">var</span> <span style="color: #979797;">wg</span> <span style="color: #44b9b1;">sync.WaitGroup</span>
+
+    <span style="color: #979797;">sayHi</span> := <span style="color: #51afef;">func</span>() {
+            <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
+            t.<span style="color: #44b9b1;">Log</span>(<span style="color: #99bb66;">"hello world"</span>)
+    }
+    wg.<span style="color: #44b9b1;">Add</span>(1)
+    <span style="color: #51afef;">go</span> <span style="color: #44b9b1;">sayHi</span>()
+    wg.<span style="color: #44b9b1;">Wait</span>()
+}
+<span style="color: #747474;">//</span><span style="color: #747474;">&#36825;&#20010;goroutine&#20250;&#20462;&#25913;&#20540;,</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#35777;&#26126;go &#22312; &#20182;&#20204;&#25152;&#21019;&#24314;&#30340;&#30456;&#21516;&#22320;&#22336;&#31354;&#38388;&#20869;&#25191;&#34892;</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestGg</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>){
+    <span style="color: #51afef;">var</span> <span style="color: #979797;">wg</span> <span style="color: #44b9b1;">sync.WaitGroup</span>
+
+    <span style="color: #51afef;">for</span> <span style="color: #979797;">_</span>,v := <span style="color: #51afef;">range</span> []<span style="color: #44b9b1;">string</span>{<span style="color: #99bb66;">"hello"</span>,<span style="color: #99bb66;">"world"</span>,<span style="color: #99bb66;">"rzry"</span>,<span style="color: #99bb66;">"goroutine"</span>}{
+            wg.<span style="color: #44b9b1;">Add</span>(1)
+            <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>() {
+                    <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
+                    t.<span style="color: #44b9b1;">Log</span>(v)
+            }()
+    }
+    wg.<span style="color: #44b9b1;">Wait</span>()
+}
+<span style="color: #747474;">//</span><span style="color: #747474;">&#36755;&#20986;&#20102;4&#20010;goroutine </span>
+<span style="color: #747474;">//</span><span style="color: #747474;">go &#36816;&#34892;&#20102;&#19968;&#20010;&#38381;&#21253;,&#22312;&#38381;&#21253;&#20351;&#29992;v &#30340;&#26102;&#20505;,&#23383;&#31526;&#20018;&#36845;&#20195;&#24050;&#32463;&#32467;&#26463;&#20102;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#35745;&#21010;&#20013;&#30340;goroutine&#21487;&#33021;&#22312;&#26410;&#26469;&#30340;&#20219;&#20309;&#26102;&#38388;&#28857;&#36816;&#34892;,&#20182;&#19981;&#30830;&#23450;</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#22312;goroutine&#20013;&#20250;&#25171;&#21360;&#20160;&#20040;&#20540;..</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#32534;&#20889;&#36825;&#20010;&#27491;&#30830;&#30340;&#20570;&#27861;&#26159; &#25226; v &#30340;&#21103;&#26412;&#20256;&#36882;&#21040;&#38381;&#21253;&#20013; </span>
+<span style="color: #51afef;">func</span> (<span style="color: #979797;">v</span> <span style="color: #44b9b1;">string</span>){}(v)  
+<span style="color: #747474;">//</span><span style="color: #747474;">&#32780; func (string){}(v)&#37117;&#26159;&#19981;&#20250;&#25104;&#21151;&#30340;</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>56 - 59 讲述了goroutine和上下文切换的大小和时长</li>
+<li><p>
+sync.waitgroup
+</p>
+<pre class="example">
+可以把waitgroup是做一个并发安全的计数器
+上文所述,goroutine无法判断神码时候运行
+我们可以在go 前执行 wg.wait 
+如果将调用的Add方法添加到goroutine的闭包中
+那么wait可能会直接返回,因为add并不会运行
+我们通常只调用一组goroutine来追踪一组goroutine
+</pre>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #44b9b1;">TestGg</span>(<span style="color: #979797;">t</span> *<span style="color: #44b9b1;">testing.T</span>){
+  <span style="color: #51afef;">var</span> <span style="color: #979797;">wg</span> <span style="color: #44b9b1;">sync.WaitGroup</span>
+
+  <span style="color: #51afef;">for</span> <span style="color: #979797;">_</span>,v := <span style="color: #51afef;">range</span> []<span style="color: #44b9b1;">string</span>{<span style="color: #99bb66;">"hello"</span>,<span style="color: #99bb66;">"world"</span>,<span style="color: #99bb66;">"rzry"</span>,<span style="color: #99bb66;">"goroutine"</span>}{
+          wg.<span style="color: #44b9b1;">Add</span>(1)
+          <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>() {
+                  <span style="color: #51afef;">defer</span> wg.<span style="color: #44b9b1;">Done</span>()
+                  t.<span style="color: #44b9b1;">Log</span>(v)
+          }()
+  }
+  wg.<span style="color: #44b9b1;">Wait</span>()
+}
+</pre>
+</div></li>
+</ul></li>
 </ul>
 <hr />
 <p>
-下接 page 49 fork-join</p>
+下接 page 60 互斥,读写
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-01-12</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-22 五 01:40</p>
+<p class="date">Created: 2021-01-23 六 01:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

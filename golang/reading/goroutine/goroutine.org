@@ -236,5 +236,83 @@
         调度程序将处理分布在可用线程上的goroutine
         并且确保当这些goroutine被阻塞时,其他的goroutine可以运行      
     #+end_src
--------
-下接 page 49 fork-join
+  - join point 
+    #+begin_src go
+      func TestGg(t *testing.T){
+              var wg sync.WaitGroup
+
+              sayHi := func() {
+                      defer wg.Done()
+                      t.Log("hello world")
+              }
+              wg.Add(1)
+              go sayHi()
+              wg.Wait()
+      }
+      //如上文,我们使用许多的匿名函数
+      //来创建goroutine , 如果我们在goroutine
+      //运行一个闭包,那么闭包是在变量的副本运行很是在原值
+      //的引用上运行?
+    #+end_src
+    #+begin_src go
+    func TestGg(t *testing.T){
+	var wg sync.WaitGroup
+
+	sayHi := func() {
+		defer wg.Done()
+		t.Log("hello world")
+	}
+	wg.Add(1)
+	go sayHi()
+	wg.Wait()
+    }
+    //这个goroutine会修改值,
+    //证明go 在 他们所创建的相同地址空间内执行
+    #+end_src
+    #+begin_src go
+    func TestGg(t *testing.T){
+	var wg sync.WaitGroup
+
+	for _,v := range []string{"hello","world","rzry","goroutine"}{
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			t.Log(v)
+		}()
+	}
+	wg.Wait()
+    }
+    //输出了4个goroutine 
+    //go 运行了一个闭包,在闭包使用v 的时候,字符串迭代已经结束了
+    //计划中的goroutine可能在未来的任何时间点运行,他不确定
+    //在goroutine中会打印什么值..
+    //编写这个正确的做法是 把 v 的副本传递到闭包中 
+    func (v string){}(v)  
+    //而 func (string){}(v)都是不会成功的
+    #+end_src
+    - 56 - 59 讲述了goroutine和上下文切换的大小和时长
+    - sync.waitgroup
+      #+begin_src 
+      可以把waitgroup是做一个并发安全的计数器
+      上文所述,goroutine无法判断神码时候运行
+      我们可以在go 前执行 wg.wait 
+      如果将调用的Add方法添加到goroutine的闭包中
+      那么wait可能会直接返回,因为add并不会运行
+      我们通常只调用一组goroutine来追踪一组goroutine
+      #+end_src
+      #+begin_src go
+      func TestGg(t *testing.T){
+	var wg sync.WaitGroup
+
+	for _,v := range []string{"hello","world","rzry","goroutine"}{
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			t.Log(v)
+		}()
+	}
+	wg.Wait()
+      }
+      #+end_src
+-----
+下接 page 60 互斥,读写
