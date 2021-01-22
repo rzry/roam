@@ -15,6 +15,7 @@
 
   -  *Link* : [[file:leetcode/19_删除当前节点_Leetcode.org][leetcode-删除当前节点]]
 
+  -  *Link* : [[file:leetcode/67.org][67-二进制求和]]
 ** note
   -  *Link* : [[file:note/11_Golang笔记.org][golang笔记]]
 
