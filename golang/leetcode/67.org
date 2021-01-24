@@ -1,0 +1,53 @@
+#+TITLE:     67-二进制求和
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-01-23
+#+LANGUAGE:  en
+
+#+begin_src 
+给你两个二进制字符串，返回它们的和（用二进制表示）。
+
+输入为 非空 字符串且只包含数字 1 和 0。
+示例 1:
+
+输入: a = "11", b = "1"
+输出: "100"
+示例 2:
+
+输入: a = "1010", b = "1011"
+输出: "10101"
+
+#+end_src
+
+#+begin_src go
+  import "strconv"
+  func addBinary(a string, b string) string {
+  
+  lena , lenb := len(a),len(b)
+
+  var res string
+  //把每个数字拿出来int32
+  runeA , runeB := []rune(a),[]rune(b)
+  carry := 0
+  for lena != 0 || lenb != 0 {
+      x ,  y  := 0, 0 
+      if lena  != 0 {
+          x = int(runeA[lena-1]-rune('0'))
+          lena--
+      }
+
+      if lenb != 0 {
+           y = int(runeB[lenb - 1] - rune('0'))
+          lenb--
+      }
+      temp := x + y + carry
+      res = strconv.Itoa(temp % 2 ) + res 
+      carry =  temp / 2 
+
+  }
+  if  carry  != 0 {
+      return "1" + res 
+  }
+
+  return res
+#+end_src

@@ -48,7 +48,8 @@
      }
    #+END_SRC
 
-* TODO part 1
+* DONE part 1
+  CLOSED: [2021-01-22 五 01:10]
   - 竞争条件
     #+begin_src go
     // TestA ...
@@ -146,9 +147,420 @@
       // 第二个 go 开始锁定b 然后在试着锁定 a
       // 两步同时进行,无限等待
     #+end_src
+<<<<<<< HEAD
 
   - 活锁
     #+begin_src go
     
 
+=======
+  - 活锁
+    #+begin_src go
+    
+    #+end_src
+  - 饥饿
+    #+begin_src go
+      func TestGo(t *testing.T){
+              var wg sync.WaitGroup
+              var sharedLock sync.Mutex
+              const runtime = 1*time.Second
+
+              greedyWorker := func(){
+                      defer wg.Done()
+                      var count int
+                      for begin := time.Now();time.Since(begin) <= runtime;{
+                              sharedLock.Lock()
+                              time.Sleep(3*time.Nanosecond)
+                              sharedLock.Unlock()
+                              count++
+                      }
+                      t.Logf("贪心work execute %v",count)
+              }
+
+              politeWorker := func(){
+                      defer wg.Done()
+                      var count int
+                      for begin := time.Now();time.Since(begin)<= runtime;{
+
+                              sharedLock.Lock()
+                              time.Sleep(1*time.Nanosecond)
+                              sharedLock.Unlock()
+
+                              sharedLock.Lock()
+                              time.Sleep(1*time.Nanosecond)
+                              sharedLock.Unlock()
+
+                              sharedLock.Lock()
+                              time.Sleep(1*time.Nanosecond)
+                              sharedLock.Unlock()
+
+                              count++
+                      }
+                      t.Logf("平和 work execute %v",count)
+              }
+
+              wg.Add(2)
+              go greedyWorker()
+              go politeWorker()
+              wg.Wait()
+      }
+      // 贪婪的 count 值大 
+      // 两个程序 共享锁, 贪婪的work 会贪婪的抢占
+      // 平和的worker 只会在需要时锁定
+      // 两个人工作同样的工作,同样的时间,贪婪的工作量
+      // 是平和的work 的两倍
+      // 不知道可不可以理解为 每次加锁越多 就会越慢 要等待别人释放
+    #+end_src
+* DONE part 2 
+  CLOSED: [2021-01-22 五 01:30]
+  - 并发or并行
+    #+begin_src 
+    1 . 并发属于代码,并行属于程序
+    2 . csp 如果在 sync 和 channel 作出选择
+      - 传递数据所有权(类似生产消费)-->带缓存的channel来做
+      - 保护结构的内部状态,想要内部数据线程安全--> sync 
+      - 协调多个逻辑片段--> select,channel 
+        因为channel本质上比内存访问同步原语更具有组合性
+      - 性能...
+    3 . 追求简洁.尽量使用channel 并且认为goroutine没有成本
+    #+end_src
+* TODO part 3
+  - goroutine 
+    #+begin_src 
+    1 . go中的goroutine是独一无二的
+    2 . 不是os线程,也不是绿色线程(语言运行时管理的线程)
+    3 . 它们是协程(非抢占式,简单并发子goroutine(函数,闭包,方法))
+    4 . 他们可以在被阻塞时挂起,不阻塞时恢复.某种程度它们又称为可抢占的
+    5 . 协程和goroutine都是隐式并发结构,但是并发不是协程的属性
+        必须同时托管多个协程,并给每个协程一个可以执行的机会,
+        否则他们就不会并发,(但是go 协程并不是隐式并行的)
+    #+end_src
+  - go的主机托管机制
+    #+begin_src 
+    1 . 主机托管机制是,M:N 调度器实现的,M个绿色线程映射到N个OS线程
+        然后将goroutine运行在绿色线程.
+    2 . 当goroutine数量超过可用绿色线程的时候
+        调度程序将处理分布在可用线程上的goroutine
+        并且确保当这些goroutine被阻塞时,其他的goroutine可以运行      
+    #+end_src
+  - join point 
+    #+begin_src go
+      func TestGg(t *testing.T){
+              var wg sync.WaitGroup
+
+              sayHi := func() {
+                      defer wg.Done()
+                      t.Log("hello world")
+              }
+              wg.Add(1)
+              go sayHi()
+              wg.Wait()
+      }
+      //如上文,我们使用许多的匿名函数
+      //来创建goroutine , 如果我们在goroutine
+      //运行一个闭包,那么闭包是在变量的副本运行很是在原值
+      //的引用上运行?
+    #+end_src
+    #+begin_src go
+    func TestGg(t *testing.T){
+	var wg sync.WaitGroup
+
+	sayHi := func() {
+		defer wg.Done()
+		t.Log("hello world")
+	}
+	wg.Add(1)
+	go sayHi()
+	wg.Wait()
+    }
+    //这个goroutine会修改值,
+    //证明go 在 他们所创建的相同地址空间内执行
+    #+end_src
+    #+begin_src go
+    func TestGg(t *testing.T){
+	var wg sync.WaitGroup
+
+	for _,v := range []string{"hello","world","rzry","goroutine"}{
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			t.Log(v)
+		}()
+	}
+	wg.Wait()
+    }
+    //输出了4个goroutine 
+    //go 运行了一个闭包,在闭包使用v 的时候,字符串迭代已经结束了
+    //计划中的goroutine可能在未来的任何时间点运行,他不确定
+    //在goroutine中会打印什么值..
+    //编写这个正确的做法是 把 v 的副本传递到闭包中 
+    func (v string){}(v)  
+    //而 func (string){}(v)都是不会成功的
+    #+end_src
+    - 56 - 59 讲述了goroutine和上下文切换的大小和时长
+    - sync.waitgroup
+      #+begin_src 
+      可以把waitgroup是做一个并发安全的计数器
+      上文所述,goroutine无法判断神码时候运行
+      我们可以在go 前执行 wg.wait 
+      如果将调用的Add方法添加到goroutine的闭包中
+      那么wait可能会直接返回,因为add并不会运行
+      我们通常只调用一组goroutine来追踪一组goroutine
+      #+end_src
+      #+begin_src go
+      func TestGg(t *testing.T){
+	var wg sync.WaitGroup
+
+	for _,v := range []string{"hello","world","rzry","goroutine"}{
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			t.Log(v)
+		}()
+	}
+	wg.Wait()
+      }
+      #+end_src
+
+  - 互斥锁
+    #+begin_src go
+    func TestGs(t *testing.T){
+	var count int
+	var lock sync.Mutex
+
+	increment := func(){
+		lock.Lock()
+		defer lock.Unlock()
+		count++
+		t.Log("添加的函数 count == >",count)
+	}
+
+	decremeny := func() {
+		lock.Lock()
+		defer lock.Unlock()
+		count--
+		t.Log("删除的函数 count ==> ",count)
+	}
+
+	//增加
+	var uplock sync.WaitGroup
+	for i := 0;i <= 5;i++{
+		uplock.Add(1)
+		go func() {
+			defer uplock.Done()
+			increment()
+		}()
+	}
+	//减少
+	for i := 0;i<=5;i++{
+		uplock.Add(1)
+		go func() {
+			defer uplock.Done()
+			decremeny()
+		}()
+	}
+
+	uplock.Wait()
+	t.Log("this is end")
+    }
+   // 随机的执行++ --  
+    #+end_src
+
+  - 读写锁
+    #+begin_src go
+    func TestRwtex(t *testing.T){
+	producer := func(wg *sync.WaitGroup,l sync.Locker) {
+		defer wg.Done()
+		for i:=5;i>0;i--{
+			l.Lock()
+			l.Unlock()
+			time.Sleep(1)
+		}
+	}
+
+	observer := func(wg *sync.WaitGroup,l sync.Locker) {
+		defer wg.Done()
+		l.Lock()
+		defer  l.Unlock()
+	}
+
+	test := func(count int,mutex , rwMutex sync.Locker)time.Duration {
+		var wg sync.WaitGroup
+		wg.Add(count+1)
+		beginTestTime := time.Now()
+		go producer(&wg,mutex)
+		for i:=count;i>0;i--{
+			go observer(&wg,rwMutex)
+		}
+		wg.Wait()
+		return time.Since(beginTestTime)
+	}
+
+	tw := tabwriter.NewWriter(os.Stdout,0,1,2,' ',0)
+	defer tw.Flush()
+
+	var m sync.RWMutex
+	t.Log(tw,"readers\trwmutex\tmutex\n")
+	for i:=0;i<20;i++{
+		count := int(math.Pow(2,float64(i)))
+		t.Log(
+			tw,
+			"%d\t%v\t%v\n",
+			count,
+			test(count,&m,m.RLocker()),
+			test(count,&m,&m),
+			)
+	}
+    } 
+
+    #+end_src
+  - cond
+    #+begin_src go
+    func TestCond(t *testing.T){
+	c := sync.NewCond(&sync.Mutex{})
+
+	queue := make([]interface{},0,10)
+
+	removeFromQueue := func(delay  time.Duration) {
+		time.Sleep(delay)
+		c.L.Lock()
+		queue = queue[1:] //少1
+		t.Log("删除一个 queue")
+		c.L.Unlock()
+		c.Signal()
+	}
+
+	for i := 0;i<10;i++ {
+		c.L.Lock()
+		for len(queue) == 2{
+			c.Wait()
+		}
+		t.Log("添加一个 queue")
+		queue = append(queue, struct {}{})
+		go removeFromQueue(1*time.Second)
+		c.L.Unlock()
+
+	}
+
+}
+
+    #+end_src
+  - broad cast
+    #+begin_src go
+    func TestBroadcast(t *testing.T){
+	type Button struct {
+		Clicked *sync.Cond
+	}
+	button := Button{Clicked: sync.NewCond(&sync.Mutex{})}
+	subscribe := func(c *sync.Cond,fn func()) {
+		var goroutineRunning sync.WaitGroup
+		goroutineRunning.Add(1)
+		go func() {
+			goroutineRunning.Done()
+			c.L.Lock()
+			defer c.L.Unlock()
+			c.Wait()
+			fn()
+		}()
+		goroutineRunning.Wait()
+	}
+	var clickRegistered sync.WaitGroup
+	clickRegistered.Add(3)
+	subscribe(button.Clicked, func() {
+		t.Log("Maximizing window")
+		clickRegistered.Done()
+	})
+
+	subscribe(button.Clicked, func() {
+		t.Log("display annoying")
+		clickRegistered.Done()
+	})
+
+	subscribe(button.Clicked, func() {
+		t.Log("mouse clicked ")
+		clickRegistered.Done()
+	})
+
+	button.Clicked.Broadcast()
+	clickRegistered.Wait()
+}
+    #+end_src
+  - once
+    #+begin_src go
+    func TestOnce(t *testing.T){
+	var count int
+	increment := func() {
+		count++
+	}
+
+	var once sync.Once
+
+	var increments sync.WaitGroup
+
+	increments.Add(100)
+	for i := 0 ; i<100;i++ {
+		go func() {
+			defer increments.Done()
+			once.Do(increment)
+		}()
+	}
+	increments.Wait()
+	t.Log("value ==> ",count)
+    }
+    //value == > 1
+    //即使在不同的 goroutine  也是只会调用一次 do方法传递的函数
+    #+end_src
+  - pool
+    #+begin_src go
+    func TestPool(t *testing.T){
+	myPool := &sync.Pool{
+		New: func() interface{}{
+			t.Log("这是一个简单的pool func")
+			return struct {}{}
+		},
+	}
+	myPool.Get() // 第一次get 返回
+	instance :=myPool.Get() //第二次get 返回
+	myPool.Put(instance) //放入pool
+	myPool.Get() // 不会被调用 会重新使用以前放在pool里面的
+    }
+
+    //使用pool ? 为什么不再运行的时候实例化对象?
+    // 因为 gc 的原因 实例化的对象会被自动清理
+    //如下
+    #+end_src
+  
+    #+begin_src go 
+    func TestPool(t *testing.T){
+	var numCalcsCreated int
+
+	calPool := &sync.Pool{
+		New: func() interface{}{
+			numCalcsCreated += 1
+			mem := make([]byte,1024)
+			return &mem
+		},
+	}
+	calPool.Put(calPool.New())
+	calPool.Put(calPool.New())
+	calPool.Put(calPool.New())
+	calPool.Put(calPool.New())
+
+	const numWorkers = 1024
+	var wg sync.WaitGroup
+	wg.Add(numWorkers)
+
+	for i := numWorkers;i > 0;i--{
+		go func() {
+			defer wg.Done()
+			mem := calPool.Get().(*[]byte)
+			defer calPool.Put(mem)
+		}()
+	}
+	wg.Wait()
+	t.Log("num-->",numCalcsCreated)
+    }
+    // 这个返回值是一个不定值.
+    //在最坏的情况下 可能会分配一个较大字节的内存
+>>>>>>> d0c4e020c66b84f9b63ac50c89d0711f0acb1314
     #+end_src

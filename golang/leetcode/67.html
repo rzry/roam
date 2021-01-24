@@ -6,7 +6,7 @@
 <!-- 2021-01-23 六 01:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>golang</title>
+<title>67-二进制求和</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -243,75 +243,58 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">golang</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgaf28161">1. leetcode</a></li>
-<li><a href="#orgb92841d">2. note</a></li>
-<li><a href="#orgb6aee05">3. 摘录</a></li>
-<li><a href="#org00ea295">4. Reading</a></li>
-</ul>
-</div>
-</div>
+<h1 class="title">67-二进制求和</h1>
+<pre class="example">
+给你两个二进制字符串，返回它们的和（用二进制表示）。
 
-<div id="outline-container-orgaf28161" class="outline-2">
-<h2 id="orgaf28161"><span class="section-number-2">1</span> leetcode</h2>
-<div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=leetcode/27_LeetCode628.html>LeetCode628-三个数的最大乘积</a></li>
+输入为 非空 字符串且只包含数字 1 和 0。
+示例 1:
 
-<li><b>Link</b> : <a href=leetcode/26_LeetCode1029.html>LeetCode1029-两地调度</a></li>
+输入: a = "11", b = "1"
+输出: "100"
+示例 2:
 
-<li><b>Link</b> : <a href=leetcode/24_Leetcode_1013数组三等份.html>LeetCode-1013-将数组分成和相等的三个部分</a></li>
+输入: a = "1010", b = "1011"
+输出: "10101"
 
-<li><b>Link</b> : <a href=leetcode/23_LeetCode1018.html>Leetcode-1018-被5整除的二进制前缀</a></li>
+</pre>
 
-<li><b>Link</b> : <a href=leetcode/19_删除当前节点_Leetcode.html>leetcode-删除当前节点</a></li>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">import</span> <span style="color: #99bb66;">"strconv"</span>
+<span style="color: #51afef;">func</span> <span style="color: #44b9b1;">addBinary</span>(<span style="color: #979797;">a</span> <span style="color: #44b9b1;">string</span>, <span style="color: #979797;">b</span> <span style="color: #44b9b1;">string</span>) <span style="color: #44b9b1;">string</span> {
 
-<li><b>Link</b> : <a href=leetcode/67.html>67-二进制求和</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgb92841d" class="outline-2">
-<h2 id="orgb92841d"><span class="section-number-2">2</span> note</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=note/11_Golang笔记.html>golang笔记</a></li>
+<span style="color: #979797;">lena</span> , <span style="color: #979797;">lenb</span> := <span style="color: #51afef;">len</span>(a),<span style="color: #51afef;">len</span>(b)
 
-<li><b>Link</b> : <a href=note/15_指针_结构体复习.html>指针,结构体</a></li>
+<span style="color: #51afef;">var</span> <span style="color: #979797;">res</span> <span style="color: #44b9b1;">string</span>
+<span style="color: #747474;">//</span><span style="color: #747474;">&#25226;&#27599;&#20010;&#25968;&#23383;&#25343;&#20986;&#26469;int32</span>
+<span style="color: #979797;">runeA</span> , <span style="color: #979797;">runeB</span> := []<span style="color: #44b9b1;">rune</span>(a),[]<span style="color: #44b9b1;">rune</span>(b)
+<span style="color: #979797;">carry</span> := 0
+<span style="color: #51afef;">for</span> lena != 0 || lenb != 0 {
+    <span style="color: #979797;">x</span> ,  <span style="color: #979797;">y</span>  := 0, 0 
+    <span style="color: #51afef;">if</span> lena  != 0 {
+        x = <span style="color: #44b9b1;">int</span>(runeA[lena-1]-<span style="color: #44b9b1;">rune</span>(<span style="color: #99bb66;">'0'</span>))
+        lena--
+    }
 
-<li><b>Link</b> : <a href=note/21_Go_Test.html>go test</a></li>
+    <span style="color: #51afef;">if</span> lenb != 0 {
+         y = <span style="color: #44b9b1;">int</span>(runeB[lenb - 1] - <span style="color: #44b9b1;">rune</span>(<span style="color: #99bb66;">'0'</span>))
+        lenb--
+    }
+    <span style="color: #979797;">temp</span> := x + y + carry
+    res = strconv.<span style="color: #44b9b1;">Itoa</span>(temp % 2 ) + res 
+    carry =  temp / 2 
 
-<li><b>Link</b> : <a href=note/22_Channel图解.html>go channel</a></li>
+}
+<span style="color: #51afef;">if</span>  carry  != 0 {
+    <span style="color: #51afef;">return</span> <span style="color: #99bb66;">"1"</span> + res 
+}
 
-<li><b>Link</b> : <a href=../interview/channel_select.html>channel-select</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgb6aee05" class="outline-2">
-<h2 id="orgb6aee05"><span class="section-number-2">3</span> 摘录</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=摘录/go_open_hub.html>go-open-hub</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org00ea295" class="outline-2">
-<h2 id="org00ea295"><span class="section-number-2">4</span> Reading</h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=reading/go-standard-learn.html>standard-learn</a></li>
-<li><b>Link</b> : <a href=reading/goroutine/goroutine.html>go并发之道</a></li>
-</ul>
-</div>
+<span style="color: #51afef;">return</span> res
+</pre>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-22</p>
+<p class="date">Date: 2021-01-23</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
 <p class="date">Created: 2021-01-23 六 01:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
