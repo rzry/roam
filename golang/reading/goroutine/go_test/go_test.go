@@ -328,3 +328,41 @@ func TestSelect2(t *testing.T) {
 		t.Log("超时")
 	}
 }
+//约束
+func TestBind(t *testing.T){
+	data:= make([]int,5)
+	loopData := func(handleData chan <-int) {
+		defer close(handleData)
+		for i:= range data{
+			handleData <- data[i]
+		}
+	}
+
+	handleData := make(chan int)
+	go loopData(handleData)
+	t.Log("handler data == ",<-handleData)//0
+	t.Log("handler data == ",<-handleData)//0
+	for num := range handleData{
+		t.Log(num)
+	}
+}
+func TestBind2(t *testing.T){
+	chanOwner := func() <- chan int{
+		results := make(chan int,5)
+		go func() {
+			defer close(results)
+			for i := 0;i <=5 ;i++{
+				results <- i
+			}
+		}()
+		return results
+	}
+	consumer := func(results <- chan int) {
+		for result := range results{
+			t.Log("result == >",result)
+		}
+		t.Log("done receiving")
+	}
+	results:= chanOwner()
+	consumer(results)
+}
