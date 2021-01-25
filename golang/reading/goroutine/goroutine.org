@@ -151,12 +151,12 @@
 
   - 活锁
     #+begin_src go
-    
+
 
 =======
   - 活锁
     #+begin_src go
-    
+
     #+end_src
   - 饥饿
     #+begin_src go
@@ -204,29 +204,30 @@
               go politeWorker()
               wg.Wait()
       }
-      // 贪婪的 count 值大 
+      // 贪婪的 count 值大
       // 两个程序 共享锁, 贪婪的work 会贪婪的抢占
       // 平和的worker 只会在需要时锁定
       // 两个人工作同样的工作,同样的时间,贪婪的工作量
       // 是平和的work 的两倍
       // 不知道可不可以理解为 每次加锁越多 就会越慢 要等待别人释放
     #+end_src
-* DONE part 2 
+* DONE part 2
   CLOSED: [2021-01-22 五 01:30]
   - 并发or并行
-    #+begin_src 
+    #+begin_src
     1 . 并发属于代码,并行属于程序
     2 . csp 如果在 sync 和 channel 作出选择
       - 传递数据所有权(类似生产消费)-->带缓存的channel来做
-      - 保护结构的内部状态,想要内部数据线程安全--> sync 
-      - 协调多个逻辑片段--> select,channel 
+      - 保护结构的内部状态,想要内部数据线程安全--> sync
+      - 协调多个逻辑片段--> select,channel
         因为channel本质上比内存访问同步原语更具有组合性
       - 性能...
     3 . 追求简洁.尽量使用channel 并且认为goroutine没有成本
     #+end_src
-* TODO part 3
-  - goroutine 
-    #+begin_src 
+* DONE part 3
+  CLOSED: [2021-01-25 一 22:20]
+  - goroutine
+    #+begin_src
     1 . go中的goroutine是独一无二的
     2 . 不是os线程,也不是绿色线程(语言运行时管理的线程)
     3 . 它们是协程(非抢占式,简单并发子goroutine(函数,闭包,方法))
@@ -236,14 +237,14 @@
         否则他们就不会并发,(但是go 协程并不是隐式并行的)
     #+end_src
   - go的主机托管机制
-    #+begin_src 
+    #+begin_src
     1 . 主机托管机制是,M:N 调度器实现的,M个绿色线程映射到N个OS线程
         然后将goroutine运行在绿色线程.
     2 . 当goroutine数量超过可用绿色线程的时候
         调度程序将处理分布在可用线程上的goroutine
-        并且确保当这些goroutine被阻塞时,其他的goroutine可以运行      
+        并且确保当这些goroutine被阻塞时,其他的goroutine可以运行
     #+end_src
-  - join point 
+  - join point
     #+begin_src go
       func TestGg(t *testing.T){
               var wg sync.WaitGroup
@@ -289,20 +290,20 @@
 	}
 	wg.Wait()
     }
-    //输出了4个goroutine 
+    //输出了4个goroutine
     //go 运行了一个闭包,在闭包使用v 的时候,字符串迭代已经结束了
     //计划中的goroutine可能在未来的任何时间点运行,他不确定
     //在goroutine中会打印什么值..
-    //编写这个正确的做法是 把 v 的副本传递到闭包中 
-    func (v string){}(v)  
+    //编写这个正确的做法是 把 v 的副本传递到闭包中
+    func (v string){}(v)
     //而 func (string){}(v)都是不会成功的
     #+end_src
-    - 56 - 59 讲述了goroutine和上下文切换的大小和时长
-    - sync.waitgroup
-      #+begin_src 
+  - 56 - 59 讲述了goroutine和上下文切换的大小和时长
+  - sync.waitgroup
+      #+begin_src
       可以把waitgroup是做一个并发安全的计数器
       上文所述,goroutine无法判断神码时候运行
-      我们可以在go 前执行 wg.wait 
+      我们可以在go 前执行 wg.wait
       如果将调用的Add方法添加到goroutine的闭包中
       那么wait可能会直接返回,因为add并不会运行
       我们通常只调用一组goroutine来追踪一组goroutine
@@ -363,7 +364,7 @@
 	uplock.Wait()
 	t.Log("this is end")
     }
-   // 随机的执行++ --  
+   // 随机的执行++ --
     #+end_src
 
   - 读写锁
@@ -411,7 +412,7 @@
 			test(count,&m,&m),
 			)
 	}
-    } 
+    }
 
     #+end_src
   - cond
@@ -442,8 +443,10 @@
 
 	}
 
-}
-
+    }
+    //signal 让c.wait 知道bu是死锁
+    //提供通知 goroutine 阻塞的调用wait
+    //程序成功的把10个数据写入队列中
     #+end_src
   - broad cast
     #+begin_src go
@@ -454,12 +457,12 @@
 	button := Button{Clicked: sync.NewCond(&sync.Mutex{})}
 	subscribe := func(c *sync.Cond,fn func()) {
 		var goroutineRunning sync.WaitGroup
-		goroutineRunning.Add(1)
+		goroutineRunning.Add(1)  // 1 .总是在外部加1
 		go func() {
-			goroutineRunning.Done()
+			goroutineRunning.Done() // 2 .在内部减掉
 			c.L.Lock()
 			defer c.L.Unlock()
-			c.Wait()
+			c.Wait() // 这个wait 现无意义, 若操作临界区,wait 等到返回
 			fn()
 		}()
 		goroutineRunning.Wait()
@@ -480,10 +483,13 @@
 		t.Log("mouse clicked ")
 		clickRegistered.Done()
 	})
-
-	button.Clicked.Broadcast()
+/*
+	button.Clicked.Signal() //调用三次这个也ok
+	button.Clicked.Signal()
+	button.Clicked.Signal()*/
+	button.Clicked.Broadcast() // 让所有等到的goroutine 运行
 	clickRegistered.Wait()
-}
+    }
     #+end_src
   - once
     #+begin_src go
@@ -529,8 +535,8 @@
     // 因为 gc 的原因 实例化的对象会被自动清理
     //如下
     #+end_src
-  
-    #+begin_src go 
+
+    #+begin_src go
     func TestPool(t *testing.T){
 	var numCalcsCreated int
 
@@ -562,5 +568,49 @@
     }
     // 这个返回值是一个不定值.
     //在最坏的情况下 可能会分配一个较大字节的内存
->>>>>>> d0c4e020c66b84f9b63ac50c89d0711f0acb1314
+
+    #+end_src
+
+  - select
+    #+begin_src go
+    func TestSelect1(t *testing.T) {
+	start := time.Now()
+	c := make(chan interface{})
+	go func() {
+		time.Sleep(5 * time.Second)
+		close(c)
+	}()
+	t.Log("blocking on read...")
+	select {
+	case <-c:
+		t.Logf("unblocked %v later", time.Since(start))
+	}
+    }
+    //阻塞case 等到 goroutine 执行 close(c).
+    #+end_src
+
+    #+begin_src go
+    func TestSelect2(t *testing.T) {
+	c := make(chan interface{})
+	t.Log("blocking on read...")
+	select {
+	case <-c:
+	//一直阻塞
+	case <-time.After(1 * time.Second):
+		t.Log("超时")
+	}
+    }
+    #+end_src
+
+* TODO part 4
+  - 约束
+    #+begin_src
+    1 . 在并发中,保证安全
+       - sync.Mutex(共享内存的同步原语)
+       - channel (通信共享内存来进行同步)
+    2 . 约束的必要...如下
+    #+end_src
+
+    #+begin_src go
+    
     #+end_src
