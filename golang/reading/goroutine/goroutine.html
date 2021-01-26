@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-25 一 22:37 -->
+<!-- 2021-01-26 二 22:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go并发之道</title>
@@ -248,17 +248,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org930b0cf">1. <span class="todo TODO">TODO</span> note</a></li>
-<li><a href="#org3629861">2. <span class="done DONE">DONE</span> part 1</a></li>
-<li><a href="#orgf70cf0c">3. <span class="done DONE">DONE</span> part 2</a></li>
-<li><a href="#orgf317385">4. <span class="done DONE">DONE</span> part 3</a></li>
-<li><a href="#org8c62604">5. <span class="todo TODO">TODO</span> part 4</a></li>
+<li><a href="#orgbb0c454">1. <span class="todo TODO">TODO</span> note</a></li>
+<li><a href="#orgdb3c422">2. <span class="done DONE">DONE</span> part 1</a></li>
+<li><a href="#org4aefcfc">3. <span class="done DONE">DONE</span> part 2</a></li>
+<li><a href="#org96c20a4">4. <span class="done DONE">DONE</span> part 3</a></li>
+<li><a href="#org940e652">5. <span class="todo TODO">TODO</span> part 4</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org930b0cf" class="outline-2">
-<h2 id="org930b0cf"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
+<div id="outline-container-orgbb0c454" class="outline-2">
+<h2 id="orgbb0c454"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><p>
@@ -312,8 +312,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3629861" class="outline-2">
-<h2 id="org3629861"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> part 1</h2>
+<div id="outline-container-orgdb3c422" class="outline-2">
+<h2 id="orgdb3c422"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> part 1</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><p>
@@ -500,8 +500,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf70cf0c" class="outline-2">
-<h2 id="orgf70cf0c"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> part 2</h2>
+<div id="outline-container-org4aefcfc" class="outline-2">
+<h2 id="org4aefcfc"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> part 2</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><p>
@@ -520,8 +520,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf317385" class="outline-2">
-<h2 id="orgf317385"><span class="section-number-2">4</span> <span class="done DONE">DONE</span> part 3</h2>
+<div id="outline-container-org96c20a4" class="outline-2">
+<h2 id="org96c20a4"><span class="section-number-2">4</span> <span class="done DONE">DONE</span> part 3</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><p>
@@ -938,8 +938,8 @@ select
 </div>
 </div>
 
-<div id="outline-container-org8c62604" class="outline-2">
-<h2 id="org8c62604"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> part 4</h2>
+<div id="outline-container-org940e652" class="outline-2">
+<h2 id="org940e652"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> part 4</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><p>
@@ -977,38 +977,55 @@ select
 <div class="org-src-container">
 <pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">TestBind2</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
     <span style="color: #D8DEE9;">chanOwner</span> := <span style="color: #81A1C1;">func</span>() &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>{
-            <span style="color: #D8DEE9;">results</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>,5)
+            <span style="color: #D8DEE9;">results</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>,5) <span style="color: #6f7787;">//</span><span style="color: #6f7787;">1 &#22312; &#21311;&#21517;&#20989;&#25968;&#20869; &#23454;&#20363;&#21270;channel</span>
             <span style="color: #81A1C1;">go</span> <span style="color: #81A1C1;">func</span>() {
                     <span style="color: #81A1C1;">defer</span> <span style="color: #81A1C1;">close</span>(results)
                     <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">i</span> := 0;i &lt;=5 ;i++{
                             results &lt;- i
                     }
             }()
-            <span style="color: #81A1C1;">return</span> results
+            <span style="color: #81A1C1;">return</span> results <span style="color: #6f7787;">//</span><span style="color: #6f7787;">2 &#36820;&#22238;&#19968;&#20010; &#35835;channel</span>
     }
-    <span style="color: #D8DEE9;">consumer</span> := <span style="color: #81A1C1;">func</span>(<span style="color: #D8DEE9;">results</span> &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>) {
+    <span style="color: #D8DEE9;">consumer</span> := <span style="color: #81A1C1;">func</span>(<span style="color: #D8DEE9;">results</span> &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>) { <span style="color: #6f7787;">// </span><span style="color: #6f7787;">4 .&#25910;&#21040;&#21482;&#35835;&#30340;int channel&#21103;&#26412;</span>
             <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">result</span> := <span style="color: #81A1C1;">range</span> <span style="color: #8FBCBB;">results</span>{
                     t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"result == &gt;"</span>,result)
             }
             t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"done receiving"</span>)
     }
-    <span style="color: #D8DEE9;">results</span>:= <span style="color: #8FBCBB;">chanOwner</span>()
+    <span style="color: #D8DEE9;">results</span>:= <span style="color: #8FBCBB;">chanOwner</span>() <span style="color: #6f7787;">// </span><span style="color: #6f7787;">3 &#25910;&#21040;channel &#35835;&#22788;&#29702;</span>
     <span style="color: #8FBCBB;">consumer</span>(results)
+}
+<span style="color: #6f7787;">// </span><span style="color: #6f7787;">1. channel &#26159;&#24182;&#21457;&#23433;&#20840;&#30340; . &#22914;&#19979;&#26159;&#19968;&#20010;&#38750;&#24182;&#21457;&#23433;&#20840;&#30340;&#25968;&#25454;&#32467;&#26500;&#32422;&#26463;demo</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">TestBind3</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+    <span style="color: #D8DEE9;">printData</span> := <span style="color: #81A1C1;">func</span>(<span style="color: #D8DEE9;">wg</span> *<span style="color: #8FBCBB;">sync.WaitGroup</span>,<span style="color: #D8DEE9;">data</span> []<span style="color: #8FBCBB;">byte</span>) {
+            <span style="color: #81A1C1;">defer</span> wg.<span style="color: #8FBCBB;">Done</span>()
+            <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">buff</span> <span style="color: #8FBCBB;">bytes.Buffer</span>
+            <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">_</span>,b := <span style="color: #81A1C1;">range</span> <span style="color: #8FBCBB;">data</span>{
+                    t.<span style="color: #8FBCBB;">Log</span>(&amp;buff,<span style="color: #A3BE8C;">"---"</span>,b)
+            }
+            t.<span style="color: #8FBCBB;">Log</span>(buff.<span style="color: #8FBCBB;">String</span>())
+    }
+    <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">wg</span> <span style="color: #8FBCBB;">sync.WaitGroup</span>
+    wg.<span style="color: #8FBCBB;">Add</span>(2)
+    <span style="color: #D8DEE9;">data</span> := []<span style="color: #8FBCBB;">byte</span>(<span style="color: #A3BE8C;">"golang"</span>)
+    <span style="color: #81A1C1;">go</span> <span style="color: #8FBCBB;">printData</span>(&amp;wg,data[:3])
+    <span style="color: #81A1C1;">go</span> <span style="color: #8FBCBB;">printData</span>(&amp;wg,data[3:])
+    wg.<span style="color: #8FBCBB;">Wait</span>()
 }
 </pre>
 </div></li>
 </ul>
-<hr />
-<p>
-下接 page101
-</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-01-12</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-25 一 22:37</p>
+<p class="date">Created: 2021-01-26 二 22:44</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

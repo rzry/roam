@@ -1,6 +1,7 @@
 package go_test
 
 import (
+	"bytes"
 	"math"
 	"os"
 	"strconv"
@@ -348,21 +349,37 @@ func TestBind(t *testing.T){
 }
 func TestBind2(t *testing.T){
 	chanOwner := func() <- chan int{
-		results := make(chan int,5)
+		results := make(chan int,5) //1 在 匿名函数内 实例化channel
 		go func() {
 			defer close(results)
 			for i := 0;i <=5 ;i++{
 				results <- i
 			}
 		}()
-		return results
+		return results //2 返回一个 读channel
 	}
-	consumer := func(results <- chan int) {
+	consumer := func(results <- chan int) { // 4 .收到只读的int channel副本
 		for result := range results{
 			t.Log("result == >",result)
 		}
 		t.Log("done receiving")
 	}
-	results:= chanOwner()
+	results:= chanOwner() // 3 收到channel 读处理
 	consumer(results)
+}
+func TestBind3(t *testing.T){
+	printData := func(wg *sync.WaitGroup,data []byte) {
+		defer wg.Done()
+		var buff bytes.Buffer
+		for _,b := range data{
+			t.Log(&buff,"---",b)
+		}
+		t.Log(buff.String())
+	}
+	var wg sync.WaitGroup
+	wg.Add(2)
+	data := []byte("golang")
+	go printData(&wg,data[:3])
+	go printData(&wg,data[3:])
+	wg.Wait()
 }
