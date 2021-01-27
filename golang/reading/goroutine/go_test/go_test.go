@@ -2,6 +2,7 @@ package go_test
 
 import (
 	"bytes"
+	"fmt"
 	"math"
 	"os"
 	"strconv"
@@ -372,7 +373,7 @@ func TestBind3(t *testing.T){
 		defer wg.Done()
 		var buff bytes.Buffer
 		for _,b := range data{
-			t.Log(&buff,"---",b)
+			fmt.Fprintf(&buff,"%c",b)
 		}
 		t.Log(buff.String())
 	}
@@ -382,4 +383,69 @@ func TestBind3(t *testing.T){
 	go printData(&wg,data[:3])
 	go printData(&wg,data[3:])
 	wg.Wait()
+}
+func TestForSelect(t *testing.T){
+	s := make(chan int)
+	for  {
+		select {
+		case <-s:
+			return
+		default:
+		}
+	}
+}
+func TestKillGorouine(t *testing.T){
+	doWork := func(strings <- chan string) <- chan interface{} {
+		completed := make(chan interface{})
+		//1 . 子goroutine
+		go func() {
+			defer t.Log("Dowork is done")
+			defer close(completed)
+			for s:= range strings{
+				t.Log("s -->",s)
+			}
+		}()
+		return completed
+	}
+	/*res := make(chan string)
+	res <- "hello"
+	doWork(res)*/
+	doWork(nil)
+	//假设这里执行了很多很多的操作
+	// 那么 上面因为传入的chan 是nil 所以在生命周期内
+	// dowork 会一直存在在内存中
+	t.Log("Done")
+}
+func TestKill2Gorouine(t *testing.T){
+	doWork := func(done <- chan interface{},strings <- chan string)<-chan interface{}{
+		terminated := make(chan interface{})
+		go func() {
+			defer t.Log(" 2 --> Dowork exited")
+			defer close(terminated)
+			for {
+				select {
+				case s := <- strings: //这一步就不停的等待
+					//假设这里有很多业务
+					t.Log(s)
+				case <-done: // 这一步等待 done channel 的关闭
+					return
+				}
+			}
+		}()
+		return terminated
+	}
+	done := make(chan interface{})
+	terminated := doWork(done,nil)
+
+	go func() {
+		//1 s 后关闭操作
+		time.Sleep(1 * time.Second)
+		t.Log(" 1 -->关闭dowork")
+		close(done)  //在这里我们关闭了这个 done channel
+	}()
+	<-terminated
+	t.Log("3 --> Done")
+	//我们还是传入了一个nil string
+	// 多加了一个 done 的 chan dowork 返回一个 <-terminated
+	//
 }

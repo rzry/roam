@@ -1,0 +1,16 @@
+#+TITLE:     2021-todo
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-01-27
+#+LANGUAGE:  en
+#+begin_src
+   - C c C s 插入一个时间
+   - 后跟完成
+#+end_src
+
+* 未完成
+** TODO Go并发之道
+** TODO Linux Shell
+** TODO 网络是怎样连接的
+** TODO innodb
+** TODO redis

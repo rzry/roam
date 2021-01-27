@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-26 二 22:44 -->
+<!-- 2021-01-27 三 23:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go并发之道</title>
@@ -248,17 +248,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbb0c454">1. <span class="todo TODO">TODO</span> note</a></li>
-<li><a href="#orgdb3c422">2. <span class="done DONE">DONE</span> part 1</a></li>
-<li><a href="#org4aefcfc">3. <span class="done DONE">DONE</span> part 2</a></li>
-<li><a href="#org96c20a4">4. <span class="done DONE">DONE</span> part 3</a></li>
-<li><a href="#org940e652">5. <span class="todo TODO">TODO</span> part 4</a></li>
+<li><a href="#org95e059f">1. <span class="todo TODO">TODO</span> note</a></li>
+<li><a href="#orgf149a40">2. <span class="done DONE">DONE</span> part 1</a></li>
+<li><a href="#org707d348">3. <span class="done DONE">DONE</span> part 2</a></li>
+<li><a href="#org243b143">4. <span class="done DONE">DONE</span> part 3</a></li>
+<li><a href="#org926f5f9">5. <span class="todo TODO">TODO</span> part 4</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbb0c454" class="outline-2">
-<h2 id="orgbb0c454"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
+<div id="outline-container-org95e059f" class="outline-2">
+<h2 id="org95e059f"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> note</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><p>
@@ -312,8 +312,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgdb3c422" class="outline-2">
-<h2 id="orgdb3c422"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> part 1</h2>
+<div id="outline-container-orgf149a40" class="outline-2">
+<h2 id="orgf149a40"><span class="section-number-2">2</span> <span class="done DONE">DONE</span> part 1</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><p>
@@ -500,8 +500,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4aefcfc" class="outline-2">
-<h2 id="org4aefcfc"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> part 2</h2>
+<div id="outline-container-org707d348" class="outline-2">
+<h2 id="org707d348"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> part 2</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><p>
@@ -520,8 +520,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org96c20a4" class="outline-2">
-<h2 id="org96c20a4"><span class="section-number-2">4</span> <span class="done DONE">DONE</span> part 3</h2>
+<div id="outline-container-org243b143" class="outline-2">
+<h2 id="org243b143"><span class="section-number-2">4</span> <span class="done DONE">DONE</span> part 3</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><p>
@@ -938,8 +938,8 @@ select
 </div>
 </div>
 
-<div id="outline-container-org940e652" class="outline-2">
-<h2 id="org940e652"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> part 4</h2>
+<div id="outline-container-org926f5f9" class="outline-2">
+<h2 id="org926f5f9"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> part 4</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><p>
@@ -1018,6 +1018,99 @@ select
 }
 </pre>
 </div></li>
+
+<li><p>
+for-select
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">TestForSelect</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+    <span style="color: #D8DEE9;">s</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">int</span>)
+    <span style="color: #81A1C1;">for</span>  {
+            <span style="color: #81A1C1;">select</span> {
+            <span style="color: #81A1C1;">case</span> &lt;-s:
+                    <span style="color: #81A1C1;">return</span>
+            <span style="color: #81A1C1;">default</span>:
+            }
+    }
+}
+</pre>
+</div></li>
+
+<li><p>
+防止goroutine泄露
+</p>
+<pre class="example">
+1 . 从前文, goroutine是廉价的
+    但是我们还是不该让进程对此没有感知
+2 . ogorutine 如何会关闭
+  - 完成工作
+  - panic
+  - 告知需要停止时
+3 . 如下代码告知 如何确保一个子goroutine被清理
+</pre>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#19968;&#20010;goroutine &#30340;&#20869;&#23384;&#27844;&#38706;</span>
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">TestKillGorouine</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+    <span style="color: #D8DEE9;">doWork</span> := <span style="color: #81A1C1;">func</span>(<span style="color: #D8DEE9;">strings</span> &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">string</span>) &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #81A1C1;">interface</span>{} {
+            <span style="color: #D8DEE9;">completed</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #81A1C1;">interface</span>{})
+            <span style="color: #6f7787;">//</span><span style="color: #6f7787;">1 . &#23376;goroutine</span>
+            <span style="color: #81A1C1;">go</span> <span style="color: #81A1C1;">func</span>() {
+                    <span style="color: #81A1C1;">defer</span> t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"Dowork is done"</span>)
+                    <span style="color: #81A1C1;">defer</span> <span style="color: #81A1C1;">close</span>(completed)
+                    <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">s</span>:= <span style="color: #81A1C1;">range</span> <span style="color: #8FBCBB;">strings</span>{
+                            t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"s --&gt;"</span>,s)
+                    }
+            }()
+            <span style="color: #81A1C1;">return</span> completed
+    }
+    <span style="color: #6f7787;">/*</span><span style="color: #6f7787;">res := make(chan string)</span>
+<span style="color: #6f7787;">    res &lt;- "hello"</span>
+<span style="color: #6f7787;">    doWork(res)*/</span>
+    <span style="color: #8FBCBB;">doWork</span>(<span style="color: #81A1C1;">nil</span>)
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#20551;&#35774;&#36825;&#37324;&#25191;&#34892;&#20102;&#24456;&#22810;&#24456;&#22810;&#30340;&#25805;&#20316;</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#37027;&#20040; &#19978;&#38754;&#22240;&#20026;&#20256;&#20837;&#30340;chan &#26159;nil &#25152;&#20197;&#22312;&#29983;&#21629;&#21608;&#26399;&#20869;</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">dowork &#20250;&#19968;&#30452;&#23384;&#22312;&#22312;&#20869;&#23384;&#20013;</span>
+    t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"Done"</span>)
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">TestKill2Gorouine</span>(<span style="color: #D8DEE9;">t</span> *<span style="color: #8FBCBB;">testing.T</span>){
+    <span style="color: #D8DEE9;">doWork</span> := <span style="color: #81A1C1;">func</span>(<span style="color: #D8DEE9;">done</span> &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #81A1C1;">interface</span>{},<span style="color: #D8DEE9;">strings</span> &lt;- <span style="color: #81A1C1;">chan</span> <span style="color: #8FBCBB;">string</span>)&lt;-<span style="color: #81A1C1;">chan</span> <span style="color: #81A1C1;">interface</span>{}{
+            <span style="color: #D8DEE9;">terminated</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #81A1C1;">interface</span>{})
+            <span style="color: #81A1C1;">go</span> <span style="color: #81A1C1;">func</span>() {
+                    <span style="color: #81A1C1;">defer</span> t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">" 2 --&gt; Dowork exited"</span>)
+                    <span style="color: #81A1C1;">defer</span> <span style="color: #81A1C1;">close</span>(terminated)
+                    <span style="color: #81A1C1;">for</span> {
+                            <span style="color: #81A1C1;">select</span> {
+                            <span style="color: #81A1C1;">case</span> <span style="color: #D8DEE9;">s</span> := &lt;- strings: <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36825;&#19968;&#27493;&#23601;&#19981;&#20572;&#30340;&#31561;&#24453;</span>
+                                    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#20551;&#35774;&#36825;&#37324;&#26377;&#24456;&#22810;&#19994;&#21153;</span>
+                                    t.<span style="color: #8FBCBB;">Log</span>(s)
+                            <span style="color: #81A1C1;">case</span> &lt;-done: <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#36825;&#19968;&#27493;&#31561;&#24453; done channel &#30340;&#20851;&#38381;</span>
+                                    <span style="color: #81A1C1;">return</span>
+                            }
+                    }
+            }()
+            <span style="color: #81A1C1;">return</span> terminated
+    }
+    <span style="color: #D8DEE9;">done</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">chan</span> <span style="color: #81A1C1;">interface</span>{})
+    <span style="color: #D8DEE9;">terminated</span> := <span style="color: #8FBCBB;">doWork</span>(done,<span style="color: #81A1C1;">nil</span>)
+
+    <span style="color: #81A1C1;">go</span> <span style="color: #81A1C1;">func</span>() {
+            <span style="color: #6f7787;">//</span><span style="color: #6f7787;">1 s &#21518;&#20851;&#38381;&#25805;&#20316;</span>
+            time.<span style="color: #8FBCBB;">Sleep</span>(1 * time.Second)
+            t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">" 1 --&gt;&#20851;&#38381;dowork"</span>)
+            <span style="color: #81A1C1;">close</span>(done)  <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#22312;&#36825;&#37324;&#25105;&#20204;&#20851;&#38381;&#20102;&#36825;&#20010; done channel</span>
+    }()
+    &lt;-terminated
+    t.<span style="color: #8FBCBB;">Log</span>(<span style="color: #A3BE8C;">"3 --&gt; Done"</span>)
+    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#25105;&#20204;&#36824;&#26159;&#20256;&#20837;&#20102;&#19968;&#20010;nil string</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22810;&#21152;&#20102;&#19968;&#20010; done &#30340; chan dowork &#36820;&#22238;&#19968;&#20010; &lt;-terminated</span>
+    <span style="color: #6f7787;">//</span>
+}
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
@@ -1025,7 +1118,7 @@ select
 <div id="postamble" class="status">
 <p class="date">Date: 2021-01-12</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-01-26 二 22:44</p>
+<p class="date">Created: 2021-01-27 三 23:11</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
