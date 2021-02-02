@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-02-03 三 01:19 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>sync</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="rzry https://github.com/rzry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">sync</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbe38c53">1. sync</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbe38c53" class="outline-2">
+<h2 id="orgbe38c53"><span class="section-number-2">1</span> sync</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">type</span> <span style="color: #8FBCBB;">Mutex</span> <span style="color: #81A1C1;">struct</span> {
+    state <span style="color: #8FBCBB;">int32</span>  
+    sema  <span style="color: #8FBCBB;">uint32</span>
+}
+
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#19979;&#25991;&#20195;&#30721;&#20013;&#29992;&#21040;&#30340;&#20960;&#20010;&#24120;&#37327;</span>
+<span style="color: #81A1C1;">const</span> (
+    <span style="color: #81A1C1;">mutexLocked</span> = 1 &lt;&lt; <span style="color: #81A1C1;">iota</span> <span style="color: #6f7787;">// </span><span style="color: #6f7787;">1 </span>
+    <span style="color: #81A1C1;">mutexWoken</span>    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">2 &#21796;&#37266;</span>
+    <span style="color: #81A1C1;">mutexStarving</span>  <span style="color: #6f7787;">// </span><span style="color: #6f7787;">4 &#39269;&#39295;&#29366;&#24577;</span>
+    <span style="color: #81A1C1;">mutexWaiterShift</span> = <span style="color: #81A1C1;">iota</span> <span style="color: #6f7787;">//</span><span style="color: #6f7787;">3 </span>
+    <span style="color: #81A1C1;">starvationThresholdNs</span> = 1e6
+)
+<span style="color: #6f7787;">//</span><span style="color: #6f7787;">1 &#30340;&#26159;&#40664;&#35748;&#30340;&#38145;&#23450;&#29366;&#24577;  &#20114;&#26021;&#38145;&#40664;&#35748;&#37117;&#26159;0</span>
+</pre>
+</div>
+
+<pre class="example">
+1 . 正常模式下,所有等待的goroutine按照FIFO模式
+2 . Woken的goroutine不会直接获得锁,而是会喝新的请求锁的协程去竞争
+3 . 新请求的协程的优势,正在cpu执行,而且有好多个
+    所以Woken很容易1s内拿不到锁,那么就会把这个协程放到队头,转换状态为Starving
+4 . 饥饿模式,会直接把unlock的锁交给队头,即使锁看起来是unlock
+    其他协程也不会去竞争,不会尝试自旋
+</pre>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #81A1C1;">func</span> (<span style="color: #D8DEE9;">m</span> *<span style="color: #8FBCBB;">Mutex</span>) <span style="color: #8FBCBB;">Lock</span>() {
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;mutex&#30340;state&#27809;&#26377;&#34987;&#38145;&#65292;&#20063;&#27809;&#26377;&#31561;&#24453;/&#21796;&#37266;&#30340;goroutine, &#38145;&#22788;&#20110;&#27491;&#24120;&#29366;&#24577;&#65292;&#37027;&#20040;&#33719;&#24471;&#38145;&#65292;&#36820;&#22238;.</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#27604;&#22914;&#38145;&#31532;&#19968;&#27425;&#34987;goroutine&#35831;&#27714;&#26102;&#65292;&#23601;&#26159;&#36825;&#31181;&#29366;&#24577;&#12290;&#25110;&#32773;&#38145;&#22788;&#20110;&#31354;&#38386;&#30340;&#26102;&#20505;&#65292;&#20063;&#26159;&#36825;&#31181;&#29366;&#24577;&#12290;</span>
+    <span style="color: #81A1C1;">if</span> atomic.<span style="color: #8FBCBB;">CompareAndSwapInt32</span>(&amp;m.state, 0, mutexLocked) {
+        <span style="color: #81A1C1;">return</span>
+    }
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">Slow path (outlined so that the fast path can be inlined)</span>
+    m.<span style="color: #8FBCBB;">lockSlow</span>()
+}
+
+<span style="color: #81A1C1;">func</span> (<span style="color: #D8DEE9;">m</span> *<span style="color: #8FBCBB;">Mutex</span>) <span style="color: #8FBCBB;">lockSlow</span>() {
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#26631;&#35760;&#26412;goroutine&#30340;&#31561;&#24453;&#26102;&#38388;</span>
+    <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">waitStartTime</span> <span style="color: #8FBCBB;">int64</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#26412;goroutine&#26159;&#21542;&#24050;&#32463;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;</span>
+    <span style="color: #D8DEE9;">starving</span> := <span style="color: #81A1C1;">false</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#26412;goroutine&#26159;&#21542;&#24050;&#21796;&#37266;</span>
+    <span style="color: #D8DEE9;">awoke</span> := <span style="color: #81A1C1;">false</span>
+    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#33258;&#26059;&#27425;&#25968;</span>
+    <span style="color: #D8DEE9;">iter</span> := 0
+    <span style="color: #D8DEE9;">old</span> := m.state
+    <span style="color: #81A1C1;">for</span> {
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#31532;&#19968;&#20010;&#26465;&#20214;&#65306;1.mutex&#24050;&#32463;&#34987;&#38145;&#20102;&#65307;2.&#19981;&#22788;&#20110;&#39269;&#39295;&#27169;&#24335;(&#22914;&#26524;&#26102;&#39269;&#39295;&#29366;&#24577;&#65292;&#33258;&#26059;&#26102;&#27809;&#26377;&#29992;&#30340;&#65292;&#38145;&#30340;&#25317;&#26377;&#26435;&#30452;&#25509;&#20132;&#32473;&#20102;&#31561;&#24453;&#38431;&#21015;&#30340;&#31532;&#19968;&#20010;&#12290;)</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#23581;&#35797;&#33258;&#26059;&#30340;&#26465;&#20214;&#65306;&#21442;&#32771;runtime_canSpin&#20989;&#25968;</span>
+        <span style="color: #81A1C1;">if</span> old&amp;(mutexLocked|mutexStarving) == mutexLocked &amp;&amp; <span style="color: #8FBCBB;">runtime_canSpin</span>(iter) {
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#36827;&#20837;&#36825;&#37324;&#32943;&#23450;&#26159;&#26222;&#36890;&#27169;&#24335;</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#33258;&#26059;&#30340;&#36807;&#31243;&#20013;&#22914;&#26524;&#21457;&#29616;state&#36824;&#27809;&#26377;&#35774;&#32622;woken&#26631;&#35782;&#65292;&#21017;&#35774;&#32622;&#23427;&#30340;woken&#26631;&#35782;&#65292; &#24182;&#26631;&#35760;&#33258;&#24049;&#20026;&#34987;&#21796;&#37266;&#12290;</span>
+            <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1; font-weight: bold;">!</span>awoke &amp;&amp; old&amp;mutexWoken == 0 &amp;&amp; old&gt;&gt;mutexWaiterShift != 0 &amp;&amp;
+                atomic.<span style="color: #8FBCBB;">CompareAndSwapInt32</span>(&amp;m.state, old, old|mutexWoken) {
+                awoke = <span style="color: #81A1C1;">true</span>
+            }
+            <span style="color: #8FBCBB;">runtime_doSpin</span>()
+            iter++
+            old = m.state
+            <span style="color: #81A1C1;">continue</span>
+        }
+
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#21040;&#20102;&#36825;&#19968;&#27493;&#65292; state&#30340;&#29366;&#24577;&#21487;&#33021;&#26159;&#65306;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">1. &#38145;&#36824;&#27809;&#26377;&#34987;&#37322;&#25918;&#65292;&#38145;&#22788;&#20110;&#27491;&#24120;&#29366;&#24577;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">2. &#38145;&#36824;&#27809;&#26377;&#34987;&#37322;&#25918;&#65292; &#38145;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">3. &#38145;&#24050;&#32463;&#34987;&#37322;&#25918;&#65292; &#38145;&#22788;&#20110;&#27491;&#24120;&#29366;&#24577;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">4. &#38145;&#24050;&#32463;&#34987;&#37322;&#25918;&#65292; &#38145;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#24182;&#19988;&#26412;gorutine&#30340; awoke&#21487;&#33021;&#26159;true, &#20063;&#21487;&#33021;&#26159;false (&#20854;&#23427;goutine&#24050;&#32463;&#35774;&#32622;&#20102;state&#30340;woken&#26631;&#35782;)</span>
+
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">new &#22797;&#21046; state&#30340;&#24403;&#21069;&#29366;&#24577;&#65292; &#29992;&#26469;&#35774;&#32622;&#26032;&#30340;&#29366;&#24577;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">old &#26159;&#38145;&#24403;&#21069;&#30340;&#29366;&#24577;</span>
+        <span style="color: #D8DEE9;">new</span> := old
+
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;old state&#29366;&#24577;&#19981;&#26159;&#39269;&#39295;&#29366;&#24577;, new state &#35774;&#32622;&#38145;&#65292; &#23581;&#35797;&#36890;&#36807;CAS&#33719;&#21462;&#38145;,</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;old state&#29366;&#24577;&#26159;&#39269;&#39295;&#29366;&#24577;, &#21017;&#19981;&#35774;&#32622;new state&#30340;&#38145;&#65292;&#22240;&#20026;&#39269;&#39295;&#29366;&#24577;&#19979;&#38145;&#30452;&#25509;&#36716;&#32473;&#31561;&#24453;&#38431;&#21015;&#30340;&#31532;&#19968;&#20010;.</span>
+        <span style="color: #81A1C1;">if</span> old&amp;mutexStarving == 0 {
+            new |= mutexLocked
+        }
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#23558;&#31561;&#24453;&#38431;&#21015;&#30340;&#31561;&#24453;&#32773;&#30340;&#25968;&#37327;&#21152;1</span>
+        <span style="color: #81A1C1;">if</span> old&amp;(mutexLocked|mutexStarving) != 0 {
+            new += 1 &lt;&lt; mutexWaiterShift
+        }
+
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#24403;&#21069;goroutine&#24050;&#32463;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;&#65292; &#24182;&#19988;old state&#30340;&#24050;&#34987;&#21152;&#38145;,</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#23558;new state&#30340;&#29366;&#24577;&#26631;&#35760;&#20026;&#39269;&#39295;&#29366;&#24577;, &#23558;&#38145;&#36716;&#21464;&#20026;&#39269;&#39295;&#29366;&#24577;.</span>
+        <span style="color: #81A1C1;">if</span> starving &amp;&amp; old&amp;mutexLocked != 0 {
+            new |= mutexStarving
+        }
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#26412;goroutine&#24050;&#32463;&#35774;&#32622;&#20026;&#21796;&#37266;&#29366;&#24577;, &#38656;&#35201;&#28165;&#38500;new state&#30340;&#21796;&#37266;&#26631;&#35760;, &#22240;&#20026;&#26412;goroutine&#35201;&#20040;&#33719;&#24471;&#20102;&#38145;&#65292;&#35201;&#20040;&#36827;&#20837;&#20241;&#30496;&#65292;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#24635;&#20043;state&#30340;&#26032;&#29366;&#24577;&#19981;&#20877;&#26159;woken&#29366;&#24577;.</span>
+        <span style="color: #81A1C1;">if</span> awoke {
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">The goroutine has been woken from sleep,</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">so we need to reset the flag in either case.</span>
+            <span style="color: #81A1C1;">if</span> new&amp;mutexWoken == 0 {
+                <span style="color: #8FBCBB;">throw</span>(<span style="color: #A3BE8C;">"sync: inconsistent mutex state"</span>)
+            }
+            new &amp;^= mutexWoken
+        }
+
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#36890;&#36807;CAS&#35774;&#32622;new state&#20540;.</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#27880;&#24847;new&#30340;&#38145;&#26631;&#35760;&#19981;&#19968;&#23450;&#26159;true, &#20063;&#21487;&#33021;&#21482;&#26159;&#26631;&#35760;&#19968;&#19979;&#38145;&#30340;state&#26159;&#39269;&#39295;&#29366;&#24577;.</span>
+        <span style="color: #81A1C1;">if</span> atomic.<span style="color: #8FBCBB;">CompareAndSwapInt32</span>(&amp;m.state, old, new) {
+
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;old state&#30340;&#29366;&#24577;&#26159;&#26410;&#34987;&#38145;&#29366;&#24577;&#65292;&#24182;&#19988;&#38145;&#19981;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;,</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#37027;&#20040;&#24403;&#21069;goroutine&#24050;&#32463;&#33719;&#21462;&#20102;&#38145;&#30340;&#25317;&#26377;&#26435;&#65292;&#36820;&#22238;</span>
+            <span style="color: #81A1C1;">if</span> old&amp;(mutexLocked|mutexStarving) == 0 {
+                <span style="color: #81A1C1;">break</span> <span style="color: #6f7787;">// </span><span style="color: #6f7787;">locked the mutex with CAS</span>
+            }
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">If we were already waiting before, queue at the front of the queue.</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#35774;&#32622;&#24182;&#35745;&#31639;&#26412;goroutine&#30340;&#31561;&#24453;&#26102;&#38388;</span>
+            <span style="color: #D8DEE9;">queueLifo</span> := waitStartTime != 0
+            <span style="color: #81A1C1;">if</span> waitStartTime == 0 {
+                waitStartTime = <span style="color: #8FBCBB;">runtime_nanotime</span>()
+            }
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#26082;&#28982;&#26410;&#33021;&#33719;&#21462;&#21040;&#38145;&#65292; &#37027;&#20040;&#23601;&#20351;&#29992;sleep&#21407;&#35821;&#38459;&#22622;&#26412;goroutine</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#26159;&#26032;&#26469;&#30340;goroutine,queueLifo=false, &#21152;&#20837;&#21040;&#31561;&#24453;&#38431;&#21015;&#30340;&#23614;&#37096;&#65292;&#32784;&#24515;&#31561;&#24453;</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#26159;&#21796;&#37266;&#30340;goroutine, queueLifo=true, &#21152;&#20837;&#21040;&#31561;&#24453;&#38431;&#21015;&#30340;&#22836;&#37096;</span>
+            <span style="color: #8FBCBB;">runtime_SemacquireMutex</span>(&amp;m.sema, queueLifo, 1)
+
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">sleep&#20043;&#21518;&#65292;&#27492;goroutine&#34987;&#21796;&#37266;</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#35745;&#31639;&#24403;&#21069;goroutine&#26159;&#21542;&#24050;&#32463;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;.</span>
+            starving = starving || <span style="color: #8FBCBB;">runtime_nanotime</span>()-waitStartTime &gt; starvationThresholdNs
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#24471;&#21040;&#24403;&#21069;&#30340;&#38145;&#29366;&#24577;</span>
+            old = m.state
+
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#24403;&#21069;&#30340;state&#24050;&#32463;&#26159;&#39269;&#39295;&#29366;&#24577;</span>
+            <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#37027;&#20040;&#38145;&#24212;&#35813;&#22788;&#20110;Unlock&#29366;&#24577;&#65292;&#37027;&#20040;&#24212;&#35813;&#26159;&#38145;&#34987;&#30452;&#25509;&#20132;&#32473;&#20102;&#26412;goroutine</span>
+            <span style="color: #81A1C1;">if</span> old&amp;mutexStarving != 0 {
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">If this goroutine was woken and mutex is in starvation mode,</span>
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">ownership was handed off to us but mutex is in somewhat</span>
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">inconsistent state: mutexLocked is not set and we are still</span>
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">accounted as waiter. Fix that.</span>
+                <span style="color: #81A1C1;">if</span> old&amp;(mutexLocked|mutexWoken) != 0 || old&gt;&gt;mutexWaiterShift == 0 {
+                    <span style="color: #8FBCBB;">throw</span>(<span style="color: #A3BE8C;">"sync: inconsistent mutex state"</span>)
+                }
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#24403;&#21069;goroutine&#29992;&#26469;&#35774;&#32622;&#38145;&#65292;&#24182;&#23558;&#31561;&#24453;&#30340;goroutine&#25968;&#20943;1.</span>
+                <span style="color: #D8DEE9;">delta</span> := <span style="color: #8FBCBB;">int32</span>(mutexLocked - 1&lt;&lt;mutexWaiterShift)
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#22914;&#26524;&#26412;goroutine&#26159;&#26368;&#21518;&#19968;&#20010;&#31561;&#24453;&#32773;&#65292;&#25110;&#32773;&#23427;&#24182;&#19981;&#22788;&#20110;&#39269;&#39295;&#29366;&#24577;&#65292;</span>
+                <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#37027;&#20040;&#25105;&#20204;&#38656;&#35201;&#25226;&#38145;&#30340;state&#29366;&#24577;&#35774;&#32622;&#20026;&#27491;&#24120;&#27169;&#24335;.</span>
+                <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1; font-weight: bold;">!</span>starving || old&gt;&gt;mutexWaiterShift == 1 {
+                     <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#36864;&#20986;&#39269;&#39295;&#27169;&#24335;</span>
+                    delta -= mutexStarving
+                }
+              <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#35774;&#32622;&#26032;state, &#22240;&#20026;&#24050;&#32463;&#33719;&#24471;&#20102;&#38145;&#65292;&#36864;&#20986;&#12289;&#36820;&#22238;</span>
+                atomic.<span style="color: #8FBCBB;">AddInt32</span>(&amp;m.state, delta)
+                <span style="color: #81A1C1;">break</span>
+            }
+            awoke = <span style="color: #81A1C1;">true</span>
+            iter = 0
+        } <span style="color: #81A1C1;">else</span> {
+            old = m.state
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2021-02-03</p>
+<p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
+<p class="date">Created: 2021-02-03 三 01:19</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
