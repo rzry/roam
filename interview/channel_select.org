@@ -1,7 +1,7 @@
 #+TITLE:     channel-select
 #+AUTHOR:    rzry https://github.com/rzry
 #+EMAIL:     rzry36008@ccie.lol
-#+DATE:      2020-09-22
+#+DATE:      2021-02-03
 #+LANGUAGE:  en
 * 概述
 ** 并发模型
