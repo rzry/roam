@@ -3,9 +3,6 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-21
 #+LANGUAGE:  en
------
-- 若渲染失败,请打开代理访问
------
 * 基本信息
   :PROPERTIES:
   :CATEGORY: 基本信息
@@ -15,7 +12,7 @@
   | <邮箱>      | rzry36008@ccie.lol |
   | <性别>      | 男                 |
   | <出生年月>  | 1999-09            |
-  | <简历地址>  | zxxky.cn           |
+  | <简历地址>  | yyucy.cn           |
   | <emacs配置> | [[https://github.com/rzry/emacs-custom][emacs-config]]       |
   | <dotfiles>  | [[https://github.com/rzry/.dotfiles][.dotfiles]]          |
   |-------------+--------------------|

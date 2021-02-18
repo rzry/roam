@@ -2,6 +2,7 @@ package go_test
 
 import (
 	"bytes"
+	"embed"
 	"fmt"
 	"math"
 	"os"
@@ -27,10 +28,7 @@ func TestGo(t *testing.T) {
 		var count int
 		for begin := time.Now(); time.Since(begin) <= runtime; {
 			sharedLock.Lock()
-			time.Sleep(2 * time.Nanosecond)
-			sharedLock.Unlock()
-			sharedLock.Lock()
-			time.Sleep(1 * time.Nanosecond)
+			time.Sleep(3 * time.Nanosecond)
 			sharedLock.Unlock()
 			count++
 		}
@@ -66,7 +64,6 @@ func TestGo(t *testing.T) {
 }
 
 func TestGg(t *testing.T) {
-
 	a := "111"
 	b := "101"
 	var res string
@@ -448,4 +445,30 @@ func TestKill2Gorouine(t *testing.T){
 	//我们还是传入了一个nil string
 	// 多加了一个 done 的 chan dowork 返回一个 <-terminated
 	//
+}
+//go:embed hello
+var eembed embed.FS
+//go:embed hello
+var datas string
+//go:embed hello
+type std string
+
+func TestEmbed(t *testing.T){
+	t.Helper()
+	testFiles(t,eembed,"hello","best wishes for emacser")
+	t.Logf(datas)
+	//t.Log(std)
+}
+
+func testFiles(t *testing.T, f embed.FS, name, data string) {
+	t.Helper()
+	d, err := f.ReadFile(name)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	if string(d) != data {
+		t.Errorf("read %v = %q, want %q", name, d, data)
+	}
+
 }
