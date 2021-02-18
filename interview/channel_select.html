@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-12-03 四 15:09 -->
+<!-- 2021-02-03 三 23:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>channel-select</title>
@@ -193,7 +193,6 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -248,36 +247,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8a564d2">1. 概述</a>
+<li><a href="#org18b0e55">1. 概述</a>
 <ul>
-<li><a href="#orgff0879b">1.1. 并发模型</a></li>
-<li><a href="#orgeb91c5e">1.2. G P M 模型</a></li>
-<li><a href="#org76c1139">1.3. channel 的 struct</a></li>
-<li><a href="#orgb22e946">1.4. channel 4 种 情况 (基于ring buffer 先进先出)</a>
+<li><a href="#orga14873b">1.1. 并发模型</a></li>
+<li><a href="#org6048931">1.2. G P M 模型</a></li>
+<li><a href="#orge9b953a">1.3. channel 的 struct</a></li>
+<li><a href="#orge5c569e">1.4. channel 4 种 情况 (基于ring buffer 先进先出)</a>
 <ul>
-<li><a href="#org50c6de1">1.4.1. make</a></li>
-<li><a href="#orge9ee372">1.4.2. send</a></li>
-<li><a href="#orgfa90f5d">1.4.3. recv</a></li>
-<li><a href="#orga72e263">1.4.4. close</a></li>
-<li><a href="#orgdd44095">1.4.5. 基本情况的特殊问题</a></li>
+<li><a href="#org02f01a2">1.4.1. make</a></li>
+<li><a href="#orgaaaf884">1.4.2. send</a></li>
+<li><a href="#org3e2cdca">1.4.3. recv</a></li>
+<li><a href="#org097f0ad">1.4.4. close</a></li>
+<li><a href="#org61d722c">1.4.5. 基本情况的特殊问题</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga09d088">2. select</a>
+<li><a href="#org06d9b10">2. select</a>
 <ul>
-<li><a href="#org532895e">2.1. 介绍 情况</a></li>
+<li><a href="#org97d2649">2.1. 介绍 情况</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a564d2" class="outline-2">
-<h2 id="org8a564d2"><span class="section-number-2">1</span> 概述</h2>
+<div id="outline-container-org18b0e55" class="outline-2">
+<h2 id="org18b0e55"><span class="section-number-2">1</span> 概述</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgff0879b" class="outline-3">
-<h3 id="orgff0879b"><span class="section-number-3">1.1</span> 并发模型</h3>
+<div id="outline-container-orga14873b" class="outline-3">
+<h3 id="orga14873b"><span class="section-number-3">1.1</span> 并发模型</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 并行计算: 共享内存 或者 消息通信
@@ -293,8 +292,8 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgeb91c5e" class="outline-3">
-<h3 id="orgeb91c5e"><span class="section-number-3">1.2</span> G P M 模型</h3>
+<div id="outline-container-org6048931" class="outline-3">
+<h3 id="org6048931"><span class="section-number-3">1.2</span> G P M 模型</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 调度的方法
@@ -316,8 +315,8 @@ p ----&gt; processor  为了编程的方便 我们不希望所有的M 都去调�
 </div>
 </div>
 
-<div id="outline-container-org76c1139" class="outline-3">
-<h3 id="org76c1139"><span class="section-number-3">1.3</span> channel 的 struct</h3>
+<div id="outline-container-orge9b953a" class="outline-3">
+<h3 id="orge9b953a"><span class="section-number-3">1.3</span> channel 的 struct</h3>
 <div class="outline-text-3" id="text-1-3">
 <pre class="example">
 Channel 的结构
@@ -354,12 +353,12 @@ type sudog struct {
 </div>
 </div>
 
-<div id="outline-container-orgb22e946" class="outline-3">
-<h3 id="orgb22e946"><span class="section-number-3">1.4</span> channel 4 种 情况 (基于ring buffer 先进先出)</h3>
+<div id="outline-container-orge5c569e" class="outline-3">
+<h3 id="orge5c569e"><span class="section-number-3">1.4</span> channel 4 种 情况 (基于ring buffer 先进先出)</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org50c6de1" class="outline-4">
-<h4 id="org50c6de1"><span class="section-number-4">1.4.1</span> make</h4>
+<div id="outline-container-org02f01a2" class="outline-4">
+<h4 id="org02f01a2"><span class="section-number-4">1.4.1</span> make</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <pre class="example">
 ch := make(chan interface{},0) -- &gt; runtime.makechan(interface{},0)
@@ -367,8 +366,8 @@ ch := make(chan interface{},0) -- &gt; runtime.makechan(interface{},0)
 </div>
 </div>
 
-<div id="outline-container-orge9ee372" class="outline-4">
-<h4 id="orge9ee372"><span class="section-number-4">1.4.2</span> send</h4>
+<div id="outline-container-orgaaaf884" class="outline-4">
+<h4 id="orgaaaf884"><span class="section-number-4">1.4.2</span> send</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <pre class="example">
 
@@ -381,8 +380,8 @@ ch &lt;- v1       ------&gt;    runtime.chansend1(ch,&amp;v)
 </div>
 </div>
 
-<div id="outline-container-orgfa90f5d" class="outline-4">
-<h4 id="orgfa90f5d"><span class="section-number-4">1.4.3</span> recv</h4>
+<div id="outline-container-org3e2cdca" class="outline-4">
+<h4 id="org3e2cdca"><span class="section-number-4">1.4.3</span> recv</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <pre class="example">
 
@@ -395,8 +394,8 @@ ch &lt;- v1       ------&gt;    runtime.chansend1(ch,&amp;v)
 </div>
 </div>
 
-<div id="outline-container-orga72e263" class="outline-4">
-<h4 id="orga72e263"><span class="section-number-4">1.4.4</span> close</h4>
+<div id="outline-container-org097f0ad" class="outline-4">
+<h4 id="org097f0ad"><span class="section-number-4">1.4.4</span> close</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <pre class="example">
 close(ch)
@@ -409,8 +408,8 @@ ready sendq 和 recvq :
 </pre>
 </div>
 </div>
-<div id="outline-container-orgdd44095" class="outline-4">
-<h4 id="orgdd44095"><span class="section-number-4">1.4.5</span> 基本情况的特殊问题</h4>
+<div id="outline-container-org61d722c" class="outline-4">
+<h4 id="org61d722c"><span class="section-number-4">1.4.5</span> 基本情况的特殊问题</h4>
 <div class="outline-text-4" id="text-1-4-5">
 <pre class="example">
 gopark :
@@ -459,12 +458,12 @@ ans : 使用sudog 包裹g 和要接受的数据 --- &gt;
 </div>
 </div>
 
-<div id="outline-container-orga09d088" class="outline-2">
-<h2 id="orga09d088"><span class="section-number-2">2</span> select</h2>
+<div id="outline-container-org06d9b10" class="outline-2">
+<h2 id="org06d9b10"><span class="section-number-2">2</span> select</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org532895e" class="outline-3">
-<h3 id="org532895e"><span class="section-number-3">2.1</span> 介绍 情况</h3>
+<div id="outline-container-org97d2649" class="outline-3">
+<h3 id="org97d2649"><span class="section-number-3">2.1</span> 介绍 情况</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 
@@ -474,9 +473,9 @@ ans : 使用sudog 包裹g 和要接受的数据 --- &gt;
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-22</p>
+<p class="date">Date: 2021-02-03</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2020-12-03 四 15:09</p>
+<p class="date">Created: 2021-02-03 三 23:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
