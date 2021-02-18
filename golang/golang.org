@@ -3,19 +3,8 @@
 #+EMAIL:     rzry36008@ccie.lol
 #+DATE:      2020-09-22
 #+LANGUAGE:  en
-
-** leetcode
-  -  *Link* : [[file:leetcode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
-
-  -  *Link* : [[file:leetcode/26_LeetCode1029.org][LeetCode1029-两地调度]]
-
-  -  *Link* : [[file:leetcode/24_Leetcode_1013数组三等份.org][LeetCode-1013-将数组分成和相等的三个部分]]
-
-  -  *Link* : [[file:leetcode/23_LeetCode1018.org][Leetcode-1018-被5整除的二进制前缀]]
-
-  -  *Link* : [[file:leetcode/19_删除当前节点_Leetcode.org][leetcode-删除当前节点]]
-
-  -  *Link* : [[file:leetcode/67.org][67-二进制求和]]
+** [[file:ak/][ak]]
+  -  *Link* : [[file:ak/ak0001/ak0001.org][ak0001]]
 ** note
   -  *Link* : [[file:note/11_Golang笔记.org][golang笔记]]
 
@@ -36,3 +25,15 @@
 ** Reading
   - *Link* : [[file:reading/go-standard-learn.org][standard-learn]]
   - *Link* : [[file:reading/goroutine/goroutine.org][go并发之道]]
+** leetcode
+  -  *Link* : [[file:leetcode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
+
+  -  *Link* : [[file:leetcode/26_LeetCode1029.org][LeetCode1029-两地调度]]
+
+  -  *Link* : [[file:leetcode/24_Leetcode_1013数组三等份.org][LeetCode-1013-将数组分成和相等的三个部分]]
+
+  -  *Link* : [[file:leetcode/23_LeetCode1018.org][Leetcode-1018-被5整除的二进制前缀]]
+
+  -  *Link* : [[file:leetcode/19_删除当前节点_Leetcode.org][leetcode-删除当前节点]]
+
+  -  *Link* : [[file:leetcode/67.org][67-二进制求和]]
