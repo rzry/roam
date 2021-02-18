@@ -1,0 +1,47 @@
+#+TITLE:     ak0001
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-02-18
+#+LANGUAGE:  en
+
+* [[https://leetcode-cn.com/problems/two-sum/][题目]]
+#+begin_src
+  输入：nums = [2,7,11,15], target = 9
+  输出：[0,1]
+  解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+  #+end_src
+* [[file:ak0001_test.go][答案]]
+  #+begin_src go
+  func twoSum(nums []int, target int) []int {
+	m := make(map[int]int)
+	for k, v := range nums {
+		if idx, ok := m[target-v]; ok {
+			return []int{idx, k}
+		}
+		m[v] = k
+	}
+	return nil
+  }
+  #+end_src
+* 问题
+  #+begin_src
+  1 . m 存放 值 和 下标
+  2 . 遍历nums 如果合并的值 减去 当前 nums 的值 存在与数组m中(说明就符合(返回下标))
+  3 . 如果不符合就添加到m中 把 value 当 key 下标当value
+  #+end_src
+
+* 拓展
+  #+begin_src go
+  //返回所有的呢?
+  func twoSums(nums []int, target int) [][]int {
+	m := make(map[int]int)
+	var res [][]int
+	for k, v := range nums {
+		if idx, ok := m[target-v]; ok {
+			res = append(res,[]int{idx,k})
+		}
+		m[v] = k
+	}
+	return res
+  }
+  #+end_src
