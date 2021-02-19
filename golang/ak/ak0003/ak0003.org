@@ -1,0 +1,69 @@
+#+TITLE:     ak0003
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-02-19
+#+LANGUAGE:  en
+
+* [[https://leetcode.com/problems/longest-substring-without-repeating-characters/][题目]]
+#+begin_src
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+输入: s = "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+#+end_src
+
+* [[file:ak0003_test.go][解答]]
+#+begin_src go
+//滑动窗口
+func lengthOfLongestSubstring_(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+	var freq [256]int
+	result, left, right := 0, 0, -1
+
+	for left < len(s) {
+		if right+1 < len(s) && freq[s[right+1]-'a'] == 0 {
+			freq[s[right+1]-'a']++
+			right++
+		} else {
+			freq[s[left]-'a']--
+			left++
+		}
+		result = max(result, right-left+1)
+	}
+	return result
+}
+
+func max(a int, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+#+end_src
+
+* 拓展
+#+begin_src go
+//使用 hashmap
+func lengthOfLongestSubstring__(s string)int{
+	if len(s) == 0{
+		return 0
+	}
+	hm := map[uint8]int{}
+	result , left ,right := 0,0,-1
+	for left < len(s){
+		if left != 0 {
+			delete(hm,s[left-1])
+		}
+		for right+1<len(s)&&hm[s[right+1]]==0{
+			right++
+			hm[s[right]]++
+		}
+		result = max(result,right-left+1)
+		left++
+	}
+	return result
+}
+#+end_src

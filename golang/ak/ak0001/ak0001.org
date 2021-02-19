@@ -28,6 +28,7 @@
   1 . m 存放 值 和 下标
   2 . 遍历nums 如果合并的值 减去 当前 nums 的值 存在与数组m中(说明就符合(返回下标))
   3 . 如果不符合就添加到m中 把 value 当 key 下标当value
+  4 . m[target-v] 如果设置过这个value( m[v]=k ) 那么就会返回 ok 会把下标返回
   #+end_src
 
 * 拓展

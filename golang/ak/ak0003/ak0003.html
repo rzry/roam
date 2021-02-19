@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-18 四 18:30 -->
+<!-- 2021-02-19 五 21:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ak0001</title>
+<title>ak0003</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -243,74 +243,90 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">ak0001</h1>
+<h1 class="title">ak0003</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd62650e">1. 题目</a></li>
-<li><a href="#orga49d49f">2. 答案</a></li>
-<li><a href="#org3e387f0">3. 问题</a></li>
-<li><a href="#org8110054">4. 拓展</a></li>
+<li><a href="#org8f169ac">1. 题目</a></li>
+<li><a href="#orge8d5cd9">2. 解答</a></li>
+<li><a href="#orga9a4fc4">3. 拓展</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd62650e" class="outline-2">
-<h2 id="orgd62650e"><span class="section-number-2">1</span> <a href="https://leetcode-cn.com/problems/two-sum/">题目</a></h2>
+<div id="outline-container-org8f169ac" class="outline-2">
+<h2 id="org8f169ac"><span class="section-number-2">1</span> <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">题目</a></h2>
 <div class="outline-text-2" id="text-1">
 <pre class="example">
-输入：nums = [2,7,11,15], target = 9
-输出：[0,1]
-解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+输入: s = "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
 </pre>
 </div>
 </div>
-<div id="outline-container-orga49d49f" class="outline-2">
-<h2 id="orga49d49f"><span class="section-number-2">2</span> <a href="ak0001_test.go">答案</a></h2>
+
+<div id="outline-container-orge8d5cd9" class="outline-2">
+<h2 id="orge8d5cd9"><span class="section-number-2">2</span> <a href="ak0003_test.go">解答</a></h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">twoSum</span>(<span style="color: #D8DEE9;">nums</span> []<span style="color: #8FBCBB;">int</span>, <span style="color: #D8DEE9;">target</span> <span style="color: #8FBCBB;">int</span>) []<span style="color: #8FBCBB;">int</span> {
-      <span style="color: #D8DEE9;">m</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">map</span>[<span style="color: #8FBCBB;">int</span>]<span style="color: #8FBCBB;">int</span>)
-      <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">k</span>, <span style="color: #D8DEE9;">v</span> := <span style="color: #81A1C1;">range</span> nums {
-              <span style="color: #81A1C1;">if</span> <span style="color: #D8DEE9;">idx</span>, <span style="color: #D8DEE9;">ok</span> := m[target-v]; ok {
-                      <span style="color: #81A1C1;">return</span> []<span style="color: #8FBCBB;">int</span>{idx, k}
-              }
-              m[v] = k
-      }
-      <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">nil</span>
+<pre class="src src-go"><span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28369;&#21160;&#31383;&#21475;</span>
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">lengthOfLongestSubstring_</span>(<span style="color: #D8DEE9;">s</span> <span style="color: #8FBCBB;">string</span>) <span style="color: #8FBCBB;">int</span> {
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(s) == 0 {
+                <span style="color: #81A1C1;">return</span> 0
+        }
+        <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">freq</span> [256]<span style="color: #8FBCBB;">int</span>
+        <span style="color: #D8DEE9;">result</span>, <span style="color: #D8DEE9;">left</span>, <span style="color: #D8DEE9;">right</span> := 0, 0, -1
+
+        <span style="color: #81A1C1;">for</span> left &lt; <span style="color: #81A1C1;">len</span>(s) {
+                <span style="color: #81A1C1;">if</span> right+1 &lt; <span style="color: #81A1C1;">len</span>(s) &amp;&amp; freq[s[right+1]-<span style="color: #A3BE8C;">'a'</span>] == 0 {
+                        freq[s[right+1]-<span style="color: #A3BE8C;">'a'</span>]++
+                        right++
+                } <span style="color: #81A1C1;">else</span> {
+                        freq[s[left]-<span style="color: #A3BE8C;">'a'</span>]--
+                        left++
+                }
+                result = <span style="color: #8FBCBB;">max</span>(result, right-left+1)
+        }
+        <span style="color: #81A1C1;">return</span> result
+}
+
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">max</span>(<span style="color: #D8DEE9;">a</span> <span style="color: #8FBCBB;">int</span>, <span style="color: #D8DEE9;">b</span> <span style="color: #8FBCBB;">int</span>) <span style="color: #8FBCBB;">int</span> {
+        <span style="color: #81A1C1;">if</span> a &gt; b {
+                <span style="color: #81A1C1;">return</span> a
+        }
+        <span style="color: #81A1C1;">return</span> b
 }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3e387f0" class="outline-2">
-<h2 id="org3e387f0"><span class="section-number-2">3</span> 问题</h2>
-<div class="outline-text-2" id="text-3">
-<pre class="example">
-1 . m 存放 值 和 下标
-2 . 遍历nums 如果合并的值 减去 当前 nums 的值 存在与数组m中(说明就符合(返回下标))
-3 . 如果不符合就添加到m中 把 value 当 key 下标当value
-4 . m[target-v] 如果设置过这个value( m[v]=k ) 那么就会返回 ok 会把下标返回
-</pre>
-</div>
-</div>
 
-<div id="outline-container-org8110054" class="outline-2">
-<h2 id="org8110054"><span class="section-number-2">4</span> 拓展</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orga9a4fc4" class="outline-2">
+<h2 id="orga9a4fc4"><span class="section-number-2">3</span> 拓展</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36820;&#22238;&#25152;&#26377;&#30340;&#21602;?</span>
-<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">twoSums</span>(<span style="color: #D8DEE9;">nums</span> []<span style="color: #8FBCBB;">int</span>, <span style="color: #D8DEE9;">target</span> <span style="color: #8FBCBB;">int</span>) [][]<span style="color: #8FBCBB;">int</span> {
-      <span style="color: #D8DEE9;">m</span> := <span style="color: #81A1C1;">make</span>(<span style="color: #81A1C1;">map</span>[<span style="color: #8FBCBB;">int</span>]<span style="color: #8FBCBB;">int</span>)
-      <span style="color: #81A1C1;">var</span> <span style="color: #D8DEE9;">res</span> [][]<span style="color: #8FBCBB;">int</span>
-      <span style="color: #81A1C1;">for</span> <span style="color: #D8DEE9;">k</span>, <span style="color: #D8DEE9;">v</span> := <span style="color: #81A1C1;">range</span> nums {
-              <span style="color: #81A1C1;">if</span> <span style="color: #D8DEE9;">idx</span>, <span style="color: #D8DEE9;">ok</span> := m[target-v]; ok {
-                      res = <span style="color: #81A1C1;">append</span>(res,[]<span style="color: #8FBCBB;">int</span>{idx,k})
-              }
-              m[v] = k
-      }
-      <span style="color: #81A1C1;">return</span> res
+<pre class="src src-go"><span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#20351;&#29992; hashmap</span>
+<span style="color: #81A1C1;">func</span> <span style="color: #8FBCBB;">lengthOfLongestSubstring__</span>(<span style="color: #D8DEE9;">s</span> <span style="color: #8FBCBB;">string</span>)<span style="color: #8FBCBB;">int</span>{
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(s) == <span style="color: #8FBCBB;">0</span>{
+                <span style="color: #81A1C1;">return</span> 0
+        }
+        <span style="color: #D8DEE9;">hm</span> := <span style="color: #81A1C1;">map</span>[<span style="color: #8FBCBB;">uint8</span>]<span style="color: #8FBCBB;">int</span>{}
+        <span style="color: #D8DEE9;">result</span> , <span style="color: #D8DEE9;">left</span> ,right := 0,0,-1
+        <span style="color: #81A1C1;">for</span> left &lt; <span style="color: #81A1C1;">len</span>(s){
+                <span style="color: #81A1C1;">if</span> left != 0 {
+                        <span style="color: #81A1C1;">delete</span>(hm,s[left-1])
+                }
+                <span style="color: #81A1C1;">for</span> right+1&lt;<span style="color: #81A1C1;">len</span>(s)&amp;&amp;hm[s[right+1]]==<span style="color: #8FBCBB;">0</span>{
+                        right++
+                        hm[s[right]]++
+                }
+                result = <span style="color: #8FBCBB;">max</span>(result,right-left+1)
+                left++
+        }
+        <span style="color: #81A1C1;">return</span> result
 }
 </pre>
 </div>
@@ -318,9 +334,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2021-02-18</p>
+<p class="date">Date: 2021-02-19</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-02-18 四 18:30</p>
+<p class="date">Created: 2021-02-19 五 21:27</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
