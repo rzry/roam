@@ -1,0 +1,9 @@
+[package]
+name = "rstest"
+version = "0.1.0"
+authors = ["rzry <1319339638@qq.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
