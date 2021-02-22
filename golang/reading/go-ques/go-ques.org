@@ -1,0 +1,61 @@
+#+TITLE:     go-ques
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-02-23
+#+LANGUAGE:  en
+
+* [[https://www.bookstack.cn/read/qcrao-Go-Questions/README.md][目录]]
+
+** [[https://www.bookstack.cn/read/qcrao-Go-Questions/stdlib.md][标准库]]
+*** [[https://www.bookstack.cn/read/qcrao-Go-Questions/unsafe.md][unsafe]]
+    - unsafe.pointer 和 指针 区别
+      #+begin_src
+      1 . go 的指针不能算数运算
+      2 . 类型不同不能转换, 不能比较
+      3 . 不同类型不能赋值
+      #+end_src
+      #+begin_src go
+      func testUnsafe(t *testing.T) {
+	a := 5
+	p := &a
+	*p++
+	t.Log("t value --> ", *p)
+
+	//p++ //直接使用指针就会错
+	//p = &a + 3
+
+	c := int(100)
+	var d *int // 如果是 *float 就会出错
+	d = &c
+	t.Log("d value --> ", *d)
+
+
+	var e *int
+	var f *float64
+	//t.Log(e == f) //类型不同 不可以比较
+	t.Log("与nil比较 -->", e == nil)
+	t.Log("与nil比较 -->", f == nil)
+
+
+
+      }
+      #+end_src
+    - 为什么使用unsafe
+      #+begin_src
+      1 . unsafe 可以对任何类型的指针和unsafe.Pointer 转换
+      2 . uintptr 可以和unsafe.Pointer转换
+      #+end_src
+
+* 代码
+
+* 拓展
+*** unsafe
+    - uintptr
+      #+begin_src
+      指针分两种: 内置类型uintptr，本质是一个整型，
+      另一种是unsafe包提供的Pointer，表示可以指向任意类型的指针
+      // uintptr 是一个整数类型，它足够大，可以存储
+      type uintptr uintptr
+      uintptr 并没有指针的语义 , unsafe pointer 有
+      (没有指针的语义,表示 所指向的对象会被gc无情的回收)
+      #+end_src

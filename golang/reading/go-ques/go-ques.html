@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-23 二 00:43 -->
+<!-- 2021-02-23 二 00:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>golang</title>
+<title>go-ques</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="rzry https://github.com/rzry" />
 <style type="text/css">
@@ -242,90 +242,126 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">golang</h1>
+<h1 class="title">go-ques</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0532b6d">1. ak</a></li>
-<li><a href="#org9a75645">2. note</a></li>
-<li><a href="#orga2c9fa0">3. 摘录</a></li>
-<li><a href="#org65e810c">4. Reading</a></li>
-<li><a href="#org2668508">5. leetcode</a></li>
+<li><a href="#org4d5e599">1. 目录</a>
+<ul>
+<li><a href="#orge81d6f5">1.1. 标准库</a>
+<ul>
+<li><a href="#org860b460">1.1.1. unsafe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgfe5485d">2. 代码</a></li>
+<li><a href="#org22eda18">3. 拓展</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgd0c6c1a">3.0.1. unsafe</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0532b6d" class="outline-2">
-<h2 id="org0532b6d"><span class="section-number-2">1</span> <a href="ak/">ak</a></h2>
+
+<div id="outline-container-org4d5e599" class="outline-2">
+<h2 id="org4d5e599"><span class="section-number-2">1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/README.md">目录</a></h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge81d6f5" class="outline-3">
+<h3 id="orge81d6f5"><span class="section-number-3">1.1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/stdlib.md">标准库</a></h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org860b460" class="outline-4">
+<h4 id="org860b460"><span class="section-number-4">1.1.1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/unsafe.md">unsafe</a></h4>
+<div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=ak/ak0001/ak0001.html>ak0001</a></li>
-<li><b>Link</b> : <a href=ak/ak0003/ak0003.html>ak0003</a></li>
+<li><p>
+unsafe.pointer 和 指针 区别
+</p>
+<pre class="example">
+1 . go 的指针不能算数运算
+2 . 类型不同不能转换, 不能比较
+3 . 不同类型不能赋值
+</pre>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #00ffff;">func</span> <span style="color: #87cefa;">testUnsafe</span>(<span style="color: #eedd82;">t</span> *<span style="color: #98fb98;">testing.T</span>) {
+  <span style="color: #eedd82;">a</span> := 5
+  <span style="color: #eedd82;">p</span> := &amp;a
+  *p++
+  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"t value --&gt; "</span>, *p)
+
+  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">p++ //&#30452;&#25509;&#20351;&#29992;&#25351;&#38024;&#23601;&#20250;&#38169;</span>
+  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">p = &amp;a + 3</span>
+
+  <span style="color: #eedd82;">c</span> := <span style="color: #87cefa;">int</span>(100)
+  <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">d</span> *<span style="color: #98fb98;">int</span> <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#22914;&#26524;&#26159; *float &#23601;&#20250;&#20986;&#38169;</span>
+  d = &amp;c
+  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"d value --&gt; "</span>, *d)
+
+
+  <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">e</span> *<span style="color: #98fb98;">int</span>
+  <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">f</span> *<span style="color: #98fb98;">float64</span>
+  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">t.Log(e == f) //&#31867;&#22411;&#19981;&#21516; &#19981;&#21487;&#20197;&#27604;&#36739;</span>
+  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, e == <span style="color: #7fffd4;">nil</span>)
+  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, f == <span style="color: #7fffd4;">nil</span>)
+
+
+
+}
+</pre>
+</div></li>
+<li><p>
+为什么使用unsafe
+</p>
+<pre class="example">
+1 . unsafe 可以对任何类型的指针和unsafe.Pointer 转换
+2 . uintptr 可以和unsafe.Pointer转换
+</pre></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9a75645" class="outline-2">
-<h2 id="org9a75645"><span class="section-number-2">2</span> note</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=note/11_Golang笔记.html>golang笔记</a></li>
-
-<li><b>Link</b> : <a href=note/15_指针_结构体复习.html>指针,结构体</a></li>
-
-<li><b>Link</b> : <a href=note/21_Go_Test.html>go test</a></li>
-
-<li><b>Link</b> : <a href=note/22_Channel图解.html>go channel</a></li>
-
-<li><b>Link</b> : <a href=../interview/channel_select.html>channel-select</a></li>
-
-<li><b>Link</b> : <a href=note/sync.html>sync</a></li>
-
-<li><b>Link</b> : <a href=../interview/channel_select.html>channel-select</a></li>
-</ul>
 </div>
 </div>
-<div id="outline-container-orga2c9fa0" class="outline-2">
-<h2 id="orga2c9fa0"><span class="section-number-2">3</span> 摘录</h2>
+
+<div id="outline-container-orgfe5485d" class="outline-2">
+<h2 id="orgfe5485d"><span class="section-number-2">2</span> 代码</h2>
+</div>
+
+<div id="outline-container-org22eda18" class="outline-2">
+<h2 id="org22eda18"><span class="section-number-2">3</span> 拓展</h2>
 <div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgd0c6c1a" class="outline-4">
+<h4 id="orgd0c6c1a"><span class="section-number-4">3.0.1</span> unsafe</h4>
+<div class="outline-text-4" id="text-3-0-1">
 <ul class="org-ul">
-<li><b>Link</b> : <a href=摘录/go_open_hub.html>go-open-hub</a></li>
+<li><p>
+uintptr
+</p>
+<pre class="example">
+指针分两种: 内置类型uintptr，本质是一个整型，
+另一种是unsafe包提供的Pointer，表示可以指向任意类型的指针
+// uintptr 是一个整数类型，它足够大，可以存储
+type uintptr uintptr
+uintptr 并没有指针的语义 , unsafe pointer 有
+(没有指针的语义,表示 所指向的对象会被gc无情的回收)
+</pre></li>
 </ul>
 </div>
-</div>
-
-<div id="outline-container-org65e810c" class="outline-2">
-<h2 id="org65e810c"><span class="section-number-2">4</span> Reading</h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=reading/go-standard-learn.html>standard-learn</a></li>
-<li><b>Link</b> : <a href=reading/goroutine/goroutine.html>go并发之道</a></li>
-<li><b>Link</b> : <a href=../interview/ques_go.html>ques-go</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org2668508" class="outline-2">
-<h2 id="org2668508"><span class="section-number-2">5</span> leetcode</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li><b>Link</b> : <a href=leetcode/27_LeetCode628.html>LeetCode628-三个数的最大乘积</a></li>
-
-<li><b>Link</b> : <a href=leetcode/26_LeetCode1029.html>LeetCode1029-两地调度</a></li>
-
-<li><b>Link</b> : <a href=leetcode/24_Leetcode_1013数组三等份.html>LeetCode-1013-将数组分成和相等的三个部分</a></li>
-
-<li><b>Link</b> : <a href=leetcode/23_LeetCode1018.html>Leetcode-1018-被5整除的二进制前缀</a></li>
-
-<li><b>Link</b> : <a href=leetcode/19_删除当前节点_Leetcode.html>leetcode-删除当前节点</a></li>
-
-<li><b>Link</b> : <a href=leetcode/67.html>67-二进制求和</a></li>
-</ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-09-22</p>
+<p class="date">Date: 2021-02-23</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-02-23 二 00:43</p>
+<p class="date">Created: 2021-02-23 二 00:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

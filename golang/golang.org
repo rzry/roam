@@ -26,6 +26,7 @@
 ** Reading
   - *Link* : [[file:reading/go-standard-learn.org][standard-learn]]
   - *Link* : [[file:reading/goroutine/goroutine.org][go并发之道]]
+  - *Link* : [[file:../interview/ques_go.org][ques-go]]
 ** leetcode
   -  *Link* : [[file:leetcode/27_LeetCode628.org][LeetCode628-三个数的最大乘积]]
 
