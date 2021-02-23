@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-23 二 00:41 -->
+<!-- 2021-02-23 二 21:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go-ques</title>
@@ -193,6 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel='stylesheet' type='text/css' href='http://zxxky.cn/1.css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -247,21 +248,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4d5e599">1. 目录</a>
+<li><a href="#orgb5ed815">1. 目录</a>
 <ul>
-<li><a href="#orge81d6f5">1.1. 标准库</a>
+<li><a href="#org9aee2e5">1.1. 标准库</a>
 <ul>
-<li><a href="#org860b460">1.1.1. unsafe</a></li>
+<li><a href="#orgc5f608f">1.1.1. unsafe</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgfe5485d">2. 代码</a></li>
-<li><a href="#org22eda18">3. 拓展</a>
+<li><a href="#org629341e">2. 代码</a>
+<ul>
+<li><a href="#orgf08ad9e">2.1. 标准库</a>
+<ul>
+<li><a href="#orga600f62">2.1.1. unsafe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0e2a16b">3. 拓展</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgd0c6c1a">3.0.1. unsafe</a></li>
+<li><a href="#orgc8ba5d8">3.0.1. unsafe</a></li>
 </ul>
 </li>
 </ul>
@@ -270,16 +279,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4d5e599" class="outline-2">
-<h2 id="org4d5e599"><span class="section-number-2">1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/README.md">目录</a></h2>
+<div id="outline-container-orgb5ed815" class="outline-2">
+<h2 id="orgb5ed815"><span class="section-number-2">1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/README.md">目录</a></h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge81d6f5" class="outline-3">
-<h3 id="orge81d6f5"><span class="section-number-3">1.1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/stdlib.md">标准库</a></h3>
+<div id="outline-container-org9aee2e5" class="outline-3">
+<h3 id="org9aee2e5"><span class="section-number-3">1.1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/stdlib.md">标准库</a></h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org860b460" class="outline-4">
-<h4 id="org860b460"><span class="section-number-4">1.1.1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/unsafe.md">unsafe</a></h4>
+<div id="outline-container-orgc5f608f" class="outline-4">
+<h4 id="orgc5f608f"><span class="section-number-4">1.1.1</span> <a href="https://www.bookstack.cn/read/qcrao-Go-Questions/unsafe.md">unsafe</a></h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li><p>
@@ -291,26 +300,26 @@ unsafe.pointer 和 指针 区别
 3 . 不同类型不能赋值
 </pre>
 <div class="org-src-container">
-<pre class="src src-go"><span style="color: #00ffff;">func</span> <span style="color: #87cefa;">testUnsafe</span>(<span style="color: #eedd82;">t</span> *<span style="color: #98fb98;">testing.T</span>) {
-  <span style="color: #eedd82;">a</span> := 5
-  <span style="color: #eedd82;">p</span> := &amp;a
+<pre class="src src-go"><span style="color: #D83441;">func</span> <span style="color: #D8B941;">testUnsafe</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>) {
+  <span style="color: #86e7d7;">a</span> := 5
+  <span style="color: #86e7d7;">p</span> := &amp;a
   *p++
-  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"t value --&gt; "</span>, *p)
+  t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"t value --&gt; "</span>, *p)
 
-  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">p++ //&#30452;&#25509;&#20351;&#29992;&#25351;&#38024;&#23601;&#20250;&#38169;</span>
-  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">p = &amp;a + 3</span>
+  <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">p++ //&#30452;&#25509;&#20351;&#29992;&#25351;&#38024;&#23601;&#20250;&#38169;</span>
+  <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">p = &amp;a + 3</span>
 
-  <span style="color: #eedd82;">c</span> := <span style="color: #87cefa;">int</span>(100)
-  <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">d</span> *<span style="color: #98fb98;">int</span> <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#22914;&#26524;&#26159; *float &#23601;&#20250;&#20986;&#38169;</span>
+  <span style="color: #86e7d7;">c</span> := <span style="color: #D8B941;">int</span>(100)
+  <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">d</span> *<span style="color: #3679D8;">int</span> <span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">&#22914;&#26524;&#26159; *float &#23601;&#20250;&#20986;&#38169;</span>
   d = &amp;c
-  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"d value --&gt; "</span>, *d)
+  t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"d value --&gt; "</span>, *d)
 
 
-  <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">e</span> *<span style="color: #98fb98;">int</span>
-  <span style="color: #00ffff;">var</span> <span style="color: #eedd82;">f</span> *<span style="color: #98fb98;">float64</span>
-  <span style="color: #ff7f24;">//</span><span style="color: #ff7f24;">t.Log(e == f) //&#31867;&#22411;&#19981;&#21516; &#19981;&#21487;&#20197;&#27604;&#36739;</span>
-  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, e == <span style="color: #7fffd4;">nil</span>)
-  t.<span style="color: #87cefa;">Log</span>(<span style="color: #ffa07a;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, f == <span style="color: #7fffd4;">nil</span>)
+  <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">e</span> *<span style="color: #3679D8;">int</span>
+  <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">f</span> *<span style="color: #3679D8;">float64</span>
+  <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">t.Log(e == f) //&#31867;&#22411;&#19981;&#21516; &#19981;&#21487;&#20197;&#27604;&#36739;</span>
+  t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, e == <span style="color: #8041D8;">nil</span>)
+  t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, f == <span style="color: #8041D8;">nil</span>)
 
 
 
@@ -324,22 +333,176 @@ unsafe.pointer 和 指针 区别
 1 . unsafe 可以对任何类型的指针和unsafe.Pointer 转换
 2 . uintptr 可以和unsafe.Pointer转换
 </pre></li>
+<li><p>
+使用unsafe 修改私有成员
+</p>
+<pre class="example">
+代码中关于unsafe.Pointer 和 uintptr .sizeof Offsetof 的使用
+</pre></li>
+
+<li><p>
+使用unsafe获取slice 长度
+</p>
+<pre class="example">
+1 . make slice 返回的是 slice的结构体
+2 . make map 返回的是 *hmap 的指针
+</pre></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfe5485d" class="outline-2">
-<h2 id="orgfe5485d"><span class="section-number-2">2</span> 代码</h2>
+<div id="outline-container-org629341e" class="outline-2">
+<h2 id="org629341e"><span class="section-number-2">2</span> <a href="go-ques_test.go">代码</a></h2>
+<div class="outline-text-2" id="text-2">
 </div>
+<div id="outline-container-orgf08ad9e" class="outline-3">
+<h3 id="orgf08ad9e"><span class="section-number-3">2.1</span> 标准库</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orga600f62" class="outline-4">
+<h4 id="orga600f62"><span class="section-number-4">2.1.1</span> unsafe</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+<pre class="src src-go">  <span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">TestQues ...</span>
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">TestQues</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>) {
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">testUnsafe(t)</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">testunsafe4struct(t)</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">testunsafe_sizeof_struct(t)</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">testunsafe_slice_lencap(t)</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">testunsafe_map_len(t)</span>
+        <span style="color: #D8B941;">teststring4byte</span>(t)
+}
 
-<div id="outline-container-org22eda18" class="outline-2">
-<h2 id="org22eda18"><span class="section-number-2">3</span> 拓展</h2>
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">testUnsafe</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>) {
+        <span style="color: #86e7d7;">a</span> := 5
+        <span style="color: #86e7d7;">p</span> := &amp;a
+        *p++
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"t value --&gt; "</span>, *p)
+
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">p++ //&#30452;&#25509;&#20351;&#29992;&#25351;&#38024;&#23601;&#20250;&#38169;</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">p = &amp;a + 3</span>
+
+        <span style="color: #86e7d7;">c</span> := <span style="color: #D8B941;">int</span>(100)
+        <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">d</span> *<span style="color: #3679D8;">int</span> <span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">&#22914;&#26524;&#26159; *float &#23601;&#20250;&#20986;&#38169;</span>
+        d = &amp;c
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"d value --&gt; "</span>, *d)
+
+        <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">e</span> *<span style="color: #3679D8;">int</span>
+        <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">f</span> *<span style="color: #3679D8;">float64</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">t.Log(e == f) //&#31867;&#22411;&#19981;&#21516; &#19981;&#21487;&#20197;&#27604;&#36739;</span>
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, e == <span style="color: #8041D8;">nil</span>)
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"&#19982;nil&#27604;&#36739; --&gt;"</span>, f == <span style="color: #8041D8;">nil</span>)
+}
+
+<span style="color: #D83441;">type</span> <span style="color: #3679D8;">PStruct</span> <span style="color: #D83441;">struct</span> {
+        name     <span style="color: #3679D8;">string</span>
+        language <span style="color: #3679D8;">string</span>
+        sign     <span style="color: #3679D8;">string</span>
+}
+
+<span style="color: #D83441;">type</span> <span style="color: #3679D8;">DStruct</span> <span style="color: #D83441;">struct</span>{
+        name <span style="color: #3679D8;">string</span>
+        times <span style="color: #3679D8;">string</span>
+}
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">testunsafe4struct</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>) {
+        <span style="color: #86e7d7;">p</span> := <span style="color: #3679D8;">PStruct</span>{<span style="color: #79D836;">"emacser"</span>,<span style="color: #79D836;">"go"</span>,<span style="color: #79D836;">"golang so easy "</span>}
+        t.<span style="color: #D8B941;">Logf</span>(<span style="color: #79D836;">"struct value -- &gt; %+v, address --&gt; %+v"</span>,p,&amp;p.name)
+
+        <span style="color: #86e7d7;">name</span> := (*string)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;p))
+        *name = <span style="color: #79D836;">"vimer"</span>
+
+        <span style="color: #86e7d7;">lang</span> := (*string)(unsafe.<span style="color: #D8B941;">Pointer</span>(<span style="color: #D8B941;">uintptr</span>(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;p)) + unsafe.<span style="color: #D8B941;">Offsetof</span>(p.language) ))
+        *lang = <span style="color: #79D836;">"C++"</span>
+
+        <span style="color: #86e7d7;">sign</span> := (*string)(unsafe.<span style="color: #D8B941;">Pointer</span>(<span style="color: #D8B941;">uintptr</span>(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;p)) + unsafe.<span style="color: #D8B941;">Offsetof</span>(p.sign)))
+
+        *sign = <span style="color: #79D836;">"C++ too hard"</span>
+        t.<span style="color: #D8B941;">Logf</span>(<span style="color: #79D836;">"unsafe reset value --&gt; %+v, address --&gt; %+v"</span>,p,&amp;p.name)
+
+
+}
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">testunsafe_sizeof_struct</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>){
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">sizeof &#30340;&#20351;&#29992;</span>
+        <span style="color: #86e7d7;">s</span> := <span style="color: #3679D8;">DStruct</span>{<span style="color: #79D836;">"emacser"</span>,<span style="color: #79D836;">"2006-01-02"</span>}
+        t.<span style="color: #D8B941;">Logf</span>(<span style="color: #79D836;">"struct value -- &gt; %+v, address --&gt; %+v"</span>,s,&amp;s.name)
+        <span style="color: #86e7d7;">times</span> := (*string)(unsafe.<span style="color: #D8B941;">Pointer</span>(<span style="color: #D8B941;">uintptr</span>(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s)) + unsafe.<span style="color: #D8B941;">Sizeof</span>(s.name)))
+        *times = <span style="color: #79D836;">"2021-02-23"</span>
+        <span style="color: #86e7d7;">name</span> := (*string)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s))
+        *name = <span style="color: #79D836;">"vimer"</span>
+        t.<span style="color: #D8B941;">Logf</span>(<span style="color: #79D836;">"size of reset value --&gt; %+v, address --&gt; %+v"</span>,s,&amp;s.name)
+}
+
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">testunsafe_slice_lencap</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>){
+
+        <span style="color: #86e7d7;">s</span> := <span style="color: #3679D8;">make</span>([]<span style="color: #3679D8;">int</span>,1,4)
+        <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">lens</span> = *(*int)(unsafe.<span style="color: #D8B941;">Pointer</span>(<span style="color: #D8B941;">uintptr</span>(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s)) + <span style="color: #D8B941;">uintptr</span>(8) ))
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"slice len --&gt; "</span>,lens)
+
+        <span style="color: #D83441;">var</span> <span style="color: #86e7d7;">caps</span> = *(*int)(unsafe.<span style="color: #D8B941;">Pointer</span>(<span style="color: #D8B941;">uintptr</span>(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s))+ <span style="color: #D8B941;">uintptr</span>(16)))
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"cap len --&gt; "</span>,caps)
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">len cap &#30340;&#36716;&#25442;&#27969;&#31243;</span>
+        <span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">&amp;s --&gt; pointer --&gt; uintptr --&gt; pointer --&gt; *int --&gt; int</span>
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">make slice &#36820;&#22238;&#30340;&#26159;&#19968;&#20010; slice &#30340;&#32467;&#26500;&#20307;</span>
+}
+
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">testunsafe_map_len</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>){
+        <span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">make map &#36820;&#22238;&#30340;&#26159;&#19968;&#20010; *hmap &#30340;&#25351;&#38024;</span>
+        <span style="color: #86e7d7;">s</span> := <span style="color: #3679D8;">make</span>(<span style="color: #D83441;">map</span>[<span style="color: #3679D8;">string</span>]<span style="color: #3679D8;">string</span>)
+        s[<span style="color: #79D836;">"name"</span>] = <span style="color: #79D836;">"emacser"</span>
+        s[<span style="color: #79D836;">"love"</span>] = <span style="color: #79D836;">"emacs"</span>
+
+        <span style="color: #86e7d7;">count</span> := **(**int)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s))
+        t.<span style="color: #D8B941;">Log</span>(<span style="color: #79D836;">"map len --&gt; "</span>,count)
+}
+<span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">string --&gt; []byte ==zero copy</span>
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">string2bytes</span>(<span style="color: #86e7d7;">s</span> <span style="color: #3679D8;">string</span>)[]<span style="color: #3679D8;">byte</span>{
+        <span style="color: #86e7d7;">stringHeader</span> := (*reflect.StringHeader)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s))
+
+        <span style="color: #86e7d7;">bh</span> := <span style="color: #3679D8;">reflect.SliceHeader</span>{
+                <span style="color: #8041D8;">Data</span>: stringHeader.Data,
+                <span style="color: #8041D8;">Len</span>: stringHeader.Len,
+                <span style="color: #8041D8;">Cap</span>: stringHeader.Len,
+        }
+        <span style="color: #D83441;">return</span> *(*[]<span style="color: #3679D8;">byte</span>)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;bh))
+}
+<span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">[]byte --&gt; string</span>
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">byte2string</span>(<span style="color: #86e7d7;">s</span> []<span style="color: #3679D8;">byte</span>)<span style="color: #3679D8;">string</span>{
+        <span style="color: #86e7d7;">sclieHeader</span> := (*reflect.SliceHeader)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;s))
+
+        <span style="color: #86e7d7;">sh</span> := <span style="color: #3679D8;">reflect.StringHeader</span>{
+                <span style="color: #8041D8;">Data</span>: sclieHeader.Data,
+                <span style="color: #8041D8;">Len</span>: sclieHeader.Len,
+        }
+
+        <span style="color: #D83441;">return</span> *(*string)(unsafe.<span style="color: #D8B941;">Pointer</span>(&amp;sh))
+
+}
+
+<span style="color: #D83441;">func</span> <span style="color: #D8B941;">teststring4byte</span>(<span style="color: #86e7d7;">t</span> *<span style="color: #3679D8;">testing.T</span>){
+        <span style="color: #86e7d7;">s</span> := <span style="color: #79D836;">"hello"</span>
+        <span style="color: #86e7d7;">d</span> := <span style="color: #D8B941;">string2bytes</span>(s)
+        t.<span style="color: #D8B941;">Logf</span>(<span style="color: #79D836;">"string --&gt; byte &#36716;&#25442;&#21069;string&#20026; %+v , &#36716;&#25442;&#21518; byte --&gt; %+v"</span>,s,d)
+
+        <span style="color: #86e7d7;">a</span> := []<span style="color: #3679D8;">byte</span>{104,101,108,108,111}
+        <span style="color: #86e7d7;">b</span> := <span style="color: #D8B941;">byte2string</span>(a)
+        t.<span style="color: #D8B941;">Logf</span>(<span style="color: #79D836;">"byte --&gt; string &#36716;&#25442;&#21069;byte&#20026; %+v , &#36716;&#25442;&#21518; string --&gt; %+v"</span>,a,b)
+}
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0e2a16b" class="outline-2">
+<h2 id="org0e2a16b"><span class="section-number-2">3</span> 拓展</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgd0c6c1a" class="outline-4">
-<h4 id="orgd0c6c1a"><span class="section-number-4">3.0.1</span> unsafe</h4>
+<div id="outline-container-orgc8ba5d8" class="outline-4">
+<h4 id="orgc8ba5d8"><span class="section-number-4">3.0.1</span> unsafe</h4>
 <div class="outline-text-4" id="text-3-0-1">
 <ul class="org-ul">
 <li><p>
@@ -361,7 +524,7 @@ uintptr 并没有指针的语义 , unsafe pointer 有
 <div id="postamble" class="status">
 <p class="date">Date: 2021-02-23</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-02-23 二 00:41</p>
+<p class="date">Created: 2021-02-23 二 21:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
