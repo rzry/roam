@@ -7,13 +7,20 @@ import (
 )
 
 // TestQues ...
-func TestQues(t *testing.T) {
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestUnsafe(t *testing.T){
+
+	/*unsafe test*/
 	//testUnsafe(t)
 	//testunsafe4struct(t)
 	//testunsafe_sizeof_struct(t)
-	//testunsafe_slice_lencap(t)
+	testunsafe_slice_lencap(t)
 	//testunsafe_map_len(t)
-	teststring4byte(t)
+
+	//teststring4byte(t)
 }
 
 func testUnsafe(t *testing.T) {
@@ -29,7 +36,7 @@ func testUnsafe(t *testing.T) {
 	var d *int // 如果是 *float 就会出错
 	d = &c
 	t.Log("d value --> ", *d)
-
+	
 	var e *int
 	var f *float64
 	//t.Log(e == f) //类型不同 不可以比较
@@ -47,21 +54,19 @@ type DStruct struct{
 	name string
 	times string
 }
+
 func testunsafe4struct(t *testing.T) {
 	p := PStruct{"emacser","go","golang so easy "}
 	t.Logf("struct value -- > %+v, address --> %+v",p,&p.name)
-
 	name := (*string)(unsafe.Pointer(&p))
 	*name = "vimer"
 
 	lang := (*string)(unsafe.Pointer(uintptr(unsafe.Pointer(&p)) + unsafe.Offsetof(p.language) ))
 	*lang = "C++"
-
 	sign := (*string)(unsafe.Pointer(uintptr(unsafe.Pointer(&p)) + unsafe.Offsetof(p.sign)))
 
 	*sign = "C++ too hard"
 	t.Logf("unsafe reset value --> %+v, address --> %+v",p,&p.name)
-
 
 }
 func testunsafe_sizeof_struct(t *testing.T){
@@ -100,7 +105,6 @@ func testunsafe_map_len(t *testing.T){
 //string --> []byte ==zero copy
 func string2bytes(s string)[]byte{
 	stringHeader := (*reflect.StringHeader)(unsafe.Pointer(&s))
-
 	bh := reflect.SliceHeader{
 		Data: stringHeader.Data,
 		Len: stringHeader.Len,

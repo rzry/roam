@@ -6,8 +6,9 @@ fn main() {
     //funcx();
     //str();
     //operator();
-    borrows();
+    //borrows();
     //reference();
+    structs();
 }
 //常量
 fn num(){
@@ -54,6 +55,12 @@ fn tuple_array(){
     let ds:[i32;0] = [];
     println!("ds -> {:?}",ds);
 
+    let pair:(char,i32,&str) = ('q',123,"hello");
+    println!("pair value --> {:?}",pair);
+    //元祖() 多类型 可以单独赋值
+    let (hello,world) = (1,2);
+    println!("hello value -> {} world value ->{}",hello,world);
+
 }
 //函数
 fn funcx(){
@@ -96,9 +103,33 @@ fn reference(){
 }
 fn borrows(){
     let v = &mut[1,2,3,4];//可变
+    //进入别的作用域了
     {
         let zero = v.get_mut(0).unwrap();
         *zero +=10;
+        //这样修改是不会改变外部v的值
+        v[0] = 11;
     }
-    println!("array value --> {:?}",v)
+    println!("array first value --> {:?}",v);
+    v[0] = 2;
+    println!("array value --> {:?}",v);
+}
+
+//struct
+struct Vec2 {
+    x: f64, // 64-bit floating point, aka "double precision"
+    y: f64,
+}
+fn structs(){
+
+    let v1 = Vec2{x:1.2,y:2.1};
+    println!("v1 struct value x --> {:?} y -->{:?}", v1.x,v1.y);
+    let v2 = Vec2{
+      x:22.1,
+        ..v1
+    };
+    println!(" v2 struct value x --> {:?} y -->{:?}", v2.x,v2.y);
+    //值保留了 x 的值
+    let Vec2{x,..} = v1;
+    println!(" v2 struct value x --> {:?}", x);
 }
