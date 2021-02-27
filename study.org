@@ -87,6 +87,7 @@
 * [[file:rust/rust.org][rust]]
 ** TODO note
    -  Note : [官方文档]
+* [[file:solidity/note/solidity.org][solidity]]
 * TODO 日程管理
 
 ** -> [[file:日程安排/2020.org][2020]]
