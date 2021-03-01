@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-27 六 19:12 -->
+<!-- 2021-03-01 一 11:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>solidity</title>
@@ -248,40 +248,50 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfd7041e">1. 配置</a>
+<li><a href="#orgf2553ef">1. 配置</a>
 <ul>
-<li><a href="#org0c9d86a">1.1. linux</a></li>
+<li><a href="#org56eba03">1.1. linux</a></li>
 </ul>
 </li>
-<li><a href="#org4910b64">2. 语法</a>
+<li><a href="#orgf665800">2. 语法</a>
 <ul>
-<li><a href="#org93a4727">2.1. 名词</a></li>
-<li><a href="#org6200611">2.2. solidity关键字</a></li>
-<li><a href="#org50c8572">2.3. 类型</a>
+<li><a href="#orga5f862f">2.1. 名词</a></li>
+<li><a href="#orgdbd6196">2.2. solidity关键字</a></li>
+<li><a href="#orgce5f16b">2.3. 类型</a>
 <ul>
-<li><a href="#org068a205">2.3.1. map</a></li>
-<li><a href="#orgdc9d8f8">2.3.2. data location 资料位置</a></li>
-<li><a href="#orgdd72b40">2.3.3. array</a></li>
-<li><a href="#orga961808">2.3.4. struct</a></li>
+<li><a href="#org8257b23">2.3.1. map</a></li>
+<li><a href="#org5e2ee45">2.3.2. data location 资料位置</a></li>
+<li><a href="#org597b3da">2.3.3. array</a></li>
+<li><a href="#orgd1abccd">2.3.4. struct</a></li>
+<li><a href="#org8003917">2.3.5. func modifier</a></li>
+</ul>
+</li>
+<li><a href="#orgaf25a5e">2.4. 单位</a>
+<ul>
+<li><a href="#orga3f6319">2.4.1. ether units</a></li>
+<li><a href="#org90a0945">2.4.2. time units</a></li>
+<li><a href="#orgb5dd703">2.4.3. block properties</a></li>
+<li><a href="#org3c890e7">2.4.4. transaction properties</a></li>
+<li><a href="#org59034b1">2.4.5. 计算, addmod mulmod keccheck256</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org4df9d1c">3. solidity</a>
+<li><a href="#org099ee59">3. solidity</a>
 <ul>
-<li><a href="#org130aeb5">3.1. 部署</a></li>
-<li><a href="#org703f923">3.2. 根据例子学习</a></li>
+<li><a href="#org02bb595">3.1. 部署</a></li>
+<li><a href="#org59ee78b">3.2. 根据例子学习</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfd7041e" class="outline-2">
-<h2 id="orgfd7041e"><span class="section-number-2">1</span> 配置</h2>
+<div id="outline-container-orgf2553ef" class="outline-2">
+<h2 id="orgf2553ef"><span class="section-number-2">1</span> 配置</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org0c9d86a" class="outline-3">
-<h3 id="org0c9d86a"><span class="section-number-3">1.1</span> linux</h3>
+<div id="outline-container-org56eba03" class="outline-3">
+<h3 id="org56eba03"><span class="section-number-3">1.1</span> linux</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 1 . install node npm
@@ -291,12 +301,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4910b64" class="outline-2">
-<h2 id="org4910b64"><span class="section-number-2">2</span> 语法</h2>
+<div id="outline-container-orgf665800" class="outline-2">
+<h2 id="orgf665800"><span class="section-number-2">2</span> 语法</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org93a4727" class="outline-3">
-<h3 id="org93a4727"><span class="section-number-3">2.1</span> 名词</h3>
+<div id="outline-container-orga5f862f" class="outline-3">
+<h3 id="orga5f862f"><span class="section-number-3">2.1</span> 名词</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 - 1 . 一个 block 封装一堆 transaction
@@ -369,8 +379,8 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org6200611" class="outline-3">
-<h3 id="org6200611"><span class="section-number-3">2.2</span> solidity关键字</h3>
+<div id="outline-container-orgdbd6196" class="outline-3">
+<h3 id="orgdbd6196"><span class="section-number-3">2.2</span> solidity关键字</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>visibility 可以修饰 func 和 state variables</li>
@@ -469,12 +479,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org50c8572" class="outline-3">
-<h3 id="org50c8572"><span class="section-number-3">2.3</span> 类型</h3>
+<div id="outline-container-orgce5f16b" class="outline-3">
+<h3 id="orgce5f16b"><span class="section-number-3">2.3</span> 类型</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org068a205" class="outline-4">
-<h4 id="org068a205"><span class="section-number-4">2.3.1</span> map</h4>
+<div id="outline-container-org8257b23" class="outline-4">
+<h4 id="org8257b23"><span class="section-number-4">2.3.1</span> map</h4>
 <div class="outline-text-4" id="text-2-3-1">
 
 <div class="figure">
@@ -530,8 +540,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgdc9d8f8" class="outline-4">
-<h4 id="orgdc9d8f8"><span class="section-number-4">2.3.2</span> data location 资料位置</h4>
+<div id="outline-container-org5e2ee45" class="outline-4">
+<h4 id="org5e2ee45"><span class="section-number-4">2.3.2</span> data location 资料位置</h4>
 <div class="outline-text-4" id="text-2-3-2">
 
 <div class="figure">
@@ -559,8 +569,8 @@ storage :
 </div>
 </div>
 </div>
-<div id="outline-container-orgdd72b40" class="outline-4">
-<h4 id="orgdd72b40"><span class="section-number-4">2.3.3</span> array</h4>
+<div id="outline-container-org597b3da" class="outline-4">
+<h4 id="org597b3da"><span class="section-number-4">2.3.3</span> array</h4>
 <div class="outline-text-4" id="text-2-3-3">
 
 <div class="figure">
@@ -576,8 +586,8 @@ storage :
 </pre>
 </div>
 </div>
-<div id="outline-container-orga961808" class="outline-4">
-<h4 id="orga961808"><span class="section-number-4">2.3.4</span> struct</h4>
+<div id="outline-container-orgd1abccd" class="outline-4">
+<h4 id="orgd1abccd"><span class="section-number-4">2.3.4</span> struct</h4>
 <div class="outline-text-4" id="text-2-3-4">
 
 <div class="figure">
@@ -607,14 +617,14 @@ storage :
     }
     <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28155;&#21152;&#23398;&#29983;&#25104;&#32489;</span>
     <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">addStudentScore</span>(<span style="color: #8FBCBB;">string</span> calldata className, <span style="color: #8FBCBB;">string</span> calldata studentName, <span style="color: #8FBCBB;">uint</span> score) <span style="color: #81A1C1;">public</span> {
-        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">(classes[className]).scores[studentName] = score; &#31561;&#20729;&#26044;&#19979;&#38754;&#20841;&#34892;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">(classes[className]).scores[studentName] = score; &#21516;&#20026;&#19979;&#38754;&#20004;&#34892;</span>
 
         Class <span style="color: #81A1C1;">storage</span> class = classes[className];
         class.scores[studentName] = score;
     }
 
     <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">getStudentScore</span>(<span style="color: #8FBCBB;">string</span> calldata className, <span style="color: #8FBCBB;">string</span> calldata studentName) <span style="color: #81A1C1;">public</span> <span style="color: #81A1C1;">view</span> <span style="color: #81A1C1;">returns</span> (<span style="color: #8FBCBB;">uint</span>) {
-        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">return (classes[className]).scores[studentName]; &#31561;&#20729;&#26044;&#19979;&#38754;&#20841;&#34892;</span>
+        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">return (classes[className]).scores[studentName]; &#31561;&#21516;&#19982;&#19979;&#38754;&#20004;&#34892;</span>
 
         Class <span style="color: #81A1C1;">storage</span> class = classes[className];
         <span style="color: #81A1C1;">return</span> class.scores[studentName];
@@ -624,16 +634,139 @@ storage :
 </div>
 </div>
 </div>
+
+<div id="outline-container-org8003917" class="outline-4">
+<h4 id="org8003917"><span class="section-number-4">2.3.5</span> func modifier</h4>
+<div class="outline-text-4" id="text-2-3-5">
+
+<div class="figure">
+<p><img src="./pic/func-modifer.png" alt="func-modifer.png" />
+</p>
 </div>
+<div class="org-src-container">
+<pre class="src src-solidity"><span style="color: #81A1C1;">modifier</span> <span style="color: #D8DEE9;">name</span>{
+  <span style="color: #6f7787;">//</span><span style="color: #6f7787;">do something</span>
+  _; <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36339;&#22238;&#21407;&#26412;&#30340;func</span>
+  <span style="color: #6f7787;">//</span><span style="color: #6f7787;">do something</span>
+}
+</pre>
 </div>
 
+<div class="figure">
+<p><img src="./pic/checkA.png" alt="checkA.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li><p>
+权限限定(限定owner)
+</p>
+<div class="org-src-container">
+<pre class="src src-solidity"><span style="color: #81A1C1;">modifier</span> <span style="color: #D8DEE9;">onlyOwner</span>{
+    <span style="color: #81A1C1;">require</span>(
+      <span style="color: #81A1C1;">msg</span>.sender == owner,
+      <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#21482;&#26377;&#36825;&#20010;owner &#21487;&#20197;&#20351;&#29992;&#36825;&#20010;func</span>
+    );
+    _;
+}
+</pre>
+</div></li>
+<li>withdraw 加 mutex</li>
+</ul>
 
-<div id="outline-container-org4df9d1c" class="outline-2">
-<h2 id="org4df9d1c"><span class="section-number-2">3</span> solidity</h2>
+<div class="figure">
+<p><img src="./pic/do-mutex.png" alt="do-mutex.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>modifier 继承和可被改写</li>
+</ul>
+<pre class="example">
+virtual 被继承后可修改
+override 修改继承的函数
+</pre>
+
+<div class="figure">
+<p><img src="./pic/modifier.png" alt="modifier.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaf25a5e" class="outline-3">
+<h3 id="orgaf25a5e"><span class="section-number-3">2.4</span> 单位</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-orga3f6319" class="outline-4">
+<h4 id="orga3f6319"><span class="section-number-4">2.4.1</span> ether units</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<pre class="example">
+1. wei 最小单位 i进制是 1e9
+2. gwei
+3. ether
+
+4. finney
+5. szabo 4,5 被删除了 在 0.7.0
+</pre>
+</div>
+</div>
+<div id="outline-container-org90a0945" class="outline-4">
+<h4 id="org90a0945"><span class="section-number-4">2.4.2</span> time units</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<pre class="example">
+1. 除了年以外,没别的差别.
+2. 在0.5.0以后,years 被移除了
+//如果使用**天 . x*1 days
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb5dd703" class="outline-4">
+<h4 id="orgb5dd703"><span class="section-number-4">2.4.3</span> block properties</h4>
+<div class="outline-text-4" id="text-2-4-3">
+
+<div class="figure">
+<p><img src="./pic/block-func.png" alt="block-func.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3c890e7" class="outline-4">
+<h4 id="org3c890e7"><span class="section-number-4">2.4.4</span> transaction properties</h4>
+<div class="outline-text-4" id="text-2-4-4">
+
+<div class="figure">
+<p><img src="./pic/transaction-properties.png" alt="transaction-properties.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>留意问题</li>
+</ul>
+<pre class="example">
+1. 不要使用block.timestamp() 或者block.hash当做rand number
+2. 使用blockhash(x)获取block hash 的时候, 如果 x&lt;256 的话 会返回0
+3. msg.gas()在0.5.0已经被移除了,如果查看当前 contract 的gas 使用gasleft()
+4. tx.gasprice 获取这个transaction的gas price
+5. 获取当前时间  now 在0.7.0版本已经被移除,使用 block.timestamp()来获取时间
+</pre>
+</div>
+</div>
+<div id="outline-container-org59034b1" class="outline-4">
+<h4 id="org59034b1"><span class="section-number-4">2.4.5</span> 计算, addmod mulmod keccheck256</h4>
+<div class="outline-text-4" id="text-2-4-5">
+
+<div class="figure">
+<p><img src="./pic/caclue-func.png" alt="caclue-func.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org099ee59" class="outline-2">
+<h2 id="org099ee59"><span class="section-number-2">3</span> solidity</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org130aeb5" class="outline-3">
-<h3 id="org130aeb5"><span class="section-number-3">3.1</span> 部署</h3>
+<div id="outline-container-org02bb595" class="outline-3">
+<h3 id="org02bb595"><span class="section-number-3">3.1</span> 部署</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><p>
@@ -671,8 +804,8 @@ deployer.deploy(HelloWorld);
 </ul>
 </div>
 </div>
-<div id="outline-container-org703f923" class="outline-3">
-<h3 id="org703f923"><span class="section-number-3">3.2</span> 根据例子学习</h3>
+<div id="outline-container-org59ee78b" class="outline-3">
+<h3 id="org59ee78b"><span class="section-number-3">3.2</span> 根据例子学习</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><p>
@@ -719,7 +852,7 @@ deployer.deploy(HelloWorld);
 <div id="postamble" class="status">
 <p class="date">Date: 2021-02-25</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-02-27 六 19:12</p>
+<p class="date">Created: 2021-03-01 一 11:18</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,3 +1,4 @@
+
 #+TITLE:     solidity
 #+AUTHOR:    rzry https://github.com/rzry
 #+EMAIL:     rzry36008@ccie.lol
@@ -220,7 +221,64 @@ contract School {
 }
     #+end_src
 
+*** func modifier
+   [[./pic/func-modifer.png]]
+   #+begin_src solidity
+   modifier name{
+     //do something
+     _; //跳回原本的func
+     //do something
+   }
+   #+end_src
+   [[./pic/checkA.png]]
+   - 权限限定(限定owner)
+     #+begin_src solidity
+     modifier onlyOwner{
+         require(
+           msg.sender == owner,
+           //只有这个owner 可以使用这个func
+         );
+         _;
+     }
+     #+end_src
+   - withdraw 加 mutex
+   [[./pic/do-mutex.png]]
+   - modifier 继承和可被改写
+   #+begin_src
+   virtual 被继承后可修改
+   override 修改继承的函数
+   #+end_src
+   [[./pic/modifier.png]]
+** 单位
+*** ether units
+   #+begin_src
+   1. wei 最小单位 i进制是 1e9
+   2. gwei
+   3. ether
 
+   4. finney
+   5. szabo 4,5 被删除了 在 0.7.0
+   #+end_src
+*** time units
+   #+begin_src
+   1. 除了年以外,没别的差别.
+   2. 在0.5.0以后,years 被移除了
+   //如果使用**天 . x*1 days
+   #+end_src
+*** block properties
+  [[./pic/block-func.png]]
+*** transaction properties
+  [[./pic/transaction-properties.png]]
+  - 留意问题
+  #+begin_src
+  1. 不要使用block.timestamp() 或者block.hash当做rand number
+  2. 使用blockhash(x)获取block hash 的时候, 如果 x<256 的话 会返回0
+  3. msg.gas()在0.5.0已经被移除了,如果查看当前 contract 的gas 使用gasleft()
+  4. tx.gasprice 获取这个transaction的gas price
+  5. 获取当前时间  now 在0.7.0版本已经被移除,使用 block.timestamp()来获取时间
+  #+end_src
+*** 计算, addmod mulmod keccheck256
+  [[./pic/caclue-func.png]]
 * solidity
 ** 部署
    - hello world
