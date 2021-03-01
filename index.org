@@ -32,12 +32,12 @@
   :END:
 ** 编程语言
   - 熟练 Go
-  - 熟悉 python,shell,Lisp,C
+  - 熟悉 python,shell,Lisp,C,solidity
 ** 数据库
   - 熟悉 mysql,redis
 ** 框架
   - go-micro , gin , beego
-  - zap , casbin , protobuf
+  - casbin , protobuf
   - deciaml , swagger
 ** 版本控制
   - git

@@ -12,51 +12,19 @@
   :END:
 ** DONE note
     CLOSED: [2020-09-22 二 12:01]
-  - Note : [golang笔记]
-
-  - Note : [指针,结构体]
-
-  - Note : [go test]
-
-  - Note : [go channel]
-
-  - Note : [channel_select]
-
 ** DONE leetcode
     CLOSED: [2020-09-22 二 12:02]
-  -  Note : [LeetCode628-三个数的最大乘积]
-
-  -  Note : [LeetCode1029-两地调度]
-
-  -  Note : [LeetCode-1013-将数组分成和相等的三个部分]
-
-  -  Note : [Leetcode-1018-被5整除的二进制前缀]
-
-  -  Note : [leetcode-删除当前节点]
-
 ** TODO reading
-  -  Note : [go标准库学习]
-
-  -  Note :
 ** TODO 摘录
-  -  Note : [go-open-hub]
-
-  -  Note :
 ** DONE nothing
     CLOSED: [2020-09-22 二 12:02]
-  -  Note :
-
-  -  Note :
-
  -----
 * [[file:emacs/20200916-allemacs.org][emacs]]
   :PROPERTIES:
   :CATEGORY: emacs
   :END:
 ** TODO config
-  -  Note : [emacs-roma]
 ** TODO lisp
-  -  Note : [lisp语法]
 
  -----
 * [[file:mysql/20200916-all_mysql.org][mysql]]
@@ -65,9 +33,6 @@
   :END:
 ** DONE note
    CLOSED: [2020-09-22 二 12:02]
-  -  Note : [mysql查询]
-
-  -  Note : [mysql笔记总结]
  -----
 
 * [[file:linux/20200916-all_linux.org][linux]]
@@ -75,35 +40,21 @@
   :CATEGORY: linux
   :END:
 ** TODO nothing
-   -  Note : [Sed多文件搜索替换]
-
-   -  Note : [安卓一键软件备份_安装]
 ** DONE order
    CLOSED: [2020-09-22 二 12:02]
-  -  Note : [git的使用笔记]
 ** TODO book
-  -  Note : [linux 就该这么学]
   -----
 * [[file:rust/rust.org][rust]]
 ** TODO note
-   -  Note : [官方文档]
 * [[file:solidity/note/solidity.org][solidity]]
 * TODO 日程管理
 
 ** -> [[file:日程安排/2020.org][2020]]
-  -  Note : [2020.9]
-
-  -  Note : [2020.8]
-
-  -  Note : [2020.10]
 -----
 * TODO reading
   :PROPERTIES:
   :CATEGORY: reading
   :END:
 ** book link
-   -  Note :
-
-   -  Note :
-   -----
+-----
 -----
