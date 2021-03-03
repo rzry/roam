@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-03-01 一 11:18 -->
+<!-- 2021-03-02 二 12:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>solidity</title>
@@ -248,50 +248,58 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf2553ef">1. 配置</a>
+<li><a href="#org8ccb4b4">1. 配置</a>
 <ul>
-<li><a href="#org56eba03">1.1. linux</a></li>
+<li><a href="#org822526d">1.1. linux</a></li>
 </ul>
 </li>
-<li><a href="#orgf665800">2. 语法</a>
+<li><a href="#org5b4ba90">2. 语法</a>
 <ul>
-<li><a href="#orga5f862f">2.1. 名词</a></li>
-<li><a href="#orgdbd6196">2.2. solidity关键字</a></li>
-<li><a href="#orgce5f16b">2.3. 类型</a>
+<li><a href="#org98491e1">2.1. 名词</a></li>
+<li><a href="#org90fc3e7">2.2. solidity关键字</a>
 <ul>
-<li><a href="#org8257b23">2.3.1. map</a></li>
-<li><a href="#org5e2ee45">2.3.2. data location 资料位置</a></li>
-<li><a href="#org597b3da">2.3.3. array</a></li>
-<li><a href="#orgd1abccd">2.3.4. struct</a></li>
-<li><a href="#org8003917">2.3.5. func modifier</a></li>
+<li><a href="#orgd89a178">2.2.1. visibility 可以修饰 func 和 state variables</a></li>
+<li><a href="#org2c52d69">2.2.2. state mutability 可变性,pure view default</a></li>
+<li><a href="#orgbaf0c6d">2.2.3. create func</a></li>
+<li><a href="#org7c7100d">2.2.4. 一些特殊的 func</a></li>
 </ul>
 </li>
-<li><a href="#orgaf25a5e">2.4. 单位</a>
+<li><a href="#orgb0d1835">2.3. 类型</a>
 <ul>
-<li><a href="#orga3f6319">2.4.1. ether units</a></li>
-<li><a href="#org90a0945">2.4.2. time units</a></li>
-<li><a href="#orgb5dd703">2.4.3. block properties</a></li>
-<li><a href="#org3c890e7">2.4.4. transaction properties</a></li>
-<li><a href="#org59034b1">2.4.5. 计算, addmod mulmod keccheck256</a></li>
+<li><a href="#orged2cf91">2.3.1. map</a></li>
+<li><a href="#org18c0f5c">2.3.2. data location 资料位置</a></li>
+<li><a href="#orgf1b210a">2.3.3. array</a></li>
+<li><a href="#org2c20d55">2.3.4. struct</a></li>
+<li><a href="#orgedcd08a">2.3.5. func modifier</a></li>
+<li><a href="#org0a46159">2.3.6. library</a></li>
+</ul>
+</li>
+<li><a href="#org1f5ba69">2.4. 单位</a>
+<ul>
+<li><a href="#org23ee0f9">2.4.1. ether units</a></li>
+<li><a href="#org3e6b4a4">2.4.2. time units</a></li>
+<li><a href="#org6ce9a0b">2.4.3. block properties</a></li>
+<li><a href="#orgf64f5f4">2.4.4. transaction properties</a></li>
+<li><a href="#org648db0a">2.4.5. 计算, addmod mulmod keccheck256</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org099ee59">3. solidity</a>
+<li><a href="#orgcebd7cc">3. solidity</a>
 <ul>
-<li><a href="#org02bb595">3.1. 部署</a></li>
-<li><a href="#org59ee78b">3.2. 根据例子学习</a></li>
+<li><a href="#org64ecd6e">3.1. 部署</a></li>
+<li><a href="#org7b9ec7e">3.2. 根据例子学习</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf2553ef" class="outline-2">
-<h2 id="orgf2553ef"><span class="section-number-2">1</span> 配置</h2>
+<div id="outline-container-org8ccb4b4" class="outline-2">
+<h2 id="org8ccb4b4"><span class="section-number-2">1</span> 配置</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org56eba03" class="outline-3">
-<h3 id="org56eba03"><span class="section-number-3">1.1</span> linux</h3>
+<div id="outline-container-org822526d" class="outline-3">
+<h3 id="org822526d"><span class="section-number-3">1.1</span> linux</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 1 . install node npm
@@ -301,12 +309,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgf665800" class="outline-2">
-<h2 id="orgf665800"><span class="section-number-2">2</span> 语法</h2>
+<div id="outline-container-org5b4ba90" class="outline-2">
+<h2 id="org5b4ba90"><span class="section-number-2">2</span> 语法</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga5f862f" class="outline-3">
-<h3 id="orga5f862f"><span class="section-number-3">2.1</span> 名词</h3>
+<div id="outline-container-org98491e1" class="outline-3">
+<h3 id="org98491e1"><span class="section-number-3">2.1</span> 名词</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 - 1 . 一个 block 封装一堆 transaction
@@ -379,12 +387,13 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgdbd6196" class="outline-3">
-<h3 id="orgdbd6196"><span class="section-number-3">2.2</span> solidity关键字</h3>
+<div id="outline-container-org90fc3e7" class="outline-3">
+<h3 id="org90fc3e7"><span class="section-number-3">2.2</span> solidity关键字</h3>
 <div class="outline-text-3" id="text-2-2">
-<ul class="org-ul">
-<li>visibility 可以修饰 func 和 state variables</li>
-</ul>
+</div>
+<div id="outline-container-orgd89a178" class="outline-4">
+<h4 id="orgd89a178"><span class="section-number-4">2.2.1</span> visibility 可以修饰 func 和 state variables</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 - 1. public
      - public 的 func 会成为abi的一部分
@@ -406,9 +415,11 @@ for the JavaScript code in this tag.
      - 定义为internal 的func 或者 state variables 只能被
        定义的合约或者派生的合约呼叫
 </pre>
-<ul class="org-ul">
-<li>state mutability 可变性,pure view default</li>
-</ul>
+</div>
+</div>
+<div id="outline-container-org2c52d69" class="outline-4">
+<h4 id="org2c52d69"><span class="section-number-4">2.2.2</span> state mutability 可变性,pure view default</h4>
+<div class="outline-text-4" id="text-2-2-2">
 <pre class="example">
 - 1. pure 不读不写state
 - 2. view 只读不写 state
@@ -430,19 +441,23 @@ for the JavaScript code in this tag.
 <p><img src="./pic/read-state.png" alt="read-state.png" />
 </p>
 </div>
-<ul class="org-ul">
-<li>create func</li>
-</ul>
+</div>
+</div>
+<div id="outline-container-orgbaf0c6d" class="outline-4">
+<h4 id="orgbaf0c6d"><span class="section-number-4">2.2.3</span> create func</h4>
+<div class="outline-text-4" id="text-2-2-3">
 
 <div class="figure">
 <p><img src="./pic/create-func.png" alt="create-func.png" />
 </p>
 </div>
-<ul class="org-ul">
-<li>一些特殊的 func
+</div>
+</div>
+<div id="outline-container-org7c7100d" class="outline-4">
+<h4 id="org7c7100d"><span class="section-number-4">2.2.4</span> 一些特殊的 func</h4>
+<div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li>1. get pubilc func(一个public 可以被任何人使用get func查询)</li>
-</ul></li>
 </ul>
 
 <div class="figure">
@@ -477,14 +492,18 @@ for the JavaScript code in this tag.
 <p><img src="./pic/fallback.png" alt="fallback.png" />
 </p>
 </div>
+<ul class="org-ul">
+<li></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-orgce5f16b" class="outline-3">
-<h3 id="orgce5f16b"><span class="section-number-3">2.3</span> 类型</h3>
+</div>
+<div id="outline-container-orgb0d1835" class="outline-3">
+<h3 id="orgb0d1835"><span class="section-number-3">2.3</span> 类型</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org8257b23" class="outline-4">
-<h4 id="org8257b23"><span class="section-number-4">2.3.1</span> map</h4>
+<div id="outline-container-orged2cf91" class="outline-4">
+<h4 id="orged2cf91"><span class="section-number-4">2.3.1</span> map</h4>
 <div class="outline-text-4" id="text-2-3-1">
 
 <div class="figure">
@@ -540,8 +559,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5e2ee45" class="outline-4">
-<h4 id="org5e2ee45"><span class="section-number-4">2.3.2</span> data location 资料位置</h4>
+<div id="outline-container-org18c0f5c" class="outline-4">
+<h4 id="org18c0f5c"><span class="section-number-4">2.3.2</span> data location 资料位置</h4>
 <div class="outline-text-4" id="text-2-3-2">
 
 <div class="figure">
@@ -569,8 +588,8 @@ storage :
 </div>
 </div>
 </div>
-<div id="outline-container-org597b3da" class="outline-4">
-<h4 id="org597b3da"><span class="section-number-4">2.3.3</span> array</h4>
+<div id="outline-container-orgf1b210a" class="outline-4">
+<h4 id="orgf1b210a"><span class="section-number-4">2.3.3</span> array</h4>
 <div class="outline-text-4" id="text-2-3-3">
 
 <div class="figure">
@@ -586,8 +605,8 @@ storage :
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd1abccd" class="outline-4">
-<h4 id="orgd1abccd"><span class="section-number-4">2.3.4</span> struct</h4>
+<div id="outline-container-org2c20d55" class="outline-4">
+<h4 id="org2c20d55"><span class="section-number-4">2.3.4</span> struct</h4>
 <div class="outline-text-4" id="text-2-3-4">
 
 <div class="figure">
@@ -635,8 +654,8 @@ storage :
 </div>
 </div>
 
-<div id="outline-container-org8003917" class="outline-4">
-<h4 id="org8003917"><span class="section-number-4">2.3.5</span> func modifier</h4>
+<div id="outline-container-orgedcd08a" class="outline-4">
+<h4 id="orgedcd08a"><span class="section-number-4">2.3.5</span> func modifier</h4>
 <div class="outline-text-4" id="text-2-3-5">
 
 <div class="figure">
@@ -691,13 +710,28 @@ override 修改继承的函数
 </div>
 </div>
 </div>
+<div id="outline-container-org0a46159" class="outline-4">
+<h4 id="org0a46159"><span class="section-number-4">2.3.6</span> library</h4>
+<div class="outline-text-4" id="text-2-3-6">
+
+<div class="figure">
+<p><img src="./pics/library.png" alt="library.png" />
+</p>
 </div>
-<div id="outline-container-orgaf25a5e" class="outline-3">
-<h3 id="orgaf25a5e"><span class="section-number-3">2.4</span> 单位</h3>
+<pre class="example">
+1. 工具 不需要状态 不需要 code variables
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1f5ba69" class="outline-3">
+<h3 id="org1f5ba69"><span class="section-number-3">2.4</span> 单位</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-orga3f6319" class="outline-4">
-<h4 id="orga3f6319"><span class="section-number-4">2.4.1</span> ether units</h4>
+<div id="outline-container-org23ee0f9" class="outline-4">
+<h4 id="org23ee0f9"><span class="section-number-4">2.4.1</span> ether units</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <pre class="example">
 1. wei 最小单位 i进制是 1e9
@@ -709,8 +743,8 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
-<div id="outline-container-org90a0945" class="outline-4">
-<h4 id="org90a0945"><span class="section-number-4">2.4.2</span> time units</h4>
+<div id="outline-container-org3e6b4a4" class="outline-4">
+<h4 id="org3e6b4a4"><span class="section-number-4">2.4.2</span> time units</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <pre class="example">
 1. 除了年以外,没别的差别.
@@ -719,8 +753,8 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb5dd703" class="outline-4">
-<h4 id="orgb5dd703"><span class="section-number-4">2.4.3</span> block properties</h4>
+<div id="outline-container-org6ce9a0b" class="outline-4">
+<h4 id="org6ce9a0b"><span class="section-number-4">2.4.3</span> block properties</h4>
 <div class="outline-text-4" id="text-2-4-3">
 
 <div class="figure">
@@ -729,8 +763,8 @@ override 修改继承的函数
 </div>
 </div>
 </div>
-<div id="outline-container-org3c890e7" class="outline-4">
-<h4 id="org3c890e7"><span class="section-number-4">2.4.4</span> transaction properties</h4>
+<div id="outline-container-orgf64f5f4" class="outline-4">
+<h4 id="orgf64f5f4"><span class="section-number-4">2.4.4</span> transaction properties</h4>
 <div class="outline-text-4" id="text-2-4-4">
 
 <div class="figure">
@@ -749,8 +783,8 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
-<div id="outline-container-org59034b1" class="outline-4">
-<h4 id="org59034b1"><span class="section-number-4">2.4.5</span> 计算, addmod mulmod keccheck256</h4>
+<div id="outline-container-org648db0a" class="outline-4">
+<h4 id="org648db0a"><span class="section-number-4">2.4.5</span> 计算, addmod mulmod keccheck256</h4>
 <div class="outline-text-4" id="text-2-4-5">
 
 <div class="figure">
@@ -761,12 +795,12 @@ override 修改继承的函数
 </div>
 </div>
 </div>
-<div id="outline-container-org099ee59" class="outline-2">
-<h2 id="org099ee59"><span class="section-number-2">3</span> solidity</h2>
+<div id="outline-container-orgcebd7cc" class="outline-2">
+<h2 id="orgcebd7cc"><span class="section-number-2">3</span> solidity</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org02bb595" class="outline-3">
-<h3 id="org02bb595"><span class="section-number-3">3.1</span> 部署</h3>
+<div id="outline-container-org64ecd6e" class="outline-3">
+<h3 id="org64ecd6e"><span class="section-number-3">3.1</span> 部署</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><p>
@@ -804,8 +838,8 @@ deployer.deploy(HelloWorld);
 </ul>
 </div>
 </div>
-<div id="outline-container-org59ee78b" class="outline-3">
-<h3 id="org59ee78b"><span class="section-number-3">3.2</span> 根据例子学习</h3>
+<div id="outline-container-org7b9ec7e" class="outline-3">
+<h3 id="org7b9ec7e"><span class="section-number-3">3.2</span> 根据例子学习</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><p>
@@ -852,7 +886,7 @@ deployer.deploy(HelloWorld);
 <div id="postamble" class="status">
 <p class="date">Date: 2021-02-25</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-03-01 一 11:18</p>
+<p class="date">Created: 2021-03-02 二 12:08</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

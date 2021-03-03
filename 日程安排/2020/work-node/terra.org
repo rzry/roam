@@ -1,0 +1,91 @@
+#+TITLE:     Terra
+#+AUTHOR:    rzry https://github.com/rzry
+#+EMAIL:     rzry36008@ccie.lol
+#+DATE:      2021-03-01
+#+LANGUAGE:  en
+* 构建
+** 配置
+  - install docker and docker-compose
+    #+begin_src shell
+install-docker-compose() {
+  echo "install docker-compose"
+  version=${1:-1.25.5}
+  curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)/" -o /tmp/docker-compose &&
+  chmod +x /tmp/docker-compose &&
+  sudo mv /tmp/docker-compose /usr/local/bin/docker-compose
+}
+
+install-docker() {
+  echo "install docker"
+  sudo apt-get update &&
+  sudo apt-get -y install curl apt-transport-https ca-certificates software-properties-common &&
+  (curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -) &&
+  sudo add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" &&
+  sudo apt-get update &&
+  sudo apt-get -y install docker-ce &&
+  sudo usermod -aG docker $USER
+}
+    #+end_src
+
+  - install go and rust
+    #+begin_src shell
+install-golang() {
+  echo "install golang"
+  version=${1:-1.14.5}
+  name="go${version}.${platform}-amd64.tar.gz"
+  curl -L https://dl.google.com/go/$name -o /tmp/$name
+  sudo tar xzf /tmp/$name -C /usr/local && rm /tmp/$name
+}
+install-rust() {
+  echo "install rust"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+    #+end_src
+
+  - 下载.
+    #+begin_src shell
+    #local terra
+    1. git clone https://github.com/terra-project/localterra && cd localterra
+    2. docker-compose up -d
+    #set rust
+    3. rustup default stable
+    4. rustup target add wasm32-unknown-unknown
+    5. cargo install cargo-generate --features vendored-openssl
+    #build terra-cli
+    6. cd .. && git clone https://github.com/terra-project/core && cd core && git checkout master
+    7. make build && cd build
+
+    #在编译好以后  你可以看到terracli terrad 两个文件
+    #+end_src
+** 运行本地测试网络
+   #+begin_src
+   1. 初始化将引导网络的 genesis 文件。为您的本地 testnet 设置一个名字，
+      并提供一个名字对象来引用节点
+      terrad init --chain-id=terra_net_test terra_node_test
+   #+end_src
+   [[./pic/terra-init.png]]
+   #+begin_src
+   2. 你需要一个 Terra 账户来启动，你可以用以下方法生成一个:
+   terracli keys add terra_account_name
+
+   记住这个 address
+   address: terra1rttq84xsdagu65fqrcxcvcsjwx0zk79j47ljn5
+   pubkey: terrapub1addwnpepqf8589em9033xyxrm7gdjwychm34a3xymqevnht5ak060rmvsepesvd3ngm
+   #+end_src
+   [[./pic/terra-keys.png]]
+   #+begin_src
+   3. 接下来，需要添加您的帐户创世纪。下面的命令添加您的帐户并设置初始余额:
+   terrad add-genesis-account $(terracli keys show terra_account_name -a) 100000000uluna,1000usd
+   terrad gentx --name terra_account_name --amount 10000000uluna
+   terrad collect-gentxs
+   #+end_src
+   [[./pic/terrad-add-genes.png]]
+   #+begin_src
+   4. 运行 Terra 守护进程
+   terrad start
+   #+end_src
+   [[./pic/start-terrad.png]]
+** terracli
+   #+begin_src
+
+   #+end_src

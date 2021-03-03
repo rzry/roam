@@ -65,7 +65,7 @@
     - 1. abi  Application Binary Interface (配置文件 交互参数)
   #+end_src
 ** solidity关键字
-   - visibility 可以修饰 func 和 state variables
+*** visibility 可以修饰 func 和 state variables
    #+begin_src
      - 1. public
           - public 的 func 会成为abi的一部分
@@ -87,7 +87,7 @@
           - 定义为internal 的func 或者 state variables 只能被
             定义的合约或者派生的合约呼叫
    #+end_src
-   - state mutability 可变性,pure view default
+*** state mutability 可变性,pure view default
    #+begin_src
      - 1. pure 不读不写state
      - 2. view 只读不写 state
@@ -97,9 +97,9 @@
    [[./pic/change-state.png]]
    - 读取state code
    [[./pic/read-state.png]]
-   - create func
+*** create func
    [[./pic/create-func.png]]
-   - 一些特殊的 func
+*** 一些特殊的 func
      - 1. get pubilc func(一个public 可以被任何人使用get func查询)
    [[./pic/get-public-func.png]]
      - 2. constructor
@@ -112,6 +112,7 @@
    [[./pic/receive-ether.png]]
      - 4. fallback
    [[./pic/fallback.png]]
+   -
 ** 类型
 *** map
    [[./pic/map.png]]
@@ -249,6 +250,13 @@ contract School {
    override 修改继承的函数
    #+end_src
    [[./pic/modifier.png]]
+*** library
+    [[./pics/library.png]]
+    #+begin_src
+    1. 工具 不需要状态 不需要 code variables
+    #+end_src
+
+
 ** 单位
 *** ether units
    #+begin_src
