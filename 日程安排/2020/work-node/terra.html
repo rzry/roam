@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-03-02 二 20:06 -->
+<!-- 2021-03-04 四 16:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Terra</title>
@@ -248,44 +248,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga9b3229">1. 构建</a>
+<li><a href="#org741d959">1. 构建</a>
 <ul>
-<li><a href="#org540a96f">1.1. 配置</a></li>
-<li><a href="#org40ca5d0">1.2. 运行本地测试网络</a></li>
+<li><a href="#orge5b2f48">1.1. 配置</a></li>
+<li><a href="#org2127841">1.2. 运行本地测试网络</a></li>
+<li><a href="#orgdbe1519">1.3. terracli</a></li>
+<li><a href="#org1929815">1.4. wormhole solana</a>
+<ul>
+<li><a href="#orgad33757">1.4.1. eth &#x2013;&gt; sol</a></li>
+<li><a href="#orgb5d0f19">1.4.2. sol &#x2013;&gt; eth</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga9b3229" class="outline-2">
-<h2 id="orga9b3229"><span class="section-number-2">1</span> 构建</h2>
+<div id="outline-container-org741d959" class="outline-2">
+<h2 id="org741d959"><span class="section-number-2">1</span> 构建</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org540a96f" class="outline-3">
-<h3 id="org540a96f"><span class="section-number-3">1.1</span> 配置</h3>
+<div id="outline-container-orge5b2f48" class="outline-3">
+<h3 id="orge5b2f48"><span class="section-number-3">1.1</span> 配置</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><p>
 install docker and docker-compose
 </p>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #8FBCBB;">install-docker-compose</span>() {
-  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"install docker-compose"</span>
-  <span style="color: #D8DEE9;">version</span>=${<span style="color: #D8DEE9;">1</span>:-1.25.5}
-  curl -L <span style="color: #A3BE8C;">"https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)/"</span> -o /tmp/docker-compose &amp;&amp;
+<pre class="src src-shell"><span style="color: #50fa7b;">install-docker-compose</span>() {
+  <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install docker-compose"</span>
+  version=${1:-1.25.5}
+  curl -L <span style="color: #f1fa8c;">"https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)/"</span> -o /tmp/docker-compose &amp;&amp;
   chmod +x /tmp/docker-compose &amp;&amp;
   sudo mv /tmp/docker-compose /usr/local/bin/docker-compose
 }
 
-<span style="color: #8FBCBB;">install-docker</span>() {
-  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"install docker"</span>
+<span style="color: #50fa7b;">install-docker</span>() {
+  <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install docker"</span>
   sudo apt-get update &amp;&amp;
   sudo apt-get -y install curl apt-transport-https ca-certificates software-properties-common &amp;&amp;
   (curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -) &amp;&amp;
-  sudo add-apt-repository <span style="color: #A3BE8C;">"deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"</span> &amp;&amp;
+  sudo add-apt-repository <span style="color: #f1fa8c;">"deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"</span> &amp;&amp;
   sudo apt-get update &amp;&amp;
   sudo apt-get -y install docker-ce &amp;&amp;
-  sudo usermod -aG docker $<span style="color: #D8DEE9;">USER</span>
+  sudo usermod -aG docker $USER
 }
 </pre>
 </div></li>
@@ -294,16 +301,16 @@ install docker and docker-compose
 install go and rust
 </p>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #8FBCBB;">install-golang</span>() {
-  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"install golang"</span>
-  <span style="color: #D8DEE9;">version</span>=${<span style="color: #D8DEE9;">1</span>:-1.14.5}
-  <span style="color: #D8DEE9;">name</span>=<span style="color: #A3BE8C;">"go${version}.${platform}-amd64.tar.gz"</span>
-  curl -L https://dl.google.com/go/$<span style="color: #D8DEE9;">name</span> -o /tmp/$<span style="color: #D8DEE9;">name</span>
-  sudo tar xzf /tmp/$<span style="color: #D8DEE9;">name</span> -C /usr/local &amp;&amp; rm /tmp/$<span style="color: #D8DEE9;">name</span>
+<pre class="src src-shell"><span style="color: #50fa7b;">install-golang</span>() {
+  <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install golang"</span>
+  version=${1:-1.14.5}
+  name=<span style="color: #f1fa8c;">"go${version}.${platform}-amd64.tar.gz"</span>
+  curl -L https://dl.google.com/go/$name -o /tmp/$name
+  sudo tar xzf /tmp/$name -C /usr/local &amp;&amp; rm /tmp/$name
 }
-<span style="color: #8FBCBB;">install-rust</span>() {
-  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"install rust"</span>
-  curl --proto <span style="color: #A3BE8C;">'=https'</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
+<span style="color: #50fa7b;">install-rust</span>() {
+  <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install rust"</span>
+  curl --proto <span style="color: #f1fa8c;">'=https'</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 </pre>
 </div></li>
@@ -312,25 +319,25 @@ install go and rust
 下载.
 </p>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #6f7787;">#</span><span style="color: #6f7787;">local terra</span>
-1. git clone https://github.com/terra-project/localterra &amp;&amp; <span style="color: #81A1C1;">cd</span> localterra
+<pre class="src src-shell"><span style="color: #6272a4;">#</span><span style="color: #6272a4;">local terra</span>
+1. git clone https://github.com/terra-project/localterra &amp;&amp; <span style="color: #ffb86c;">cd</span> localterra
 2. docker-compose up -d
-<span style="color: #6f7787;">#</span><span style="color: #6f7787;">set rust</span>
+<span style="color: #6272a4;">#</span><span style="color: #6272a4;">set rust</span>
 3. rustup default stable
 4. rustup target add wasm32-unknown-unknown
 5. cargo install cargo-generate --features vendored-openssl
-<span style="color: #6f7787;">#</span><span style="color: #6f7787;">build terra-cli</span>
-6. cd .. &amp;&amp; git clone https://github.com/terra-project/core &amp;&amp; <span style="color: #81A1C1;">cd</span> core &amp;&amp; git checkout master
-7. make build &amp;&amp; <span style="color: #81A1C1;">cd</span> build
+<span style="color: #6272a4;">#</span><span style="color: #6272a4;">build terra-cli</span>
+6. cd .. &amp;&amp; git clone https://github.com/terra-project/core &amp;&amp; <span style="color: #ffb86c;">cd</span> core &amp;&amp; git checkout master
+7. make build &amp;&amp; <span style="color: #ffb86c;">cd</span> build
 
-<span style="color: #6f7787;">#</span><span style="color: #6f7787;">&#22312;&#32534;&#35793;&#22909;&#20197;&#21518;  &#20320;&#21487;&#20197;&#30475;&#21040;terracli terrad &#20004;&#20010;&#25991;&#20214;</span>
+<span style="color: #6272a4;">#</span><span style="color: #6272a4;">&#22312;&#32534;&#35793;&#22909;&#20197;&#21518;  &#20320;&#21487;&#20197;&#30475;&#21040;terracli terrad &#20004;&#20010;&#25991;&#20214;</span>
 </pre>
 </div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org40ca5d0" class="outline-3">
-<h3 id="org40ca5d0"><span class="section-number-3">1.2</span> 运行本地测试网络</h3>
+<div id="outline-container-org2127841" class="outline-3">
+<h3 id="org2127841"><span class="section-number-3">1.2</span> 运行本地测试网络</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 1. 初始化将引导网络的 genesis 文件。为您的本地 testnet 设置一个名字，
@@ -377,12 +384,104 @@ terrad start
 </div>
 </div>
 </div>
+<div id="outline-container-orgdbe1519" class="outline-3">
+<h3 id="orgdbe1519"><span class="section-number-3">1.3</span> terracli</h3>
+<div class="outline-text-3" id="text-1-3">
+<pre class="example">
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org1929815" class="outline-3">
+<h3 id="org1929815"><span class="section-number-3">1.4</span> wormhole solana</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-orgad33757" class="outline-4">
+<h4 id="orgad33757"><span class="section-number-4">1.4.1</span> eth &#x2013;&gt; sol</h4>
+<div class="outline-text-4" id="text-1-4-1">
+
+<div class="figure">
+<p><img src="./pic/ethTosol.png" alt="ethTosol.png" />
+</p>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="orged227b6"></a>code<br />
+<div class="outline-text-5" id="text-1-4-1-1">
+<ul class="org-ul">
+<li>vaatransfer</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-solidity"><span style="color: #6272a4;">// </span><span style="color: #6272a4;">call data --&gt; &#38142;&#26469;&#28304;,&#30446;&#26631;&#38142;</span>
+  <span style="color: #bd93f9;">uint8</span> source_chain = data.toUint8(4);
+  <span style="color: #bd93f9;">uint8</span> target_chain = data.toUint8(5);
+<span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#30446;&#26631;&#22320;&#22336;</span>
+  <span style="color: #bd93f9;">address</span> target_address = data.toAddress(38 + 12);
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">token_chain --&gt; data.toUint8(70)</span>
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">amount --&gt; data.toUint8(104)</span>
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">---- handle func</span>
+<span style="color: #ff79c6;">if</span> (token_chain != CHAIN_ID){
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">1 . token address --&gt; data.toBytes32(71)</span>
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">2 . asset_id --&gt; keccak256(..)</span>
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">3 . wrapped_asset --&gt; wrappedAsset[asset_id]</span>
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#22914;&#26524; ewrappd_asset &#23384;&#22312; &#23601;&#20026; target_address &#22320;&#22336; mint amount token</span>
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">&#21542;&#21017; &#23601;create and mint</span>
+}
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">create --&gt; ldeployWarappedAsset</span>
+<span style="color: #6272a4;">//</span><span style="color: #6272a4;">1 . &#21457;&#36865;&#36825;,token&#38142;,token&#22320;&#22336;,&#25968;&#37327;  &#36820;&#22238;&#20132;&#26131;&#22320;&#22336;</span>
+<span style="color: #6272a4;">//</span><span style="color: #6272a4;">2 . &#35843;&#29992; wrappedAsset.initialize</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>submitVaa</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-solidity">
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>vaaUpdateGuardianSet</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-solidity">
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgb5d0f19" class="outline-4">
+<h4 id="orgb5d0f19"><span class="section-number-4">1.4.2</span> sol &#x2013;&gt; eth</h4>
+<div class="outline-text-4" id="text-1-4-2">
+
+<div class="figure">
+<p><img src="./pic/solToeth.png" alt="solToeth.png" />
+</p>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org44caa31"></a>code<br />
+<div class="outline-text-5" id="text-1-4-2-1">
+<div class="org-src-container">
+<pre class="src src-solidity">
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-03-01</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-03-02 二 20:06</p>
+<p class="date">Created: 2021-03-04 四 16:00</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

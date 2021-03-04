@@ -256,7 +256,6 @@ contract School {
     1. 工具 不需要状态 不需要 code variables
     #+end_src
 
-
 ** 单位
 *** ether units
    #+begin_src

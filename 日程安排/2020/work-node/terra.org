@@ -89,3 +89,47 @@ install-rust() {
    #+begin_src
 
    #+end_src
+
+
+** wormhole solana
+*** eth --> sol
+   [[./pic/ethTosol.png]]
+**** code
+     - vaatransfer
+     #+begin_src solidity
+     // call data --> 链来源,目标链
+       uint8 source_chain = data.toUint8(4);
+       uint8 target_chain = data.toUint8(5);
+     //目标地址
+       address target_address = data.toAddress(38 + 12);
+     // token_chain --> data.toUint8(70)
+     // amount --> data.toUint8(104)
+     // ---- handle func
+     if (token_chain != CHAIN_ID){
+         // 1 . token address --> data.toBytes32(71)
+         // 2 . asset_id --> keccak256(..)
+         // 3 . wrapped_asset --> wrappedAsset[asset_id]
+         //如果 ewrappd_asset 存在 就为 target_address 地址 mint amount token
+         // 否则 就create and mint
+     }
+     // create --> ldeployWarappedAsset
+     //1 . 发送这,token链,token地址,数量  返回交易地址
+     //2 . 调用 wrappedAsset.initialize
+     #+end_src
+
+     - submitVaa
+     #+begin_src solidity
+     
+     #+end_src
+
+     - vaaUpdateGuardianSet
+     #+begin_src solidity
+
+     #+end_src
+
+*** sol --> eth
+   [[./pic/solToeth.png]]
+**** code
+     #+begin_src solidity
+
+     #+end_src
