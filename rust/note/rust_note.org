@@ -89,7 +89,7 @@ fn main() {
 
 }
    #+end_src
-
+   
  - 3.2 数据类型
    #+begin_src rust
    fn main() {

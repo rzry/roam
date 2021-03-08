@@ -119,14 +119,14 @@ install-rust() {
 
      - submitVaa
      #+begin_src solidity
-     
+     //提交  guardians 签名后的 vaa 用于执行其他操作
      #+end_src
 
      - vaaUpdateGuardianSet
      #+begin_src solidity
-
+     //更新 guardians 签名后的vaa
      #+end_src
-
+     
 *** sol --> eth
    [[./pic/solToeth.png]]
 **** code
