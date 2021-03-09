@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-03-04 四 16:00 -->
+<!-- 2021-03-09 二 16:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Terra</title>
@@ -248,15 +248,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org741d959">1. 构建</a>
+<li><a href="#org9ae585a">1. 构建</a>
 <ul>
-<li><a href="#orge5b2f48">1.1. 配置</a></li>
-<li><a href="#org2127841">1.2. 运行本地测试网络</a></li>
-<li><a href="#orgdbe1519">1.3. terracli</a></li>
-<li><a href="#org1929815">1.4. wormhole solana</a>
+<li><a href="#orgb17ceee">1.1. 配置</a></li>
+<li><a href="#org8034adf">1.2. 运行本地测试网络</a></li>
+<li><a href="#orgbebfa30">1.3. 运行完整 Wormhole node(在ubuntu/ arch 测试..)</a>
 <ul>
-<li><a href="#orgad33757">1.4.1. eth &#x2013;&gt; sol</a></li>
-<li><a href="#orgb5d0f19">1.4.2. sol &#x2013;&gt; eth</a></li>
+<li><a href="#orgbac0c7b">1.3.1. 完整的 Solana-validator 节点</a></li>
+<li><a href="#orgf18f2db">1.3.2. Ethereum (轻节点/完整节点)</a></li>
+<li><a href="#orgdb0154f">1.3.3. Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器</a></li>
+<li><a href="#orgd5314bc">1.3.4. Building guardiand 虫洞桥节点</a></li>
+<li><a href="#org108f13c">1.3.5. Key Generation 生成守护秘钥</a></li>
+<li><a href="#orgb8d70a0">1.3.6. 创建 service</a></li>
+</ul>
+</li>
+<li><a href="#org0c1b578">1.4. terracli</a></li>
+<li><a href="#orgf8c16ab">1.5. wormhole solana</a>
+<ul>
+<li><a href="#org450bf98">1.5.1. eth &#x2013;&gt; sol</a></li>
+<li><a href="#org5f6e941">1.5.2. Transfer of assets Foreign Chain -&gt; Root Chain</a></li>
+<li><a href="#org4dfd186">1.5.3. sol &#x2013;&gt; eth</a></li>
+<li><a href="#org3b41a1b">1.5.4. Transfer of assets Root Chain -&gt; Foreign Chain</a></li>
 </ul>
 </li>
 </ul>
@@ -264,12 +276,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org741d959" class="outline-2">
-<h2 id="org741d959"><span class="section-number-2">1</span> 构建</h2>
+<div id="outline-container-org9ae585a" class="outline-2">
+<h2 id="org9ae585a"><span class="section-number-2">1</span> 构建</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge5b2f48" class="outline-3">
-<h3 id="orge5b2f48"><span class="section-number-3">1.1</span> 配置</h3>
+<div id="outline-container-orgb17ceee" class="outline-3">
+<h3 id="orgb17ceee"><span class="section-number-3">1.1</span> 配置</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><p>
@@ -278,7 +290,7 @@ install docker and docker-compose
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #50fa7b;">install-docker-compose</span>() {
   <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install docker-compose"</span>
-  version=${1:-1.25.5}
+  <span style="color: #dac9ea;">version</span>=${<span style="color: #dac9ea;">1</span>:-1.25.5}
   curl -L <span style="color: #f1fa8c;">"https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)/"</span> -o /tmp/docker-compose &amp;&amp;
   chmod +x /tmp/docker-compose &amp;&amp;
   sudo mv /tmp/docker-compose /usr/local/bin/docker-compose
@@ -292,7 +304,7 @@ install docker and docker-compose
   sudo add-apt-repository <span style="color: #f1fa8c;">"deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"</span> &amp;&amp;
   sudo apt-get update &amp;&amp;
   sudo apt-get -y install docker-ce &amp;&amp;
-  sudo usermod -aG docker $USER
+  sudo usermod -aG docker $<span style="color: #dac9ea;">USER</span>
 }
 </pre>
 </div></li>
@@ -303,10 +315,10 @@ install go and rust
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #50fa7b;">install-golang</span>() {
   <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install golang"</span>
-  version=${1:-1.14.5}
-  name=<span style="color: #f1fa8c;">"go${version}.${platform}-amd64.tar.gz"</span>
-  curl -L https://dl.google.com/go/$name -o /tmp/$name
-  sudo tar xzf /tmp/$name -C /usr/local &amp;&amp; rm /tmp/$name
+  <span style="color: #dac9ea;">version</span>=${<span style="color: #dac9ea;">1</span>:-1.14.5}
+  <span style="color: #dac9ea;">name</span>=<span style="color: #f1fa8c;">"go${version}.${platform}-amd64.tar.gz"</span>
+  curl -L https://dl.google.com/go/$<span style="color: #dac9ea;">name</span> -o /tmp/$<span style="color: #dac9ea;">name</span>
+  sudo tar xzf /tmp/$<span style="color: #dac9ea;">name</span> -C /usr/local &amp;&amp; rm /tmp/$<span style="color: #dac9ea;">name</span>
 }
 <span style="color: #50fa7b;">install-rust</span>() {
   <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"install rust"</span>
@@ -336,8 +348,8 @@ install go and rust
 </ul>
 </div>
 </div>
-<div id="outline-container-org2127841" class="outline-3">
-<h3 id="org2127841"><span class="section-number-3">1.2</span> 运行本地测试网络</h3>
+<div id="outline-container-org8034adf" class="outline-3">
+<h3 id="org8034adf"><span class="section-number-3">1.2</span> 运行本地测试网络</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 1. 初始化将引导网络的 genesis 文件。为您的本地 testnet 设置一个名字，
@@ -384,9 +396,73 @@ terrad start
 </div>
 </div>
 </div>
-<div id="outline-container-orgdbe1519" class="outline-3">
-<h3 id="orgdbe1519"><span class="section-number-3">1.3</span> terracli</h3>
+
+
+<div id="outline-container-orgbebfa30" class="outline-3">
+<h3 id="orgbebfa30"><span class="section-number-3">1.3</span> 运行完整 Wormhole node(在ubuntu/ arch 测试..)</h3>
 <div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgbac0c7b" class="outline-4">
+<h4 id="orgbac0c7b"><span class="section-number-4">1.3.1</span> 完整的 Solana-validator 节点</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li><p>
+Install the Solana release
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">sh -c <span style="color: #f1fa8c;">"$(curl -sSfL https://release.solana.com/v1.5.14/install)"</span>
+
+<span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"export PATH=\"/home/vm/.local/share/solana/install/active_release/bin:\$PATH\""</span> &gt;&gt; ~/.zshenv
+
+<span style="color: #ffb86c;">source</span> ~/.zshenv
+
+solana --version
+</pre>
+</div>
+<ul class="org-ul">
+<li><p>
+生成钱包地址
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">solana-keygen new  -o mywalt.json
+
+<span style="color: #6272a4;"># </span><span style="color: #6272a4;">pubkey: CsMUS369FdXsT9YFKCSqBYcpEdDvgpCTr5rmMRuALZTT</span>
+<span style="color: #6272a4;"># </span><span style="color: #6272a4;">blouse cheap menu ensure nation mesh ostrich edit sense debate ball despair</span>
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgf18f2db" class="outline-4">
+<h4 id="orgf18f2db"><span class="section-number-4">1.3.2</span> Ethereum (轻节点/完整节点)</h4>
+</div>
+
+<div id="outline-container-orgdb0154f" class="outline-4">
+<h4 id="orgdb0154f"><span class="section-number-4">1.3.3</span> Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器</h4>
+</div>
+
+
+<div id="outline-container-orgd5314bc" class="outline-4">
+<h4 id="orgd5314bc"><span class="section-number-4">1.3.4</span> Building guardiand 虫洞桥节点</h4>
+</div>
+
+
+<div id="outline-container-org108f13c" class="outline-4">
+<h4 id="org108f13c"><span class="section-number-4">1.3.5</span> Key Generation 生成守护秘钥</h4>
+</div>
+
+<div id="outline-container-orgb8d70a0" class="outline-4">
+<h4 id="orgb8d70a0"><span class="section-number-4">1.3.6</span> 创建 service</h4>
+</div>
+</div>
+
+
+<div id="outline-container-org0c1b578" class="outline-3">
+<h3 id="org0c1b578"><span class="section-number-3">1.4</span> terracli</h3>
+<div class="outline-text-3" id="text-1-4">
 <pre class="example">
 
 </pre>
@@ -394,13 +470,13 @@ terrad start
 </div>
 
 
-<div id="outline-container-org1929815" class="outline-3">
-<h3 id="org1929815"><span class="section-number-3">1.4</span> wormhole solana</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orgf8c16ab" class="outline-3">
+<h3 id="orgf8c16ab"><span class="section-number-3">1.5</span> wormhole solana</h3>
+<div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-orgad33757" class="outline-4">
-<h4 id="orgad33757"><span class="section-number-4">1.4.1</span> eth &#x2013;&gt; sol</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-org450bf98" class="outline-4">
+<h4 id="org450bf98"><span class="section-number-4">1.5.1</span> eth &#x2013;&gt; sol</h4>
+<div class="outline-text-4" id="text-1-5-1">
 
 <div class="figure">
 <p><img src="./pic/ethTosol.png" alt="ethTosol.png" />
@@ -408,8 +484,8 @@ terrad start
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="orged227b6"></a>code<br />
-<div class="outline-text-5" id="text-1-4-1-1">
+<li><a id="org69ed862"></a>code<br />
+<div class="outline-text-5" id="text-1-5-1-1">
 <ul class="org-ul">
 <li>vaatransfer</li>
 </ul>
@@ -439,7 +515,7 @@ terrad start
 <li>submitVaa</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-solidity">
+<pre class="src src-solidity"><span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#25552;&#20132;  guardians &#31614;&#21517;&#21518;&#30340; vaa &#29992;&#20110;&#25191;&#34892;&#20854;&#20182;&#25805;&#20316;</span>
 </pre>
 </div>
 
@@ -447,7 +523,7 @@ terrad start
 <li>vaaUpdateGuardianSet</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-solidity">
+<pre class="src src-solidity"><span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#26356;&#26032; guardians &#31614;&#21517;&#21518;&#30340;vaa</span>
 </pre>
 </div>
 </div>
@@ -455,18 +531,28 @@ terrad start
 </ol>
 </div>
 
-<div id="outline-container-orgb5d0f19" class="outline-4">
-<h4 id="orgb5d0f19"><span class="section-number-4">1.4.2</span> sol &#x2013;&gt; eth</h4>
-<div class="outline-text-4" id="text-1-4-2">
+<div id="outline-container-org5f6e941" class="outline-4">
+<h4 id="org5f6e941"><span class="section-number-4">1.5.2</span> Transfer of assets Foreign Chain -&gt; Root Chain</h4>
+<div class="outline-text-4" id="text-1-5-2">
 
 <div class="figure">
-<p><img src="./pic/solToeth.png" alt="solToeth.png" />
+<p><img src="./pic/ForeignToRootChain.png" alt="ForeignToRootChain.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4dfd186" class="outline-4">
+<h4 id="org4dfd186"><span class="section-number-4">1.5.3</span> sol &#x2013;&gt; eth</h4>
+<div class="outline-text-4" id="text-1-5-3">
+
+<div class="figure">
+<p><img src="./pic/solToeth2.png" alt="solToeth2.png" />
 </p>
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org44caa31"></a>code<br />
-<div class="outline-text-5" id="text-1-4-2-1">
+<li><a id="orgcfec585"></a>code<br />
+<div class="outline-text-5" id="text-1-5-3-1">
 <div class="org-src-container">
 <pre class="src src-solidity">
 </pre>
@@ -475,13 +561,23 @@ terrad start
 </li>
 </ol>
 </div>
+<div id="outline-container-org3b41a1b" class="outline-4">
+<h4 id="org3b41a1b"><span class="section-number-4">1.5.4</span> Transfer of assets Root Chain -&gt; Foreign Chain</h4>
+<div class="outline-text-4" id="text-1-5-4">
+
+<div class="figure">
+<p><img src="./pic/RootToForeignToChain.png" alt="RootToForeignToChain.png" />
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-03-01</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-03-04 四 16:00</p>
+<p class="date">Created: 2021-03-09 二 16:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

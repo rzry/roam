@@ -85,6 +85,44 @@ install-rust() {
    terrad start
    #+end_src
    [[./pic/start-terrad.png]]
+
+
+** 运行完整 Wormhole node(在ubuntu/ arch 测试..)
+*** 完整的 Solana-validator 节点
+    - Install the Solana release
+      #+begin_src shell
+      sh -c "$(curl -sSfL https://release.solana.com/v1.5.14/install)"
+
+      echo "export PATH=\"/home/vm/.local/share/solana/install/active_release/bin:\$PATH\"" >> ~/.zshenv
+
+      source ~/.zshenv
+
+      solana --version
+      #+end_src
+     - 生成钱包地址
+       #+begin_src shell
+       solana-keygen new  -o mywalt.json
+
+       # pubkey: CsMUS369FdXsT9YFKCSqBYcpEdDvgpCTr5rmMRuALZTT
+       # blouse cheap menu ensure nation mesh ostrich edit sense debate ball despair
+
+       
+       #+end_src
+
+
+*** Ethereum (轻节点/完整节点)
+
+*** Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器
+
+
+*** Building guardiand 虫洞桥节点
+
+
+*** Key Generation 生成守护秘钥
+
+*** 创建 service
+
+
 ** terracli
    #+begin_src
 
@@ -126,10 +164,13 @@ install-rust() {
      #+begin_src solidity
      //更新 guardians 签名后的vaa
      #+end_src
-     
+
+*** Transfer of assets Foreign Chain -> Root Chain
+   [[./pic/ForeignToRootChain.png]]
 *** sol --> eth
-   [[./pic/solToeth.png]]
+   [[./pic/solToeth2.png]]
 **** code
      #+begin_src solidity
-
      #+end_src
+*** Transfer of assets Root Chain -> Foreign Chain
+   [[./pic/RootToForeignToChain.png]]

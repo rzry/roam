@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-03-02 二 12:08 -->
+<!-- 2021-03-09 二 19:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>solidity</title>
@@ -248,58 +248,59 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8ccb4b4">1. 配置</a>
+<li><a href="#orge8f5cbd">1. 配置</a>
 <ul>
-<li><a href="#org822526d">1.1. linux</a></li>
+<li><a href="#org268978c">1.1. linux</a></li>
 </ul>
 </li>
-<li><a href="#org5b4ba90">2. 语法</a>
+<li><a href="#org427e66c">2. 语法</a>
 <ul>
-<li><a href="#org98491e1">2.1. 名词</a></li>
-<li><a href="#org90fc3e7">2.2. solidity关键字</a>
+<li><a href="#orge9a163b">2.1. 名词</a></li>
+<li><a href="#org84f6621">2.2. solidity关键字</a>
 <ul>
-<li><a href="#orgd89a178">2.2.1. visibility 可以修饰 func 和 state variables</a></li>
-<li><a href="#org2c52d69">2.2.2. state mutability 可变性,pure view default</a></li>
-<li><a href="#orgbaf0c6d">2.2.3. create func</a></li>
-<li><a href="#org7c7100d">2.2.4. 一些特殊的 func</a></li>
+<li><a href="#org44e640d">2.2.1. visibility 可以修饰 func 和 state variables</a></li>
+<li><a href="#orgf9084df">2.2.2. state mutability 可变性,pure view default</a></li>
+<li><a href="#orgea58556">2.2.3. create func</a></li>
+<li><a href="#org4a28872">2.2.4. 一些特殊的 func</a></li>
 </ul>
 </li>
-<li><a href="#orgb0d1835">2.3. 类型</a>
+<li><a href="#org6a84c3b">2.3. 类型</a>
 <ul>
-<li><a href="#orged2cf91">2.3.1. map</a></li>
-<li><a href="#org18c0f5c">2.3.2. data location 资料位置</a></li>
-<li><a href="#orgf1b210a">2.3.3. array</a></li>
-<li><a href="#org2c20d55">2.3.4. struct</a></li>
-<li><a href="#orgedcd08a">2.3.5. func modifier</a></li>
-<li><a href="#org0a46159">2.3.6. library</a></li>
+<li><a href="#org2bff168">2.3.1. map</a></li>
+<li><a href="#orgd12175b">2.3.2. data location 资料位置</a></li>
+<li><a href="#org82716dd">2.3.3. array</a></li>
+<li><a href="#orge8b9db9">2.3.4. struct</a></li>
+<li><a href="#org734dc08">2.3.5. func modifier</a></li>
+<li><a href="#org673113c">2.3.6. library</a></li>
+<li><a href="#org301362a">2.3.7. event emit log</a></li>
 </ul>
 </li>
-<li><a href="#org1f5ba69">2.4. 单位</a>
+<li><a href="#org1d89aa6">2.4. 单位</a>
 <ul>
-<li><a href="#org23ee0f9">2.4.1. ether units</a></li>
-<li><a href="#org3e6b4a4">2.4.2. time units</a></li>
-<li><a href="#org6ce9a0b">2.4.3. block properties</a></li>
-<li><a href="#orgf64f5f4">2.4.4. transaction properties</a></li>
-<li><a href="#org648db0a">2.4.5. 计算, addmod mulmod keccheck256</a></li>
+<li><a href="#orgf0c3238">2.4.1. ether units</a></li>
+<li><a href="#org25c0556">2.4.2. time units</a></li>
+<li><a href="#org41b3091">2.4.3. block properties</a></li>
+<li><a href="#org76e3af0">2.4.4. transaction properties</a></li>
+<li><a href="#org496db00">2.4.5. 计算, addmod mulmod keccheck256</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgcebd7cc">3. solidity</a>
+<li><a href="#orgeb2587f">3. solidity</a>
 <ul>
-<li><a href="#org64ecd6e">3.1. 部署</a></li>
-<li><a href="#org7b9ec7e">3.2. 根据例子学习</a></li>
+<li><a href="#org5887485">3.1. 部署</a></li>
+<li><a href="#orgc01e2c1">3.2. 根据例子学习</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8ccb4b4" class="outline-2">
-<h2 id="org8ccb4b4"><span class="section-number-2">1</span> 配置</h2>
+<div id="outline-container-orge8f5cbd" class="outline-2">
+<h2 id="orge8f5cbd"><span class="section-number-2">1</span> 配置</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org822526d" class="outline-3">
-<h3 id="org822526d"><span class="section-number-3">1.1</span> linux</h3>
+<div id="outline-container-org268978c" class="outline-3">
+<h3 id="org268978c"><span class="section-number-3">1.1</span> linux</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 1 . install node npm
@@ -309,12 +310,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5b4ba90" class="outline-2">
-<h2 id="org5b4ba90"><span class="section-number-2">2</span> 语法</h2>
+<div id="outline-container-org427e66c" class="outline-2">
+<h2 id="org427e66c"><span class="section-number-2">2</span> 语法</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org98491e1" class="outline-3">
-<h3 id="org98491e1"><span class="section-number-3">2.1</span> 名词</h3>
+<div id="outline-container-orge9a163b" class="outline-3">
+<h3 id="orge9a163b"><span class="section-number-3">2.1</span> 名词</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 - 1 . 一个 block 封装一堆 transaction
@@ -387,12 +388,12 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org90fc3e7" class="outline-3">
-<h3 id="org90fc3e7"><span class="section-number-3">2.2</span> solidity关键字</h3>
+<div id="outline-container-org84f6621" class="outline-3">
+<h3 id="org84f6621"><span class="section-number-3">2.2</span> solidity关键字</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-orgd89a178" class="outline-4">
-<h4 id="orgd89a178"><span class="section-number-4">2.2.1</span> visibility 可以修饰 func 和 state variables</h4>
+<div id="outline-container-org44e640d" class="outline-4">
+<h4 id="org44e640d"><span class="section-number-4">2.2.1</span> visibility 可以修饰 func 和 state variables</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 - 1. public
@@ -417,8 +418,8 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-org2c52d69" class="outline-4">
-<h4 id="org2c52d69"><span class="section-number-4">2.2.2</span> state mutability 可变性,pure view default</h4>
+<div id="outline-container-orgf9084df" class="outline-4">
+<h4 id="orgf9084df"><span class="section-number-4">2.2.2</span> state mutability 可变性,pure view default</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <pre class="example">
 - 1. pure 不读不写state
@@ -443,8 +444,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbaf0c6d" class="outline-4">
-<h4 id="orgbaf0c6d"><span class="section-number-4">2.2.3</span> create func</h4>
+<div id="outline-container-orgea58556" class="outline-4">
+<h4 id="orgea58556"><span class="section-number-4">2.2.3</span> create func</h4>
 <div class="outline-text-4" id="text-2-2-3">
 
 <div class="figure">
@@ -453,8 +454,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org7c7100d" class="outline-4">
-<h4 id="org7c7100d"><span class="section-number-4">2.2.4</span> 一些特殊的 func</h4>
+<div id="outline-container-org4a28872" class="outline-4">
+<h4 id="org4a28872"><span class="section-number-4">2.2.4</span> 一些特殊的 func</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li>1. get pubilc func(一个public 可以被任何人使用get func查询)</li>
@@ -498,12 +499,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb0d1835" class="outline-3">
-<h3 id="orgb0d1835"><span class="section-number-3">2.3</span> 类型</h3>
+<div id="outline-container-org6a84c3b" class="outline-3">
+<h3 id="org6a84c3b"><span class="section-number-3">2.3</span> 类型</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orged2cf91" class="outline-4">
-<h4 id="orged2cf91"><span class="section-number-4">2.3.1</span> map</h4>
+<div id="outline-container-org2bff168" class="outline-4">
+<h4 id="org2bff168"><span class="section-number-4">2.3.1</span> map</h4>
 <div class="outline-text-4" id="text-2-3-1">
 
 <div class="figure">
@@ -526,30 +527,30 @@ for the JavaScript code in this tag.
 </p>
 </div>
 <div class="org-src-container">
-<pre class="src src-solidity"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">SPDX-License-Identifier: MIT</span>
-<span style="color: #81A1C1;">pragma</span> <span style="color: #A3BE8C;">solidity ^0.7.1</span>;
+<pre class="src src-solidity"><span style="color: #6272a4;">// </span><span style="color: #6272a4;">SPDX-License-Identifier: MIT</span>
+<span style="color: #ff79c6;">pragma</span> <span style="color: #f1fa8c;">solidity ^0.7.1</span>;
 
-<span style="color: #81A1C1;">contract</span> <span style="color: #D8DEE9;">StudentScores</span> {
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#23450;&#20041;&#19968;&#20010;&#21483; scores &#30340; map</span>
-    <span style="color: #81A1C1;">mapping</span>(<span style="color: #8FBCBB;">string</span> =&gt; <span style="color: #8FBCBB;">uint</span>) <span style="color: #8FBCBB;">scores</span>;
-    <span style="color: #6f7787;">// </span><span style="color: #6f7787;">&#20026;&#20102;&#21024;&#38500; &#25105;&#20204;&#25226;&#25152;&#26377;key(name) &#25918;&#21040;&#36825;&#20010;&#25968;&#32452;</span>
-    <span style="color: #8FBCBB;">string</span>[] names;
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28155;&#21152;map name-&gt;value</span>
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">addScore</span>(<span style="color: #8FBCBB;">string</span> <span style="color: #81A1C1;">memory</span> name, <span style="color: #8FBCBB;">uint</span> score) <span style="color: #81A1C1;">public</span> {
+<span style="color: #ff79c6;">contract</span> <span style="color: #dac9ea;">StudentScores</span> {
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#23450;&#20041;&#19968;&#20010;&#21483; scores &#30340; map</span>
+    <span style="color: #ff79c6;">mapping</span>(<span style="color: #bd93f9;">string</span> =&gt; <span style="color: #bd93f9;">uint</span>) <span style="color: #50fa7b;">scores</span>;
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">&#20026;&#20102;&#21024;&#38500; &#25105;&#20204;&#25226;&#25152;&#26377;key(name) &#25918;&#21040;&#36825;&#20010;&#25968;&#32452;</span>
+    <span style="color: #bd93f9;">string</span>[] names;
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#28155;&#21152;map name-&gt;value</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">addScore</span>(<span style="color: #bd93f9;">string</span> <span style="color: #ff79c6;">memory</span> name, <span style="color: #bd93f9;">uint</span> score) <span style="color: #ff79c6;">public</span> {
         scores[name] = score;
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#25226;name push &#21040; array</span>
+        <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#25226;name push &#21040; array</span>
         names.push(name);
     }
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#33719;&#21462;map value</span>
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">getScore</span>(<span style="color: #8FBCBB;">string</span> <span style="color: #81A1C1;">memory</span> name) <span style="color: #81A1C1;">public</span> <span style="color: #81A1C1;">view</span> <span style="color: #81A1C1;">returns</span> (<span style="color: #8FBCBB;">uint</span>) {
-        <span style="color: #81A1C1;">return</span> scores[name];
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#33719;&#21462;map value</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">getScore</span>(<span style="color: #bd93f9;">string</span> <span style="color: #ff79c6;">memory</span> name) <span style="color: #ff79c6;">public</span> <span style="color: #ff79c6;">view</span> <span style="color: #ff79c6;">returns</span> (<span style="color: #bd93f9;">uint</span>) {
+        <span style="color: #ff79c6;">return</span> scores[name];
     }
 
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">clear</span>() <span style="color: #81A1C1;">public</span> {
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28165;&#31354;map</span>
-        <span style="color: #81A1C1;">while</span> (names.length &gt; 0) {
-            <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#27599;&#27425;&#21024;&#26368;&#21518;&#19968;&#20010; , &#28982;&#21518;&#20877;pop</span>
-            <span style="color: #81A1C1;">delete</span> scores[names[names.length-1]];
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">clear</span>() <span style="color: #ff79c6;">public</span> {
+        <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#28165;&#31354;map</span>
+        <span style="color: #ff79c6;">while</span> (names.length &gt; 0) {
+            <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#27599;&#27425;&#21024;&#26368;&#21518;&#19968;&#20010; , &#28982;&#21518;&#20877;pop</span>
+            <span style="color: #ff79c6;">delete</span> scores[names[names.length-1]];
             names.pop();
         }
     }
@@ -559,8 +560,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org18c0f5c" class="outline-4">
-<h4 id="org18c0f5c"><span class="section-number-4">2.3.2</span> data location 资料位置</h4>
+<div id="outline-container-orgd12175b" class="outline-4">
+<h4 id="orgd12175b"><span class="section-number-4">2.3.2</span> data location 资料位置</h4>
 <div class="outline-text-4" id="text-2-3-2">
 
 <div class="figure">
@@ -588,8 +589,8 @@ storage :
 </div>
 </div>
 </div>
-<div id="outline-container-orgf1b210a" class="outline-4">
-<h4 id="orgf1b210a"><span class="section-number-4">2.3.3</span> array</h4>
+<div id="outline-container-org82716dd" class="outline-4">
+<h4 id="org82716dd"><span class="section-number-4">2.3.3</span> array</h4>
 <div class="outline-text-4" id="text-2-3-3">
 
 <div class="figure">
@@ -605,8 +606,8 @@ storage :
 </pre>
 </div>
 </div>
-<div id="outline-container-org2c20d55" class="outline-4">
-<h4 id="org2c20d55"><span class="section-number-4">2.3.4</span> struct</h4>
+<div id="outline-container-orge8b9db9" class="outline-4">
+<h4 id="orge8b9db9"><span class="section-number-4">2.3.4</span> struct</h4>
 <div class="outline-text-4" id="text-2-3-4">
 
 <div class="figure">
@@ -614,39 +615,39 @@ storage :
 </p>
 </div>
 <div class="org-src-container">
-<pre class="src src-solidity"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">SPDX-License-Identifier: MIT</span>
-<span style="color: #81A1C1;">pragma</span> <span style="color: #A3BE8C;">solidity ^0.7.0</span>;
+<pre class="src src-solidity"><span style="color: #6272a4;">// </span><span style="color: #6272a4;">SPDX-License-Identifier: MIT</span>
+<span style="color: #ff79c6;">pragma</span> <span style="color: #f1fa8c;">solidity ^0.7.0</span>;
 
-<span style="color: #81A1C1;">contract</span> <span style="color: #D8DEE9;">School</span> {
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#23450;&#20041;&#19968;&#20010;&#29677;&#32423;&#30340;struct ,storage</span>
-    <span style="color: #81A1C1;">struct</span> <span style="color: #D8DEE9;">Class</span> {
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#29677;&#32423;&#30340;teacher</span>
-        <span style="color: #8FBCBB;">string</span> teacher;
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#19968;&#20010;map &#20445;&#23384;&#27599;&#20010;&#23398;&#29983;&#30340;&#25104;&#32489; name--&gt; scores</span>
-        <span style="color: #81A1C1;">mapping</span>(<span style="color: #8FBCBB;">string</span> =&gt; <span style="color: #8FBCBB;">uint</span>) <span style="color: #8FBCBB;">scores</span>;
+<span style="color: #ff79c6;">contract</span> <span style="color: #dac9ea;">School</span> {
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#23450;&#20041;&#19968;&#20010;&#29677;&#32423;&#30340;struct ,storage</span>
+    <span style="color: #ff79c6;">struct</span> <span style="color: #dac9ea;">Class</span> {
+        <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#29677;&#32423;&#30340;teacher</span>
+        <span style="color: #bd93f9;">string</span> teacher;
+        <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#19968;&#20010;map &#20445;&#23384;&#27599;&#20010;&#23398;&#29983;&#30340;&#25104;&#32489; name--&gt; scores</span>
+        <span style="color: #ff79c6;">mapping</span>(<span style="color: #bd93f9;">string</span> =&gt; <span style="color: #bd93f9;">uint</span>) <span style="color: #50fa7b;">scores</span>;
     }
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#23450;&#20041;&#19968;&#20010;map &#29677;&#32423;&#21517;&#31216;--&gt; &#29677;&#32423;&#30340;struct storage</span>
-    <span style="color: #81A1C1;">mapping</span>(<span style="color: #8FBCBB;">string</span> =&gt; Class) <span style="color: #8FBCBB;">classes</span>;
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28155;&#21152;&#29677;&#32423;, calldata &#30340;&#31867;&#22411; , &#29677;&#32423;&#21517;&#31216; &#32769;&#24072;</span>
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">addClass</span>(<span style="color: #8FBCBB;">string</span> calldata className, <span style="color: #8FBCBB;">string</span> calldata teacher) <span style="color: #81A1C1;">public</span> {
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#25226;&#28155;&#21152;&#31867;&#22411;&#20026;storage &#30340; class ,value&#20026;classvalue</span>
-        Class <span style="color: #81A1C1;">storage</span> class = classes[className];
-        <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28155;&#21152;&#29677;&#32423;&#30340;&#32769;&#24072;</span>
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#23450;&#20041;&#19968;&#20010;map &#29677;&#32423;&#21517;&#31216;--&gt; &#29677;&#32423;&#30340;struct storage</span>
+    <span style="color: #ff79c6;">mapping</span>(<span style="color: #bd93f9;">string</span> =&gt; Class) <span style="color: #50fa7b;">classes</span>;
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#28155;&#21152;&#29677;&#32423;, calldata &#30340;&#31867;&#22411; , &#29677;&#32423;&#21517;&#31216; &#32769;&#24072;</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">addClass</span>(<span style="color: #bd93f9;">string</span> calldata className, <span style="color: #bd93f9;">string</span> calldata teacher) <span style="color: #ff79c6;">public</span> {
+        <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#25226;&#28155;&#21152;&#31867;&#22411;&#20026;storage &#30340; class ,value&#20026;classvalue</span>
+        Class <span style="color: #ff79c6;">storage</span> class = classes[className];
+        <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#28155;&#21152;&#29677;&#32423;&#30340;&#32769;&#24072;</span>
         class.teacher = teacher;
     }
-    <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#28155;&#21152;&#23398;&#29983;&#25104;&#32489;</span>
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">addStudentScore</span>(<span style="color: #8FBCBB;">string</span> calldata className, <span style="color: #8FBCBB;">string</span> calldata studentName, <span style="color: #8FBCBB;">uint</span> score) <span style="color: #81A1C1;">public</span> {
-        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">(classes[className]).scores[studentName] = score; &#21516;&#20026;&#19979;&#38754;&#20004;&#34892;</span>
+    <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#28155;&#21152;&#23398;&#29983;&#25104;&#32489;</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">addStudentScore</span>(<span style="color: #bd93f9;">string</span> calldata className, <span style="color: #bd93f9;">string</span> calldata studentName, <span style="color: #bd93f9;">uint</span> score) <span style="color: #ff79c6;">public</span> {
+        <span style="color: #6272a4;">// </span><span style="color: #6272a4;">(classes[className]).scores[studentName] = score; &#21516;&#20026;&#19979;&#38754;&#20004;&#34892;</span>
 
-        Class <span style="color: #81A1C1;">storage</span> class = classes[className];
+        Class <span style="color: #ff79c6;">storage</span> class = classes[className];
         class.scores[studentName] = score;
     }
 
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">getStudentScore</span>(<span style="color: #8FBCBB;">string</span> calldata className, <span style="color: #8FBCBB;">string</span> calldata studentName) <span style="color: #81A1C1;">public</span> <span style="color: #81A1C1;">view</span> <span style="color: #81A1C1;">returns</span> (<span style="color: #8FBCBB;">uint</span>) {
-        <span style="color: #6f7787;">// </span><span style="color: #6f7787;">return (classes[className]).scores[studentName]; &#31561;&#21516;&#19982;&#19979;&#38754;&#20004;&#34892;</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">getStudentScore</span>(<span style="color: #bd93f9;">string</span> calldata className, <span style="color: #bd93f9;">string</span> calldata studentName) <span style="color: #ff79c6;">public</span> <span style="color: #ff79c6;">view</span> <span style="color: #ff79c6;">returns</span> (<span style="color: #bd93f9;">uint</span>) {
+        <span style="color: #6272a4;">// </span><span style="color: #6272a4;">return (classes[className]).scores[studentName]; &#31561;&#21516;&#19982;&#19979;&#38754;&#20004;&#34892;</span>
 
-        Class <span style="color: #81A1C1;">storage</span> class = classes[className];
-        <span style="color: #81A1C1;">return</span> class.scores[studentName];
+        Class <span style="color: #ff79c6;">storage</span> class = classes[className];
+        <span style="color: #ff79c6;">return</span> class.scores[studentName];
     }
 }
 </pre>
@@ -654,8 +655,8 @@ storage :
 </div>
 </div>
 
-<div id="outline-container-orgedcd08a" class="outline-4">
-<h4 id="orgedcd08a"><span class="section-number-4">2.3.5</span> func modifier</h4>
+<div id="outline-container-org734dc08" class="outline-4">
+<h4 id="org734dc08"><span class="section-number-4">2.3.5</span> func modifier</h4>
 <div class="outline-text-4" id="text-2-3-5">
 
 <div class="figure">
@@ -663,10 +664,10 @@ storage :
 </p>
 </div>
 <div class="org-src-container">
-<pre class="src src-solidity"><span style="color: #81A1C1;">modifier</span> <span style="color: #D8DEE9;">name</span>{
-  <span style="color: #6f7787;">//</span><span style="color: #6f7787;">do something</span>
-  _; <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#36339;&#22238;&#21407;&#26412;&#30340;func</span>
-  <span style="color: #6f7787;">//</span><span style="color: #6f7787;">do something</span>
+<pre class="src src-solidity"><span style="color: #ff79c6;">modifier</span> <span style="color: #dac9ea;">name</span>{
+  <span style="color: #6272a4;">//</span><span style="color: #6272a4;">do something</span>
+  _; <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#36339;&#22238;&#21407;&#26412;&#30340;func</span>
+  <span style="color: #6272a4;">//</span><span style="color: #6272a4;">do something</span>
 }
 </pre>
 </div>
@@ -680,10 +681,10 @@ storage :
 权限限定(限定owner)
 </p>
 <div class="org-src-container">
-<pre class="src src-solidity"><span style="color: #81A1C1;">modifier</span> <span style="color: #D8DEE9;">onlyOwner</span>{
-    <span style="color: #81A1C1;">require</span>(
-      <span style="color: #81A1C1;">msg</span>.sender == owner,
-      <span style="color: #6f7787;">//</span><span style="color: #6f7787;">&#21482;&#26377;&#36825;&#20010;owner &#21487;&#20197;&#20351;&#29992;&#36825;&#20010;func</span>
+<pre class="src src-solidity"><span style="color: #ff79c6;">modifier</span> <span style="color: #dac9ea;">onlyOwner</span>{
+    <span style="color: #ff79c6;">require</span>(
+      <span style="color: #ffb86c;">msg</span>.sender == owner,
+      <span style="color: #6272a4;">//</span><span style="color: #6272a4;">&#21482;&#26377;&#36825;&#20010;owner &#21487;&#20197;&#20351;&#29992;&#36825;&#20010;func</span>
     );
     _;
 }
@@ -710,12 +711,12 @@ override 修改继承的函数
 </div>
 </div>
 </div>
-<div id="outline-container-org0a46159" class="outline-4">
-<h4 id="org0a46159"><span class="section-number-4">2.3.6</span> library</h4>
+<div id="outline-container-org673113c" class="outline-4">
+<h4 id="org673113c"><span class="section-number-4">2.3.6</span> library</h4>
 <div class="outline-text-4" id="text-2-3-6">
 
 <div class="figure">
-<p><img src="./pics/library.png" alt="library.png" />
+<p><img src="./pic/library.png" alt="library.png" />
 </p>
 </div>
 <pre class="example">
@@ -723,15 +724,24 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
+<div id="outline-container-org301362a" class="outline-4">
+<h4 id="org301362a"><span class="section-number-4">2.3.7</span> event emit log</h4>
+<div class="outline-text-4" id="text-2-3-7">
+<pre class="example">
+1. 在Truffle 项目中使用 console.log
+   npm install --save-dev @nomiclabs/buidler// 或 yarn add @nomiclabs/buidler
+   然后在合约文件中引入 import "@nomiclabs/buidler/console.sol";
+   然后在需要的地方加入 console.log() 打印即可
+</pre>
 </div>
-
-
-<div id="outline-container-org1f5ba69" class="outline-3">
-<h3 id="org1f5ba69"><span class="section-number-3">2.4</span> 单位</h3>
+</div>
+</div>
+<div id="outline-container-org1d89aa6" class="outline-3">
+<h3 id="org1d89aa6"><span class="section-number-3">2.4</span> 单位</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-org23ee0f9" class="outline-4">
-<h4 id="org23ee0f9"><span class="section-number-4">2.4.1</span> ether units</h4>
+<div id="outline-container-orgf0c3238" class="outline-4">
+<h4 id="orgf0c3238"><span class="section-number-4">2.4.1</span> ether units</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <pre class="example">
 1. wei 最小单位 i进制是 1e9
@@ -743,8 +753,8 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
-<div id="outline-container-org3e6b4a4" class="outline-4">
-<h4 id="org3e6b4a4"><span class="section-number-4">2.4.2</span> time units</h4>
+<div id="outline-container-org25c0556" class="outline-4">
+<h4 id="org25c0556"><span class="section-number-4">2.4.2</span> time units</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <pre class="example">
 1. 除了年以外,没别的差别.
@@ -753,8 +763,8 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
-<div id="outline-container-org6ce9a0b" class="outline-4">
-<h4 id="org6ce9a0b"><span class="section-number-4">2.4.3</span> block properties</h4>
+<div id="outline-container-org41b3091" class="outline-4">
+<h4 id="org41b3091"><span class="section-number-4">2.4.3</span> block properties</h4>
 <div class="outline-text-4" id="text-2-4-3">
 
 <div class="figure">
@@ -763,8 +773,8 @@ override 修改继承的函数
 </div>
 </div>
 </div>
-<div id="outline-container-orgf64f5f4" class="outline-4">
-<h4 id="orgf64f5f4"><span class="section-number-4">2.4.4</span> transaction properties</h4>
+<div id="outline-container-org76e3af0" class="outline-4">
+<h4 id="org76e3af0"><span class="section-number-4">2.4.4</span> transaction properties</h4>
 <div class="outline-text-4" id="text-2-4-4">
 
 <div class="figure">
@@ -783,8 +793,8 @@ override 修改继承的函数
 </pre>
 </div>
 </div>
-<div id="outline-container-org648db0a" class="outline-4">
-<h4 id="org648db0a"><span class="section-number-4">2.4.5</span> 计算, addmod mulmod keccheck256</h4>
+<div id="outline-container-org496db00" class="outline-4">
+<h4 id="org496db00"><span class="section-number-4">2.4.5</span> 计算, addmod mulmod keccheck256</h4>
 <div class="outline-text-4" id="text-2-4-5">
 
 <div class="figure">
@@ -795,12 +805,12 @@ override 修改继承的函数
 </div>
 </div>
 </div>
-<div id="outline-container-orgcebd7cc" class="outline-2">
-<h2 id="orgcebd7cc"><span class="section-number-2">3</span> solidity</h2>
+<div id="outline-container-orgeb2587f" class="outline-2">
+<h2 id="orgeb2587f"><span class="section-number-2">3</span> solidity</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org64ecd6e" class="outline-3">
-<h3 id="org64ecd6e"><span class="section-number-3">3.1</span> 部署</h3>
+<div id="outline-container-org5887485" class="outline-3">
+<h3 id="org5887485"><span class="section-number-3">3.1</span> 部署</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><p>
@@ -825,12 +835,12 @@ deployer.deploy(HelloWorld);
 12 . contract.getHello()
 </pre>
 <div class="org-src-container">
-<pre class="src src-solidity"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">SPDX-License-Identifier: MIT</span>
-<span style="color: #81A1C1;">pragma</span> <span style="color: #A3BE8C;">solidity &gt;=0.4.22 &lt;0.9.0</span>;
-<span style="color: #81A1C1;">contract</span> <span style="color: #D8DEE9;">HelloWorld</span> {
-    <span style="color: #8FBCBB;">string</span> hello = <span style="color: #A3BE8C;">"Hello World"</span>;
-    <span style="color: #81A1C1;">function</span>  <span style="color: #8FBCBB;">getHello</span>()  <span style="color: #81A1C1;">public</span> <span style="color: #81A1C1;">view</span> <span style="color: #81A1C1;">returns</span>(<span style="color: #8FBCBB;">string</span>  <span style="color: #81A1C1;">memory</span>){
-       <span style="color: #81A1C1;">return</span> hello;
+<pre class="src src-solidity"><span style="color: #6272a4;">// </span><span style="color: #6272a4;">SPDX-License-Identifier: MIT</span>
+<span style="color: #ff79c6;">pragma</span> <span style="color: #f1fa8c;">solidity &gt;=0.4.22 &lt;0.9.0</span>;
+<span style="color: #ff79c6;">contract</span> <span style="color: #dac9ea;">HelloWorld</span> {
+    <span style="color: #bd93f9;">string</span> hello = <span style="color: #f1fa8c;">"Hello World"</span>;
+    <span style="color: #ff79c6;">function</span>  <span style="color: #50fa7b;">getHello</span>()  <span style="color: #ff79c6;">public</span> <span style="color: #ff79c6;">view</span> <span style="color: #ff79c6;">returns</span>(<span style="color: #bd93f9;">string</span>  <span style="color: #ff79c6;">memory</span>){
+       <span style="color: #ff79c6;">return</span> hello;
     }
 }
 </pre>
@@ -838,42 +848,42 @@ deployer.deploy(HelloWorld);
 </ul>
 </div>
 </div>
-<div id="outline-container-org7b9ec7e" class="outline-3">
-<h3 id="org7b9ec7e"><span class="section-number-3">3.2</span> 根据例子学习</h3>
+<div id="outline-container-orgc01e2c1" class="outline-3">
+<h3 id="orgc01e2c1"><span class="section-number-3">3.2</span> 根据例子学习</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><p>
 1 . test
 </p>
 <div class="org-src-container">
-<pre class="src src-solidity"><span style="color: #6f7787;">// </span><span style="color: #6f7787;">SPDX-License-Identifier: GPL-3.0</span>
-<span style="color: #6f7787;">// </span><span style="color: #6f7787;">1. license &#21487;&#20197;&#35774;&#23450; UNLICENSED</span>
+<pre class="src src-solidity"><span style="color: #6272a4;">// </span><span style="color: #6272a4;">SPDX-License-Identifier: GPL-3.0</span>
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">1. license &#21487;&#20197;&#35774;&#23450; UNLICENSED</span>
 
-<span style="color: #81A1C1;">pragma</span> <span style="color: #A3BE8C;">solidity &gt;=0.7.0 &lt;0.8.0</span>;
-<span style="color: #6f7787;">// </span><span style="color: #6f7787;">2. &#35774;&#23450;&#21644;&#32534;&#35793;&#22120;&#24320;&#21457;&#30456;&#20851;&#30340; &#22823;&#20110;0.7.0 &#23567;&#20110; 0.8.0</span>
-<span style="color: #6f7787;">/**</span>
-<span style="color: #6f7787;"> * @title Storage</span>
-<span style="color: #6f7787;"> * @dev Store &amp; retrieve value in a variable</span>
-<span style="color: #6f7787;"> */</span>
-<span style="color: #6f7787;">// </span><span style="color: #6f7787;">3. smart comtract &#21483;&#20570; storage</span>
-<span style="color: #81A1C1;">contract</span> <span style="color: #D8DEE9;">Storage</span> {
+<span style="color: #ff79c6;">pragma</span> <span style="color: #f1fa8c;">solidity &gt;=0.7.0 &lt;0.8.0</span>;
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">2. &#35774;&#23450;&#21644;&#32534;&#35793;&#22120;&#24320;&#21457;&#30456;&#20851;&#30340; &#22823;&#20110;0.7.0 &#23567;&#20110; 0.8.0</span>
+<span style="color: #6272a4;">/**</span>
+<span style="color: #6272a4;"> * @title Storage</span>
+<span style="color: #6272a4;"> * @dev Store &amp; retrieve value in a variable</span>
+<span style="color: #6272a4;"> */</span>
+<span style="color: #6272a4;">// </span><span style="color: #6272a4;">3. smart comtract &#21483;&#20570; storage</span>
+<span style="color: #ff79c6;">contract</span> <span style="color: #dac9ea;">Storage</span> {
 
-    <span style="color: #8FBCBB;">uint256</span> number;
+    <span style="color: #bd93f9;">uint256</span> number;
 
-    <span style="color: #6f7787;">/**</span>
-<span style="color: #6f7787;">     * @dev Store value in variable</span>
-<span style="color: #6f7787;">     * @param num value to store</span>
-<span style="color: #6f7787;">     */</span>
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">store</span>(<span style="color: #8FBCBB;">uint256</span> num) <span style="color: #81A1C1;">public</span> {
+    <span style="color: #6272a4;">/**</span>
+<span style="color: #6272a4;">     * @dev Store value in variable</span>
+<span style="color: #6272a4;">     * @param num value to store</span>
+<span style="color: #6272a4;">     */</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">store</span>(<span style="color: #bd93f9;">uint256</span> num) <span style="color: #ff79c6;">public</span> {
         number = num;
     }
 
-    <span style="color: #6f7787;">/**</span>
-<span style="color: #6f7787;">     * @dev Return value</span>
-<span style="color: #6f7787;">     * @return value of 'number'</span>
-<span style="color: #6f7787;">     */</span>
-    <span style="color: #81A1C1;">function</span> <span style="color: #8FBCBB;">retrieve</span>() <span style="color: #81A1C1;">public</span> <span style="color: #81A1C1;">view</span> <span style="color: #81A1C1;">returns</span> (<span style="color: #8FBCBB;">uint256</span>){
-        <span style="color: #81A1C1;">return</span> number;
+    <span style="color: #6272a4;">/**</span>
+<span style="color: #6272a4;">     * @dev Return value</span>
+<span style="color: #6272a4;">     * @return value of 'number'</span>
+<span style="color: #6272a4;">     */</span>
+    <span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">retrieve</span>() <span style="color: #ff79c6;">public</span> <span style="color: #ff79c6;">view</span> <span style="color: #ff79c6;">returns</span> (<span style="color: #bd93f9;">uint256</span>){
+        <span style="color: #ff79c6;">return</span> number;
     }
 }
 </pre>
@@ -886,7 +896,7 @@ deployer.deploy(HelloWorld);
 <div id="postamble" class="status">
 <p class="date">Date: 2021-02-25</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-03-02 二 12:08</p>
+<p class="date">Created: 2021-03-09 二 19:11</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

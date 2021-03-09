@@ -1,4 +1,3 @@
-
 #+TITLE:     solidity
 #+AUTHOR:    rzry https://github.com/rzry
 #+EMAIL:     rzry36008@ccie.lol
@@ -251,11 +250,17 @@ contract School {
    #+end_src
    [[./pic/modifier.png]]
 *** library
-    [[./pics/library.png]]
+    [[./pic/library.png]]
     #+begin_src
     1. 工具 不需要状态 不需要 code variables
     #+end_src
-
+*** event emit log
+    #+begin_src
+    1. 在Truffle 项目中使用 console.log
+       npm install --save-dev @nomiclabs/buidler// 或 yarn add @nomiclabs/buidler
+       然后在合约文件中引入 import "@nomiclabs/buidler/console.sol";
+       然后在需要的地方加入 console.log() 打印即可
+    #+end_src
 ** 单位
 *** ether units
    #+begin_src
