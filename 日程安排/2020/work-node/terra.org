@@ -99,14 +99,14 @@ install-rust() {
 
       solana --version
       #+end_src
-     - 生成钱包地址
+    - 生成钱包地址
        #+begin_src shell
        solana-keygen new  -o mywalt.json
 
        # pubkey: CsMUS369FdXsT9YFKCSqBYcpEdDvgpCTr5rmMRuALZTT
        # blouse cheap menu ensure nation mesh ostrich edit sense debate ball despair
 
-       
+
        #+end_src
 
 

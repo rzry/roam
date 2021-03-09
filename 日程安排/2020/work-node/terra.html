@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-03-09 二 16:26 -->
+<!-- 2021-03-09 二 19:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Terra</title>
@@ -248,27 +248,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ae585a">1. 构建</a>
+<li><a href="#orge090ee1">1. 构建</a>
 <ul>
-<li><a href="#orgb17ceee">1.1. 配置</a></li>
-<li><a href="#org8034adf">1.2. 运行本地测试网络</a></li>
-<li><a href="#orgbebfa30">1.3. 运行完整 Wormhole node(在ubuntu/ arch 测试..)</a>
+<li><a href="#orgc87fbb8">1.1. 配置</a></li>
+<li><a href="#org47a29ff">1.2. 运行本地测试网络</a></li>
+<li><a href="#org624aa46">1.3. 运行完整 Wormhole node(在ubuntu/ arch 测试..)</a>
 <ul>
-<li><a href="#orgbac0c7b">1.3.1. 完整的 Solana-validator 节点</a></li>
-<li><a href="#orgf18f2db">1.3.2. Ethereum (轻节点/完整节点)</a></li>
-<li><a href="#orgdb0154f">1.3.3. Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器</a></li>
-<li><a href="#orgd5314bc">1.3.4. Building guardiand 虫洞桥节点</a></li>
-<li><a href="#org108f13c">1.3.5. Key Generation 生成守护秘钥</a></li>
-<li><a href="#orgb8d70a0">1.3.6. 创建 service</a></li>
+<li><a href="#orgf307698">1.3.1. 完整的 Solana-validator 节点</a></li>
+<li><a href="#orgf0425ec">1.3.2. Ethereum (轻节点/完整节点)</a></li>
+<li><a href="#org47a8f5a">1.3.3. Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器</a></li>
+<li><a href="#org0bb7cdf">1.3.4. Building guardiand 虫洞桥节点</a></li>
+<li><a href="#orge38fd49">1.3.5. Key Generation 生成守护秘钥</a></li>
+<li><a href="#org2a04753">1.3.6. 创建 service</a></li>
 </ul>
 </li>
-<li><a href="#org0c1b578">1.4. terracli</a></li>
-<li><a href="#orgf8c16ab">1.5. wormhole solana</a>
+<li><a href="#orgbc4b394">1.4. terracli</a></li>
+<li><a href="#orgf04ab23">1.5. wormhole solana</a>
 <ul>
-<li><a href="#org450bf98">1.5.1. eth &#x2013;&gt; sol</a></li>
-<li><a href="#org5f6e941">1.5.2. Transfer of assets Foreign Chain -&gt; Root Chain</a></li>
-<li><a href="#org4dfd186">1.5.3. sol &#x2013;&gt; eth</a></li>
-<li><a href="#org3b41a1b">1.5.4. Transfer of assets Root Chain -&gt; Foreign Chain</a></li>
+<li><a href="#orgf3cd2e7">1.5.1. eth &#x2013;&gt; sol</a></li>
+<li><a href="#orgb16fc15">1.5.2. Transfer of assets Foreign Chain -&gt; Root Chain</a></li>
+<li><a href="#orgcda0aa0">1.5.3. sol &#x2013;&gt; eth</a></li>
+<li><a href="#orgb9a9cfc">1.5.4. Transfer of assets Root Chain -&gt; Foreign Chain</a></li>
 </ul>
 </li>
 </ul>
@@ -276,12 +276,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9ae585a" class="outline-2">
-<h2 id="org9ae585a"><span class="section-number-2">1</span> 构建</h2>
+<div id="outline-container-orge090ee1" class="outline-2">
+<h2 id="orge090ee1"><span class="section-number-2">1</span> 构建</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgb17ceee" class="outline-3">
-<h3 id="orgb17ceee"><span class="section-number-3">1.1</span> 配置</h3>
+<div id="outline-container-orgc87fbb8" class="outline-3">
+<h3 id="orgc87fbb8"><span class="section-number-3">1.1</span> 配置</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><p>
@@ -348,8 +348,8 @@ install go and rust
 </ul>
 </div>
 </div>
-<div id="outline-container-org8034adf" class="outline-3">
-<h3 id="org8034adf"><span class="section-number-3">1.2</span> 运行本地测试网络</h3>
+<div id="outline-container-org47a29ff" class="outline-3">
+<h3 id="org47a29ff"><span class="section-number-3">1.2</span> 运行本地测试网络</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 1. 初始化将引导网络的 genesis 文件。为您的本地 testnet 设置一个名字，
@@ -398,12 +398,12 @@ terrad start
 </div>
 
 
-<div id="outline-container-orgbebfa30" class="outline-3">
-<h3 id="orgbebfa30"><span class="section-number-3">1.3</span> 运行完整 Wormhole node(在ubuntu/ arch 测试..)</h3>
+<div id="outline-container-org624aa46" class="outline-3">
+<h3 id="org624aa46"><span class="section-number-3">1.3</span> 运行完整 Wormhole node(在ubuntu/ arch 测试..)</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orgbac0c7b" class="outline-4">
-<h4 id="orgbac0c7b"><span class="section-number-4">1.3.1</span> 完整的 Solana-validator 节点</h4>
+<div id="outline-container-orgf307698" class="outline-4">
+<h4 id="orgf307698"><span class="section-number-4">1.3.1</span> 完整的 Solana-validator 节点</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li><p>
@@ -418,8 +418,7 @@ Install the Solana release
 
 solana --version
 </pre>
-</div>
-<ul class="org-ul">
+</div></li>
 <li><p>
 生成钱包地址
 </p>
@@ -428,40 +427,41 @@ solana --version
 
 <span style="color: #6272a4;"># </span><span style="color: #6272a4;">pubkey: CsMUS369FdXsT9YFKCSqBYcpEdDvgpCTr5rmMRuALZTT</span>
 <span style="color: #6272a4;"># </span><span style="color: #6272a4;">blouse cheap menu ensure nation mesh ostrich edit sense debate ball despair</span>
+
+
 </pre>
 </div></li>
-</ul></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-orgf18f2db" class="outline-4">
-<h4 id="orgf18f2db"><span class="section-number-4">1.3.2</span> Ethereum (轻节点/完整节点)</h4>
+<div id="outline-container-orgf0425ec" class="outline-4">
+<h4 id="orgf0425ec"><span class="section-number-4">1.3.2</span> Ethereum (轻节点/完整节点)</h4>
 </div>
 
-<div id="outline-container-orgdb0154f" class="outline-4">
-<h4 id="orgdb0154f"><span class="section-number-4">1.3.3</span> Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器</h4>
-</div>
-
-
-<div id="outline-container-orgd5314bc" class="outline-4">
-<h4 id="orgd5314bc"><span class="section-number-4">1.3.4</span> Building guardiand 虫洞桥节点</h4>
+<div id="outline-container-org47a8f5a" class="outline-4">
+<h4 id="org47a8f5a"><span class="section-number-4">1.3.3</span> Terra 需要一个完整的节点和一个指向完整节点的 LCD 服务器</h4>
 </div>
 
 
-<div id="outline-container-org108f13c" class="outline-4">
-<h4 id="org108f13c"><span class="section-number-4">1.3.5</span> Key Generation 生成守护秘钥</h4>
-</div>
-
-<div id="outline-container-orgb8d70a0" class="outline-4">
-<h4 id="orgb8d70a0"><span class="section-number-4">1.3.6</span> 创建 service</h4>
-</div>
+<div id="outline-container-org0bb7cdf" class="outline-4">
+<h4 id="org0bb7cdf"><span class="section-number-4">1.3.4</span> Building guardiand 虫洞桥节点</h4>
 </div>
 
 
-<div id="outline-container-org0c1b578" class="outline-3">
-<h3 id="org0c1b578"><span class="section-number-3">1.4</span> terracli</h3>
+<div id="outline-container-orge38fd49" class="outline-4">
+<h4 id="orge38fd49"><span class="section-number-4">1.3.5</span> Key Generation 生成守护秘钥</h4>
+</div>
+
+<div id="outline-container-org2a04753" class="outline-4">
+<h4 id="org2a04753"><span class="section-number-4">1.3.6</span> 创建 service</h4>
+</div>
+</div>
+
+
+<div id="outline-container-orgbc4b394" class="outline-3">
+<h3 id="orgbc4b394"><span class="section-number-3">1.4</span> terracli</h3>
 <div class="outline-text-3" id="text-1-4">
 <pre class="example">
 
@@ -470,12 +470,12 @@ solana --version
 </div>
 
 
-<div id="outline-container-orgf8c16ab" class="outline-3">
-<h3 id="orgf8c16ab"><span class="section-number-3">1.5</span> wormhole solana</h3>
+<div id="outline-container-orgf04ab23" class="outline-3">
+<h3 id="orgf04ab23"><span class="section-number-3">1.5</span> wormhole solana</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-org450bf98" class="outline-4">
-<h4 id="org450bf98"><span class="section-number-4">1.5.1</span> eth &#x2013;&gt; sol</h4>
+<div id="outline-container-orgf3cd2e7" class="outline-4">
+<h4 id="orgf3cd2e7"><span class="section-number-4">1.5.1</span> eth &#x2013;&gt; sol</h4>
 <div class="outline-text-4" id="text-1-5-1">
 
 <div class="figure">
@@ -484,7 +484,7 @@ solana --version
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org69ed862"></a>code<br />
+<li><a id="org69f9bad"></a>code<br />
 <div class="outline-text-5" id="text-1-5-1-1">
 <ul class="org-ul">
 <li>vaatransfer</li>
@@ -531,8 +531,8 @@ solana --version
 </ol>
 </div>
 
-<div id="outline-container-org5f6e941" class="outline-4">
-<h4 id="org5f6e941"><span class="section-number-4">1.5.2</span> Transfer of assets Foreign Chain -&gt; Root Chain</h4>
+<div id="outline-container-orgb16fc15" class="outline-4">
+<h4 id="orgb16fc15"><span class="section-number-4">1.5.2</span> Transfer of assets Foreign Chain -&gt; Root Chain</h4>
 <div class="outline-text-4" id="text-1-5-2">
 
 <div class="figure">
@@ -541,8 +541,8 @@ solana --version
 </div>
 </div>
 </div>
-<div id="outline-container-org4dfd186" class="outline-4">
-<h4 id="org4dfd186"><span class="section-number-4">1.5.3</span> sol &#x2013;&gt; eth</h4>
+<div id="outline-container-orgcda0aa0" class="outline-4">
+<h4 id="orgcda0aa0"><span class="section-number-4">1.5.3</span> sol &#x2013;&gt; eth</h4>
 <div class="outline-text-4" id="text-1-5-3">
 
 <div class="figure">
@@ -551,7 +551,7 @@ solana --version
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="orgcfec585"></a>code<br />
+<li><a id="orgfbf1fe4"></a>code<br />
 <div class="outline-text-5" id="text-1-5-3-1">
 <div class="org-src-container">
 <pre class="src src-solidity">
@@ -561,8 +561,8 @@ solana --version
 </li>
 </ol>
 </div>
-<div id="outline-container-org3b41a1b" class="outline-4">
-<h4 id="org3b41a1b"><span class="section-number-4">1.5.4</span> Transfer of assets Root Chain -&gt; Foreign Chain</h4>
+<div id="outline-container-orgb9a9cfc" class="outline-4">
+<h4 id="orgb9a9cfc"><span class="section-number-4">1.5.4</span> Transfer of assets Root Chain -&gt; Foreign Chain</h4>
 <div class="outline-text-4" id="text-1-5-4">
 
 <div class="figure">
@@ -577,7 +577,7 @@ solana --version
 <div id="postamble" class="status">
 <p class="date">Date: 2021-03-01</p>
 <p class="author">Author: rzry <a href="https://github.com/rzry">https://github.com/rzry</a></p>
-<p class="date">Created: 2021-03-09 二 16:26</p>
+<p class="date">Created: 2021-03-09 二 19:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
