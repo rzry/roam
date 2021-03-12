@@ -125,10 +125,111 @@ install-rust() {
 
 ** terracli
    #+begin_src
-
+   vm@Test ~ % terracli --help
+   Command line interface for interacting with terrad
+   Usage:
+     terracli [command]
+   Available Commands:
+     status      Query remote node for status
+     config      Create or query an application CLI configuration file
+     query       Querying subcommands
+     tx          Transactions subcommands
+  rest-server Start LCD (light-client daemon), a local REST server
+     keys        Add or view local private keys
+     version     Print the app version
+     help        Help about any command
    #+end_src
 
 
+*** 所有可以带的参数
+    #+begin_src
+      --chain-id string   Chain ID of tendermint node  // 跟chain id
+  -e, --encoding string   Binray encoding (hex|b64|btc) (default "hex")  //解码
+      --home string       directory for config and data (default "/home/vm/.terracli")
+      --old-hd-path       Flag to specify the command uses old HD path
+  -o, --output string     Output format (text|json) (default "text")
+      --trace             print out full stack trace on errors
+    #+end_src
+*** status
+    - 查询远程节点的状态
+    #+begin_src shell
+    terracli status [flag1,flag2,flag3] [Global flags]
+    Flags:
+    -h, --help          help for status
+        --indent        Add indent to JSON response
+    -n, --node string   Node to connect to (default "tcp://localhost:26657")
+
+    eg : terracli status --indent / --node "url string "
+    #+end_src
+
+*** config
+    - 创建或查询应用程序CLI配置文件
+    #+begin_src
+         --get    print configuration value or its default if unset
+    eg : terracli config [key] [value] --get
+    #+end_src
+
+*** query
+    - 查询子命令
+    #+begin_src
+    Available Commands:
+    account                  Query account balance
+
+    tendermint-validator-set 在给定的高度获得完整的tendermint validator
+    block                    获取给定高度的块的验证数据
+    txs                      查询与一组事件匹配的分页交易
+    tx                       通过提交的块中的哈希查询事务
+    oracle                   查询oracle模块的命令
+    slashing                 查询削减模块的命令
+    evidence                 通过散列或所有（分页）提交的证据查询证据
+    market                   查询market模块命令
+    msgauth                  查询authorization授权模块的命令
+    staking                  查询staking模块命令
+    gov                      查询治理模块的命令
+    supply                   查询供应模块的命令
+    upgrade                  查询升级模块命令
+    wasm                     查询wasm模块的命令
+    auth                     查询auth模块的命令
+    mint                     查询铸币模块的命令
+    distribution             查询分发模块的命令
+    treasury                 查询财务模块命令
+    #+end_src
+**** account
+     - Query account balance
+       terracli query account [address] [flags]
+**** tendermint-validator-set
+     - Get the full tendermint validator set at given height
+       eg : terracli query tendermint-validator-set [height] [flags]
+**** block
+     - Get verified data for a the block at given height
+       eg : terracli query block [height]
+**** txs
+     - eg : terracli query txs --events 'message.sender=terra1...&message.
+       action=withdraw_delegator_reward' --page 1 --limit 03
+**** oracle
+     - Usage:
+       eg : terracli query oracle [command]
+     #+begin_src
+     exchange-rates    查询资产的当前Luna汇率
+     votes             查询未决的oracle票数，并按标称和选民地址过滤。
+     prevotes          查询未完成的oracle prevotes，按denom和选民地址过滤。
+     actives           查询由oracle识别的Terra资产的活动列表
+     params            查询当前的Oracle参数
+     feeder            查询oracle feeder委托帐户
+     miss              查询未命中数
+     aggregate-prevote 查询未完成的oracle聚合prevote，按投票者地址过滤。
+     aggregate-vote    查询未完成的oracle聚合投票，按投票者地址过滤。
+     vote-targets      目标查询当前的Oracle投票目标
+     tobin-taxes       查询当前的Oracle tobin税。
+     #+end_src
+**** slashing
+     - Querying commands for the slashing module
+       eg : terracli query slashing [command]
+       #+begin_src
+       signing-info 查询验证者的签名信息
+       params       查询当前的削减参数
+       #+end_src
+**** 
 ** wormhole solana
 *** eth --> sol
    [[./pic/ethTosol.png]]
